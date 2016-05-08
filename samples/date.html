@@ -1,0 +1,38 @@
+<!--<h2>{{'DATE' | translate}}:</h2>-->
+<!--<pip-date  pip-time-mode="past" ng-disabled="specialDateDisabled">-->
+<!--</pip-date>-->
+<!--<p>{{ 'VALUE' | translate }}: {{ specialDate || 'NULL'  }}</p>-->
+
+<!--<h3>Disabled: </h3>-->
+<!--<pip-date ng-model="specialDate" ng-disabled="true">-->
+<!--</pip-date>-->
+
+<!--<h2>{{ 'TIME_EDIT_TIME_VIEW' | translate }}:</h2>-->
+
+<!--<pip-time-edit pip-start-date="startDate" pip-end-date="endDate"></pip-time-edit>-->
+<!--<pip-time-view pip-start-date="startDate" pip-end-date="endDate" pip-rebind="true"></pip-time-view>-->
+
+<!--<h3>Disabled: </h3>-->
+<!--<pip-time-edit pip-start-date="startDate" pip-end-date="endDate" ng-disabled="true"></pip-time-edit>-->
+
+<h2>{{ 'DATE_RANGE' | translate }}:</h2>
+<!--<h3>{{ 'DAILY' | translate }}: </h3>-->
+<pip-date-range pip-date-range-type="daily" ng-model="daily"></pip-date-range>
+<!--{{ daily }}-->
+<h3>{{ 'WEEKLY' | translate}}: </h3>
+<pip-date-range pip-date-range-type="weekly" ng-model="weekly"></pip-date-range>
+{{ weekly }}
+<md-button ng-click="onNextWeek()">
+    Next week
+</md-button>
+<!--<h3>{{ 'MONTHLY' | translate }}: </h3>-->
+<!--<pip-date-range pip-date-range-type="monthly" ng-model="monthly"></pip-date-range>-->
+<!--{{ monthly }}-->
+<!--<h3>{{ 'YEARLY' | translate}}: </h3>-->
+<!--<pip-date-range pip-date-range-type="yearly" ng-model="yearly"></pip-date-range>-->
+<!--{{ yearly }}-->
+
+<!--<h3>Layout row</h3>-->
+<!--<div layout="row" layout-align="start center">-->
+    <!--<pip-date-range pip-date-range-type="weekly"></pip-date-range>-->
+<!--</div>-->

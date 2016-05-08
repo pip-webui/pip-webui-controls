@@ -1,0 +1,126 @@
+.pip-routing-progress {
+
+  @green-splash: #67BC6B;
+  @yellow-splash: #FFCC2A;
+  @red-splash: #F37047;
+  @blue-splash: #46B2E6;
+
+  background-position: 50% 50%;
+  width: 100%;
+  height: 100%;
+
+  .fix-ie {
+    display: none;
+  }
+  @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+    .fix-ie {
+      display: block;
+    }
+    .md-spinner-wrapper{
+      position: fixed;
+    }
+    .pip-img-ie{
+      position: fixed;
+    }
+  }
+
+  .pip-progress-bg {
+
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    //opacity: 0.12;
+  }
+
+  .pip-img {
+    z-index: 100;
+    position: absolute;
+    top: ~"calc( 50% - 40px)";
+    left: ~"calc( 50% - 19px)";
+
+    -moz-transform: rotate(-15deg); /* Äëÿ Firefox */
+    -ms-transform: rotate(-15deg); /* Äëÿ IE */
+    -webkit-transform: rotate(-15deg); /* Äëÿ Safari, Chrome, iOS */
+    -o-transform: rotate(-15deg); /* Äëÿ Opera */
+    transform: rotate(-15deg);
+
+  }
+
+  @width: 100px;
+
+  // end demo-specific
+
+  .loader {
+    margin: 0px !important;
+    position: absolute;
+    top: ~"calc( 50% - 70px)";
+    left: ~"calc( 50% - 50px)";
+
+    width: @width;
+    &:before {
+      content: '';
+      display: block;
+      padding-top: 100%;
+    }
+  }
+
+  .circular {
+    animation: rotate 2s linear infinite;
+    height: 100%;
+    transform-origin: center center;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+
+  .path {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    animation: dash 1.5s ease-in-out infinite,
+    color 6s ease-in-out infinite;
+    stroke-linecap: round;
+  }
+
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 89, 200;
+      stroke-dashoffset: -35px;
+    }
+    100% {
+      stroke-dasharray: 89, 200;
+      stroke-dashoffset: -124px;
+    }
+  }
+
+  @keyframes color {
+    100%, 0% {
+      stroke: @red-splash;
+    }
+    40% {
+      stroke: @blue-splash;
+    }
+    66% {
+      stroke: @green-splash;
+    }
+    80%, 90% {
+      stroke: @yellow-splash;
+    }
+  }
+
+}

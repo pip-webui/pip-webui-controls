@@ -1,0 +1,17 @@
+<h2>Popover {{ 'SAMPLE' | translate }}:</h2>
+<md-button ng-click="showTip()">Show Tip</md-button>
+<md-button ng-click="showQuote()">Show Quote</md-button>
+
+<md-input-container class="w-stretch">
+    <textarea name="" ng-model="popoverContent" id="" cols="30" rows="10"></textarea>
+</md-input-container>
+
+<md-input-container class="w50-stretch" md-no-float="true">
+    <input type="text" placeholder="{{ ::'CLICK_HELP' | translate }}" ng-model="content1"/>
+    <md-icon class="position-right" style="right: 40px" md-svg-icon="icons:help" ng-click="showHelp($event, content1)"></md-icon>
+</md-input-container>
+
+<md-input-container class="w50-stretch" md-no-float="true">
+    <input type="text" placeholder="{{ ::'CLICK_HELP' | translate }}" ng-model="content2"/>
+    <md-icon class="position-right" style="right: 40px" md-svg-icon="icons:help" ng-click="showHelp($event, content2)"></md-icon>
+</md-input-container>

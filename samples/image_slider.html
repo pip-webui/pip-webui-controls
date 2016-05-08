@@ -1,0 +1,47 @@
+<h2>Image slider {{ 'SAMPLE' | translate }}</h2>
+
+<div>
+    <div class="w-stretch" layout="column" layout-align="center center">
+        <h2 class="w-stretch">Fading:</h2>
+
+        <div pip-image-slider pip-animation-type="'fading'" class="w-stretch" pip-animation-interval="5000">
+            <div class="pip-animation-block w-stretch" ng-repeat="image in images">
+                <img src="{{ image.url }}" alt="{{ image.url }}" class="w-stretch"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-stretch" layout="column" layout-align="center center">
+        <h2 class="w-stretch">Carousel:</h2>
+
+        <div pip-image-slider pip-animation-type="'carousel'" id="pip-carousel" class="w-stretch"
+             pip-image-slider-index="slider2Index"
+             pip-animation-interval="3000">
+            <div class="pip-animation-block w-stretch" ng-repeat="image in images2">
+                <img src="{{ image.url }}" alt="{{ image.url }}" class="w-stretch"/>
+            </div>
+        </div>
+        <h4>Previous and next image slider buttons</h4>
+
+        <div class="w-stretch" layout="row" layout-align="center center">
+            <md-button pip-slider-button pip-slider-id="'pip-carousel'" pip-button-type="'prev'">
+                <md-icon md-svg-icon="icons:chevron-big-left"></md-icon>
+            </md-button>
+            <md-button pip-slider-button pip-slider-id="'pip-carousel'" pip-button-type="'next'">
+                <md-icon md-svg-icon="icons:chevron-big-right"></md-icon>
+            </md-button>
+        </div>
+
+
+        <h4>Image slider indicators</h4>
+
+        <div class="w-stretch" layout="row" layout-align="center center">
+            <md-icon ng-repeat="image in images2"
+                     style="margin: 0px 20px"
+                     pip-slider-indicator pip-slider-id="'pip-carousel'"
+                     ng-class="{'color-accent': $index == slider2Index}" ng-attr-pip-slide-to="$index"
+                     md-svg-icon="{{ $index == slider2Index ? 'icons:radio-on' :'icons:radio-off' }}">
+            </md-icon>
+        </div>
+    </div>
+</div>

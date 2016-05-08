@@ -1,0 +1,46 @@
+<!--
+@file Conversion dialog content
+@copyright Digital Living Software Corp. 2014-2016
+-->
+
+<md-dialog class="pip-dialog pip-conversion-dialog" layout="column" min-width="450" md-theme="{{theme}}">
+    <md-dialog-content class="pip-body p0 pip-scroll">
+        <div class="pip-header" ng-if="!withoutTitle || deleted" ng-class="{'header-hint': withoutTitle && deleted}">
+            <h3 class="m0 text-title" ng-hide="withoutTitle">
+                {{::title | translate}}
+            </h3>
+            <p class="tp8 pip-subtitle" ng-hide="withoutTitle">
+                <span pip-translate-html="{{::subtitle | translate}}"/>
+            </p>
+            <div ng-show="withoutTitle && deleted" class="dialog-hint" layout="row" layout-align="start center">
+                <div class="w40" flex-fixed><md-icon md-svg-icon="icons:info-circle-outline"></md-icon></div>
+                <div>{{::withoutTitle | translate}}</div>
+            </div>
+        </div>
+        <div class="pip-divider"  ng-if="!withoutTitle"></div>
+        <div class="h8"  ng-if="withoutTitle"></div>
+        <div class="pip-content">
+            <div class="pip-list md-primary" md-no-ink="true" ng-keydown="onKeyDown($event)"
+                            ng-keypress="onKeyPress($event)" tabindex="0">
+                <div ng-repeat="option in options" class="pip-list-item" md-ink-ripple
+                     ui-event="{ click: 'onOptionSelect($event, option)' }"
+                     ng-class="{ selected: option.name == selectedOptionName,
+                            'divider-bottom': $index < options.length - 1 }">
+
+                        <div class="pip-content lp24-flex rp24-flex" flex>
+                            <div class="pip-title" ng-if="option.title">
+                                {{::option.title | translate}}
+                            </div>
+                            <div class="pip-subtitle" ng-if="option.subtitle">
+                                <span pip-translate-html="{{::option.subtitle | translate}}"/>
+                            </div>
+                            <div class="pip-text" ng-if="option.text">
+                                <span pip-translate-html="{{::option.text | translate}}"/>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="h8"></div>
+    </md-dialog-content>
+</md-dialog>

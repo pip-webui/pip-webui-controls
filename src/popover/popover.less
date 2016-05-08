@@ -1,0 +1,85 @@
+.pip-popover-backdrop {
+  z-index: 57;
+  position: fixed;
+
+  &.opened {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    .pip-popover {
+      width: 400px;
+      max-width: ~"calc(100% - 32px)";
+      min-height: 48px;
+      opacity: 1;
+
+      .md-button {
+        display: block;
+      }
+    }
+  }
+
+  .pip-popover {
+    position: fixed;
+    right: 24px;
+    top: 72px;
+    border-radius: 2px 0 2px 2px;
+    z-index: 58;
+    box-shadow: @box-shadow;
+
+    width: 400px;
+    min-height: 0;
+    max-height: ~"calc(100% - 104px)";
+    opacity: 0;
+
+    -webkit-transition: opacity .25s ease;
+    -moz-transition: opacity .25s ease;
+    -o-transition: opacity .25s ease;
+    transition: opacity .25s ease;
+
+    .md-button {
+      display: none;
+    }
+
+    &:after {
+      bottom: 100%;
+      right: 0;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-color: rgba(255, 255 ,255 , 0);
+      border-width: 0 0 16px 24px;
+      margin-left: -24px;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .pip-popover-backdrop.pip-responsive {
+    .pip-popover {
+      top: 72px;
+      max-height: ~"calc(100% - 88px)" !important;
+    }
+  }
+}
+
+@media (min-width: 1199px){
+  .pip-popover-backdrop{
+  .pip-popover {
+    top: 80px !important;
+  }}
+}
+
+@media (max-width: 768px) {
+  .pip-popover-backdrop {
+    .pip-popover {
+
+      width: ~"calc(100% - 32px)" !important;
+      right: 16px;
+    }
+  }
+}
+

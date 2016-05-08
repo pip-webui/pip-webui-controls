@@ -1,0 +1,57 @@
+.pip-toast {
+  max-height: 72px + 32px !important;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  .md-toast-content {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    height: initial;
+    max-height: 32px + 16px !important;
+  }
+  .pip-text {
+    overflow: hidden;
+    max-height: 32px;
+    margin-right:8px;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 600px;
+  }
+
+  @media (max-width: 1199px) {
+    width: initial;
+  }
+
+
+  @media (max-width: 768px) {
+    max-height: 32px + 24px + 36px  + 32px !important;
+    padding: 0px;
+    .md-toast-content {
+      max-height: 32px + 24px + 36px !important;
+      padding-top: 16px;
+      .flex-direction-column();
+
+      .pip-text{
+        margin-right:0px ;
+        width: 100%;
+      }
+      .pip-actions{
+        width: 100%;
+      }
+    }
+
+    &.pip-column-toast{
+      .md-toast-content{
+
+        .flex-direction-column();
+      }
+    }
+  }
+
+  &.pip-error {
+    .md-toast-content {
+      background-color: @color-badge;
+    }
+  }
+}

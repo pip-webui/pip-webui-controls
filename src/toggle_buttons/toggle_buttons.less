@@ -1,0 +1,97 @@
+// @file CSS styles for toggle buttons control
+// @copyright Digital Living Software Corp. 2014-2016
+
+@divider-button-border: 0;
+pip-toggle-buttons {
+  .md-select-value {
+    .pip-tagged {
+      font-size: 20px;
+    }
+  }
+}
+
+pip-toggle-buttons:focus {
+  outline-width: 0px !important;
+}
+
+.dark, .black {
+  .pip-toggle-buttons {
+    button {
+      color: @color-primary-dark;
+    }
+  }
+}
+
+.pip-toggle-buttons {
+  width: 100%;
+  &:focus,  {
+    outline-width: 0px !important;
+  }
+
+  .flex-direction-row;
+  border-radius: 16px !important;
+  height: 36px;
+
+  button {
+    background-color: @color-divider;
+    color: @color-secondary;
+
+    &.pip-chip-button.md-button {
+      text-align: -webkit-center;
+      margin: 0px !important;
+      height: 32px !important;
+      margin-left: 2px !important;
+      border-radius: 0px !important;
+
+      .pip-tagged {
+        font-size: 20px;
+        display: inline-block;
+        height: 36px;
+        vertical-align: middle;
+      }
+
+      md-icon {
+        margin-left: -30px;
+        margin-top: -3px;
+      }
+
+      &:hover, &:focus {
+        background-color: rgba(0, 0, 0, 0.26)
+      }
+
+      &.md-accent {
+        box-shadow: none;
+      }
+
+      &:first-of-type {
+        border-bottom-left-radius: 4px !important;
+        border-top-left-radius: 4px !important;
+        margin-left: 0px !important;
+      }
+
+      &:last-of-type {
+        border-bottom-right-radius: 4px !important;
+        border-top-right-radius: 4px !important;
+        border-right: 0 !important;
+      }
+
+      & > span {
+        font-size: 13px;
+        //font-family: @font-family;
+        .text-overflow();
+        text-transform: uppercase !important;
+      }
+
+      &:disabled {
+        background-color: rgba(0, 0, 0, 0.06);
+        color: rgba(0, 0, 0, 0.38) !important;
+      }
+
+      &:disabled.selected {
+        color: #000000 !important;
+        opacity: 0.38;
+      }
+    }
+  }
+
+}

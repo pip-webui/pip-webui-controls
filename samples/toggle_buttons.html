@@ -1,0 +1,37 @@
+<h2>{{ 'NOT' | translate }} {{ 'INITIALIZED' | translate }}</h2>
+<pip-toggle-buttons ng-model="type"
+                    pip-rebind="true"
+                    pip-buttons="buttonsCollection"
+                    class="bm16">
+</pip-toggle-buttons>
+
+<h2>{{ 'INITIALIZED' | translate }}</h2>
+<pip-toggle-buttons ng-model="initType"
+                    pip-rebind="true"
+                    pip-buttons="buttonsCollection2"
+                    pip-colorful="true"
+                    class="bm16">
+</pip-toggle-buttons>
+
+<h2>Disabled</h2>
+<pip-toggle-buttons ng-model="initType"
+                    pip-rebind="true"
+                    ng-disabled="true"
+                    pip-buttons="buttonsCollection3"
+                    class="bm16">
+</pip-toggle-buttons>
+
+<h2>Colored</h2>
+<pip-toggle-buttons ng-model="type"
+                    pip-rebind="true"
+                    pip-buttons="buttonsColoredCollection"
+                    class="bm16">
+</pip-toggle-buttons>
+
+<h2>Colored and disabled</h2>
+<pip-toggle-buttons ng-model="type"
+                    pip-rebind="true"
+                    ng-disabled="true"
+                    pip-buttons="buttonsColoredCollection"
+                    class="bm16">
+</pip-toggle-buttons>
