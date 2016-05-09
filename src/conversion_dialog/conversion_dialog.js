@@ -141,7 +141,7 @@
             };
 
             $scope.onSelect = function () {
-                var option = _.find($scope.options, 'name', $scope.selectedOptionName);
+                var option = _.find($scope.options, {name: $scope.selectedOptionName});
 
                 if (option && option.name != 'cancel') $mdDialog.hide({ option: option, deleted: $scope.deleted });
                 else $mdDialog.hide(null);

@@ -65,7 +65,7 @@
             $scope.noActions = params.noActions || false;
             $scope.noTitle = params.noTitle || false;
             $scope.hint = params.hint || '';
-            $scope.selectedOption = _.find(params.options, 'active', true) || {};
+            $scope.selectedOption = _.find(params.options, {active: true}) || {};
             $scope.selectedOptionName = $scope.selectedOption.name;
             $scope.optionIndex  = _.findIndex(params.options,$scope.selectedOption);
             $scope.applyButtonTitle = params.applyButtonTitle || 'SELECT';
@@ -106,7 +106,7 @@
             };
             
             $scope.onSelect = function () {
-                var option = _.find($scope.options, 'name', $scope.selectedOptionName);
+                var option = _.find($scope.options, {name: $scope.selectedOptionName});
                 $mdDialog.hide({ option: option, deleted: $scope.deleted });
             };
     

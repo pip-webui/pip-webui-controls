@@ -133,11 +133,11 @@ console.log($scope.toast);
             }
 
             function removeToastsById(id) {
-                _.remove(toasts, 'id', id);
+                _.remove(toasts, {id: id});
             }
 
             function getToastById(id) {
-                return _.find(toasts, 'id', id);
+                return _.find(toasts, {id: id});
             }
     
             function onStateChangeSuccess(event, toState, toParams, fromState, fromParams) {

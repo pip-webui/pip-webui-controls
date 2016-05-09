@@ -997,7 +997,7 @@ module.run(['$templateCache', function($templateCache) {
             };
 
             $scope.onSelect = function () {
-                var option = _.find($scope.options, 'name', $scope.selectedOptionName);
+                var option = _.find($scope.options, {name: $scope.selectedOptionName});
 
                 if (option && option.name != 'cancel') $mdDialog.hide({ option: option, deleted: $scope.deleted });
                 else $mdDialog.hide(null);
@@ -2117,7 +2117,7 @@ module.run(['$templateCache', function($templateCache) {
             $scope.theme = $rootScope.$theme;
             $scope.title = params.title || 'OPTIONS_TITLE';
             $scope.options = params.options;
-            $scope.selectedOption = _.find(params.options, 'active', true) || {};
+            $scope.selectedOption = _.find(params.options, {active: true}) || {};
             $scope.selectedOptionName = $scope.selectedOption.name;
             $scope.applyButtonTitle = params.appleButtonTitle || 'SELECT';
             
@@ -2142,7 +2142,7 @@ module.run(['$templateCache', function($templateCache) {
             };
             
             $scope.onSelect = function () {
-                var option = _.find(params.options, 'name', $scope.selectedOptionName);
+                var option = _.find(params.options, {name: $scope.selectedOptionName});
                 $mdDialog.hide({ option: option, deleted: $scope.deleted });
             };
     
@@ -2225,7 +2225,7 @@ module.run(['$templateCache', function($templateCache) {
             $scope.noActions = params.noActions || false;
             $scope.noTitle = params.noTitle || false;
             $scope.hint = params.hint || '';
-            $scope.selectedOption = _.find(params.options, 'active', true) || {};
+            $scope.selectedOption = _.find(params.options, {active: true}) || {};
             $scope.selectedOptionName = $scope.selectedOption.name;
             $scope.optionIndex  = _.findIndex(params.options,$scope.selectedOption);
             $scope.applyButtonTitle = params.applyButtonTitle || 'SELECT';
@@ -2266,7 +2266,7 @@ module.run(['$templateCache', function($templateCache) {
             };
             
             $scope.onSelect = function () {
-                var option = _.find($scope.options, 'name', $scope.selectedOptionName);
+                var option = _.find($scope.options, {name: $scope.selectedOptionName});
                 $mdDialog.hide({ option: option, deleted: $scope.deleted });
             };
     
@@ -2987,11 +2987,11 @@ console.log($scope.toast);
             }
 
             function removeToastsById(id) {
-                _.remove(toasts, 'id', id);
+                _.remove(toasts, {id: id});
             }
 
             function getToastById(id) {
-                return _.find(toasts, 'id', id);
+                return _.find(toasts, {id: id});
             }
     
             function onStateChangeSuccess(event, toState, toParams, fromState, fromParams) {
