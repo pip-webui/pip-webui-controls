@@ -19,6 +19,7 @@
     thisModule.controller('ColorPickerController',
         function($scope) {
             $scope.disabled = false;
+            $scope.colors=['purple', 'lightgreen', 'green', 'darkred', 'pink', 'yellow', 'cyan']
         }
     );
 

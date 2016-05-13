@@ -48,7 +48,7 @@
 
             var content = pipTranslate.translate(params.message);
             if (params.item) {
-                var item = _.trunc(params.item, 25);
+                var item = _.truncate(params.item, 25);
                 content = pipUtils.sprintf(content, item);
             }
             $scope.content = content;

@@ -24,7 +24,7 @@
             // 3rd Party Modules
             'ui.router', 'ui.utils', 'ngResource', 'ngAria', 'ngCookies', 'ngSanitize', 'ngMessages',
             'ngMaterial', 'LocalStorageModule', 'angularFileUpload', 'ngAnimate', 
-			'pipCore', 'pipBasicControls',
+			'pipCore', 'pipBasicControls', 'appCoreServices.Toasts',
             'appBasicControls.Date', 'appBasicControls.ColorPicker',
             'appBasicControls.Markdown', 'appBasicControls.Refresh', 'appBasicControls.ToggleButtons',
             'appBasicControls.Information', 'appBasicControls.Confirmation',  'appBasicControls.Options',
@@ -34,25 +34,8 @@
     );
 
     thisModule.config(function (pipTranslateProvider, $stateProvider, $urlRouterProvider, $mdIconProvider) {
-            $mdIconProvider.iconSet('icons', '../images/icons.svg', 512);
+            $mdIconProvider.iconSet('icons', '/samples/images/icons.svg', 512);
 
-//             $mdThemingProvider.theme('blue')
-//                 .primaryPalette('blue')
-//                 .accentPalette('green');
-// 
-//             $mdThemingProvider.theme('pink')
-//                 .primaryPalette('pink')
-//                 .accentPalette('orange');
-// 
-//             $mdThemingProvider.theme('green')
-//                 .primaryPalette('green')
-//                 .accentPalette('purple');
-// 
-//             $mdThemingProvider.theme('grey')
-//                 .primaryPalette('grey')
-//                 .accentPalette('yellow');
-// 
-//             $mdThemingProvider.setDefaultTheme('blue');
 
             // String translations
             pipTranslateProvider.translations('en', {
