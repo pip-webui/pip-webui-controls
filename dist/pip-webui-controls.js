@@ -1,42 +1,3 @@
-/**
- * @file Registration of basic WebUI controls
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    angular.module('pipControls', [        
-        'pipMarkdown',
-        'pipToggleButtons',
-        'pipRefreshButton',
-        'pipColorPicker',
-        'pipRoutingProgress',
-        'pipPopover',
-        'pipImageSlider',
-        'pipToasts',
-
-        'pipDate',
-        'pipDateRange',
-        'pipTimeEdit',
-        'pipTimeView',
-
-        'pipInformationDialog',
-        'pipConfirmationDialog',
-        'pipOptionsDialog',
-        'pipOptionsBigDialog',
-        'pipConversionDialog',
-        'pipErrorDetailsDialog'
-    ]);
-
-    angular.module('pipBasicControls', [ 'pipControls' ]);
-    
-})();
-
-
-
 (function(module) {
 try {
   module = angular.module('pipBasicControls.Templates');
@@ -716,73 +677,43 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 /**
- * @file Confirmation dialog
+ * @file Registration of basic WebUI controls
  * @copyright Digital Living Software Corp. 2014-2016
- * @todo
- * - Improve sample in sampler app
  */
- 
+
 /* global angular */
 
 (function () {
     'use strict';
 
-    var thisModule = angular.module('pipConfirmationDialog', 
-        ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
+    angular.module('pipControls', [        
+        'pipMarkdown',
+        'pipToggleButtons',
+        'pipRefreshButton',
+        'pipColorPicker',
+        'pipRoutingProgress',
+        'pipPopover',
+        'pipImageSlider',
+        'pipToasts',
 
-    thisModule.config(['pipTranslateProvider', function(pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            'CONFIRM_TITLE': 'Confirm'
-        });
-        pipTranslateProvider.translations('ru', {
-            'CONFIRM_TITLE': 'Подтвердите'
-        });
-    }]);
+        'pipDate',
+        'pipDateRange',
+        'pipTimeEdit',
+        'pipTimeView',
 
-    thisModule.factory('pipConfirmationDialog', 
-        ['$mdDialog', function ($mdDialog) {
-            return {
-                show: function (params, successCallback, cancelCallback) {
-                    $mdDialog.show({
-                        targetEvent: params.event,
-                        templateUrl: 'confirmation_dialog/confirmation_dialog.html',
-                        controller: 'pipConfirmationDialogController',
-                        locals: { params: params },
-                        clickOutsideToClose: true
-                    })
-                    .then(function () {
-                        if (successCallback) {
-                            successCallback();
-                        }
-                    }, function () {
-                        if (cancelCallback) {
-                            cancelCallback();
-                        }
-                    });
-                }
-            };
-        }]
-    );
+        'pipInformationDialog',
+        'pipConfirmationDialog',
+        'pipOptionsDialog',
+        'pipOptionsBigDialog',
+        'pipConversionDialog',
+        'pipErrorDetailsDialog'
+    ]);
 
-    thisModule.controller('pipConfirmationDialogController',
-        ['$scope', '$rootScope', '$mdDialog', 'pipTranslate', 'params', function ($scope, $rootScope, $mdDialog, pipTranslate, params) {
-            $scope.theme = $rootScope.$theme;
-            $scope.title = params.title || 'CONFIRM_TITLE';
-
-            $scope.ok = params.ok || 'OK';
-            $scope.cancel = params.cancel || 'CANCEL';
-
-            $scope.onCancel = function () {
-                $mdDialog.cancel();
-            };
-
-            $scope.onOk = function () {
-                $mdDialog.hide();
-            };
-        }]
-    );
-
+    angular.module('pipBasicControls', [ 'pipControls' ]);
+    
 })();
+
+
 
 /**
  * @file Color picker control
@@ -854,6 +785,75 @@ module.run(['$templateCache', function($templateCache) {
     }])
 
 })();
+/**
+ * @file Confirmation dialog
+ * @copyright Digital Living Software Corp. 2014-2016
+ * @todo
+ * - Improve sample in sampler app
+ */
+ 
+/* global angular */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module('pipConfirmationDialog', 
+        ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
+
+    thisModule.config(['pipTranslateProvider', function(pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            'CONFIRM_TITLE': 'Confirm'
+        });
+        pipTranslateProvider.translations('ru', {
+            'CONFIRM_TITLE': 'Подтвердите'
+        });
+    }]);
+
+    thisModule.factory('pipConfirmationDialog', 
+        ['$mdDialog', function ($mdDialog) {
+            return {
+                show: function (params, successCallback, cancelCallback) {
+                    $mdDialog.show({
+                        targetEvent: params.event,
+                        templateUrl: 'confirmation_dialog/confirmation_dialog.html',
+                        controller: 'pipConfirmationDialogController',
+                        locals: { params: params },
+                        clickOutsideToClose: true
+                    })
+                    .then(function () {
+                        if (successCallback) {
+                            successCallback();
+                        }
+                    }, function () {
+                        if (cancelCallback) {
+                            cancelCallback();
+                        }
+                    });
+                }
+            };
+        }]
+    );
+
+    thisModule.controller('pipConfirmationDialogController',
+        ['$scope', '$rootScope', '$mdDialog', 'pipTranslate', 'params', function ($scope, $rootScope, $mdDialog, pipTranslate, params) {
+            $scope.theme = $rootScope.$theme;
+            $scope.title = params.title || 'CONFIRM_TITLE';
+
+            $scope.ok = params.ok || 'OK';
+            $scope.cancel = params.cancel || 'CANCEL';
+
+            $scope.onCancel = function () {
+                $mdDialog.cancel();
+            };
+
+            $scope.onOk = function () {
+                $mdDialog.hide();
+            };
+        }]
+    );
+
+})();
+
 /**
  * @file Convert parent dialog
  * @copyright Digital Living Software Corp. 2014-2016
@@ -3108,7 +3108,7 @@ console.log($scope.toast);
                     ngDisabled: '&',
                     buttons: '=pipButtons',
                     currentButtonValue: '=ngModel',
-                    currentButton: '=pipButtonObject',
+                    currentButton: '=?pipButtonObject',
                     change: '&ngChange'
                 },
                 templateUrl: 'toggle_buttons/toggle_buttons.html',

@@ -18,7 +18,7 @@
                     ngDisabled: '&',
                     buttons: '=pipButtons',
                     currentButtonValue: '=ngModel',
-                    currentButton: '=pipButtonObject',
+                    currentButton: '=?pipButtonObject',
                     change: '&ngChange'
                 },
                 templateUrl: 'toggle_buttons/toggle_buttons.html',
