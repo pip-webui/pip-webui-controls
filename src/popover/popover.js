@@ -38,8 +38,9 @@
 
                     $scope.onPopoverClick = onPopoverClick;
                     $scope = _.defaults($scope, $scope.$parent);
-                    $rootScope.$on('pipWindowResized', onResize);
+
                     $rootScope.$on('pipPopoverResize', onResize);
+                    $(window).resize(onResize);
 
                     function init() {
                         backdropElement.addClass('opened');
@@ -82,7 +83,7 @@
                             if (pos)
                                 popover
                                     .css('max-width', docWidth - (docWidth - pos.left))
-                                    .css('max-height', docHeight - (pos.top + height) - 32)
+                                    .css('max-height', docHeight - (pos.top + height) - 32, 0)
                                     .css('left', pos.left - popover.width() + (width / 2))
                                     .css('top', pos.top + height + 16);
                         }
@@ -97,10 +98,12 @@
                             content = popover.find('.pip-content'),
                             contentHeight = popover.height() - title.outerHeight(true) - footer.outerHeight(true);
 
-                        content.css('max-height', contentHeight + 'px').css('box-sizing', 'border-box');
+                        content.css('max-height', Math.max(contentHeight, 0) + 'px').css('box-sizing', 'border-box');
                     }
 
                     function onResize () {
+                        console.log('resized func');
+
                         backdropElement.find('.pip-popover').find('.pip-content').css('max-height', '100%');
                         position();
                         calcHeight();
