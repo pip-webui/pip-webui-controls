@@ -17,6 +17,7 @@
         'pipPopover',
         'pipImageSlider',
         'pipToasts',
+        "pipTagList",
 
         'pipDate',
         'pipDateRange',

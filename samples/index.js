@@ -17,6 +17,7 @@
         { title: 'Options', state: 'options', url: '/options', controller: 'OptionsController', templateUrl: 'options_dialog.html' },
         { title: 'Conversion', state: 'conversion', url: '/conversion', controller: 'ConversionController', templateUrl: 'conversion_dialog.html' },
         { title: 'Toasts', state: 'toasts', url: '/toasts', controller: 'ToastsController', templateUrl: 'toasts.html' },
+        { title: 'Tags', state: 'tags', url: '/tags', controller: 'TagsController', templateUrl: 'tags.html' },
     ];
 
     var thisModule = angular.module('appBasicControls', 
@@ -29,7 +30,7 @@
             'appBasicControls.Markdown', 'appBasicControls.Refresh', 'appBasicControls.ToggleButtons',
             'appBasicControls.Information', 'appBasicControls.Confirmation',  'appBasicControls.Options',
             'appBasicControls.Popover', 'appBasicControls.ImageSlider', 'appBasicControls.Progress',
-            'appBasicControls.Conversion'
+            'appBasicControls.Conversion', 'appBasicControls.Tags'
         ]
     );
 
