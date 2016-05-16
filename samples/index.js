@@ -35,7 +35,7 @@
     );
 
     thisModule.config(function (pipTranslateProvider, $stateProvider, $urlRouterProvider, $mdIconProvider) {
-            $mdIconProvider.iconSet('icons', '/samples/images/icons.svg', 512);
+            $mdIconProvider.iconSet('icons', '/images/icons.svg', 512);
 
 
             // String translations
