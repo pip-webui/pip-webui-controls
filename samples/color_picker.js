@@ -5,7 +5,7 @@
 
     var thisModule = angular.module('appBasicControls.ColorPicker', []);
 
-    thisModule.config(function(pipTranslateProvider) {
+    thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             SAMPLE: 'sample',
             CURRENT_COLOR: 'Current color'
@@ -17,9 +17,9 @@
     });
 
     thisModule.controller('ColorPickerController',
-        function($scope) {
+        function ($scope) {
             $scope.disabled = false;
-            $scope.colors=['purple', 'lightgreen', 'green', 'darkred', 'pink', 'yellow', 'cyan']
+            $scope.colors = ['purple', 'lightgreen', 'green', 'darkred', 'pink', 'yellow', 'cyan']
         }
     );
 
