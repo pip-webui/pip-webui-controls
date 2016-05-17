@@ -156,7 +156,7 @@ module.run(['$templateCache', function($templateCache) {
     '-->\n' +
     '\n' +
     '<div class="pip-date-range" tabindex="-1" layout="row" flex>\n' +
-    '    <md-input-container flex ng-show="isDay()" class="tm0">\n' +
+    '    <md-input-container flex ng-show="isDay()" class="tm0 pip-day">\n' +
     '        <md-select class="select-day w-stretch"\n' +
     '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
     '                   ng-disable="{{disableControls}}"\n' +
