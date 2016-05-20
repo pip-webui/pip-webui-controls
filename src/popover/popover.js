@@ -102,8 +102,6 @@
                     }
 
                     function onResize () {
-                        console.log('resized func');
-
                         backdropElement.find('.pip-popover').find('.pip-content').css('max-height', '100%');
                         position();
                         calcHeight();

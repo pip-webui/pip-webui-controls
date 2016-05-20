@@ -34,7 +34,6 @@
                             'start': function(coords) {
                                 if (coords) $scope.swipeStart = coords.x;
                                 else $scope.swipeStart = 0;
-                                console.log('function1', coords);
                             },
                             'end': function(coords) {
                                 var delta;

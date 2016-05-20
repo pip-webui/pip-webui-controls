@@ -20,8 +20,6 @@
             $scope.message = toast.message;
             $scope.actions = toast.actions;
             $scope.toast = toast;
-console.log($scope.toast);
-
             $scope.onDetails =  function(event) {
                 $mdToast.hide();
                 pipErrorDetailsDialog.show(
@@ -85,7 +83,6 @@ console.log($scope.toast);
     
             // Show toast
             function showToast(toast) {
-                console.log(toast);
                 currentToast = toast;
     
                 $mdToast.show({

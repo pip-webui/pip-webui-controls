@@ -1715,7 +1715,6 @@ module.run(['$templateCache', function($templateCache) {
                             'start': function(coords) {
                                 if (coords) $scope.swipeStart = coords.x;
                                 else $scope.swipeStart = 0;
-                                console.log('function1', coords);
                             },
                             'end': function(coords) {
                                 var delta;
@@ -2412,8 +2411,6 @@ module.run(['$templateCache', function($templateCache) {
                     }
 
                     function onResize () {
-                        console.log('resized func');
-
                         backdropElement.find('.pip-popover').find('.pip-content').css('max-height', '100%');
                         position();
                         calcHeight();
@@ -2960,8 +2957,6 @@ module.run(['$templateCache', function($templateCache) {
             $scope.message = toast.message;
             $scope.actions = toast.actions;
             $scope.toast = toast;
-console.log($scope.toast);
-
             $scope.onDetails =  function(event) {
                 $mdToast.hide();
                 pipErrorDetailsDialog.show(
@@ -3025,7 +3020,6 @@ console.log($scope.toast);
     
             // Show toast
             function showToast(toast) {
-                console.log(toast);
                 currentToast = toast;
     
                 $mdToast.show({
