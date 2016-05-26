@@ -4,7 +4,8 @@
 -->
 
 <div class="pip-date-range" tabindex="-1" layout="row" flex>
-    <md-input-container flex ng-show="isDay()" class="tm0 pip-day">
+    <md-input-container flex ng-show="isDay()" class="tm0 pip-day"
+            ng-class="{'flex-fixed' : $mdMedia('gt-xs')}">
         <md-select class="select-day w-stretch"
                    ng-class="{'pip-no-line' : pipNoLine}"
                    ng-disable="{{disableControls}}"
@@ -19,7 +20,8 @@
             </md-option>
         </md-select>
     </md-input-container>
-    <md-input-container flex ng-show="isWeek()" class="tm0">
+    <md-input-container flex ng-show="isWeek()" class="tm0"
+                        ng-class="{'flex-fixed' : $mdMedia('gt-xs')}">
         <md-select class="select-week w-stretch"
                    ng-class="{'pip-no-line' : pipNoLine}"
                    ng-disable="{{disableControls}}"
@@ -37,7 +39,8 @@
          ng-class="{'w16': $mdMedia('gt-xs'), 'w8':  $mdMedia('xs')}"
          ng-show="isDay() || isWeek()">
     </div>
-    <md-input-container flex ng-show="isMonth() && !monthFormatShort " class="tm0 min-w72">
+    <md-input-container flex ng-show="isMonth() && !monthFormatShort " class="tm0 min-w72"
+                        ng-class="{'flex-fixed' : $mdMedia('gt-xs')}">
         <md-select class="select-month w-stretch"
                    ng-class="{'pip-no-line' : pipNoLine}"
                    ng-disable="{{disableControls}}"
@@ -52,7 +55,8 @@
             </md-option>
         </md-select>
     </md-input-container>
-    <md-input-container flex ng-show="isMonth() && monthFormatShort" class="tm0">
+    <md-input-container flex ng-show="isMonth() && monthFormatShort" class="tm0"
+                        ng-class="{'flex-fixed' : $mdMedia('gt-xs')}">
         <md-select class="select-month w-stretch"
                    ng-class="{'pip-no-line' : pipNoLine}"
                    ng-disable="{{disableControls}}"
@@ -71,7 +75,8 @@
          ng-class="{'w16': $mdMedia('gt-xs'), 'w8':  $mdMedia('xs')}"
          ng-show="isMonth()">
     </div>
-    <md-input-container flex class="tm0">
+    <md-input-container flex class="tm0"
+                        ng-class="{'flex-fixed' : $mdMedia('gt-xs')}">
         <md-select class="select-year w-stretch"
                    ng-class="{'pip-no-line' : pipNoLine}"
                    ng-disable="{{disableControls}}"
