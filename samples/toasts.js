@@ -33,6 +33,12 @@
                 pipToasts.showNotification(pipTranslate.translate('NOTIFICATION') + messageCount, ['accept', 'reject'])
             };
 
+
+            $scope.onNotificationHideActions = function() {
+                messageCount++;
+                pipToasts.showNotification(pipTranslate.translate('NOTIFICATION') + messageCount, [])
+            };
+
             $scope.onNotificationSmallShow = function() {
                 messageCount++;
                 pipToasts.showNotification(pipTranslate.translate('NOTIFICATION') + 'Small' + messageCount);
