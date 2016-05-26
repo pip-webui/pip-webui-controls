@@ -1,8 +1,8 @@
 <md-toast class="md-action pip-toast"
           ng-class="{'pip-error': toast.type=='error',
-          'pip-column-toast': toast.type == 'error' || toast.actions.length > 1 || !actionLenght || actionLenght > 4}"
+          'pip-column-toast': toast.type == 'error' || toast.actions.length > 1 || actionLenght > 4,
+          'pip-no-action-toast': actionLenght == 0}"
           style="height:initial; max-height: initial; ">
-
 
     <span class="flex-var m0 pip-text" ng-bind-html="message"></span>
     <div layout="row" layout-align="end start" class="pip-actions" ng-if="actions.length > 0 || (toast.type=='error' && toast.error)">

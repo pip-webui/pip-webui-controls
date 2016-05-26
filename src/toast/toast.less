@@ -29,8 +29,8 @@
     max-height: 32px + 24px + 36px  + 32px !important;
     padding: 0px;
     .md-toast-content {
+      padding-top: 8px;
       max-height: 32px + 24px + 36px !important;
-      padding-top: 16px;
       //.flex-direction-column();
 
       .pip-text{
@@ -44,8 +44,15 @@
 
     &.pip-column-toast{
       .md-toast-content{
-
+        padding-top: 16px;
         .flex-direction-column();
+      }
+    }
+    &.pip-no-action-toast{
+      .md-toast-content{
+        padding-top: 8px;
+        .flex-direction-row();
+        .flex-vertical-center();
       }
     }
   }

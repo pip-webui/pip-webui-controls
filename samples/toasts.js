@@ -36,12 +36,14 @@
 
             $scope.onNotificationHideActions = function() {
                 messageCount++;
+                //pipToasts.showNotification('Compellingly implement cross functional materials without transparent catalysts for change. Intrinsicly myocardinate client-based imperatives without premium.', []);
+
                 pipToasts.showNotification(pipTranslate.translate('NOTIFICATION') + messageCount, [])
             };
 
             $scope.onNotificationSmallShow = function() {
                 messageCount++;
-                pipToasts.showNotification(pipTranslate.translate('NOTIFICATION') + 'Small' + messageCount);
+               pipToasts.showNotification(pipTranslate.translate('NOTIFICATION') + 'Small' + messageCount);
             };
 
             $scope.onErrorShow = function() {
