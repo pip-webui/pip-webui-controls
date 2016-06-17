@@ -20,7 +20,17 @@
             $scope.message = toast.message;
             $scope.actions = toast.actions;
             $scope.toast = toast;
-console.log($scope.toast);
+            if(toast.actions.length == 0 ){
+                $scope.actionLenght = 0;
+            } else{
+                if(toast.actions.length == 1 ){
+                    $scope.actionLenght = toast.actions[0].toString().length;
+                } else {
+                    $scope.actionLenght = null;
+                }
+
+            }
+            console.log($scope.actionLenght);
 
             $scope.onDetails =  function(event) {
                 $mdToast.hide();
@@ -85,7 +95,6 @@ console.log($scope.toast);
     
             // Show toast
             function showToast(toast) {
-                console.log(toast);
                 currentToast = toast;
     
                 $mdToast.show({

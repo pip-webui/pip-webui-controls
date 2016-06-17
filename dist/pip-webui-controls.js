@@ -17,6 +17,7 @@
         'pipPopover',
         'pipImageSlider',
         'pipToasts',
+        "pipTagList",
 
         'pipDate',
         'pipDateRange',
@@ -36,26 +37,6 @@
 })();
 
 
-
-(function(module) {
-try {
-  module = angular.module('pipBasicControls.Templates');
-} catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('color_picker/color_picker.html',
-    '<ul class="pip-color-picker lp0 {{class}}" pip-selected="currentColorIndex" pip-enter-space-press="enterSpacePress($event)">\n' +
-    '    <li tabindex="-1" ng-repeat="color in colors">\n' +
-    '        <md-button  tabindex="-1" class="md-icon-button pip-selectable" ng-click="selectColor($index)" aria-label="color" ng-disabled="disabled()">\n' +
-    '            <md-icon ng-style="{\'color\': color}" md-svg-icon="icons:{{ color == currentColor ? \'circle\' : \'radio-off\' }}">\n' +
-    '            </md-icon>\n' +
-    '        </md-button>\n' +
-    '    </li>\n' +
-    '</ul>\n' +
-    '');
-}]);
-})();
 
 (function(module) {
 try {
@@ -149,6 +130,26 @@ try {
   module = angular.module('pipBasicControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('color_picker/color_picker.html',
+    '<ul class="pip-color-picker lp0 {{class}}" pip-selected="currentColorIndex" pip-enter-space-press="enterSpacePress($event)">\n' +
+    '    <li tabindex="-1" ng-repeat="color in colors">\n' +
+    '        <md-button  tabindex="-1" class="md-icon-button pip-selectable" ng-click="selectColor($index)" aria-label="color" ng-disabled="disabled()">\n' +
+    '            <md-icon ng-style="{\'color\': color}" md-svg-icon="icons:{{ color == currentColor ? \'circle\' : \'radio-off\' }}">\n' +
+    '            </md-icon>\n' +
+    '        </md-button>\n' +
+    '    </li>\n' +
+    '</ul>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipBasicControls.Templates');
+} catch (e) {
+  module = angular.module('pipBasicControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('date/date.html',
     '<!--\n' +
     '@file Date control content\n' +
@@ -195,7 +196,8 @@ module.run(['$templateCache', function($templateCache) {
     '-->\n' +
     '\n' +
     '<div class="pip-date-range" tabindex="-1" layout="row" flex>\n' +
-    '    <md-input-container flex ng-show="isDay()" class="tm0">\n' +
+    '    <md-input-container flex ng-show="isDay()" class="tm0 pip-day"\n' +
+    '            ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
     '        <md-select class="select-day w-stretch"\n' +
     '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
     '                   ng-disable="{{disableControls}}"\n' +
@@ -210,7 +212,8 @@ module.run(['$templateCache', function($templateCache) {
     '            </md-option>\n' +
     '        </md-select>\n' +
     '    </md-input-container>\n' +
-    '    <md-input-container flex ng-show="isWeek()" class="tm0">\n' +
+    '    <md-input-container flex ng-show="isWeek()" class="tm0"\n' +
+    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
     '        <md-select class="select-week w-stretch"\n' +
     '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
     '                   ng-disable="{{disableControls}}"\n' +
@@ -228,7 +231,8 @@ module.run(['$templateCache', function($templateCache) {
     '         ng-class="{\'w16\': $mdMedia(\'gt-xs\'), \'w8\':  $mdMedia(\'xs\')}"\n' +
     '         ng-show="isDay() || isWeek()">\n' +
     '    </div>\n' +
-    '    <md-input-container flex ng-show="isMonth() && !monthFormatShort " class="tm0 min-w72">\n' +
+    '    <md-input-container flex ng-show="isMonth() && !monthFormatShort " class="tm0 min-w72"\n' +
+    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
     '        <md-select class="select-month w-stretch"\n' +
     '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
     '                   ng-disable="{{disableControls}}"\n' +
@@ -243,7 +247,8 @@ module.run(['$templateCache', function($templateCache) {
     '            </md-option>\n' +
     '        </md-select>\n' +
     '    </md-input-container>\n' +
-    '    <md-input-container flex ng-show="isMonth() && monthFormatShort" class="tm0">\n' +
+    '    <md-input-container flex ng-show="isMonth() && monthFormatShort" class="tm0"\n' +
+    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
     '        <md-select class="select-month w-stretch"\n' +
     '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
     '                   ng-disable="{{disableControls}}"\n' +
@@ -262,7 +267,8 @@ module.run(['$templateCache', function($templateCache) {
     '         ng-class="{\'w16\': $mdMedia(\'gt-xs\'), \'w8\':  $mdMedia(\'xs\')}"\n' +
     '         ng-show="isMonth()">\n' +
     '    </div>\n' +
-    '    <md-input-container flex class="tm0">\n' +
+    '    <md-input-container flex class="tm0"\n' +
+    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
     '        <md-select class="select-year w-stretch"\n' +
     '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
     '                   ng-disable="{{disableControls}}"\n' +
@@ -336,38 +342,6 @@ module.run(['$templateCache', function($templateCache) {
     '    <div class="pip-footer rp16">\n' +
     '        <div>\n' +
     '            <md-button class="md-accent m0" ng-click="onOk()">{{::\'DISMISS\' | translate }}</md-button>\n' +
-    '        </div>\n' +
-    '    </div>\n' +
-    '</md-dialog>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipBasicControls.Templates');
-} catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('information_dialog/information_dialog.html',
-    '<!--\n' +
-    '@file Information dialog content\n' +
-    '@copyright Digital Living Software Corp. 2014-2016\n' +
-    '-->\n' +
-    '\n' +
-    '<md-dialog class="pip-dialog pip-information-dialog" layout="column" width="400" md-theme="{{theme}}">\n' +
-    '    <div class="pip-header">\n' +
-    '        <h3 class="m0">{{ title | translate }}</h3>\n' +
-    '    </div>\n' +
-    '    <div class="pip-body">\n' +
-    '        <div class="pip-content">\n' +
-    '            {{ content }}\n' +
-    '        </div>\n' +
-    '    </div>\n' +
-    '    <div class="pip-footer">\n' +
-    '        <div>\n' +
-    '            <md-button class="md-accent" ng-click="onOk()">{{ ok | translate }}</md-button>\n' +
     '        </div>\n' +
     '    </div>\n' +
     '</md-dialog>\n' +
@@ -537,6 +511,38 @@ try {
   module = angular.module('pipBasicControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('information_dialog/information_dialog.html',
+    '<!--\n' +
+    '@file Information dialog content\n' +
+    '@copyright Digital Living Software Corp. 2014-2016\n' +
+    '-->\n' +
+    '\n' +
+    '<md-dialog class="pip-dialog pip-information-dialog" layout="column" width="400" md-theme="{{theme}}">\n' +
+    '    <div class="pip-header">\n' +
+    '        <h3 class="m0">{{ title | translate }}</h3>\n' +
+    '    </div>\n' +
+    '    <div class="pip-body">\n' +
+    '        <div class="pip-content">\n' +
+    '            {{ content }}\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '    <div class="pip-footer">\n' +
+    '        <div>\n' +
+    '            <md-button class="md-accent" ng-click="onOk()">{{ ok | translate }}</md-button>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '</md-dialog>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipBasicControls.Templates');
+} catch (e) {
+  module = angular.module('pipBasicControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('popover/popover.template.html',
     '<div ng-if="params.templateUrl" class=\'pip-popover flex layout-column\'\n' +
     '     ng-click="onPopoverClick($event)" ng-include="params.templateUrl">\n' +
@@ -570,6 +576,30 @@ module.run(['$templateCache', function($templateCache) {
     '\n' +
     '</div>\n' +
     '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipBasicControls.Templates');
+} catch (e) {
+  module = angular.module('pipBasicControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('tags/tag_list.html',
+    '<div class="pip-chip rm4 pip-type-chip pip-type-chip-left {{\'bg-\' + pipType + \'-chips\'}}"\n' +
+    '     ng-if="pipType && !pipTypeLocal">\n' +
+    '\n' +
+    '    <span>{{pipType.toUpperCase() | translate | uppercase}}</span>\n' +
+    '</div>\n' +
+    '<div class="pip-chip rm4 pip-type-chip pip-type-chip-left {{\'bg-\' + pipType + \'-chips\'}}"\n' +
+    '     ng-if="pipType && pipTypeLocal">\n' +
+    '\n' +
+    '    <span>{{pipTypeLocal.toUpperCase() | translate | uppercase}}</span>\n' +
+    '</div>\n' +
+    '<div class="pip-chip rm4" ng-repeat="tag in pipTags">\n' +
+    '    <span>{{::tag}}</span>\n' +
+    '</div>');
 }]);
 })();
 
@@ -662,34 +692,6 @@ try {
   module = angular.module('pipBasicControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('toast/toast.html',
-    '<md-toast class="md-action pip-toast"\n' +
-    '          ng-class="{\'pip-error\': toast.type==\'error\'}"\n' +
-    '          style="height:initial; max-height: initial; ">\n' +
-    '    <!--\'pip-column-toast\': toast.type == \'error\' || toast.actions.length > 1-->\n' +
-    '\n' +
-    '    <span class="flex-var m0 pip-text" ng-bind-html="message"></span>\n' +
-    '    <div layout="row" layout-align="end start" class="pip-actions">\n' +
-    '        <md-button class="flex-fixed m0 lm8" ng-if="toast.type==\'error\' && toast.error" ng-click="onDetails()">Details</md-button>\n' +
-    '        <md-button class="flex-fixed m0 lm8"\n' +
-    '                   ng-click="onAction(action)"\n' +
-    '                   ng-repeat="action in actions"\n' +
-    '                   aria-label="{{::action| translate}}">\n' +
-    '            {{::action| translate}}\n' +
-    '        </md-button>\n' +
-    '    </div>\n' +
-    '\n' +
-    '</md-toast>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipBasicControls.Templates');
-} catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('toggle_buttons/toggle_buttons.html',
     '<div class="pip-toggle-buttons flex layout-row {{class}}" pip-selected="bufButtonIndex" pip-enter-space-press="enterSpacePress($event)"\n' +
     '     ng-if="$mdMedia(\'gt-xs\')">\n' +
@@ -715,73 +717,33 @@ module.run(['$templateCache', function($templateCache) {
 }]);
 })();
 
-/**
- * @file Confirmation dialog
- * @copyright Digital Living Software Corp. 2014-2016
- * @todo
- * - Improve sample in sampler app
- */
- 
-/* global angular */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module('pipConfirmationDialog', 
-        ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
-
-    thisModule.config(['pipTranslateProvider', function(pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            'CONFIRM_TITLE': 'Confirm'
-        });
-        pipTranslateProvider.translations('ru', {
-            'CONFIRM_TITLE': 'Подтвердите'
-        });
-    }]);
-
-    thisModule.factory('pipConfirmationDialog', 
-        ['$mdDialog', function ($mdDialog) {
-            return {
-                show: function (params, successCallback, cancelCallback) {
-                    $mdDialog.show({
-                        targetEvent: params.event,
-                        templateUrl: 'confirmation_dialog/confirmation_dialog.html',
-                        controller: 'pipConfirmationDialogController',
-                        locals: { params: params },
-                        clickOutsideToClose: true
-                    })
-                    .then(function () {
-                        if (successCallback) {
-                            successCallback();
-                        }
-                    }, function () {
-                        if (cancelCallback) {
-                            cancelCallback();
-                        }
-                    });
-                }
-            };
-        }]
-    );
-
-    thisModule.controller('pipConfirmationDialogController',
-        ['$scope', '$rootScope', '$mdDialog', 'pipTranslate', 'params', function ($scope, $rootScope, $mdDialog, pipTranslate, params) {
-            $scope.theme = $rootScope.$theme;
-            $scope.title = params.title || 'CONFIRM_TITLE';
-
-            $scope.ok = params.ok || 'OK';
-            $scope.cancel = params.cancel || 'CANCEL';
-
-            $scope.onCancel = function () {
-                $mdDialog.cancel();
-            };
-
-            $scope.onOk = function () {
-                $mdDialog.hide();
-            };
-        }]
-    );
-
+(function(module) {
+try {
+  module = angular.module('pipBasicControls.Templates');
+} catch (e) {
+  module = angular.module('pipBasicControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('toast/toast.html',
+    '<md-toast class="md-action pip-toast"\n' +
+    '          ng-class="{\'pip-error\': toast.type==\'error\',\n' +
+    '          \'pip-column-toast\': toast.type == \'error\' || toast.actions.length > 1 || actionLenght > 4,\n' +
+    '          \'pip-no-action-toast\': actionLenght == 0}"\n' +
+    '          style="height:initial; max-height: initial; ">\n' +
+    '\n' +
+    '    <span class="flex-var m0 pip-text" ng-bind-html="message"></span>\n' +
+    '    <div layout="row" layout-align="end start" class="pip-actions" ng-if="actions.length > 0 || (toast.type==\'error\' && toast.error)">\n' +
+    '        <md-button class="flex-fixed m0 lm8" ng-if="toast.type==\'error\' && toast.error" ng-click="onDetails()">Details</md-button>\n' +
+    '        <md-button class="flex-fixed m0 lm8"\n' +
+    '                   ng-click="onAction(action)"\n' +
+    '                   ng-repeat="action in actions"\n' +
+    '                   aria-label="{{::action| translate}}">\n' +
+    '            {{::action| translate}}\n' +
+    '        </md-button>\n' +
+    '    </div>\n' +
+    '\n' +
+    '</md-toast>');
+}]);
 })();
 
 /**
@@ -854,6 +816,75 @@ module.run(['$templateCache', function($templateCache) {
     }])
 
 })();
+/**
+ * @file Confirmation dialog
+ * @copyright Digital Living Software Corp. 2014-2016
+ * @todo
+ * - Improve sample in sampler app
+ */
+ 
+/* global angular */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module('pipConfirmationDialog', 
+        ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
+
+    thisModule.config(['pipTranslateProvider', function(pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            'CONFIRM_TITLE': 'Confirm'
+        });
+        pipTranslateProvider.translations('ru', {
+            'CONFIRM_TITLE': 'Подтвердите'
+        });
+    }]);
+
+    thisModule.factory('pipConfirmationDialog', 
+        ['$mdDialog', function ($mdDialog) {
+            return {
+                show: function (params, successCallback, cancelCallback) {
+                    $mdDialog.show({
+                        targetEvent: params.event,
+                        templateUrl: 'confirmation_dialog/confirmation_dialog.html',
+                        controller: 'pipConfirmationDialogController',
+                        locals: { params: params },
+                        clickOutsideToClose: true
+                    })
+                    .then(function () {
+                        if (successCallback) {
+                            successCallback();
+                        }
+                    }, function () {
+                        if (cancelCallback) {
+                            cancelCallback();
+                        }
+                    });
+                }
+            };
+        }]
+    );
+
+    thisModule.controller('pipConfirmationDialogController',
+        ['$scope', '$rootScope', '$mdDialog', 'pipTranslate', 'params', function ($scope, $rootScope, $mdDialog, pipTranslate, params) {
+            $scope.theme = $rootScope.$theme;
+            $scope.title = params.title || 'CONFIRM_TITLE';
+
+            $scope.ok = params.ok || 'OK';
+            $scope.cancel = params.cancel || 'CANCEL';
+
+            $scope.onCancel = function () {
+                $mdDialog.cancel();
+            };
+
+            $scope.onOk = function () {
+                $mdDialog.hide();
+            };
+        }]
+    );
+
+})();
+
 /**
  * @file Convert parent dialog
  * @copyright Digital Living Software Corp. 2014-2016
@@ -1690,7 +1721,6 @@ module.run(['$templateCache', function($templateCache) {
                             'start': function(coords) {
                                 if (coords) $scope.swipeStart = coords.x;
                                 else $scope.swipeStart = 0;
-                                console.log('function1', coords);
                             },
                             'end': function(coords) {
                                 var delta;
@@ -1871,70 +1901,6 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 /**
- * @file Information dialog
- * @copyright Digital Living Software Corp. 2014-2016
- * @todo
- * - Improve sample in sampler app
- */
- 
-/* global angular */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module('pipInformationDialog', 
-        ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
-
-    thisModule.config(['pipTranslateProvider', function(pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            'INFORMATION_TITLE': 'Information'
-        });
-        pipTranslateProvider.translations('ru', {
-            'INFORMATION_TITLE': 'Информация'
-        });
-    }]);
-        
-    thisModule.factory('pipInformationDialog', 
-        ['$mdDialog', '$timeout', function ($mdDialog, $timeout) {
-            return {
-                show: function (params, callback) {
-                    $mdDialog.show({
-                        targetEvent: params.event,
-                        templateUrl: 'information_dialog/information_dialog.html',
-                        controller: 'pipInformationDialogController',
-                        locals: { params: params },
-                        clickOutsideToClose: true
-                    })
-                    .then(function () {
-                        if (callback) callback();
-                    });
-                }
-            };
-        }]
-    );
-
-    thisModule.controller('pipInformationDialogController',
-        ['$scope', '$rootScope', '$mdDialog', 'pipTranslate', 'params', 'pipUtils', function ($scope, $rootScope, $mdDialog, pipTranslate, params, pipUtils) {
-            $scope.theme = $rootScope.$theme;
-            $scope.title = params.title || 'INFORMATION_TITLE';
-
-            var content = pipTranslate.translate(params.message);
-            if (params.item) {
-                var item = _.truncate(params.item, 25);
-                content = pipUtils.sprintf(content, item);
-            }
-            $scope.content = content;
-            $scope.ok = params.ok || 'OK';
-
-            $scope.onOk = function () {
-                $mdDialog.hide();
-            };
-        }]        
-    );
-
-})();
-
-/**
  * @file Markdown control
  * @copyright Digital Living Software Corp. 2014-2016
  * @todo
@@ -2024,7 +1990,8 @@ module.run(['$templateCache', function($templateCache) {
                         textString = marked(textString || '', options);
                         if (isClamped) height = 1.5 * clampGetter();
                         // Assign value as HTML
-                        $element.html('<div' + (isClamped ? ' class="pip-markdown-content" style="max-height: ' + height + 'em">' : '>') + textString + '</div>');
+                        $element.html('<div' + (isClamped ? listGetter()?' class="pip-markdown-content pip-markdown-list" style="max-height: ' + height + 'em">' :
+                                ' class="pip-markdown-content" style="max-height: ' + height + 'em">' :  listGetter()? ' class="pip-markdown-list">' : '>') + textString + '</div>');
                         $element.find('a').attr('target', 'blank');
                         if (!listGetter() && isClamped) $element.append('<div class="pip-gradient-block"></div>');
                     }
@@ -2052,6 +2019,70 @@ module.run(['$templateCache', function($templateCache) {
 
 })();
 
+
+/**
+ * @file Information dialog
+ * @copyright Digital Living Software Corp. 2014-2016
+ * @todo
+ * - Improve sample in sampler app
+ */
+ 
+/* global angular */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module('pipInformationDialog', 
+        ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
+
+    thisModule.config(['pipTranslateProvider', function(pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            'INFORMATION_TITLE': 'Information'
+        });
+        pipTranslateProvider.translations('ru', {
+            'INFORMATION_TITLE': 'Информация'
+        });
+    }]);
+        
+    thisModule.factory('pipInformationDialog', 
+        ['$mdDialog', '$timeout', function ($mdDialog, $timeout) {
+            return {
+                show: function (params, callback) {
+                    $mdDialog.show({
+                        targetEvent: params.event,
+                        templateUrl: 'information_dialog/information_dialog.html',
+                        controller: 'pipInformationDialogController',
+                        locals: { params: params },
+                        clickOutsideToClose: true
+                    })
+                    .then(function () {
+                        if (callback) callback();
+                    });
+                }
+            };
+        }]
+    );
+
+    thisModule.controller('pipInformationDialogController',
+        ['$scope', '$rootScope', '$mdDialog', 'pipTranslate', 'params', 'pipUtils', function ($scope, $rootScope, $mdDialog, pipTranslate, params, pipUtils) {
+            $scope.theme = $rootScope.$theme;
+            $scope.title = params.title || 'INFORMATION_TITLE';
+
+            var content = pipTranslate.translate(params.message);
+            if (params.item) {
+                var item = _.truncate(params.item, 25);
+                content = pipUtils.sprintf(content, item);
+            }
+            $scope.content = content;
+            $scope.ok = params.ok || 'OK';
+
+            $scope.onOk = function () {
+                $mdDialog.hide();
+            };
+        }]        
+    );
+
+})();
 
 /**
  * @file Options dialog
@@ -2386,8 +2417,6 @@ module.run(['$templateCache', function($templateCache) {
                     }
 
                     function onResize () {
-                        console.log('resized func');
-
                         backdropElement.find('.pip-popover').find('.pip-content').css('max-height', '100%');
                         position();
                         calcHeight();
@@ -2528,6 +2557,63 @@ module.run(['$templateCache', function($templateCache) {
                         $text.text(newValue);
                     });
                 }
+            }
+        }]
+    );
+
+})();
+
+
+/**
+ * @file Tag list control
+ * @copyright Digital Living Software Corp. 2014-2015
+ * @todo
+ * - Improve samples in sampler app
+ * - What's pipType and pipTypeLocal? Give better name
+ * - Do not use ng-if, instead generate template statically
+ */
+ 
+/* global angular */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module("pipTagList", ['pipCore']);
+
+    /**
+     * pipTags - set of tags
+     * pipType - additional type tag
+     * pipTypeLocal - additional translated type tag
+     */
+    thisModule.directive('pipTagList', 
+        ['$parse', function ($parse) {
+            return {
+                restrict: 'EA',
+                scope: {
+                    pipTags: '=',
+                    pipType: '=',
+                    pipTypeLocal: '='
+                },
+                templateUrl: 'tags/tag_list.html',
+                controller:
+                    ['$scope', '$element', '$attrs', 'pipUtils', function ($scope, $element, $attrs, pipUtils) {
+                        var tagsGetter = $parse($attrs.pipTags);
+                        
+                        $element.css("display", "block");
+                        
+                        // Set tags
+                        $scope.tags = tagsGetter($scope);
+
+                        // Also optimization to avoid watch if it is unnecessary
+                        if (pipUtils.toBoolean($attrs.pipRebind)) {
+                            $scope.$watch(tagsGetter, function (newValue) {
+                                $scope.tags = tagsGetter($scope)
+                            });
+                        }
+
+                        // Add class
+                        $element.addClass('pip-tag-list');
+                    }]
             }
         }]
     );
@@ -2877,7 +2963,17 @@ module.run(['$templateCache', function($templateCache) {
             $scope.message = toast.message;
             $scope.actions = toast.actions;
             $scope.toast = toast;
-console.log($scope.toast);
+            if(toast.actions.length == 0 ){
+                $scope.actionLenght = 0;
+            } else{
+                if(toast.actions.length == 1 ){
+                    $scope.actionLenght = toast.actions[0].toString().length;
+                } else {
+                    $scope.actionLenght = null;
+                }
+
+            }
+            console.log($scope.actionLenght);
 
             $scope.onDetails =  function(event) {
                 $mdToast.hide();
@@ -2942,7 +3038,6 @@ console.log($scope.toast);
     
             // Show toast
             function showToast(toast) {
-                console.log(toast);
                 currentToast = toast;
     
                 $mdToast.show({
@@ -3108,7 +3203,7 @@ console.log($scope.toast);
                     ngDisabled: '&',
                     buttons: '=pipButtons',
                     currentButtonValue: '=ngModel',
-                    currentButton: '=pipButtonObject',
+                    currentButton: '=?pipButtonObject',
                     change: '&ngChange'
                 },
                 templateUrl: 'toggle_buttons/toggle_buttons.html',

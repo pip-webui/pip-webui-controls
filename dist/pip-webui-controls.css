@@ -105,6 +105,9 @@ md-list-item .pip-markdown h3,
 md-list-item .pip-markdown h4 {
   font: normal 500 14px Roboto, 'Helvetica Neue', sans-serif;
 }
+.pip-markdown-list ol {
+  margin: 0px !important;
+}
 pip-toggle-buttons .md-select-value .pip-tagged {
   font-size: 20px;
 }
@@ -342,6 +345,7 @@ pip-toggle-buttons:focus {
   overflow: hidden;
   max-height: 32px;
   margin-right: 8px;
+  vertical-align: middle;
 }
 @media (min-width: 1200px) {
   .pip-toast {
@@ -359,13 +363,8 @@ pip-toggle-buttons:focus {
     padding: 0px;
   }
   .pip-toast .md-toast-content {
+    padding-top: 8px;
     max-height: 92px !important;
-    padding-top: 16px;
-    -webkit-box-flex-direction: column;
-    -moz-box-flex-direction: column;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
   }
   .pip-toast .md-toast-content .pip-text {
     margin-right: 0px ;
@@ -375,15 +374,98 @@ pip-toggle-buttons:focus {
     width: 100%;
   }
   .pip-toast.pip-column-toast .md-toast-content {
+    padding-top: 16px;
     -webkit-box-flex-direction: column;
     -moz-box-flex-direction: column;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
   }
+  .pip-toast.pip-no-action-toast .md-toast-content {
+    padding-top: 8px;
+    -webkit-box-flex-direction: row;
+    -moz-box-flex-direction: row;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
 }
 .pip-toast.pip-error .md-toast-content {
   background-color: #ff5252;
+}
+.pip-chip {
+  font: normal 500 14px Roboto, 'Helvetica Neue', sans-serif;
+  display: inline-block;
+  padding: 0px 12px 0px 12px!important;
+  margin: 4px 4px 0px 0px!important;
+  overflow: hidden!important;
+  box-shadow: none!important;
+  line-height: 20px!important;
+  vertical-align: middle!important;
+  height: 32px !important;
+  border-radius: 16px;
+  background: #e0e0e0;
+  color: #424242;
+  padding-right: 16px;
+}
+.pip-chip .pip-avatar {
+  display: block;
+  float: left;
+  margin-left: -12px;
+  vertical-align: middle;
+  height: 32px !important;
+  width: 32px !important;
+  border-radius: 50%;
+  margin-right: 8px !important;
+}
+.pip-chip > span {
+  display: inline-block;
+  max-width: 150px;
+  vertical-align: top;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  text-transform: none;
+}
+.pip-type-chip {
+  cursor: default;
+  border-radius: 16px;
+  display: block;
+  height: 32px;
+  line-height: 32px;
+  margin: 8px 8px 0 0;
+  padding: 0 8px 0 12px;
+  float: left;
+  margin-left: -25px !important;
+  margin-right: 4px;
+  padding-left: 25px !important;
+  padding-right: 16px !important;
+}
+@media (max-width: 1200px) {
+  .pip-type-chip {
+    margin-left: -17px !important;
+    padding-left: 17px !important;
+  }
+}
+.pip-type-chip-left {
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+.pip-type-chip-right {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.pip-tag-list {
+  min-height: 36px!important;
+  padding-bottom: 4px;
 }
 .pip-routing-progress {
   background-position: 50% 50%;
@@ -539,6 +621,11 @@ pip-date-range md-select .md-select-value .md-text {
 @media (max-width: 768px) {
   pip-date-range md-select .md-select-value .md-text {
     font-size: 12px;
+  }
+}
+@media (min-width: 768px) {
+  pip-date-range .pip-day {
+    min-width: 102px;
   }
 }
 @media (max-width: 768px) {

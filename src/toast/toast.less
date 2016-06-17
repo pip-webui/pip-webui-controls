@@ -13,6 +13,7 @@
     overflow: hidden;
     max-height: 32px;
     margin-right:8px;
+    vertical-align: middle;
   }
 
   @media (min-width: 1200px) {
@@ -28,9 +29,9 @@
     max-height: 32px + 24px + 36px  + 32px !important;
     padding: 0px;
     .md-toast-content {
+      padding-top: 8px;
       max-height: 32px + 24px + 36px !important;
-      padding-top: 16px;
-      .flex-direction-column();
+      //.flex-direction-column();
 
       .pip-text{
         margin-right:0px ;
@@ -43,8 +44,15 @@
 
     &.pip-column-toast{
       .md-toast-content{
-
+        padding-top: 16px;
         .flex-direction-column();
+      }
+    }
+    &.pip-no-action-toast{
+      .md-toast-content{
+        padding-top: 8px;
+        .flex-direction-row();
+        .flex-vertical-center();
       }
     }
   }
