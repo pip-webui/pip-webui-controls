@@ -50,11 +50,11 @@
   font-size: 16px;
 }
 .pip-markdown p {
-  margin: 0px  0px 10px !important;
+  margin: 0 0 10px !important;
   word-wrap: break-word;
 }
 .pip-markdown p :last-of-type {
-  margin: 0px !important;
+  margin: 0 !important;
 }
 .pip-markdown h1 {
   font-size: 24px !important;
@@ -76,10 +76,10 @@
 .pip-markdown h2,
 .pip-markdown h3,
 .pip-markdown h4 {
-  margin: 0px;
+  margin: 0;
 }
 .pip-markdown table {
-  border-spacing: 0px;
+  border-spacing: 0;
 }
 .pip-markdown .pip-gradient-block {
   position: absolute;
@@ -97,7 +97,7 @@
 md-list-item .pip-markdown p,
 md-list-item .pip-markdown blockquote,
 md-list-item .pip-markdown ul {
-  margin: 0px !important;
+  margin: 0 !important;
 }
 md-list-item .pip-markdown h1,
 md-list-item .pip-markdown h2,
@@ -106,13 +106,13 @@ md-list-item .pip-markdown h4 {
   font: normal 500 14px Roboto, 'Helvetica Neue', sans-serif;
 }
 .pip-markdown-list ol {
-  margin: 0px !important;
+  margin: 0 !important;
 }
 pip-toggle-buttons .md-select-value .pip-tagged {
   font-size: 20px;
 }
 pip-toggle-buttons:focus {
-  outline-width: 0px !important;
+  outline-width: 0 !important;
 }
 .dark .pip-toggle-buttons button,
 .black .pip-toggle-buttons button {
@@ -129,7 +129,7 @@ pip-toggle-buttons:focus {
   height: 36px;
 }
 .pip-toggle-buttons:focus {
-  outline-width: 0px !important;
+  outline-width: 0 !important;
 }
 .pip-toggle-buttons button {
   background-color: rgba(0, 0, 0, 0.12);
@@ -137,10 +137,10 @@ pip-toggle-buttons:focus {
 }
 .pip-toggle-buttons button.pip-chip-button.md-button {
   text-align: -webkit-center;
-  margin: 0px !important;
+  margin: 0 !important;
   height: 32px !important;
   margin-left: 2px !important;
-  border-radius: 0px !important;
+  border-radius: 0 !important;
 }
 .pip-toggle-buttons button.pip-chip-button.md-button .pip-tagged {
   font-size: 20px;
@@ -162,7 +162,7 @@ pip-toggle-buttons:focus {
 .pip-toggle-buttons button.pip-chip-button.md-button:first-of-type {
   border-bottom-left-radius: 4px !important;
   border-top-left-radius: 4px !important;
-  margin-left: 0px !important;
+  margin-left: 0 !important;
 }
 .pip-toggle-buttons button.pip-chip-button.md-button:last-of-type {
   border-bottom-right-radius: 4px !important;
@@ -360,14 +360,14 @@ pip-toggle-buttons:focus {
 @media (max-width: 768px) {
   .pip-toast {
     max-height: 124px !important;
-    padding: 0px;
+    padding: 0;
   }
   .pip-toast .md-toast-content {
     padding-top: 8px;
     max-height: 92px !important;
   }
   .pip-toast .md-toast-content .pip-text {
-    margin-right: 0px ;
+    margin-right: 0;
     width: 100%;
   }
   .pip-toast .md-toast-content .pip-actions {
@@ -401,8 +401,8 @@ pip-toggle-buttons:focus {
 .pip-chip {
   font: normal 500 14px Roboto, 'Helvetica Neue', sans-serif;
   display: inline-block;
-  padding: 0px 12px 0px 12px!important;
-  margin: 4px 4px 0px 0px!important;
+  padding: 0 12px 0 12px !important;
+  margin: 4px 4px 0 0 !important;
   overflow: hidden!important;
   box-shadow: none!important;
   line-height: 20px!important;
@@ -456,12 +456,12 @@ pip-toggle-buttons:focus {
   }
 }
 .pip-type-chip-left {
-  border-top-left-radius: 0px !important;
-  border-bottom-left-radius: 0px !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
 }
 .pip-type-chip-right {
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 .pip-tag-list {
   min-height: 36px!important;
@@ -509,7 +509,7 @@ pip-toggle-buttons:focus {
   transform: rotate(-15deg);
 }
 .pip-routing-progress .loader {
-  margin: 0px !important;
+  margin: 0 !important;
   position: absolute;
   top: calc( 50% - 70px);
   left: calc( 50% - 50px);
@@ -579,7 +579,7 @@ pip-toggle-buttons:focus {
   height: 30px;
 }
 .pip-date .md-select-value span .md-text {
-  padding-right: 0px !important;
+  padding-right: 0 !important;
   flex: 1 1 auto;
 }
 .pip-date .md-select-value span.md-select-icon {
@@ -607,7 +607,7 @@ pip-date-range md-select {
   display: inline-block;
   height: 30px;
   margin-top: 10px !important;
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 pip-date-range md-select .md-select-value {
   height: 26px;
@@ -637,7 +637,7 @@ pip-date-range md-select .md-select-value .md-text {
     flex: 1 1 auto !important;
   }
   pip-date-range .md-select-value span .md-text {
-    padding-right: 0px !important;
+    padding-right: 0 !important;
     flex: 1 1 auto;
   }
   pip-date-range .md-select-value span.md-select-icon {
@@ -715,12 +715,12 @@ pip-date-range md-select .md-select-value .md-text {
   display: none;
 }
 .pip-time-edit .pip-datepicker-container md-datepicker .md-datepicker-input-container {
-  margin-left: 0px !important;
+  margin-left: 0 !important;
   width: 100%;
 }
 .pip-time-edit .pip-datepicker-container md-datepicker[disabled] .md-datepicker-input-container {
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.26) 0%, rgba(0, 0, 0, 0.26) 33%, transparent 0%);
-  background-image: -ms-linear-gradient(left, transparent 0%, rgba(0, 0, 0, 0.26) 100%);
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.26) 0, rgba(0, 0, 0, 0.26) 33%, transparent 0);
+  background-image: -ms-linear-gradient(left, transparent 0, rgba(0, 0, 0, 0.26) 100%);
   background-position: 0 bottom;
   background-repeat: repeat-x;
   background-size: 4px 1px;
@@ -736,14 +736,14 @@ pip-date-range md-select .md-select-value .md-text {
 .pip-dialog.pip-options-dialog .pip-header h3 {
   width: 100%;
   text-align: left;
-  margin: 0px 0px 16px 0px;
+  margin: 0 0 16px 0;
 }
 .pip-dialog.pip-options-dialog .pip-header md-checkbox {
   font-size: 16px;
 }
 .pip-dialog.pip-options-dialog .pip-body {
-  padding-left: 0px !important;
-  padding-right: 0px !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 .pip-dialog.pip-options-dialog .pip-list-item {
   cursor: pointer;
@@ -804,14 +804,14 @@ pip-date-range md-select .md-select-value .md-text {
 .pip-dialog.pip-options-dialog-big .pip-header h3 {
   width: 100%;
   text-align: left;
-  margin: 0px 0px 16px 0px;
+  margin: 0 0 16px 0;
 }
 .pip-dialog.pip-options-dialog-big .pip-header md-checkbox {
   font-size: 16px;
 }
 .pip-dialog.pip-options-dialog-big .pip-body {
-  padding-left: 0px !important;
-  padding-right: 0px !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 .pip-dialog.pip-options-dialog-big .pip-list-item {
   cursor: pointer;
@@ -845,7 +845,7 @@ pip-date-range md-select .md-select-value .md-text {
 }
 .pip-dialog.pip-options-dialog-big .pip-list-item .pip-content .pip-title,
 .pip-dialog.pip-options-dialog-big .pip-list-item .pip-content .pip-subtitle {
-  margin: 0px;
+  margin: 0;
 }
 .pip-dialog.pip-options-dialog-big .pip-list-item .pip-content .pip-title {
   font: normal 500 16px Roboto, 'Helvetica Neue', sans-serif;
@@ -881,9 +881,9 @@ pip-date-range md-select .md-select-value .md-text {
 }
 .pip-dialog.pip-options-dialog-big .dialog-hint md-icon {
   font-size: 24px;
-  width: 24px!important;
-  height: 24px!important;
-  margin: 0px 16px 0px 0px!important;
+  width: 24px !important;
+  height: 24px !important;
+  margin: 0 16px 0 0 !important;
 }
 .pip-dialog.pip-options-dialog md-dialog-content {
   max-height: 500px;
@@ -922,7 +922,7 @@ pip-date-range md-select .md-select-value .md-text {
   font-size: 24px;
   width: 24px!important;
   height: 24px!important;
-  margin: 0px 16px 0px 0px!important;
+  margin: 0 16px 0 0!important;
 }
 .pip-dialog.pip-conversion-dialog .pip-header {
   display: block;
@@ -938,8 +938,8 @@ pip-date-range md-select .md-select-value .md-text {
   line-height: 22px;
 }
 .pip-dialog.pip-conversion-dialog .pip-body {
-  padding-left: 0px !important;
-  padding-right: 0px !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 .pip-dialog.pip-conversion-dialog .pip-list-item {
   cursor: pointer;
@@ -962,7 +962,7 @@ pip-date-range md-select .md-select-value .md-text {
 }
 .pip-dialog.pip-conversion-dialog .pip-list-item .pip-content .pip-title,
 .pip-dialog.pip-conversion-dialog .pip-list-item .pip-content .pip-subtitle {
-  margin: 0px;
+  margin: 0;
   line-height: 20px!important;
 }
 .pip-dialog.pip-conversion-dialog .pip-list-item .pip-content .pip-title {
