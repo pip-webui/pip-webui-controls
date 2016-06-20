@@ -1,8 +1,8 @@
 'use strict';
 
-suite('pipToggleButton', function () {
+describe('pipToggleButton', function () {
 
-    suite('directive', function () {
+    describe('directive', function () {
         var $compile,
             $rootScope,
             scope,
@@ -17,17 +17,17 @@ suite('pipToggleButton', function () {
                 {id: 5, name: 'FIVE'}
             ];
 
-        setup(module('ngMaterial'));
-        setup(module('pipToggleButtons'));
-        setup(module('pipSelected'));
-        setup(module('pipTranslateFilters'));
+        beforeEach(module('ngMaterial'));
+        beforeEach(module('pipToggleButtons'));
+        beforeEach(module('pipSelected'));
+        beforeEach(module('pipTranslateFilters'));
 
-        setup(inject(function(_$compile_, _$rootScope_){
+        beforeEach(inject(function(_$compile_, _$rootScope_){
             $compile = _$compile_;
             $rootScope = _$rootScope_;
         }));
 
-        setup(function () {
+        beforeEach(function () {
             scope = $rootScope.$new();
             scope.buttons = buttonCollection;
             scope.currentButtonIndex = 0;
@@ -47,7 +47,7 @@ suite('pipToggleButton', function () {
             button2 = buttons.eq(2);
         });
 
-        test('should inserts the template form templateURL with the appropriate content', function (done) {
+        it('should inserts the template form templateURL with the appropriate content', function (done) {
             // Check that the compiled element contains the templated content
             assert.equal(element.length, 1);
             // Check that default buttons set applies
@@ -57,7 +57,7 @@ suite('pipToggleButton', function () {
             done();
         });
 
-        test('click and keydown, indices and object', function (done) {
+        it('click and keydown, indices and object', function (done) {
             //Change button by click
             button0.click();
             assert.equal(scope.currentButtonIndex, 0);

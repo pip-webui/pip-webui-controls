@@ -1,8 +1,8 @@
 'use strict';
 
-suite('pipCard', function () {
+describe('pipCard', function () {
 
-    suite('directive', function () {
+    describe('directive', function () {
         var compile,
             scope,
             isolateScope,
@@ -10,10 +10,10 @@ suite('pipCard', function () {
             template = '<pip-date ng-model="dateValue" pip-time-mode="{{timeMode}}" ' +
                 'ng-disabled="dateDisabled"></pip-date>';
 
-        setup(module('pipDate'));
-        setup(module('pipTranslate'));
+        beforeEach(module('pipDate'));
+        beforeEach(module('pipTranslate'));
 
-        setup(inject(function($compile, $rootScope) {
+        beforeEach(inject(function($compile, $rootScope) {
             compile = $compile;
             scope = $rootScope.$new();
 
@@ -30,7 +30,7 @@ suite('pipCard', function () {
             return compiledElement;
         }
 
-        test('inserts template from templateURL', function (done) {
+        it('inserts template from templateURL', function (done) {
             elem = getCompiledElement(template);
 
             var selected = elem.find('md-select');
@@ -53,7 +53,7 @@ suite('pipCard', function () {
             done();
         });
 
-        test('disabled controls', function (done) {
+        it('disabled controls', function (done) {
             scope.dateDisabled = true;
             elem = getCompiledElement(template);
 
@@ -64,7 +64,7 @@ suite('pipCard', function () {
             done();
         });
 
-        test('set future period of years', function (done) {
+        it('set future period of years', function (done) {
             scope.timeMode = 'future';
             elem = getCompiledElement(template);
 
@@ -78,7 +78,7 @@ suite('pipCard', function () {
             done();
         });
 
-        test('set past period of years', function (done) {
+        it('set past period of years', function (done) {
             scope.timeMode = 'past';
             elem = getCompiledElement(template);
 
@@ -92,7 +92,7 @@ suite('pipCard', function () {
             done();
         });
 
-        test('react on date changes', function (done) {
+        it('react on date changes', function (done) {
             elem = getCompiledElement(template);
 
             isolateScope = elem.isolateScope();
