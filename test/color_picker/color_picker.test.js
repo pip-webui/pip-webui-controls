@@ -1,8 +1,8 @@
 'use strict';
 
-suite('pipColorPicker', function () {
+describe('pipColorPicker', function () {
 
-    suite('directive', function () {
+    describe('directive', function () {
         var $compile,
             $rootScope,
             scope,
@@ -13,17 +13,17 @@ suite('pipColorPicker', function () {
             colors = ['purple', '#BD3000', 'green', 'darkred', 'pink', 'rgba(255,200,16,0.8)', 'cyan'],
             template = '<pip-color-picker pip-colors="colors" ng-model="currentColor" ng-change="onChange()"></pip-color-picker>';
 
-        setup(module('ngMaterial'));
-        setup(module('pipColorPicker'));
-        setup(module('pipSelected'));
+        beforeEach(module('ngMaterial'));
+        beforeEach(module('pipColorPicker'));
+        beforeEach(module('pipSelected'));
 
-        setup(inject(function(_$compile_, _$rootScope_){
+        beforeEach(inject(function(_$compile_, _$rootScope_){
             $compile = _$compile_;
             $rootScope = _$rootScope_;
 
         }));
 
-        setup(function () {
+        beforeEach(function () {
             scope = $rootScope.$new();
             scope.colors = colors;
             scope.currentColor = scope.colors[0];
@@ -40,7 +40,7 @@ suite('pipColorPicker', function () {
             };
         });
 
-        test('should inserts the template form templateURL with the appropriate content', function (done) {
+        it('should inserts the template form templateURL with the appropriate content', function (done) {
 
             // Check that the compiled element contains the templated content
             assert.equal(rootElem.length, 1);
@@ -50,7 +50,8 @@ suite('pipColorPicker', function () {
             done();
         });
 
-        test('keydown', function (done) {
+        it('keydown', function (done) {
+            
             var color = colorElems.eq(3);
 
             assert.equal(scope.currentColor, colors[0]);
@@ -70,7 +71,7 @@ suite('pipColorPicker', function () {
             assert.equal(scope.count, 3);
 
             rootElem.triggerHandler({type: 'keydown', which: 38});
-            assert.equal(scope.currentColor, colors[0]);
+            assert.equal(scope.currentColor, colors[1]);
             assert.equal(scope.count, 4);
 
             color.click();
