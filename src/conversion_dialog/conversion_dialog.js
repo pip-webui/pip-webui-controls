@@ -24,7 +24,7 @@
             'CONVERT_TO_CANCEL_SUBTITLE': 'The <b>%s</b> is deleted',
 
             'CONVERT_RECORD_TO_GOAL': 'Result that requires significant efforts',
-            'CONVERT_RECORD_TO_TASK': 'Simple work that doesn\'t need a pla',
+            'CONVERT_RECORD_TO_TASK': 'Simple work that doesn\'t need a plan',
             'CONVERT_RECORD_TO_EVENT': 'Reminder or scheduled block of time',
             'CONVERT_RECORD_TO_POST': 'Any useful information'
         });
