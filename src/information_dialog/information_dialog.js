@@ -4,16 +4,14 @@
  * @todo
  * - Improve sample in sampler app
  */
- 
-/* global angular */
 
-(function () {
+(function (angular) {
     'use strict';
 
-    var thisModule = angular.module('pipInformationDialog', 
+    var thisModule = angular.module('pipInformationDialog',
         ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
 
-    thisModule.config(function(pipTranslateProvider) {
+    thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             'INFORMATION_TITLE': 'Information'
         });
@@ -21,8 +19,7 @@
             'INFORMATION_TITLE': 'Информация'
         });
     });
-        
-    thisModule.factory('pipInformationDialog', 
+    thisModule.factory('pipInformationDialog',
         function ($mdDialog, $timeout) {
             return {
                 show: function (params, callback) {
@@ -34,7 +31,7 @@
                         clickOutsideToClose: true
                     })
                     .then(function () {
-                        if (callback) callback();
+                        if (callback) { callback(); }
                     });
                 }
             };
@@ -43,12 +40,13 @@
 
     thisModule.controller('pipInformationDialogController',
         function ($scope, $rootScope, $mdDialog, pipTranslate, params, pipUtils) {
+            var content, item;
+
             $scope.theme = $rootScope.$theme;
             $scope.title = params.title || 'INFORMATION_TITLE';
-
-            var content = pipTranslate.translate(params.message);
+            content = pipTranslate.translate(params.message);
             if (params.item) {
-                var item = _.truncate(params.item, 25);
+                item = _.truncate(params.item, 25);
                 content = pipUtils.sprintf(content, item);
             }
             $scope.content = content;
@@ -57,7 +55,7 @@
             $scope.onOk = function () {
                 $mdDialog.hide();
             };
-        }        
+        }
     );
 
-})();
+})(window.angular);

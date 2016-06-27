@@ -3,18 +3,16 @@
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
-/* global _, angular */
-
-(function () {
+(function (angular) {
     'use strict';
 
-    var thisModule = angular.module("pipImageSlider", []);
+    var thisModule = angular.module('pipImageSlider', []);
 
     thisModule.directive('pipImageSlider',
         function () {
             return {
                 scope: false,
-                controller: function ($scope, $element, $attrs, $parse, $timeout, $interval, $pipImageSlider/*, $swipe*/) {
+                controller: function ($scope, $element, $attrs, $parse, $timeout, $interval, $pipImageSlider) {
                     var blocks,
                         indexSetter = $parse($attrs.pipImageSliderIndex).assign,
                         index = 0, newIndex,
@@ -22,53 +20,55 @@
                         type = $parse($attrs.pipAnimationType)($scope),
                         DEFAULT_INTERVAL = 4500,
                         interval = $parse($attrs.pipAnimationInterval)($scope),
-                        timePromises;
+                        timePromises,
+                        throttled;
 
                     $element.addClass('pip-image-slider');
                     $element.addClass('pip-animation-' + type);
 
                     $scope.swipeStart = 0;
-/*
-                    if ($swipe)
-                        $swipe.bind($element, {
-                            'start': function(coords) {
-                                if (coords) $scope.swipeStart = coords.x;
-                                else $scope.swipeStart = 0;
-                            },
-                            'end': function(coords) {
-                                var delta;
-                                if (coords) {
-                                    delta = $scope.swipeStart - coords.x;
-                                    if (delta > 150)  $scope.nextBlock();
-                                    if (delta < -150)  $scope.prevBlock();
-                                    $scope.swipeStart = 0;
-                                } else $scope.swipeStart = 0;
-                            }
-                        });
-*/
+                    /*
+                     if ($swipe)
+                     $swipe.bind($element, {
+                     'start': function(coords) {
+                     if (coords) $scope.swipeStart = coords.x;
+                     else $scope.swipeStart = 0;
+                     },
+                     'end': function(coords) {
+                     var delta;
+                     if (coords) {
+                     delta = $scope.swipeStart - coords.x;
+                     if (delta > 150)  $scope.nextBlock();
+                     if (delta < -150)  $scope.prevBlock();
+                     $scope.swipeStart = 0;
+                     } else $scope.swipeStart = 0;
+                     }
+                     });
+                     */
                     setIndex();
 
                     $timeout(function () {
                         blocks = $element.find('.pip-animation-block');
-                        if (blocks.length > 0) $(blocks[0]).addClass('pip-show');
+                        if (blocks.length > 0) {
+                            $(blocks[0]).addClass('pip-show')
+                        }
                     });
 
                     startInterval();
-
-                    var throttled = _.throttle(function () {
+                    throttled = _.throttle(function () {
                         $pipImageSlider.toBlock(type, blocks, index, newIndex, direction);
                         index = newIndex;
                         setIndex();
                     }, 600);
 
-                    $scope.nextBlock = function() {
+                    $scope.nextBlock = function () {
                         restartInterval();
-                        newIndex = index + 1 == blocks.length ? 0 : index + 1;
+                        newIndex = index + 1 === blocks.length ? 0 : index + 1;
                         direction = 'next';
                         throttled();
                     };
 
-                    $scope.prevBlock = function() {
+                    $scope.prevBlock = function () {
                         restartInterval();
                         newIndex = index - 1 < 0 ? blocks.length - 1 : index - 1;
                         direction = 'prev';
@@ -76,7 +76,9 @@
                     };
 
                     $scope.slideTo = function (nextIndex) {
-                        if (nextIndex == index || nextIndex > blocks.length - 1) return;
+                        if (nextIndex === index || nextIndex > blocks.length - 1) {
+                            return;
+                        }
 
                         restartInterval();
                         newIndex = nextIndex;
@@ -85,12 +87,14 @@
                     };
 
                     function setIndex() {
-                        if (indexSetter) indexSetter($scope, index);
+                        if (indexSetter) {
+                            indexSetter($scope, index);
+                        }
                     }
 
                     function startInterval() {
                         timePromises = $interval(function () {
-                            newIndex = index + 1 == blocks.length ? 0 : index + 1;
+                            newIndex = index + 1 === blocks.length ? 0 : index + 1;
                             direction = 'next';
                             throttled();
                         }, interval || DEFAULT_INTERVAL);
@@ -100,7 +104,7 @@
                         $interval.cancel(timePromises);
                     }
 
-                    $element.on('$destroy', function() {
+                    $element.on('$destroy', function () {
                         stopInterval();
                     });
 
@@ -122,12 +126,14 @@
                         sliderId = $parse($attrs.pipSliderId)($scope);
 
                     $element.on('click', function () {
-                        if (!sliderId || !type) return;
+                        if (!sliderId || !type) {
+                            return;
+                        }
 
                         angular.element(document.getElementById(sliderId)).scope()[type + 'Block']();
                     });
                 }
-            }
+            };
         }
     );
 
@@ -141,12 +147,14 @@
 
                     $element.css('cursor', 'pointer');
                     $element.on('click', function () {
-                        if (!sliderId || (slideTo && slideTo < 0)) return;
+                        if (!sliderId || slideTo && slideTo < 0) {
+                            return;
+                        }
 
                         angular.element(document.getElementById(sliderId)).scope().slideTo(slideTo);
                     });
                 }
-            }
+            };
         }
     );
 
@@ -170,7 +178,7 @@
                 }, 100);
             }
 
-            function prevCarousel (nextBlock, prevBlock) {
+            function prevCarousel(nextBlock, prevBlock) {
                 nextBlock.removeClass('animated');
 
                 $timeout(function () {
@@ -188,19 +196,20 @@
                     blockIndex = nextIndex;
                 var nextBlock = $(blocks[blockIndex]);
 
-                if (type == 'carousel') {
+                if (type === 'carousel') {
                     $(blocks).removeClass('pip-next').removeClass('pip-prev');
 
-                    if (direction && direction == 'prev')
+                    if (direction && direction === 'prev') {
                         prevCarousel(nextBlock, prevBlock);
-                    else {
-                        if (direction && direction == 'next') {
+                    } else {
+                        if (direction && direction === 'next') {
                             nextCarousel(nextBlock, prevBlock);
                         } else {
-                            if (nextIndex && nextIndex < oldIndex)
+                            if (nextIndex && nextIndex < oldIndex) {
                                 prevCarousel(nextBlock, prevBlock);
-                            else
+                            } else {
                                 nextCarousel(nextBlock, prevBlock);
+                            }
                         }
                     }
                 } else {
@@ -211,4 +220,4 @@
         }
     );
 
-})();
+})(window.angular);
