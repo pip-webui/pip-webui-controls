@@ -4,16 +4,14 @@
  * @todo
  * - Improve sample in sampler app
  */
- 
-/* global angular */
 
-(function () {
+(function (angular) {
     'use strict';
 
-    var thisModule = angular.module('pipConfirmationDialog', 
+    var thisModule = angular.module('pipConfirmationDialog',
         ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
 
-    thisModule.config(function(pipTranslateProvider) {
+    thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             'CONFIRM_TITLE': 'Confirm'
         });
@@ -22,7 +20,7 @@
         });
     });
 
-    thisModule.factory('pipConfirmationDialog', 
+    thisModule.factory('pipConfirmationDialog',
         function ($mdDialog) {
             return {
                 show: function (params, successCallback, cancelCallback) {
@@ -65,4 +63,4 @@
         }
     );
 
-})();
+})(window.angular);
