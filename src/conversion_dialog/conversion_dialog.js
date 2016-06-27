@@ -11,7 +11,8 @@
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             'CONVERT_PARENT_TITLE': 'Choose type of the parent record',
-            'CONVERT_PARENT_SUBTITLE': 'The <b>%s</b> is missing and will be created from scratch. Find and clarify it later',
+            'CONVERT_PARENT_SUBTITLE': 'The <b>%s</b> is missing and will be created from scratch.' +
+                                        ' Find and clarify it later',
 
             'CONVERT_TO_GOAL_SUBTITLE': 'Result that requires significant efforts',
             'CONVERT_TO_TASK_SUBTITLE': 'Simple work that doesn\'t need a plan',
@@ -120,7 +121,8 @@
                 if (event.keyCode === 32 || event.keyCode === 13) {
                     event.stopPropagation();
                     event.preventDefault();
-                    $scope.selectedOptionName = $scope.selectedIndex == -1 ? $scope.options[0].name : $scope.options[$scope.selectedIndex].name;
+                    $scope.selectedOptionName = $scope.selectedIndex === -1 ? $scope.options[0].name
+                        : $scope.options[$scope.selectedIndex].name;
                     $scope.onSelect();
                 }
             };
@@ -136,7 +138,8 @@
                 if (event.keyCode === 38) {
                     event.stopPropagation();
                     event.preventDefault();
-                    $scope.selectedIndex = $scope.selectedIndex <= 0 ? $scope.selectedIndex = $scope.options.length - 1 : $scope.selectedIndex - 1;
+                    $scope.selectedIndex = $scope.selectedIndex <= 0 ? $scope.selectedIndex = $scope.options.length - 1
+                        : $scope.selectedIndex - 1;
                     $scope.selectedOptionName = $scope.options[$scope.selectedIndex].name;
                 }
             };
@@ -148,13 +151,16 @@
             $scope.onSelect = function () {
                 var option = _.find($scope.options, {name: $scope.selectedOptionName});
 
-                if (option && option.name != 'cancel') $mdDialog.hide({option: option, deleted: $scope.deleted});
-                else $mdDialog.hide(null);
+                if (option && option.name !== 'cancel') {
+                    $mdDialog.hide({option: option, deleted: $scope.deleted});
+                } else { $mdDialog.hide(null); }
             };
 
             // Setting focus to input control
             function focusInput() {
-                var list = $('.pip-conversion-dialog .pip-list');
+                var list;
+
+                list = $('.pip-conversion-dialog .pip-list');
                 list.focus();
             }
 
