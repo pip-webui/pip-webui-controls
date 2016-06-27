@@ -4,32 +4,30 @@
  * @todo
  * - Improve sample in sampler app
  */
- 
-/* global angular */
 
-(function () {
+(function (angular) {
     'use strict';
 
     var thisModule = angular.module('pipErrorDetailsDialog',
         ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
 
-    thisModule.config(function(pipTranslateProvider) {
+    thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             'ERROR_DETAILS': 'Error details',
             'CODE': 'Code',
             'PATH': 'Path',
-            'ERROR': "Error code",
+            'ERROR': 'Error code',
             'METHOD': 'Method',
-            'MESSAGE':"Message"
+            'MESSAGE': 'Message'
 
         });
         pipTranslateProvider.translations('ru', {
             'ERROR_DETAILS': 'Детали ошибки',
             'CODE': 'Код',
             'PATH': 'Путь',
-            'ERROR': "Код ошибки",
+            'ERROR': 'Код ошибки',
             'METHOD': 'Метод',
-            'MESSAGE':"Сообщение"
+            'MESSAGE': 'Сообщение'
         });
     });
 
@@ -41,18 +39,18 @@
                         targetEvent: params.event,
                         templateUrl: 'error_details_dialog/error_details_dialog.html',
                         controller: 'pipErrorDetailsDialogController',
-                        locals: { params: params },
+                        locals: {params: params},
                         clickOutsideToClose: true
                     })
-                    .then(function () {
-                        if (successCallback) {
-                            successCallback();
-                        }
-                    }, function () {
-                        if (cancelCallback) {
-                            cancelCallback();
-                        }
-                    });
+                        .then(function () {
+                            if (successCallback) {
+                                successCallback();
+                            }
+                        }, function () {
+                            if (cancelCallback) {
+                                cancelCallback();
+                            }
+                        });
                 }
             };
         }
@@ -60,7 +58,7 @@
 
     thisModule.controller('pipErrorDetailsDialogController',
         function ($scope, $rootScope, $mdDialog, pipTranslate, params) {
-           $scope.error = params.error;
+            $scope.error = params.error;
             $scope.ok = params.ok || 'OK';
             $scope.cancel = params.cancel || 'CANCEL';
 
@@ -74,4 +72,4 @@
         }
     );
 
-})();
+})(window.angular);
