@@ -5,16 +5,14 @@
  * - Improve sample in sampler app
  * - Remove deleted hack in the controller
  */
- 
-/* global $, angular */
 
-(function () {
+(function (angular, $) {
     'use strict';
 
     var thisModule = angular.module('pipOptionsBigDialog',
         ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
 
-    thisModule.config(function(pipTranslateProvider) {
+    thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             'OPTIONS_TITLE': 'Choose Option'
         });
@@ -33,25 +31,26 @@
                     }
 
                     function focusToggleControl() {
-                        if (params.event && params.event.currentTarget)
+                        if (params.event && params.event.currentTarget) {
                             params.event.currentTarget.focus();
+                        }
                     }
 
                     $mdDialog.show({
                         targetEvent: params.event,
                         templateUrl: 'options_dialog/options_dialog_big.html',
                         controller: 'pipOptionsDialogBigController',
-                        locals: { params: params },
+                        locals: {params: params},
                         clickOutsideToClose: true
                     })
-                    .then(function (option) {
-                        focusToggleControl();
+                        .then(function (option) {
+                            focusToggleControl();
 
-                        if (successCallback) successCallback(option);
-                    }, function () {
-                        focusToggleControl();
-                        if (cancelCallback) cancelCallback();
-                    });
+                            if (successCallback) { successCallback(option); }
+                        }, function () {
+                            focusToggleControl();
+                            if (cancelCallback) { cancelCallback(); }
+                        });
                 }
             };
         }
@@ -67,12 +66,12 @@
             $scope.hint = params.hint || '';
             $scope.selectedOption = _.find(params.options, {active: true}) || {};
             $scope.selectedOptionName = $scope.selectedOption.name;
-            $scope.optionIndex  = _.findIndex(params.options,$scope.selectedOption);
+            $scope.optionIndex = _.findIndex(params.options, $scope.selectedOption);
             $scope.applyButtonTitle = params.applyButtonTitle || 'SELECT';
-            
+
             $scope.deleted = params.deleted;
             $scope.deletedTitle = params.deletedTitle;
-    
+
             $scope.onOptionSelect = function (event, option) {
                 event.stopPropagation();
                 $scope.selectedOptionName = option.name;
@@ -89,35 +88,36 @@
                     // $scope.onSelect();
                 }
             };
-    
-            $scope.onKeyUp = function(event, index) {
-                if (event.keyCode == 32 || event.keyCode == 13) {
+
+            $scope.onKeyUp = function (event, index) {
+                if (event.keyCode === 32 || event.keyCode === 13) {
                     event.stopPropagation();
                     event.preventDefault();
-                    if (index != undefined && index > -1 && index < $scope.options.length) {
+                    if (index !== undefined && index > -1 && index < $scope.options.length) {
                         $scope.selectedOptionName = $scope.options[index].name;
                         $scope.onSelect();
                     }
                 }
             };
-    
             $scope.onCancel = function () {
                 $mdDialog.cancel();
             };
-            
             $scope.onSelect = function () {
-                var option = _.find($scope.options, {name: $scope.selectedOptionName});
-                $mdDialog.hide({ option: option, deleted: $scope.deleted });
+                var option;
+
+                option = _.find($scope.options, {name: $scope.selectedOptionName});
+                $mdDialog.hide({option: option, deleted: $scope.deleted});
             };
-    
             // Setting focus to input control
             function focusInput() {
-                var list = $('.pip-options-dialog .pip-list');
+                var list;
+
+                list = $('.pip-options-dialog .pip-list');
                 list.focus();
-            };
+            }
+
             setTimeout(focusInput, 500);
-    
         }
     );
 
-})();
+})(window.angular, window.jQuery);

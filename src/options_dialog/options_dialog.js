@@ -5,10 +5,8 @@
  * - Improve sample in sampler app
  * - Remove deleted hack in the controller
  */
- 
-/* global $, angular */
 
-(function (angular) {
+(function (angular, $) {
     'use strict';
 
     var thisModule = angular.module('pipOptionsDialog',
@@ -57,7 +55,6 @@
             };
         }
     );
-
     thisModule.controller('pipOptionsDialogController',
         function ($scope, $rootScope, $mdDialog, params) {
             $scope.theme = $rootScope.$theme;
@@ -99,4 +96,4 @@
         }
     );
 
-})(window.angular);
+})(window.angular, window.jQuery);
