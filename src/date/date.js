@@ -41,8 +41,7 @@
                     if (year) {
                         // Calculate leap year (primitive)
                         count = year % 4 === 0 ? 29 : 28;
-                    }
-                    else {
+                    } else {
                         count = 28;
                     }
                 }
