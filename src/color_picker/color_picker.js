@@ -3,12 +3,10 @@
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
-/* global angular */
-
-(function () {
+(function (angular) {
     'use strict';
 
-    var thisModule = angular.module("pipColorPicker", ['pipUtils', 'pipFocused', 'pipBasicControls.Templates']);
+    var thisModule = angular.module('pipColorPicker', ['pipUtils', 'pipFocused', 'pipBasicControls.Templates']);
 
     thisModule.directive('pipColorPicker',
         function () {
@@ -32,7 +30,7 @@
 
             $scope.class = $attrs.class || '';
 
-            if (!$scope.colors || (_.isArray($scope.colors) && $scope.colors.length === 0)) {
+            if (!$scope.colors || _.isArray($scope.colors) && $scope.colors.length === 0) {
                 $scope.colors = DEFAULT_COLORS;
             }
 
@@ -48,23 +46,26 @@
             };
 
             $scope.selectColor = function (index) {
-                if ($scope.disabled()) return;
+                if ($scope.disabled()) {
+                    return;
+                }
                 $scope.currentColorIndex = index;
 
                 $scope.currentColor = $scope.colors[$scope.currentColorIndex];
 
-                $timeout(function() {
+                $timeout(function () {
                     $scope.$apply();
                 });
 
                 if ($scope.colorChange) {
                     $scope.colorChange();
                 }
-            }
+            };
 
             $scope.enterSpacePress = function (event) {
                 $scope.selectColor(event.index);
             };
-    })
+        }
+    );
 
-})();
+})(window.angular);
