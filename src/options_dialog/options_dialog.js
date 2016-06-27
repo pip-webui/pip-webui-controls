@@ -8,13 +8,13 @@
  
 /* global $, angular */
 
-(function () {
+(function (angular) {
     'use strict';
 
-    var thisModule = angular.module('pipOptionsDialog', 
+    var thisModule = angular.module('pipOptionsDialog',
         ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
 
-    thisModule.config(function(pipTranslateProvider) {
+    thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             'OPTIONS_TITLE': 'Choose Option'
         });
@@ -23,7 +23,7 @@
         });
     });
 
-    thisModule.factory('pipOptionsDialog', 
+    thisModule.factory('pipOptionsDialog',
         function ($mdDialog) {
             return {
                 show: function (params, successCallback, cancelCallback) {
@@ -33,8 +33,9 @@
                     }
 
                     function focusToggleControl() {
-                        if (params.event && params.event.currentTarget)
+                        if (params.event && params.event.currentTarget) {
                             params.event.currentTarget.focus();
+                        }
                     }
 
                     $mdDialog.show({
@@ -47,10 +48,10 @@
                     .then(function (option) {
                         focusToggleControl();
 
-                        if (successCallback) successCallback(option);
+                        if (successCallback) { successCallback(option); }
                     }, function () {
                         focusToggleControl();
-                        if (cancelCallback) cancelCallback();
+                        if (cancelCallback) { cancelCallback(); }
                     });
                 }
             };
@@ -65,40 +66,37 @@
             $scope.selectedOption = _.find(params.options, {active: true}) || {};
             $scope.selectedOptionName = $scope.selectedOption.name;
             $scope.applyButtonTitle = params.appleButtonTitle || 'SELECT';
-            
             $scope.deleted = params.deleted;
             $scope.deletedTitle = params.deletedTitle;
-    
             $scope.onOptionSelect = function (event, option) {
                 event.stopPropagation();
                 $scope.selectedOptionName = option.name;
             };
-    
-            $scope.onKeyPress = function(event) {
-                if (event.keyCode == 32 || event.keyCode == 13) {
+            $scope.onKeyPress = function (event) {
+                if (event.keyCode === 32 || event.keyCode === 13) {
                     event.stopPropagation();
                     event.preventDefault();
                     $scope.onSelect();
                 }
             };
-    
             $scope.onCancel = function () {
                 $mdDialog.cancel();
             };
-            
             $scope.onSelect = function () {
-                var option = _.find(params.options, {name: $scope.selectedOptionName});
+                var option;
+
+                option = _.find(params.options, {name: $scope.selectedOptionName});
                 $mdDialog.hide({ option: option, deleted: $scope.deleted });
             };
-    
             // Setting focus to input control
             function focusInput() {
-                var list = $('.pip-options-dialog .pip-list');
+                var list;
+
+                list = $('.pip-options-dialog .pip-list');
                 list.focus();
-            };
+            }
             setTimeout(focusInput, 500);
-    
         }
     );
 
-})();
+})(window.angular);
