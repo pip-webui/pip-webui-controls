@@ -6,20 +6,18 @@
  * - What's pipType and pipTypeLocal? Give better name
  * - Do not use ng-if, instead generate template statically
  */
- 
-/* global angular */
 
-(function () {
+(function (angular) {
     'use strict';
 
-    var thisModule = angular.module("pipTagList", ['pipCore']);
+    var thisModule = angular.module('pipTagList', ['pipCore']);
 
     /**
      * pipTags - set of tags
      * pipType - additional type tag
      * pipTypeLocal - additional translated type tag
      */
-    thisModule.directive('pipTagList', 
+    thisModule.directive('pipTagList',
         function ($parse) {
             return {
                 restrict: 'EA',
@@ -31,26 +29,26 @@
                 templateUrl: 'tags/tag_list.html',
                 controller:
                     function ($scope, $element, $attrs, pipUtils) {
-                        var tagsGetter = $parse($attrs.pipTags);
-                        
-                        $element.css("display", "block");
-                        
+                        var tagsGetter;
+
+                        tagsGetter = $parse($attrs.pipTags);
+                        $element.css('display', 'block');
                         // Set tags
                         $scope.tags = tagsGetter($scope);
 
                         // Also optimization to avoid watch if it is unnecessary
                         if (pipUtils.toBoolean($attrs.pipRebind)) {
                             $scope.$watch(tagsGetter, function (newValue) {
-                                $scope.tags = tagsGetter($scope)
+                                $scope.tags = tagsGetter($scope);
                             });
                         }
 
                         // Add class
                         $element.addClass('pip-tag-list');
                     }
-            }
+            };
         }
     );
 
-})();
+})(window.angular);
 
