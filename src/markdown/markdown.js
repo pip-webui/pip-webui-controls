@@ -6,7 +6,7 @@
  * - Improve samples in sampler app
  */
 
-(function (angular) {
+(function (angular, marked) {
     'use strict';
 
     var thisModule = angular.module('pipMarkdown', ['ngSanitize', 'pipUtils', 'pipTranslate']);
@@ -122,5 +122,5 @@
         }
     );
 
-})(window.angular);
+})(window.angular, window.marked);
 
