@@ -3,12 +3,10 @@
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
-/* global angular */
-
-(function () {
+(function (angular) {
     'use strict';
 
-    var thisModule = angular.module("pipTimeView", ['pipUtils']);
+    var thisModule = angular.module('pipTimeView', ['pipUtils']);
 
     thisModule.directive('pipTimeView',
         function (pipUtils) {
@@ -18,25 +16,28 @@
                     pipStartDate: '=',
                     pipEndDate: '='
                 },
-                templateUrl:  'time_view/time_view.html',
+                templateUrl: 'time_view/time_view.html',
                 link: function ($scope, $element, $attrs) {
 
                     function getDateJSON(value) {
                         var date = value ? new Date(value) : null;
+
                         return date;
-                    };
+                    }
 
                     function defineStartDate() {
-                        if (($scope.pipStartDate !== null) && ($scope.pipStartDate !== undefined)) {
-                            $scope.data.start = _.isDate($scope.pipStartDate) ?  $scope.pipStartDate : getDateJSON($scope.pipStartDate);
+                        if ($scope.pipStartDate !== null && $scope.pipStartDate !== undefined) {
+                            $scope.data.start = _.isDate($scope.pipStartDate) ? $scope.pipStartDate
+                                : getDateJSON($scope.pipStartDate);
                         }
-                    };
+                    }
 
                     function defineEndDate() {
-                        if (($scope.pipEndDate !== null) && ($scope.pipEndDate !== undefined)) {
-                            $scope.data.end = _.isDate($scope.pipEndDate) ?  $scope.pipEndDate : getDateJSON($scope.pipEndDate);
+                        if ($scope.pipEndDate !== null && $scope.pipEndDate !== undefined) {
+                            $scope.data.end = _.isDate($scope.pipEndDate) ? $scope.pipEndDate
+                                : getDateJSON($scope.pipEndDate);
                         }
-                    };
+                    }
 
                     $scope.data = {};
                     $scope.data.start = null;
@@ -62,8 +63,8 @@
                     // Add class
                     $element.addClass('pip-time-view');
                 }
-            }
+            };
         }
     );
 
-})();
+})(window.angular);

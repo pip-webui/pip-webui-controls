@@ -3,7 +3,7 @@
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
-(function (angular) {
+(function (angular, $) {
     'use strict';
     var thisModule = angular.module('pipConversionDialog',
         ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
@@ -12,7 +12,7 @@
         pipTranslateProvider.translations('en', {
             'CONVERT_PARENT_TITLE': 'Choose type of the parent record',
             'CONVERT_PARENT_SUBTITLE': 'The <b>%s</b> is missing and will be created from scratch.' +
-                                        ' Find and clarify it later',
+            ' Find and clarify it later',
 
             'CONVERT_TO_GOAL_SUBTITLE': 'Result that requires significant efforts',
             'CONVERT_TO_TASK_SUBTITLE': 'Simple work that doesn\'t need a plan',
@@ -153,7 +153,9 @@
 
                 if (option && option.name !== 'cancel') {
                     $mdDialog.hide({option: option, deleted: $scope.deleted});
-                } else { $mdDialog.hide(null); }
+                } else {
+                    $mdDialog.hide(null);
+                }
             };
 
             // Setting focus to input control
@@ -169,4 +171,4 @@
         }
     );
 
-})(window.angular);
+})(window.angular, window.jQuery);

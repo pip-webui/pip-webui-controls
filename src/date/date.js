@@ -6,7 +6,7 @@
  * - Optimize. It is way to slow on samples
  */
 
-(function (angular) {
+(function (angular, _) {
     'use strict';
 
     var thisModule = angular.module('pipDate', ['pipBasicControls.Templates']);
@@ -166,5 +166,5 @@
         }
     );
 
-})(window.angular);
+})(window.angular, window._);
 

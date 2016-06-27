@@ -27,12 +27,14 @@
                         targetEvent: params.event,
                         templateUrl: 'information_dialog/information_dialog.html',
                         controller: 'pipInformationDialogController',
-                        locals: { params: params },
+                        locals: {params: params},
                         clickOutsideToClose: true
                     })
-                    .then(function () {
-                        if (callback) { callback(); }
-                    });
+                        .then(function () {
+                            if (callback) {
+                                callback();
+                            }
+                        });
                 }
             };
         }

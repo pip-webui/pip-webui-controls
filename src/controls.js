@@ -5,10 +5,10 @@
 
 /* global angular */
 
-(function () {
+(function (angular) {
     'use strict';
 
-    angular.module('pipControls', [        
+    angular.module('pipControls', [
         'pipMarkdown',
         'pipToggleButtons',
         'pipRefreshButton',
@@ -17,7 +17,7 @@
         'pipPopover',
         'pipImageSlider',
         'pipToasts',
-        "pipTagList",
+        'pipTagList',
 
         'pipDate',
         'pipDateRange',
@@ -32,8 +32,7 @@
         'pipErrorDetailsDialog'
     ]);
 
-    angular.module('pipBasicControls', [ 'pipControls' ]);
-    
-})();
+    angular.module('pipBasicControls', ['pipControls']);
 
+})(window.angular);
 

@@ -3,7 +3,7 @@
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
-(function (angular) {
+(function (angular, _, $) {
     'use strict';
 
     var thisModule = angular.module('pipImageSlider', []);
@@ -50,7 +50,7 @@
                     $timeout(function () {
                         blocks = $element.find('.pip-animation-block');
                         if (blocks.length > 0) {
-                            $(blocks[0]).addClass('pip-show')
+                            $(blocks[0]).addClass('pip-show');
                         }
                     });
 
@@ -193,24 +193,23 @@
 
             function toBlock(type, blocks, oldIndex, nextIndex, direction) {
                 var prevBlock = $(blocks[oldIndex]),
-                    blockIndex = nextIndex;
-                var nextBlock = $(blocks[blockIndex]);
+                    blockIndex = nextIndex,
+                    nextBlock = $(blocks[blockIndex]);
 
                 if (type === 'carousel') {
                     $(blocks).removeClass('pip-next').removeClass('pip-prev');
 
                     if (direction && direction === 'prev') {
                         prevCarousel(nextBlock, prevBlock);
+                    }
+                    if (direction && direction === 'next') {
+                        nextCarousel(nextBlock, prevBlock);
+                    }
+                    if ((!direction || direction !== 'next' && direction !== 'prev') &&
+                        nextIndex && nextIndex < oldIndex) {
+                        prevCarousel(nextBlock, prevBlock);
                     } else {
-                        if (direction && direction === 'next') {
-                            nextCarousel(nextBlock, prevBlock);
-                        } else {
-                            if (nextIndex && nextIndex < oldIndex) {
-                                prevCarousel(nextBlock, prevBlock);
-                            } else {
-                                nextCarousel(nextBlock, prevBlock);
-                            }
-                        }
+                        nextCarousel(nextBlock, prevBlock);
                     }
                 } else {
                     prevBlock.addClass('animated').removeClass('pip-show');
@@ -220,4 +219,4 @@
         }
     );
 
-})(window.angular);
+})(window.angular, window._, window.jQuery);

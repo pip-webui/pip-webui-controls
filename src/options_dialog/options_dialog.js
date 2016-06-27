@@ -40,17 +40,21 @@
                         targetEvent: params.event,
                         templateUrl: 'options_dialog/options_dialog.html',
                         controller: 'pipOptionsDialogController',
-                        locals: { params: params },
+                        locals: {params: params},
                         clickOutsideToClose: true
                     })
-                    .then(function (option) {
-                        focusToggleControl();
+                        .then(function (option) {
+                            focusToggleControl();
 
-                        if (successCallback) { successCallback(option); }
-                    }, function () {
-                        focusToggleControl();
-                        if (cancelCallback) { cancelCallback(); }
-                    });
+                            if (successCallback) {
+                                successCallback(option);
+                            }
+                        }, function () {
+                            focusToggleControl();
+                            if (cancelCallback) {
+                                cancelCallback();
+                            }
+                        });
                 }
             };
         }
@@ -83,7 +87,7 @@
                 var option;
 
                 option = _.find(params.options, {name: $scope.selectedOptionName});
-                $mdDialog.hide({ option: option, deleted: $scope.deleted });
+                $mdDialog.hide({option: option, deleted: $scope.deleted});
             };
             // Setting focus to input control
             function focusInput() {
@@ -92,6 +96,7 @@
                 list = $('.pip-options-dialog .pip-list');
                 list.focus();
             }
+
             setTimeout(focusInput, 500);
         }
     );

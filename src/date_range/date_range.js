@@ -13,7 +13,7 @@
  [ daily,  weekly,  monthly,  yearly ]
  */
 
-(function () {
+(function (angular, _) {
     'use strict';
     var thisModule = angular.module('pipDateRange', []);
 
@@ -413,5 +413,5 @@
         }
     );
 
-})();
+})(window.angular, window._);
 

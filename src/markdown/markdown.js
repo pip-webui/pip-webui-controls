@@ -92,7 +92,7 @@
                         }
                         // Assign value as HTML
                         $element.html('<div' + (isClamped ? listGetter() ? 'class="pip-markdown-content ' +
-                                 'pip-markdown-list" style="max-height: ' + height + 'em">'
+                            'pip-markdown-list" style="max-height: ' + height + 'em">'
                                 : ' class="pip-markdown-content" style="max-height: ' + height + 'em">' : listGetter()
                                 ? ' class="pip-markdown-list">' : '>') + textString + '</div>');
                         $element.find('a').attr('target', 'blank');

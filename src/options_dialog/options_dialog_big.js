@@ -46,10 +46,14 @@
                         .then(function (option) {
                             focusToggleControl();
 
-                            if (successCallback) { successCallback(option); }
+                            if (successCallback) {
+                                successCallback(option);
+                            }
                         }, function () {
                             focusToggleControl();
-                            if (cancelCallback) { cancelCallback(); }
+                            if (cancelCallback) {
+                                cancelCallback();
+                            }
                         });
                 }
             };
