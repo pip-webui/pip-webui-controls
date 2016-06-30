@@ -27,25 +27,24 @@
                     pipTypeLocal: '='
                 },
                 templateUrl: 'tags/tag_list.html',
-                controller:
-                    function ($scope, $element, $attrs, pipUtils) {
-                        var tagsGetter;
+                controller: function ($scope, $element, $attrs, pipUtils) {
+                    var tagsGetter;
 
-                        tagsGetter = $parse($attrs.pipTags);
-                        $element.css('display', 'block');
-                        // Set tags
-                        $scope.tags = tagsGetter($scope);
+                    tagsGetter = $parse($attrs.pipTags);
+                    $element.css('display', 'block');
+                    // Set tags
+                    $scope.tags = tagsGetter($scope);
 
-                        // Also optimization to avoid watch if it is unnecessary
-                        if (pipUtils.toBoolean($attrs.pipRebind)) {
-                            $scope.$watch(tagsGetter, function (newValue) {
-                                $scope.tags = tagsGetter($scope);
-                            });
-                        }
-
-                        // Add class
-                        $element.addClass('pip-tag-list');
+                    // Also optimization to avoid watch if it is unnecessary
+                    if (pipUtils.toBoolean($attrs.pipRebind)) {
+                        $scope.$watch(tagsGetter, function (newValue) {
+                            $scope.tags = tagsGetter($scope);
+                        });
                     }
+
+                    // Add class
+                    $element.addClass('pip-tag-list');
+                }
             };
         }
     );

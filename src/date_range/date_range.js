@@ -6,8 +6,6 @@
  * - Optimize. It is way to slow on samples
  */
 
-/* global angular */
-
 /*
  pip-date-range-type
  [ daily,  weekly,  monthly,  yearly ]
@@ -414,4 +412,3 @@
     );
 
 })(window.angular, window._);
-
