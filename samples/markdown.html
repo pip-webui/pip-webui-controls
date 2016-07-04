@@ -1,143 +1,149 @@
-<h2>{{ 'COMMON' | translate }} {{ 'SAMPLE' | translate }}:</h2>
+<div>
+    <h2>{{ 'COMMON' | translate }} {{ 'SAMPLE' | translate }}:</h2>
 
 <textarea class="w-stretch bm24" placeholder="Enter text..." ng-model="data.text" rows="22">
 </textarea>
 
-<pip-markdown pip-text="data.text" pip-rebind="true">
-</pip-markdown>
+    <pip-markdown pip-text="data.text" pip-rebind="true">
+    </pip-markdown>
 
-<h2>{{ 'EXAMPLES_LIMITED_LINES' | translate }}:</h2>
+    <h2>{{ 'EXAMPLES_LIMITED_LINES' | translate }}:</h2>
 
 <textarea class="w-stretch bm24" placeholder="Enter text..." ng-model="data.text2" rows="8">
 </textarea>
-<div flex layout="row">
-    <div flex>
-        <h3>5 {{ 'LINES' | translate }}:</h3>
-        <pip-markdown pip-text="data.text2" pip-rebind="true" pip-line-count="5">
-        </pip-markdown>
+    <div flex layout="row">
+        <div flex>
+            <h3>5 {{ 'LINES' | translate }}:</h3>
+            <pip-markdown pip-text="data.text2" pip-rebind="true" pip-line-count="5">
+            </pip-markdown>
+        </div>
+        <div flex>
+            <h3>2 {{ 'LINES' | translate }}:</h3>
+            <pip-markdown pip-text="data.text2" pip-rebind="true" pip-line-count="2">
+            </pip-markdown>
+        </div>
+        <div flex>
+            <h3>1 {{ 'LINE' | translate }}:</h3>
+            <pip-markdown pip-text="data.text2" pip-rebind="true" pip-line-count="1">
+            </pip-markdown>
+        </div>
     </div>
-    <div flex>
-        <h3>2 {{ 'LINES' | translate }}:</h3>
-        <pip-markdown pip-text="data.text2" pip-rebind="true" pip-line-count="2">
-        </pip-markdown>
-    </div>
-    <div flex>
-        <h3>1 {{ 'LINE' | translate }}:</h3>
-        <pip-markdown pip-text="data.text2" pip-rebind="true" pip-line-count="1">
-        </pip-markdown>
-    </div>
-</div>
 
-<h2>{{ 'SAMPLE' | translate }} {{ 'IN' | translate }} md-list:</h2>
+    <h2>{{ 'SAMPLE' | translate }} {{ 'IN' | translate }} md-list:</h2>
 
-<md-list class="pip-menu pip-ref-list">
+    <md-list class="pip-menu markdown-sample-list pip-ref-list">
 
-    <md-list-item class="pip-ref-list-item lp16" md-ink-ripple
-                  layout="row" layout-align="start start">
+        <md-list-item class="pip-ref-list-item lp16" md-ink-ripple
+                      layout="row" layout-align="start start">
 
-        <img src="http://thumbs.dreamstime.com/z/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846325.jpg" class="pip-pic">
+            <img src="http://thumbs.dreamstime.com/z/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846325.jpg"
+                 class="pip-pic">
 
-        <div class="pip-content">
-            <div layout="row" layout-align="space-between start">
-                <div flex>
-                    <p class="pip-title">{{item.title}} </p>
+            <div class="pip-content">
+                <div layout="row" layout-align="space-between start">
+                    <div flex>
+                        <p class="pip-title">{{item.title}} </p>
 
                     <span class="pip-subtitle">
                         {{item.time}}
                     </span>
+                    </div>
+
+                    <md-chip class="pip-type-chip pip-type-chip-right md-chip">
+                        <div class="pip-text">INFO</div>
+                    </md-chip>
                 </div>
 
-                <md-chip class="pip-type-chip pip-type-chip-right md-chip">
-                    <div class="pip-text">INFO</div>
-                </md-chip>
+                <p class="pip-text-bold" ng-if="item.parent">{{item.parent}}</p>
+
+                <pip-markdown pip-text="item.text" pip-list="true" pip-line-count="1"></pip-markdown>
+
             </div>
+        </md-list-item>
 
-            <p class="pip-text-bold" ng-if="item.parent">{{item.parent}}</p>
+        <md-list-item class="pip-ref-list-item lp16" md-ink-ripple
+                      layout="row" layout-align="start start">
 
-            <pip-markdown pip-text="item.text" pip-list="true" pip-line-count="1"></pip-markdown>
+            <img src="http://thumbs.dreamstime.com/z/businesswoman-profile-icon-female-portrait-flat-design-vector-illustration-47075248.jpg"
+                 class="pip-pic">
 
-        </div>
-    </md-list-item>
-
-    <md-list-item class="pip-ref-list-item lp16" md-ink-ripple
-                  layout="row" layout-align="start start">
-
-        <img src="http://thumbs.dreamstime.com/z/businesswoman-profile-icon-female-portrait-flat-design-vector-illustration-47075248.jpg" class="pip-pic">
-
-        <div class="pip-content">
-            <div layout="row" layout-align="space-between start">
-                <div class="rm8 line-height-string" flex>
-                    <p class="pip-title">{{item.title}} </p>
+            <div class="pip-content">
+                <div layout="row" layout-align="space-between start">
+                    <div class="rm8 line-height-string" flex>
+                        <p class="pip-title">{{item.title}} </p>
 
                     <span class="pip-subtitle">
                         {{item.time}}
                     </span>
+                    </div>
+
+
                 </div>
 
+                <p class="pip-text-bold" ng-if="item.parent">{{item.parent}}</p>
+
+                <pip-markdown pip-text="item.text" pip-list="true" pip-line-count="1"></pip-markdown>
 
             </div>
+        </md-list-item>
 
-            <p class="pip-text-bold" ng-if="item.parent">{{item.parent}}</p>
+        <md-list-item class="pip-ref-list-item lp16" md-ink-ripple
+                      layout="row" layout-align="start start">
 
-            <pip-markdown pip-text="item.text" pip-list="true" pip-line-count="1"></pip-markdown>
+            <img src="http://thumbs.dreamstime.com/z/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-47075239.jpg"
+                 class="pip-pic">
 
-        </div>
-    </md-list-item>
+            <div class="pip-content">
+                <p class="pip-title">{{item2.title}} </p>
 
-    <md-list-item class="pip-ref-list-item lp16" md-ink-ripple
-                  layout="row" layout-align="start start">
+                <span class="pip-subtitle">{{item2.time}}</span>
 
-        <img src="http://thumbs.dreamstime.com/z/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-47075239.jpg" class="pip-pic">
+                <pip-markdown pip-text="item2.text" pip-list="true" pip-line-count="2"></pip-markdown>
 
-        <div class="pip-content">
-            <p class="pip-title">{{item2.title}} </p>
+            </div>
+        </md-list-item>
 
-            <span class="pip-subtitle">{{item2.time}}</span>
+    </md-list>
 
-            <pip-markdown pip-text="item2.text" pip-list="true" pip-line-count="2"></pip-markdown>
-
-        </div>
-    </md-list-item>
-
-</md-list>
-
-<h2>{{ 'INTERACTIVE' | translate }} {{ 'SAMPLE' | translate }} {{ 'IN' | translate }} md-list:</h2>
-<p>{{ 'CHANGE_TEXT' | translate }}: </p>
+    <h2>{{ 'INTERACTIVE' | translate }} {{ 'SAMPLE' | translate }} {{ 'IN' | translate }} md-list:</h2>
+    <p>{{ 'CHANGE_TEXT' | translate }}: </p>
 <textarea class="w-stretch bm24" placeholder="Enter text..." ng-model="item3.text" rows="6">
 </textarea>
-<md-list class="pip-menu pip-ref-list">
-    <md-list-item class="pip-ref-list-item lp16" md-ink-ripple
-                  layout="row" layout-align="start start">
+    <md-list class="pip-menu markdown-sample-list pip-ref-list">
+        <md-list-item class="pip-ref-list-item lp16" md-ink-ripple
+                      layout="row" layout-align="start start">
 
-        <img src="http://thumbs.dreamstime.com/z/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-47075239.jpg"
-             class="pip-pic">
+            <img src="http://thumbs.dreamstime.com/z/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-47075239.jpg"
+                 class="pip-pic">
 
-        <div class="pip-content">
-            <p class="pip-title">{{item3.title}} </p>
+            <div class="pip-content">
+                <p class="pip-title">{{item3.title}} </p>
 
-            <span class="pip-subtitle">{{item3.time}}</span>
+                <span class="pip-subtitle">{{item3.time}}</span>
 
-            <pip-markdown pip-text="item3.text" pip-rebind="true" pip-list="true" pip-line-count="1"></pip-markdown>
+                <pip-markdown pip-text="item3.text" pip-rebind="true" pip-list="true" pip-line-count="1"></pip-markdown>
 
-        </div>
-    </md-list-item>
-</md-list>
+            </div>
+        </md-list-item>
+    </md-list>
 
-<h2>{{ 'SAMPLE_WITH_ATTACHMENTS' | translate }}</h2>
-<md-list class="pip-menu pip-ref-list">
-    <md-list-item class="pip-ref-list-item lp16" md-ink-ripple
-                  layout="row" layout-align="start start">
+    <h2>{{ 'SAMPLE_WITH_ATTACHMENTS' | translate }}</h2>
+    <md-list class="pip-menu markdown-sample-list pip-ref-list">
+        <md-list-item class="pip-ref-list-item lp16" md-ink-ripple
+                      layout="row" layout-align="start start">
 
-        <!--img src="http://thumbs.dreamstime.com/z/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-47075239.jpg"
-             class="pip-pic"-->
+            <!--img src="http://thumbs.dreamstime.com/z/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-47075239.jpg"
+                 class="pip-pic"-->
 
-        <div class="pip-content">
-            <p class="pip-title"> </p>
+            <div class="pip-content">
+                <p class="pip-title"></p>
 
-            <span class="pip-subtitle">{{item3.time}}</span>
+                <span class="pip-subtitle">{{item3.time}}</span>
 
-            <pip-markdown pip-text="data2.content" pip-rebind="true" pip-list="true" pip-line-count="2"></pip-markdown>
+                <pip-markdown pip-text="data2.content" pip-rebind="true" pip-list="true"
+                              pip-line-count="2"></pip-markdown>
 
-        </div>
-    </md-list-item>
-</md-list>
+            </div>
+        </md-list-item>
+    </md-list>
+</div>

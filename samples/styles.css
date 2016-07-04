@@ -1,26 +1,11 @@
-
-.pip-recommended-header {
-    height: 45px;
-    min-height: 45px;
-    z-index: 10;
+.pip-content-container {
+    overflow-y: auto;
 }
 
-.pip-recommended-header .md-toolbar-tools {
-    height: 45px;
-    min-height: 45px;
+.markdown-sample-list.pip-menu {
+    width: auto !important;
+    position: relative;
 }
-
-.pip-recommended-header pip-title {
-    overflow:      hidden;
-    text-overflow: ellipsis;
-    white-space:   nowrap;
-}
-
-.pip-recommended-header .md-button > span {
-    text-transform: none;
-}
-
-
 
 /* Styles for tips, quotes, help */
 

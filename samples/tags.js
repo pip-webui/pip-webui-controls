@@ -24,8 +24,6 @@
             ];
             $scope.example3.type = 'goal';
             $scope.example3.typeLocal = pipTranslate.translate($scope.example3.type);
-
-            console.log('scope.example3', $scope.example3);
         }
     );
 
