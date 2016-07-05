@@ -1,11 +1,9 @@
-/* global angular */
-
-(function () {
+(function (angular) {
     'use strict';
 
     var thisModule = angular.module('appBasicControls.Markdown', []);
 
-    thisModule.config(function(pipTranslateProvider) {
+    thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             COMMON: 'Common',
             EXAMPLES_LIMITED_LINES: 'Examples with limited line counts',
@@ -29,13 +27,14 @@
     });
 
     thisModule.controller('MarkdownController',
-        function($scope) {
+        function ($scope) {
+            /* eslint-disable max-len*/
 
             $scope.data = {
                 text: '# h1 header \n## h2 header \n### h3 header\n#### h4 header \n**strong** \nColumn1 | Column2 | 3 | 6 | 7\n---|---\nValue1 | Value2 | Yes | 5 | Loooooooong Value\n' +
             '\n*Italic* \n_italic_\n__strong__ \n* no spaces before \n * one space before \n   * three spaces before \n * one space before \n* no spaces before' +
                 '\n\n       function () {\n            six or more spaces before for code text\n       }\n\n> a \n> b \n> c',
-                text2 : 'some text \n*Italic looooooooooooooooooooooooong string* \n**strong striiiiiiiiiiiiiiiiiiing**\n_italic string 2_\n some text'
+                text2: 'some text \n*Italic looooooooooooooooooooooooong string* \n**strong striiiiiiiiiiiiiiiiiiing**\n_italic string 2_\n some text'
             };
 
             $scope.data2 = {
@@ -70,4 +69,4 @@
         }
     );
 
-})();
+})(window.angular);

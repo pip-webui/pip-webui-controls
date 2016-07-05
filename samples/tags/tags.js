@@ -1,12 +1,10 @@
-/* global angular */
-
-(function () {
+(function (angular) {
     'use strict';
 
     var thisModule = angular.module('appBasicControls.Tags', []);
 
     thisModule.controller('TagsController',
-        function($scope, pipTranslate) {
+        function ($scope, pipTranslate) {
             $scope.example1 = {};
             $scope.example2 = {};
             $scope.example3 = {};
@@ -27,4 +25,4 @@
         }
     );
 
-})();
+})(window.angular);

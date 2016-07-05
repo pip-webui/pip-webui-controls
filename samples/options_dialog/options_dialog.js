@@ -1,11 +1,12 @@
-/* global angular */
+/* eslint-disable max-len */
+/* eslint-disable no-console */
 
-(function () {
+(function (angular) {
     'use strict';
 
     var thisModule = angular.module('appBasicControls.Options', []);
 
-    thisModule.config(function(pipTranslateProvider) {
+    thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             OPEN_OPTIONS: 'Open options dialog',
             OPEN_OPTIONS_LEFT: 'Open options dialog'
@@ -17,11 +18,10 @@
     });
 
     thisModule.controller('OptionsController',
-        function($scope, pipOptionsDialog, pipOptionsBigDialog) {
-
-            $scope.onOptionsDialogOpen = function(event) {
+        function ($scope, pipOptionsDialog, pipOptionsBigDialog) {
+            $scope.onOptionsDialogOpen = function (event) {
                 pipOptionsDialog.show(
-                    {  
+                    {
                         event: event,
                         title: 'Choose Option',
                         options: [
@@ -32,34 +32,36 @@
                             { name: 'option_5', title: 'Option 5' }
                         ]
                     },
-                    function(option) {
+                    function (option) {
                         var optionName = option ? option.name : null;
+
                         console.log('Selected option: ' + optionName);
                     }
                 );
             };
 
-            $scope.onOptionsBigDialogOpen = function(event) {
+            $scope.onOptionsBigDialogOpen = function (event) {
                 pipOptionsBigDialog.show(
                     {
                         event: event,
                         noActions: true,
                         options: [
-                            { name: 'option_1', title: 'Option 1', subtitle:'Assertively engineer stand-alone information vis-a-vis ethical partnerships. Dynamically extend accurate data after strategic infrastructures. Globally matrix intuitive potentialities without', active: true },
-                            { name: 'option_2', title: 'Option 2', subtitle:'A goal, that is not important by itself and only needed as a step toward a bigger goal' },
-                            { name: 'option_3', title: 'Option 3', subtitle:'Small subtitle' },
-                            { name: 'option_4', title: 'Big title: Energistically transition multimedia based ideas without mission-critical schemas. 4', subtitle:'Small subtitle' }
+                            { name: 'option_1', title: 'Option 1', subtitle: 'Assertively engineer stand-alone information vis-a-vis ethical partnerships. Dynamically extend accurate data after strategic infrastructures. Globally matrix intuitive potentialities without', active: true },
+                            { name: 'option_2', title: 'Option 2', subtitle: 'A goal, that is not important by itself and only needed as a step toward a bigger goal' },
+                            { name: 'option_3', title: 'Option 3', subtitle: 'Small subtitle' },
+                            { name: 'option_4', title: 'Big title: Energistically transition multimedia based ideas without mission-critical schemas. 4', subtitle: 'Small subtitle' }
 
                         ]
                     },
-                    function(option) {
+                    function (option) {
                         var optionName = option ? option.option.name : null;
+
                         console.log('Selected option: ' + optionName);
                     }
                 );
             };
 
-            $scope.onRoleDialog = function(event) {
+            $scope.onRoleDialog = function (event) {
                 pipOptionsBigDialog.show(
                     {
                         event: event,
@@ -67,32 +69,34 @@
                         noTitle: true,
                         hint: 'Роли позволяют отделить свою работу от работы других партнеров.',
                         options: [
-                            { name: 'option_1', title: 'Option 1', subtitle:'Assertively engineer stand-alone information vis-a-vis ethical partnerships. Dynamically extend accurate data after strategic infrastructures. Globally matrix intuitive potentialities without', active: true },
-                            { name: 'option_2', title: 'Option 2', subtitle:'A goal, that is not important by itself and only needed as a step toward a bigger goal' },
-                            { name: 'option_3', title: 'Option 3', subtitle:'Small subtitle' },
-                            { name: 'option_4', title: 'Big title: Energistically transition multimedia based ideas without mission-critical schemas. 4', subtitle:'Small subtitle' }
+                            { name: 'option_1', title: 'Option 1', subtitle: 'Assertively engineer stand-alone information vis-a-vis ethical partnerships. Dynamically extend accurate data after strategic infrastructures. Globally matrix intuitive potentialities without', active: true },
+                            { name: 'option_2', title: 'Option 2', subtitle: 'A goal, that is not important by itself and only needed as a step toward a bigger goal' },
+                            { name: 'option_3', title: 'Option 3', subtitle: 'Small subtitle' },
+                            { name: 'option_4', title: 'Big title: Energistically transition multimedia based ideas without mission-critical schemas. 4', subtitle: 'Small subtitle' }
 
                         ]
                     },
-                    function(option) {
+                    function (option) {
                         var optionName = option ? option.option.name : null;
+
                         console.log('Selected option: ' + optionName);
                     }
                 );
             };
 
-            $scope.onOptionsBigDialogOpenForContribs = function(event) {
+            $scope.onOptionsBigDialogOpenForContribs = function (event) {
                 pipOptionsBigDialog.show(
                     {
                         event: event,
                         options: [
-                            { name: 'option_1', text:'<b>Спланируй</b> задачи и действуй чтобы их осуществить.', active: true },
-                            { name: 'option_2', text:'Assertively engineer stand-alone information vis-a-vis ethical partnerships. Dynamically extend accurate data after strategic infrastructures. Globally matrix intuitive potentialities without', active: true },
+                            { name: 'option_1', text: '<b>Спланируй</b> задачи и действуй чтобы их осуществить.', active: true },
+                            { name: 'option_2', text: 'Assertively engineer stand-alone information vis-a-vis ethical partnerships. Dynamically extend accurate data after strategic infrastructures. Globally matrix intuitive potentialities without', active: true }
 
                         ]
                     },
-                    function(option) {
+                    function (option) {
                         var optionName = option ? option.name : null;
+
                         console.log('Selected option: ' + optionName);
                     }
                 );
@@ -101,4 +105,4 @@
         }
     );
 
-})();
+})(window.angular);

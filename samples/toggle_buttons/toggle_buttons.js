@@ -1,11 +1,9 @@
-/* global angular */
-
-(function () {
+(function (angular) {
     'use strict';
 
     var thisModule = angular.module('appBasicControls.ToggleButtons', []);
 
-    thisModule.config(function(pipTranslateProvider) {
+    thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             INITIALIZED: 'Initialized',
             NOT: 'Not'
@@ -17,7 +15,7 @@
     });
 
     thisModule.controller('ToggleButtonsController',
-        function($scope) {
+        function ($scope) {
             $scope.buttonsCollection = [
                 {id: 'type LOW', name: 'LOW', disabled: false, filled: true},
                 {id: 'type NORMAL', name: 'NORMAL', disabled: false},
@@ -47,4 +45,4 @@
         }
     );
 
-})();
+})(window.angular);

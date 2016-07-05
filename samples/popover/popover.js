@@ -1,28 +1,29 @@
-/* global angular */
+/* eslint-disable max-len */
+/* eslint-disable no-console */
 
-(function () {
+(function (angular, $) {
     'use strict';
 
     var thisModule = angular.module('appBasicControls.Popover', []);
 
-    thisModule.config(function(pipTranslateProvider) {
+    thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             TITLE_POPOVER: 'Credibly create magnetic experiences through sustainable schemas',
             TEXT_POPOVER: 'Credibly create magnetic experiences through sustainable schemas' +
             'Synergistically enable B2B methods of empowerment vis-a-vis just in time meta-services. it cutting-edge.',
-            'CLICK_HELP': 'Click help button'
+            CLICK_HELP: 'Click help button'
 
         });
         pipTranslateProvider.translations('ru', {
             TITLE_POPOVER: 'Заголовок для popovera с двумя строками возможно',
             TEXT_POPOVER: 'Правдоподобно итерацию бесшовных электронных услуг без масштаба предприятия ниши markets.' +
             'Synergistically позволяют методы B2B расширения возможностей визави как раз вовремя, мета-услуг. это ультрасовременные.',
-            'CLICK_HELP': 'Нажмите кнопку помощи'
+            CLICK_HELP: 'Нажмите кнопку помощи'
         });
     });
 
     thisModule.controller('PopoverController',
-        function($scope, $rootScope, $pipPopover, pipTranslate) {
+        function ($scope, $rootScope, $pipPopover, pipTranslate) {
 
             $scope.title = pipTranslate.translate('TITLE_POPOVER');
             $scope.content = pipTranslate.translate('TEXT_POPOVER');
@@ -37,7 +38,7 @@
                     cancelCallback: function () {
                         console.log('backdrop clicked');
                     },
-                    controller: function($scope, $timeout) {
+                    controller: function ($scope, $timeout) {
                         $scope.title = $scope.locals.title;
                         $scope.content = $scope.locals.content;
                         $scope.image = 'http://www.izuminki.com/images/kolibri-vo-vsej-krase/11.jpg';
@@ -47,15 +48,15 @@
                             $pipPopover.hide();
                         };
 
-                        $timeout(function() {
+                        $timeout(function () {
                             $('.pip-popover').find('.pip-pic').css('background-image', 'url(' + $scope.image + ')');
                         }, 200);
                     },
-                    template: '<div class="pip-title m24 bm16 text-subhead2">{{ title }}</div>'
-                        + '<div class="pip-content pip-popover-content p24 tp0 bp0 bm64">'
-                        + '<div class="pip-pic bm16"></div>{{ content }}</div>'
-                        + '<div class="pip-footer p24 tp8 bp8 rp16 position-bottom" layout="row" layout-align="start center">'
-                        + '<div class="flex"></div><md-button ng-click="onNextClick()">NEXT</md-button></div>'
+                    template: '<div class="pip-title m24 bm16 text-subhead2">{{ title }}</div>' +
+                        '<div class="pip-content pip-popover-content p24 tp0 bp0 bm64">' +
+                        '<div class="pip-pic bm16"></div>{{ content }}</div>' +
+                        '<div class="pip-footer p24 tp8 bp8 rp16 position-bottom" layout="row" layout-align="start center">' +
+                        '<div class="flex"></div><md-button ng-click="onNextClick()">NEXT</md-button></div>'
                 });
             };
 
@@ -68,20 +69,20 @@
                     cancelCallback: function () {
                         console.log('backdrop clicked');
                     },
-                    controller: function($scope) {
+                    controller: function ($scope) {
                         $scope.content = $scope.locals.content;
                         $scope.author = 'Text generator';
 
                         $scope.onNextClick = function () {
                             console.log('on next click');
                             $pipPopover.resize();
-                            //$pipPopover.hide();
+                            // $pipPopover.hide();
                         };
                     },
-                    template: '<div class="pip-content pip-popover-content text-subhead2 p24 bp0 bm64">'
-                    + '{{ content }}</div>'
-                    + '<div class="pip-footer p24 tp8 bp8 rp16 position-bottom" layout="row" layout-align="start center">'
-                    + '<div class="text-body1">{{ author }}</div><div class="flex"></div><md-button ng-click="onNextClick()">NEXT</md-button></div>'
+                    template: '<div class="pip-content pip-popover-content text-subhead2 p24 bp0 bm64">' +
+                        '{{ content }}</div>' +
+                        '<div class="pip-footer p24 tp8 bp8 rp16 position-bottom" layout="row" layout-align="start center">' +
+                        '<div class="text-body1">{{ author }}</div><div class="flex"></div><md-button ng-click="onNextClick()">NEXT</md-button></div>'
                 });
             };
 
@@ -91,12 +92,12 @@
                     element: $event.currentTarget,
                     class: 'pip-help',
                     locals: {
-                      content: content || $scope.content
+                        content: content || $scope.content
                     },
                     cancelCallback: function () {
                         console.log('backdrop clicked');
                     },
-                    controller: function($scope) {
+                    controller: function ($scope) {
                         $scope.content = $scope.locals.content;
 
                         $scope.onNextClick = function () {
@@ -104,11 +105,11 @@
                             $pipPopover.hide();
                         };
                     },
-                    template: '<div class="pip-title h24"></div><div class="pip-content pip-popover-content lp24 rp24">'
-                    + '{{ content }}</div><div class="h24 pip-footer"></div>'
+                    template: '<div class="pip-title h24"></div><div class="pip-content pip-popover-content lp24 rp24">' +
+                        '{{ content }}</div><div class="h24 pip-footer"></div>'
                 });
             };
         }
     );
 
-})();
+})(window.angular, window.jQuery);

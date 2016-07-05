@@ -1,11 +1,11 @@
-/* global angular */
+/* eslint-disable no-console */
 
-(function () {
+(function (angular, _) {
     'use strict';
 
     var thisModule = angular.module('appBasicControls.Refresh', []);
 
-    thisModule.config(function(pipTranslateProvider) {
+    thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             SHOW_REFRESH: 'Show refresh'
         });
@@ -15,7 +15,7 @@
     });
 
     thisModule.controller('RefreshController',
-        function($scope) {
+        function ($scope) {
             $scope.showRefresh = true;
             $scope.refreshText = '123 New Posts';
 
@@ -31,4 +31,4 @@
         }
     );
 
-})();
+})(window.angular, window._);

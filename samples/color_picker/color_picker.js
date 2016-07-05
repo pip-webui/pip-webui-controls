@@ -1,6 +1,4 @@
-/* global angular */
-
-(function () {
+(function (angular) {
     'use strict';
 
     var thisModule = angular.module('appBasicControls.ColorPicker', []);
@@ -22,8 +20,9 @@
         function ($scope) {
             $scope.disabled = false;
             $scope.colors = ['purple', 'lightgreen', 'green', 'darkred', 'pink', 'yellow', 'cyan'];
-            $scope.code = '<pip-color-picker ng-model="color" ng-disabled="disabled" pip-colors="colors"> </pip-color-picker>';
+            $scope.code = '<pip-color-picker ng-model="color" ng-disabled="disabled"' +
+                'pip-colors="colors"></pip-color-picker>';
         }
     );
 
-})();
+})(window.angular);

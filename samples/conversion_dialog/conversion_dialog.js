@@ -1,25 +1,23 @@
-/* global angular */
-
-(function () {
+(function (angular) {
     'use strict';
 
     var thisModule = angular.module('appBasicControls.Conversion', []);
 
-    thisModule.config(function(pipTranslateProvider) {
+    thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
-            'OPEN_CONVERT_PARENT_DIALOG': 'Open convert parent dialog',
-            'CONVERT_DELETE_ORIGINAL_RECORD': 'Delete record after conversion'
+            OPEN_CONVERT_PARENT_DIALOG: 'Open convert parent dialog',
+            CONVERT_DELETE_ORIGINAL_RECORD: 'Delete record after conversion'
         });
         pipTranslateProvider.translations('ru', {
-            'OPEN_CONVERT_PARENT_DIALOG': 'Открыть диалог выбора типа родителя',
-            'CONVERT_DELETE_ORIGINAL_RECORD': 'Удалить запись после конвертации'
+            OPEN_CONVERT_PARENT_DIALOG: 'Открыть диалог выбора типа родителя',
+            CONVERT_DELETE_ORIGINAL_RECORD: 'Удалить запись после конвертации'
         });
     });
 
     thisModule.controller('ConversionController',
-        function($scope, pipConversionDialog) {
+        function ($scope, pipConversionDialog) {
 
-            $scope.onConvertParentDialog = function(event) {
+            $scope.onConvertParentDialog = function (event) {
                 pipConversionDialog.show(
                     {
                         event: event,
@@ -47,14 +45,15 @@
                         ],
                         recordName: 'New goal'
                     },
-                    function(option) {
+                    function (option) {
                         var optionName = option ? option.option.name : null;
-                        console.log('Selected option: ' + optionName);
+
+                        console.log('Selected option: ' + optionName);  // eslint-disable-line
                     }
                 );
             };
 
-            $scope.onConvertToDialog = function(event) {
+            $scope.onConvertToDialog = function (event) {
                 pipConversionDialog.show(
                     {
                         event: event,
@@ -81,18 +80,18 @@
                             }
                         ],
                         deleted: true,
-                        deleteTitle: 'Заметка будет удалена после конвертации. Если она вам нужна, то сделайте копию прежде чем продолжить.'
+                        deleteTitle: 'Заметка будет удалена после конвертации. Если она вам нужна, то сделайте копию прежде чем продолжить.' // eslint-disable-line
                     },
-                    function(result) {
-                        var optionName = result ? result.option.name : null;
-                        var deleted = result ? result.deleted : false;
-                        console.log('Selected option: ' + optionName);
-                        console.log('Selected deleted?: ' + deleted);
+                    function (result) {
+                        var optionName = result ? result.option.name : null,
+                            deleted = result ? result.deleted : false;
+
+                        console.log('Selected option: ' + optionName);  // eslint-disable-line
+                        console.log('Selected deleted?: ' + deleted);   // eslint-disable-line
                     }
                 );
             };
-
         }
     );
 
-})();
+})(window.angular);

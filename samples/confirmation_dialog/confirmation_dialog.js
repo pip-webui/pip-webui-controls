@@ -1,11 +1,9 @@
-/* global angular */
-
-(function () {
+(function (angular) {
     'use strict';
 
     var thisModule = angular.module('appBasicControls.Confirmation', []);
 
-    thisModule.config(function(pipTranslateProvider) {
+    thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             OPEN_CONFIRM: 'Open confirm dialog'
         });
@@ -15,8 +13,8 @@
     });
 
     thisModule.controller('ConfirmationController',
-        function($scope, pipConfirmationDialog) {
-            $scope.onConfirmDialogOpen = function(event) {
+        function ($scope, pipConfirmationDialog) {
+            $scope.onConfirmDialogOpen = function (event) {
                 pipConfirmationDialog.show(
                     {
                         event: event,
@@ -27,14 +25,14 @@
                         cancel: 'Disagree'
                     },
                     function () {
-                        console.log('You agreed');
+                        console.log('You agreed');  // eslint-disable-line
                     },
                     function () {
-                        console.log('You disagreed');
+                        console.log('You disagreed');   // eslint-disable-line
                     }
-                );  
+                );
             };
         }
     );
 
-})();
+})(window.angular);

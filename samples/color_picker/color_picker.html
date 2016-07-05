@@ -1,7 +1,6 @@
 <h2>Color picker {{:: 'SAMPLE' | translate }}:</h2>
-<pip-color-picker ng-model="color" ng-disabled="disabled" pip-colors="colors">
-</pip-color-picker>
+<pip-color-picker ng-model="color" ng-disabled="disabled" pip-colors="colors"></pip-color-picker>
 <p>{{:: 'CURRENT_COLOR' | translate }}: {{ color }}</p>
- <md-switch ng-model="disabled">Disabled</md-switch>
+<md-switch ng-model="disabled">Disabled</md-switch>
 <h3>{{:: 'CODE' | translate}}</h3>
 {{code}}

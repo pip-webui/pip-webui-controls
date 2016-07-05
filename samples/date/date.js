@@ -1,6 +1,4 @@
-/* global angular */
-
-(function () {
+(function (angular) {
     'use strict';
 
     var thisModule = angular.module('appBasicControls.Date', []);
@@ -33,7 +31,7 @@
     });
 
     thisModule.controller('DateController',
-        function ($scope, pipAppBar) {
+        function ($scope) {
             $scope.specialDate = '1975-04-08T00:00:00.00';
             $scope.specialDateDisabled = false;
 
@@ -45,10 +43,10 @@
 
             $scope.onNextWeek = function () {
                 var day = $scope.weekly.getDate() + 7;
-                
+
                 $scope.weekly = new Date(Date.UTC($scope.weekly.getFullYear(), $scope.weekly.getMonth(), day));
             };
         }
     );
 
-})();
+})(window.angular);

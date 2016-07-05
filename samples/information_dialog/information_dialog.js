@@ -1,11 +1,9 @@
-/* global angular */
-
-(function () {
+(function (angular) {
     'use strict';
 
     var thisModule = angular.module('appBasicControls.Information', []);
 
-    thisModule.config(function(pipTranslateProvider) {
+    thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             OPEN_INFORM: 'Open inform dialog'
         });
@@ -15,8 +13,8 @@
     });
 
     thisModule.controller('InformationController',
-        function($scope, pipInformationDialog) {
-            $scope.onInfoDialogOpen = function(event) {
+        function ($scope, pipInformationDialog) {
+            $scope.onInfoDialogOpen = function (event) {
                 pipInformationDialog.show(
                     {
                         event: event,
@@ -26,11 +24,11 @@
                         ok: 'Take It'
                     },
                     function () {
-                        console.log('Taken');
+                        console.log('Taken');   // eslint-disable-line
                     }
-                );  
+                );
             };
         }
     );
 
-})();
+})(window.angular);
