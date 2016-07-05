@@ -53,7 +53,7 @@
                 { title: 'Tags', state: 'tags', url: '/tags',
                     controller: 'TagsController', templateUrl: 'tags.html' }
             ];
-            
+
             $scope.selected = {};
             $timeout(function () {
                 $scope.selected.pageIndex = _.findIndex($scope.pages, {state: $state.current.name});
@@ -68,9 +68,9 @@
                 pipTheme.setCurrentTheme(theme);
             };
 
-            $scope.onNavigationSelect = function (stateNane) {
-                if ($state.current.name !== stateNane) {
-                    $state.go(stateNane);
+            $scope.onNavigationSelect = function (stateName) {
+                if ($state.current.name !== stateName) {
+                    $state.go(stateName);
                 }
             };
 
