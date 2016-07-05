@@ -3055,7 +3055,8 @@ module.run(['$templateCache', function($templateCache) {
                 $mdToast.hide(
                     {
                         action: action,
-                        id: toast.id
+                        id: toast.id,
+                        message: toast.message
                     });
             };
         }]
