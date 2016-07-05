@@ -1,9 +1,8 @@
 .pip-routing-progress {
-
-  @green-splash: #67BC6B;
-  @yellow-splash: #FFCC2A;
-  @red-splash: #F37047;
-  @blue-splash: #46B2E6;
+  @green-splash: #67bc6b;
+  @yellow-splash: #ffcc2a;
+  @red-splash: #f37047;
+  @blue-splash: #46b2e6;
 
   background-position: 50% 50%;
   width: 100%;
@@ -16,16 +15,17 @@
     .fix-ie {
       display: block;
     }
-    .md-spinner-wrapper{
+
+    .md-spinner-wrapper {
       position: fixed;
     }
-    .pip-img-ie{
+
+    .pip-img-ie {
       position: fixed;
     }
   }
 
   .pip-progress-bg {
-
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -37,15 +37,14 @@
   .pip-img {
     z-index: 100;
     position: absolute;
-    top: ~"calc( 50% - 40px)";
-    left: ~"calc( 50% - 19px)";
+    top: ~"calc(50% - 40px)";
+    left: ~"calc(50% - 19px)";
 
-    -moz-transform: rotate(-15deg); /* Äëÿ Firefox */
-    -ms-transform: rotate(-15deg); /* Äëÿ IE */
-    -webkit-transform: rotate(-15deg); /* Äëÿ Safari, Chrome, iOS */
-    -o-transform: rotate(-15deg); /* Äëÿ Opera */
+    -moz-transform: rotate(-15deg);   // ï¿½ï¿½ï¿½ Firefox
+    -ms-transform: rotate(-15deg);    // ï¿½ï¿½ï¿½ IE
+    -webkit-transform: rotate(-15deg);  // ï¿½ï¿½ï¿½ Safari, Chrome, iOS
+    -o-transform: rotate(-15deg);     // ï¿½ï¿½ï¿½ Opera
     transform: rotate(-15deg);
-
   }
 
   @width: 100px;
@@ -55,12 +54,12 @@
   .loader {
     margin: 0 !important;
     position: absolute;
-    top: ~"calc( 50% - 70px)";
-    left: ~"calc( 50% - 50px)";
-
+    top: ~"calc(50% - 70px)";
+    left: ~"calc(50% - 50px)";
     width: @width;
+
     &:before {
-      content: '';
+      content: "";
       display: block;
       padding-top: 100%;
     }
@@ -109,7 +108,8 @@
   }
 
   @keyframes color {
-    100%, 0% {
+    100%,
+    0% {
       stroke: @red-splash;
     }
     40% {
@@ -118,9 +118,9 @@
     66% {
       stroke: @green-splash;
     }
-    80%, 90% {
+    80%,
+    90% {
       stroke: @yellow-splash;
     }
   }
-
 }

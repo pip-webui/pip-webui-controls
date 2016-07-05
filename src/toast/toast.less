@@ -12,7 +12,7 @@
   .pip-text {
     overflow: hidden;
     max-height: 32px;
-    margin-right:8px;
+    margin-right: 8px;
     vertical-align: middle;
   }
 
@@ -24,32 +24,33 @@
     width: initial;
   }
 
-
   @media (max-width: 768px) {
-    max-height: 32px + 24px + 36px  + 32px !important;
+    max-height: 32px + 24px + 36px + 32px !important;
     padding: 0;
+
     .md-toast-content {
       padding-top: 8px;
       max-height: 32px + 24px + 36px !important;
       //.flex-direction-column();
 
-      .pip-text{
-        margin-right:0;
+      .pip-text {
+        margin-right: 0;
         width: 100%;
       }
-      .pip-actions{
+      .pip-actions {
         width: 100%;
       }
     }
 
-    &.pip-column-toast{
-      .md-toast-content{
+    &.pip-column-toast {
+      .md-toast-content {
         padding-top: 16px;
         .flex-direction-column();
       }
     }
-    &.pip-no-action-toast{
-      .md-toast-content{
+
+    &.pip-no-action-toast {
+      .md-toast-content {
         padding-top: 8px;
         .flex-direction-row();
         .flex-vertical-center();

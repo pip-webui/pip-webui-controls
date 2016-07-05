@@ -7,6 +7,7 @@
     left: 0;
     right: 0;
     bottom: 0;
+
     .pip-popover {
       width: 400px;
       max-width: ~"calc(100% - 32px)";
@@ -50,7 +51,7 @@
       width: 0;
       position: absolute;
       pointer-events: none;
-      border-color: rgba(255, 255 ,255 , 0);
+      border-color: rgba(255, 255, 255, 0);
       border-width: 0 0 16px 24px;
       margin-left: -24px;
     }
@@ -66,7 +67,7 @@
   }
 }
 
-@media (min-width: 1199px){
+@media (min-width: 1199px) {
   .pip-popover-backdrop {
   .pip-popover {
     top: 80px;
@@ -76,10 +77,8 @@
 @media (max-width: 768px) {
   .pip-popover-backdrop {
     .pip-popover {
-
       width: ~"calc(100% - 32px)" !important;
       right: 16px;
     }
   }
 }
-

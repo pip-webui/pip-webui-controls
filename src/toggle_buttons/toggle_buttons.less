@@ -14,23 +14,22 @@ pip-toggle-buttons:focus {
   outline-width: 0 !important;
 }
 
-.dark, .black {
-  .pip-toggle-buttons {
-    button {
-      color: @color-primary-dark;
-    }
+.dark,
+.black {
+  .pip-toggle-buttons button {
+    color: @color-primary-dark;
   }
 }
 
 .pip-toggle-buttons {
   width: 100%;
-  &:focus,  {
-    outline-width: 0 !important;
-  }
-
   .flex-direction-row;
   border-radius: 16px !important;
   height: 36px;
+
+  &:focus {
+    outline-width: 0 !important;
+  }
 
   button {
     background-color: @color-divider;
@@ -55,8 +54,9 @@ pip-toggle-buttons:focus {
         margin-top: -3px;
       }
 
-      &:hover, &:focus {
-        background-color: rgba(0, 0, 0, 0.26)
+      &:hover,
+      &:focus {
+        background-color: rgba(0, 0, 0, .26);
       }
 
       &.md-accent {
@@ -83,15 +83,14 @@ pip-toggle-buttons:focus {
       }
 
       &:disabled {
-        background-color: rgba(0, 0, 0, 0.06);
-        color: rgba(0, 0, 0, 0.38) !important;
+        background-color: rgba(0, 0, 0, .06);
+        color: rgba(0, 0, 0, .38) !important;
       }
 
       &:disabled.selected {
-        color: #000000 !important;
-        opacity: 0.38;
+        color: #000 !important;
+        opacity: .38;
       }
     }
   }
-
 }
