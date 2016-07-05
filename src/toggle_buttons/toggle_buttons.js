@@ -35,7 +35,7 @@
                     $scope.currentButton = $scope.buttons.length > 0 ? $scope.buttons[$scope.currentButtonIndex]
                         : $scope.currentButton;
 
-                    $scope.buttonSelected = function (index, $event) {
+                    $scope.buttonSelected = function (index) {
                         if ($scope.disabled()) {
                             return;
                         }
@@ -45,8 +45,6 @@
                         $scope.currentButtonValue = $scope.currentButton.id || index;
 
                         $timeout(function () {
-                            $scope.$apply();
-
                             if ($scope.change) {
                                 $scope.change();
                             }
@@ -63,7 +61,7 @@
                         }
                     };
                 },
-                link: function (scope, elem, attr) {
+                link: function (scope, elem) {
                     elem
                         .on('focusin', function () {
                             elem.addClass('focused-container');

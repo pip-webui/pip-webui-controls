@@ -9,7 +9,7 @@
     var thisModule = angular.module('pipToasts', ['pipTranslate', 'ngMaterial', 'pipAssert']);
 
     thisModule.controller('pipToastController',
-        function ($scope, $mdToast, toast, pipErrorDetailsDialog, sounds) {
+        function ($scope, $mdToast, toast, pipErrorDetailsDialog) {
             // if (toast.type && sounds['toast_' + toast.type]) {
             //     sounds['toast_' + toast.type].play();
             // }
@@ -17,28 +17,24 @@
             $scope.message = toast.message;
             $scope.actions = toast.actions;
             $scope.toast = toast;
+
             if (toast.actions.length === 0) {
                 $scope.actionLenght = 0;
-            }
-            if (toast.actions.length === 1) {
+            } else if (toast.actions.length === 1) {
                 $scope.actionLenght = toast.actions[0].toString().length;
             } else {
                 $scope.actionLenght = null;
             }
 
-            $scope.onDetails = function (event) {
+            $scope.onDetails = function () {
                 $mdToast.hide();
                 pipErrorDetailsDialog.show(
                     {
                         error: $scope.toast.error,
                         ok: 'Ok'
                     },
-                    function () {
-                        angular.noop();
-                    },
-                    function () {
-                        angular.noop();
-                    }
+                    angular.noop,
+                    angular.noop
                 );
             };
 
@@ -152,7 +148,7 @@
                 return _.find(toasts, {id: id});
             }
 
-            function onStateChangeSuccess(event, toState, toParams, fromState, fromParams) {
+            function onStateChangeSuccess() {
                 toasts = _.reject(toasts, function (toast) {
                     return toast.type === 'error';
                 });
@@ -163,7 +159,7 @@
                 }
             }
 
-            function onClearToasts(event) {
+            function onClearToasts() {
                 clearToasts();
             }
 

@@ -156,7 +156,7 @@
             $scope.disableControls = $scope.disabled ? $scope.disabled() : false;
 
             // React on changes
-            $scope.$watch('model', function (newValue, oldValue) {
+            $scope.$watch('model', function (newValue) {
                 getValue(newValue);
             });
 

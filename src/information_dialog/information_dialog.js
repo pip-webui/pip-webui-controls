@@ -5,12 +5,13 @@
  * - Improve sample in sampler app
  */
 
-(function (angular) {
+(function (angular, _) {
     'use strict';
 
     var thisModule = angular.module('pipInformationDialog',
         ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
 
+    /* eslint-disable quote-props */
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             'INFORMATION_TITLE': 'Information'
@@ -19,8 +20,10 @@
             'INFORMATION_TITLE': 'Информация'
         });
     });
+    /* eslint-enable quote-props */
+
     thisModule.factory('pipInformationDialog',
-        function ($mdDialog, $timeout) {
+        function ($mdDialog) {
             return {
                 show: function (params, callback) {
                     $mdDialog.show({
@@ -60,4 +63,4 @@
         }
     );
 
-})(window.angular);
+})(window.angular, window._);

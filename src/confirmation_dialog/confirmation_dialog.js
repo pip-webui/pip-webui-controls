@@ -9,6 +9,7 @@
     var thisModule = angular.module('pipConfirmationDialog',
         ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
 
+    /* eslint-disable quote-props */
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             'CONFIRM_TITLE': 'Confirm'
@@ -17,6 +18,7 @@
             'CONFIRM_TITLE': 'Подтвердите'
         });
     });
+    /* eslint-enable quote-props */
 
     thisModule.factory('pipConfirmationDialog',
         function ($mdDialog) {

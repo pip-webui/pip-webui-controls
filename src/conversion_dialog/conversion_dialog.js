@@ -3,11 +3,12 @@
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
-(function (angular, $) {
+(function (angular, $, _) {
     'use strict';
     var thisModule = angular.module('pipConversionDialog',
         ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
 
+    /* eslint-disable quote-props */
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             'CONVERT_PARENT_TITLE': 'Choose type of the parent record',
@@ -44,6 +45,7 @@
             'CONVERT_RECORD_TO_POST': 'Любая полезная информация'
         });
     });
+    /* eslint-enable quote-props */
 
     thisModule.factory('pipConversionDialog',
         function ($mdDialog) {
@@ -171,4 +173,4 @@
         }
     );
 
-})(window.angular, window.jQuery);
+})(window.angular, window.jQuery, window._);

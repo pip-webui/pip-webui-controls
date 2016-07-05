@@ -3,7 +3,7 @@
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
-(function (angular) {
+(function (angular, _) {
     'use strict';
 
     var thisModule = angular.module('pipColorPicker', ['pipUtils', 'pipFocused', 'pipBasicControls.Templates']);
@@ -40,9 +40,9 @@
             $scope.disabled = function () {
                 if ($scope.ngDisabled) {
                     return $scope.ngDisabled();
-                } else {
-                    return true;
                 }
+
+                return true;
             };
 
             $scope.selectColor = function (index) {
@@ -68,4 +68,4 @@
         }
     );
 
-})(window.angular);
+})(window.angular, window._);

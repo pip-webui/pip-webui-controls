@@ -3,7 +3,7 @@
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
-(function (angular, $) {
+(function (angular, $, _) {
     'use strict';
 
     var thisModule = angular.module('pipPopover', ['pipAssert']);
@@ -35,7 +35,7 @@
                 }, 200);
 
                 $scope.onPopoverClick = onPopoverClick;
-                $scope = _.defaults($scope, $scope.$parent);
+                $scope = _.defaults($scope, $scope.$parent);    // eslint-disable-line 
 
                 $rootScope.$on('pipPopoverResize', onResize);
                 $(window).resize(onResize);
@@ -153,4 +153,4 @@
         }
     );
 
-})(window.angular, window.jQuery);
+})(window.angular, window.jQuery, window._);

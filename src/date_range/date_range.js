@@ -287,7 +287,7 @@
                 return weeks;
             }
 
-            function monthList(isShort) {
+            function monthList() {
                 var months, i;
 
                 months = [];

@@ -6,11 +6,12 @@
  * - Improve samples in sampler app
  */
 
-(function (angular, marked) {
+(function (angular, marked, _) {
     'use strict';
 
     var thisModule = angular.module('pipMarkdown', ['ngSanitize', 'pipUtils', 'pipTranslate']);
 
+    /* eslint-disable quote-props */
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             'MARKDOWN_ATTACHMENTS': 'Attachments:',
@@ -29,6 +30,7 @@
             'time': 'Время'
         });
     });
+    /* eslint-enable quote-props */
 
     thisModule.directive('pipMarkdown',
         function ($parse, pipUtils, pipTranslate) {
@@ -122,5 +124,5 @@
         }
     );
 
-})(window.angular, window.marked);
+})(window.angular, window.marked, window._);
 

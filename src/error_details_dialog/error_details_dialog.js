@@ -11,6 +11,7 @@
     var thisModule = angular.module('pipErrorDetailsDialog',
         ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
 
+    /* eslint-disable quote-props */
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             'ERROR_DETAILS': 'Error details',
@@ -30,6 +31,7 @@
             'MESSAGE': 'Сообщение'
         });
     });
+    /* eslint-enable quote-props */
 
     thisModule.factory('pipErrorDetailsDialog',
         function ($mdDialog) {

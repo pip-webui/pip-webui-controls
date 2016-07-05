@@ -3,7 +3,7 @@
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
-(function (angular) {
+(function (angular, _) {
     'use strict';
 
     var thisModule = angular.module('pipTimeView', ['pipUtils']);
@@ -20,9 +20,7 @@
                 link: function ($scope, $element, $attrs) {
 
                     function getDateJSON(value) {
-                        var date = value ? new Date(value) : null;
-
-                        return date;
+                        return value ? new Date(value) : null;
                     }
 
                     function defineStartDate() {
@@ -47,13 +45,13 @@
 
                     if (pipUtils.toBoolean($attrs.pipRebind)) {
                         $scope.$watch('pipStartDate',
-                            function (newValue) {
+                            function () {
                                 $scope.data.start = null;
                                 defineStartDate();
                             }
                         );
                         $scope.$watch('pipEndDate',
-                            function (newValue) {
+                            function () {
                                 $scope.data.end = null;
                                 defineEndDate();
                             }
@@ -67,4 +65,4 @@
         }
     );
 
-})(window.angular);
+})(window.angular, window._);

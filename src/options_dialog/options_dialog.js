@@ -6,12 +6,13 @@
  * - Remove deleted hack in the controller
  */
 
-(function (angular, $) {
+(function (angular, $, _) {
     'use strict';
 
     var thisModule = angular.module('pipOptionsDialog',
         ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
 
+    /* eslint-disable quote-props */
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             'OPTIONS_TITLE': 'Choose Option'
@@ -20,6 +21,7 @@
             'OPTIONS_TITLE': 'Выберите опцию'
         });
     });
+    /* eslint-enable quote-props */
 
     thisModule.factory('pipOptionsDialog',
         function ($mdDialog) {
@@ -101,4 +103,4 @@
         }
     );
 
-})(window.angular, window.jQuery);
+})(window.angular, window.jQuery, window._);

@@ -37,7 +37,7 @@
 
                     // Also optimization to avoid watch if it is unnecessary
                     if (pipUtils.toBoolean($attrs.pipRebind)) {
-                        $scope.$watch(tagsGetter, function (newValue) {
+                        $scope.$watch(tagsGetter, function () {
                             $scope.tags = tagsGetter($scope);
                         });
                     }

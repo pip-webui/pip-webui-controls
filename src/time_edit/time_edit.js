@@ -1,5 +1,5 @@
-//
-(function (angular) {
+
+(function (angular, _) {
     'use strict';
 
     var thisModule = angular.module('pipTimeEdit', ['pipUtils', 'pipTranslate']);
@@ -27,11 +27,7 @@
         function ($scope, $element, $attrs, pipDates, pipTranslate) {
 
             function getDateJSON(value) {
-                var date;
-
-                date = value ? new Date(value) : null;
-
-                return date;
+                return value ? new Date(value) : null;
             }
 
             function setDuration() {
@@ -55,6 +51,7 @@
 
                     return;
                 }
+
                 // еcли не задано начальное время - задаем его
                 if (!$scope.data.startTime) {
                     if (!$scope.data.endTime) {
@@ -74,6 +71,7 @@
                 }
 
                 start = new Date($scope.data.startDate.getTime() + $scope.data.startTime * 60 * 1000);
+
                 // Если есть длительность, то сохраняем ее. Длительность можно изменить только изменяя конечную дату
                 if ($scope.data.duration) {
                     end = new Date(start.getTime() + $scope.data.duration);
@@ -100,6 +98,7 @@
 
                     return;
                 }
+
                 // еcли не задано конечное время - задаем его
                 if (!$scope.data.endTime) {
                     if (!$scope.data.startTime) {
@@ -120,6 +119,7 @@
 
                 start = new Date($scope.data.startDate.getTime() + $scope.data.startTime * 60 * 1000);
                 end = new Date($scope.data.endDate.getTime() + $scope.data.endTime * 60 * 1000);
+
                 if (start >= end) {
                     // Если начальная дата больше, то двигаем начальную дату
                     $scope.data.startDate = pipDates.toStartDay(new Date(end.getTime() - 30 * 60000));
@@ -133,14 +133,17 @@
                 var time;
 
                 $scope.data.bind = false;
+
                 if ($scope.data.startDate) {
                     time = $scope.data.startTime ? $scope.data.startTime * 60 * 1000 : 0;
                     $scope.pipStartDate = new Date($scope.data.startDate.getTime() + time);
                 }
+
                 if ($scope.data.endDate) {
                     time = $scope.data.endTime ? $scope.data.endTime * 60 * 1000 : 0;
                     $scope.pipEndDate = new Date($scope.data.endDate.getTime() + time);
                 }
+
                 $scope.data.bind = true;
             }
 
@@ -149,21 +152,26 @@
 
                 if ($scope.pipStartDate !== null && $scope.pipStartDate !== undefined) {
                     start = _.isDate($scope.pipStartDate) ? $scope.pipStartDate : null;
+
                     if (!start) {
                         start = getDateJSON($scope.pipStartDate);
                     }
+
                     $scope.data.startDate = pipDates.toStartDay(start);
                     $scope.data.startTime = (new Date(start) - $scope.data.startDate) / (60 * 1000);
                 }
 
                 if ($scope.pipEndDate !== null && $scope.pipEndDate !== undefined) {
                     end = _.isDate($scope.pipEndDate) ? $scope.pipEndDate : null;
+
                     if (!start) {
                         end = getDateJSON($scope.pipEndDate);
                     }
+
                     $scope.data.endDate = pipDates.toStartDay(end);
                     $scope.data.endTime = (new Date(end) - $scope.data.endDate) / (60 * 1000);
                 }
+
                 validateStartDate();
                 $scope.data.duration = setDuration();
                 setDate();
@@ -233,6 +241,7 @@
                 if (!$scope.data.endDate) {
                     $scope.data.endDate = pipDates.toStartDay(new Date());
                 }
+
                 validateEndDate();
                 $scope.data.duration = setDuration();
                 setDate();
@@ -242,9 +251,9 @@
             $scope.isDisabled = function () {
                 if ($scope.disabled) {
                     return $scope.disabled();
-                } else {
-                    return false;
                 }
+
+                return false;
             };
 
             $scope.$watchGroup([$scope.pipStartDate, $scope.pipEndDate], function () {
@@ -263,4 +272,4 @@
         }
     );
 
-})(window.angular);
+})(window.angular, window._);
