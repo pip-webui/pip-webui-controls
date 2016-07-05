@@ -43,7 +43,11 @@
             };
 
             $scope.onAction = function (action) {
-                $mdToast.hide({action: action});
+                $mdToast.hide(
+                    {
+                        action: action,
+                        id: toast.id
+                    });
             };
         }
     );
