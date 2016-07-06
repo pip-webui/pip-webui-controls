@@ -2,9 +2,10 @@
 <h3 class="text-subhead2">{{ 'SHOW_POPOVER' | translate }}</h3>
 <md-button class="lm0" ng-click="showTip()">Show Tip</md-button>
 <md-button ng-click="showQuote()">Show Quote</md-button>
-<md-input-container class="w-stretch">
+<md-input-container class="w-stretch bm0">
     <textarea name="" ng-model="content" id="" cols="30" rows="10"></textarea>
 </md-input-container>
+<h3 class="text-subhead2 tm0">{{:: 'CODE' | translate}}</h3>
 <pre class="text-body1 color-window-bg p16" ng-init="titleSample = '{{ title }}'; contentSample = '{{ content }}'">
              <strong>pipPopover.show</strong>({
                     class: 'pip-tip',
@@ -44,11 +45,11 @@
     <md-icon class="position-right" style="right: initial; left: initial;" md-svg-icon="icons:help" ng-click="showHelp($event, content1)"></md-icon>
 </md-input-container>
 
-<md-input-container class="w50-stretch lp0" md-no-float="true">
+<md-input-container class="w50-stretch lp0 bm0" md-no-float="true">
     <input type="text" placeholder="{{ ::'CLICK_HELP' | translate }}" ng-model="content2"/>
     <md-icon class="position-right" style="right: initial; left: initial;" md-svg-icon="icons:help" ng-click="showHelp($event, content2)"></md-icon>
 </md-input-container>
-
+<h3 class="text-subhead2 tm0">{{:: 'CODE' | translate}}</h3>
 <pre class="text-body1 color-window-bg p16">
                 <strong>pipPopover.show</strong>({
                     responsive: false,

@@ -1,6 +1,7 @@
 <h2 class="text-title tm0 bm24">Toasts {{ 'SAMPLE' | translate }}</h2>
 <h3 class="text-subhead2">{{ 'SIMPLE' | translate }}</h3>
 <md-button ng-click="onNotificationShow($event)">{{'SHOW_NOTIFICATION' | translate}}</md-button>
+<h3 class="text-subhead2 ">{{:: 'CODE' | translate}}</h3>
 <pre class="text-body1 color-window-bg p16">
             <strong>pipToasts.showNotification</strong>(pipTranslate.translate('NOTIFICATION') + messageCount, ['accept', 'reject'])
         </pre>
@@ -8,6 +9,7 @@
 <md-divider class="tm8"></md-divider>
 <h3 class="text-subhead2">{{ 'SMALL' | translate }}</h3>
 <md-button ng-click="onNotificationSmallShow($event)">{{'SHOW_SMALL_NOTIFICATION' | translate}}</md-button>
+<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
 <pre class="text-body1 color-window-bg p16">
             <strong>pipToasts.showNotification</strong>(pipTranslate.translate('NOTIFICATION') + 'Small' + messageCount);
         </pre>
@@ -15,6 +17,7 @@
 <md-divider class="tm8"></md-divider>
 <h3 class="text-subhead2">{{ 'NOTIFICATIONS_ERROR' | translate }}</h3>
 <md-button ng-click="onErrorShow($event)">{{'SHOW_ERROR' | translate}}</md-button>
+<h3 class="text-subhead2 ">{{:: 'CODE' | translate}}</h3>
 <pre class="text-body1 color-window-bg p16">
                 var error = {
                     'path': '/api/1.0/parties/:id/followers',
@@ -31,6 +34,7 @@
 <md-divider class="tm8"></md-divider>
 <h3 class="text-subhead2">{{ 'WITHOUT_ACTIONS' | translate }}</h3>
 <md-button ng-click="onNotificationHideActions($event)">{{'SHOW_NOTIFICATION_WITHOUT_ACTIONS' | translate}}</md-button>
+<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
 <pre class="text-body1 color-window-bg p16">
             <strong>pipToasts.showNotification</strong>(pipTranslate.translate('NOTIFICATION') + messageCount, [])
         </pre>
