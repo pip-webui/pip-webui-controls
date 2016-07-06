@@ -1,3 +1,19 @@
-<div class="tm16">
-    <md-button ng-click="onInfoDialogOpen($event)">{{ 'OPEN_INFORM' | translate }}</md-button>
-</div>
+<h2 class="text-title tm0 bm24">{{ 'INFORM_DIALOG' | translate }}</h2>
+
+<md-button class="lm0" ng-click="onInfoDialogOpen($event)">{{ 'OPEN_INFORM' | translate }}</md-button>
+
+<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
+<pre class="text-body1 color-window-bg p16">
+             <strong>pipInformationDialog.show</strong>(
+                    {
+                        event: event,
+                        title: 'Amazing!',
+                        message: 'Stuff %s is really good',
+                        item: 'Play CDG T-shirt',
+                        ok: 'Take It'
+                    },
+                    function () {
+                        console.log('Taken');
+                    }
+                );
+        </pre>

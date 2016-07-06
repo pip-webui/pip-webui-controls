@@ -5,12 +5,24 @@
 
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
-            OPEN_CONVERT_PARENT_DIALOG: 'Open convert parent dialog',
-            CONVERT_DELETE_ORIGINAL_RECORD: 'Delete record after conversion'
+            'OPEN_CONVERT_PARENT_DIALOG': 'Open choose parent dialog',
+            'CONVERT_PARENT_DIALOG': 'Choose parent dialog',
+            'CONVERT_TO_DIALOG': 'Convert to dialog',
+            'OPEN_CONVERT_TO_DIALOG': 'Open convert to dialog',
+            'CONVERT_DELETE_ORIGINAL_RECORD': 'Delete record after conversion',
+            'CONVERSION_DIALOG': 'Conversion dialog',
+            'CONVERT_TO_CONTENT': 'Note will be removed after conversion. ' +
+            'Copy it before continue'
         });
         pipTranslateProvider.translations('ru', {
-            OPEN_CONVERT_PARENT_DIALOG: 'Открыть диалог выбора типа родителя',
-            CONVERT_DELETE_ORIGINAL_RECORD: 'Удалить запись после конвертации'
+            'OPEN_CONVERT_PARENT_DIALOG': 'Открыть диалог выбора типа родителя',
+            'CONVERT_PARENT_DIALOG': 'Диалог выбора типа родителя',
+            'CONVERT_TO_DIALOG': 'Диалог выбора типа для конвертации',
+            'OPEN_CONVERT_TO_DIALOG': 'Открыть диалог выбора типа для конвертации',
+            'CONVERT_DELETE_ORIGINAL_RECORD': 'Удалить запись после конвертации',
+            'CONVERSION_DIALOG': 'Диалог конвертации',
+            'CONVERT_TO_CONTENT': 'Заметка будет удалена после конвертации. ' +
+            'Если она вам нужна, то сделайте копию прежде чем продолжить.'
         });
     });
 
@@ -80,7 +92,7 @@
                             }
                         ],
                         deleted: true,
-                        deleteTitle: 'Заметка будет удалена после конвертации. Если она вам нужна, то сделайте копию прежде чем продолжить.' // eslint-disable-line
+                        deleteTitle: 'CONVERT_TO_CONTENT'
                     },
                     function (result) {
                         var optionName = result ? result.option.name : null,

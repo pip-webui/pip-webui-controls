@@ -1,35 +1,65 @@
 <div>
-    <h2>{{ 'COMMON' | translate }} {{ 'SAMPLE' | translate }}:</h2>
+    <h2 class="text-title tm0 bm24">Markdown {{:: 'SAMPLE' | translate }}:</h2>
+    <h3 class="text-subhead2">{{ 'COMMON' | translate }} {{ 'SAMPLE' | translate }}:</h3>
 
-<textarea class="w-stretch bm24" placeholder="Enter text..." ng-model="data.text" rows="22">
-</textarea>
+    <textarea class="w-stretch bm24" placeholder="Enter text..." ng-model="data.text" rows="22">
+    </textarea>
 
     <pip-markdown pip-text="data.text" pip-rebind="true">
     </pip-markdown>
 
-    <h2>{{ 'EXAMPLES_LIMITED_LINES' | translate }}:</h2>
+    <h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
+    <pre class="text-body1 color-window-bg p16">
+                &lt;<strong>pip-markdown</strong> pip-text="data.text" pip-rebind="true"&gt;
+                &lt;/<strong>pip-markdown</strong>&gt;
+    </pre>
 
-<textarea class="w-stretch bm24" placeholder="Enter text..." ng-model="data.text2" rows="8">
-</textarea>
+    <md-divider class="tm8"></md-divider>
+
+    <h3 class="text-subhead2">{{ 'EXAMPLES_LIMITED_LINES' | translate }}:</h3>
+
+    <textarea class="w-stretch bm24" placeholder="Enter text..." ng-model="data.text2" rows="8">
+    </textarea>
     <div flex layout="row">
         <div flex>
-            <h3>5 {{ 'LINES' | translate }}:</h3>
+            <h3 class="text-subhead2">5 {{ 'LINES' | translate }}:</h3>
             <pip-markdown pip-text="data.text2" pip-rebind="true" pip-line-count="5">
             </pip-markdown>
         </div>
         <div flex>
-            <h3>2 {{ 'LINES' | translate }}:</h3>
+            <h3 class="text-subhead2">2 {{ 'LINES' | translate }}:</h3>
             <pip-markdown pip-text="data.text2" pip-rebind="true" pip-line-count="2">
             </pip-markdown>
         </div>
         <div flex>
-            <h3>1 {{ 'LINE' | translate }}:</h3>
+            <h3 class="text-subhead2">1 {{ 'LINE' | translate }}:</h3>
             <pip-markdown pip-text="data.text2" pip-rebind="true" pip-line-count="1">
             </pip-markdown>
         </div>
     </div>
+    <h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
+    <pre class="text-body1 color-window-bg p16">
+        &lt;div flex layout="row"&gt;
+            &lt;div flex&gt;
+                &lt;h3 class="text-subhead2"&gt;5 {{ 'LINES' | translate }}:&lt;/h3&gt;
+                &lt;<strong>pip-markdown pip-text="data.text2" pip-rebind="true" pip-line-count="5"</strong>&gt;
+                &lt;/<strong>pip-markdown</strong>&gt;
+            &lt;/div&gt;
+            &lt;div flex&gt;
+                &lt;h3 class="text-subhead2"&gt;2 {{ 'LINES' | translate }}:&lt;/h3&gt;
+                &lt;<strong>pip-markdown pip-text="data.text2" pip-rebind="true" pip-line-count="2"</strong>&gt;
+                &lt;/<strong>pip-markdown</strong>&gt;
+            &lt;/div&gt;
+            &lt;div flex&gt;
+                &lt;h3 class="text-subhead2"&gt;1 {{ 'LINE' | translate }}:&lt;/h3&gt;
+                &lt;<strong>pip-markdown pip-text="data.text2" pip-rebind="true" pip-line-count="1"</strong>&gt;
+                &lt;/<strong>pip-markdown</strong>&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    </pre>
+    <md-divider class="tm8"></md-divider>
 
-    <h2>{{ 'SAMPLE' | translate }} {{ 'IN' | translate }} md-list:</h2>
+    <h3 class="text-subhead2">{{ 'SAMPLE' | translate }} {{ 'IN' | translate }} md-list:</h3>
 
     <md-list class="pip-menu markdown-sample-list pip-ref-list">
 
@@ -105,10 +135,29 @@
 
     </md-list>
 
-    <h2>{{ 'INTERACTIVE' | translate }} {{ 'SAMPLE' | translate }} {{ 'IN' | translate }} md-list:</h2>
+    <h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
+    <pre class="text-body1 color-window-bg p16">
+        &lt;md-list&gt;
+            &lt;md-list-item class="pip-ref-list-item lp16" md-ink-ripple
+                layout="row" layout-align="start start"&gt;
+                &lt;img src="http://any_source.jpg"
+                     class="pip-pic"&gt;
+                &lt;div class="pip-content"&gt;
+                    &lt;p class="pip-title"&gt;{{item2.title}} &lt;/p&gt;
+                    &lt;span class="pip-subtitle"&gt;{{item2.time}}&lt;/span&gt;
+                    &lt;<strong>pip-markdown pip-text="item2.text" pip-list="true" pip-line-count="2"</strong>&gt;
+                    &lt;/<strong>pip-markdown</strong>&gt;
+                &lt;/div&gt;
+            &lt;/md-list-item&gt;
+        &lt;/md-list&gt;
+    </pre>
+
+    <md-divider class="tm8"></md-divider>
+
+    <h3 class="text-subhead2">{{ 'INTERACTIVE' | translate }} {{ 'SAMPLE' | translate }} {{ 'IN' | translate }} md-list:</h3>
     <p>{{ 'CHANGE_TEXT' | translate }}: </p>
-<textarea class="w-stretch bm24" placeholder="Enter text..." ng-model="item3.text" rows="6">
-</textarea>
+    <textarea class="w-stretch bm24" placeholder="Enter text..." ng-model="item3.text" rows="6">
+    </textarea>
     <md-list class="pip-menu markdown-sample-list pip-ref-list">
         <md-list-item class="pip-ref-list-item lp16" md-ink-ripple
                       layout="row" layout-align="start start">
@@ -127,13 +176,12 @@
         </md-list-item>
     </md-list>
 
-    <h2>{{ 'SAMPLE_WITH_ATTACHMENTS' | translate }}</h2>
+    <md-divider class="tm8"></md-divider>
+
+    <h3 class="text-subhead2">{{ 'SAMPLE_WITH_ATTACHMENTS' | translate }}</h3>
     <md-list class="pip-menu markdown-sample-list pip-ref-list">
         <md-list-item class="pip-ref-list-item lp16" md-ink-ripple
                       layout="row" layout-align="start start">
-
-            <!--img src="http://thumbs.dreamstime.com/z/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-47075239.jpg"
-                 class="pip-pic"-->
 
             <div class="pip-content">
                 <p class="pip-title"></p>

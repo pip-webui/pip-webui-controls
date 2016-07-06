@@ -3,6 +3,21 @@
 
     var thisModule = angular.module('appBasicControls.ImageSlider', []);
 
+    thisModule.config(function (pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            'FADING': 'Fading',
+            'CAROUSEL': 'Carousel',
+            'PREV_NEXT_BUTTONS': 'Previous and next slider buttons',
+            'SLIDER_INDICATORS': 'Image slider indicators'
+        });
+        pipTranslateProvider.translations('ru', {
+            'FADING': 'Затухание',
+            'CAROUSEL': 'Карусель',
+            'PREV_NEXT_BUTTONS': 'Кнопки для смены изображения вперед и назад',
+            'SLIDER_INDICATORS': 'Индикаторы слайдера изображений'
+        });
+    });
+
     thisModule.controller('ImageSliderController',
         function ($scope) {
 

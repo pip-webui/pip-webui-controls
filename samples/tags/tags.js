@@ -3,6 +3,19 @@
 
     var thisModule = angular.module('appBasicControls.Tags', []);
 
+    thisModule.config(function (pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            TYPE_TAG: 'Type tag',
+            SIMPLE_TAG_LIST: 'Simple tag list',
+            TAGS_LIST_WITH_TYPE: 'Tag list with entity type'
+        });
+        pipTranslateProvider.translations('ru', {
+            TYPE_TAG: 'Тэг типа',
+            SIMPLE_TAG_LIST: 'Обычный список тэгов',
+            TAGS_LIST_WITH_TYPE: 'Список тэгов с типом'
+        });
+    });
+
     thisModule.controller('TagsController',
         function ($scope, pipTranslate) {
             $scope.example1 = {};

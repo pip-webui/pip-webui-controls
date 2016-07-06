@@ -9,11 +9,17 @@
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             OPEN_OPTIONS: 'Open options dialog',
-            OPEN_OPTIONS_LEFT: 'Open options dialog'
+            OPEN_OPTIONS_BIG: 'Open big options dialog',
+            OPTIONS_DIALOG: 'Options dialog',
+            OPEN_OPTIONS_BIG_CONTRIBS: 'Open big options dialog with buttons',
+            OPEN_ROLE_DIALOG: 'Open big dialog with hint'
         });
         pipTranslateProvider.translations('ru', {
             OPEN_OPTIONS: 'Открыть диалог выбора',
-            OPEN_OPTIONS_LEFT: 'Открыть диалог выбора'
+            OPEN_OPTIONS_BIG: 'Открыть большой диалог выбора',
+            OPTIONS_DIALOG: 'Диалог выбора',
+            OPEN_OPTIONS_BIG_CONTRIBS: 'Открыть большой диалог с кнопками',
+            OPEN_ROLE_DIALOG: 'Открыть диалог с подсказкой'
         });
     });
 

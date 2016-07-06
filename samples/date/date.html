@@ -1,38 +1,76 @@
-<!--<h2>{{'DATE' | translate}}:</h2>-->
-<!--<pip-date  pip-time-mode="past" ng-disabled="specialDateDisabled">-->
-<!--</pip-date>-->
-<!--<p>{{ 'VALUE' | translate }}: {{ specialDate || 'NULL'  }}</p>-->
+<h2 class="text-title tm0 bm24">{{'DATE' | translate}}:</h2>
+<pip-date  pip-time-mode="past" ng-model="specialDate" >
+</pip-date>
+<p class="text-body1 tm16 bm16">{{ 'VALUE' | translate }}: {{ specialDate || 'NULL'  }}</p>
 
-<!--<h3>Disabled: </h3>-->
-<!--<pip-date ng-model="specialDate" ng-disabled="true">-->
-<!--</pip-date>-->
+<pre class="text-body1 color-window-bg p16">
+            &lt;<strong>pip-date</strong>  pip-time-mode="past" ng-model="specialDate"&gt;
+            &lt;/<strong>pip-date</strong>&gt;
+</pre>
 
-<!--<h2>{{ 'TIME_EDIT_TIME_VIEW' | translate }}:</h2>-->
+<h3 class="text-subhead2">{{ 'DISABLED' | translate }} </h3>
+<pip-date ng-model="specialDate" ng-disabled="true">
+</pip-date>
 
-<!--<pip-time-edit pip-start-date="startDate" pip-end-date="endDate"></pip-time-edit>-->
-<!--<pip-time-view pip-start-date="startDate" pip-end-date="endDate" pip-rebind="true"></pip-time-view>-->
+<pre class="text-body1 color-window-bg p16">
+            &lt;<strong>pip-date</strong>  ng-model="specialDate" ng-disabled="true"&gt;
+            &lt;/<strong>pip-date</strong>&gt;
+</pre>
 
-<!--<h3>Disabled: </h3>-->
-<!--<pip-time-edit pip-start-date="startDate" pip-end-date="endDate" ng-disabled="true"></pip-time-edit>-->
+<h2 class="text-title tm24 bm24">{{ 'TIME_EDIT_TIME_VIEW' | translate }}:</h2>
 
-<h2>{{ 'DATE_RANGE' | translate }}:</h2>
-<!--<h3>{{ 'DAILY' | translate }}: </h3>-->
+<pip-time-edit pip-start-date="startDate" pip-end-date="endDate"></pip-time-edit>
+
+<pre class="text-body1 color-window-bg p16">
+            &lt;<strong>pip-time-edit</strong> pip-start-date="startDate" pip-end-date="endDate"&gt;
+            &lt;/<strong>pip-time-edit</strong>&gt;
+</pre>
+<pip-time-view pip-start-date="startDate" pip-end-date="endDate" pip-rebind="true"></pip-time-view>
+
+<pre class="text-body1 color-window-bg p16">
+            &lt;<strong>pip-time-view</strong> pip-start-date="startDate" pip-end-date="endDate" pip-rebind="true"&gt;
+            &lt;/<strong>pip-time-view</strong>&gt;
+</pre>
+<h3 class="text-subhead2">{{ 'DISABLED' | translate }}</h3>
+<pip-time-edit pip-start-date="startDate" pip-end-date="endDate" ng-disabled="true"></pip-time-edit>
+
+<pre class="text-body1 color-window-bg p16">
+            &lt;<strong>pip-time-edit</strong> pip-start-date="startDate" pip-end-date="endDate" ng-disabled="true"&gt;
+            &lt;/<strong>pip-time-edit</strong>&gt;
+</pre>
+<h2 class="text-title tm24 bm24">{{ 'DATE_RANGE' | translate }}:</h2>
+<h3 class="text-subhead2">{{ 'DAILY' | translate }}: </h3>
 <pip-date-range pip-date-range-type="daily" ng-model="daily"></pip-date-range>
-<!--{{ daily }}-->
-<h3>{{ 'WEEKLY' | translate}}: </h3>
-<pip-date-range pip-date-range-type="weekly" ng-model="weekly"></pip-date-range>
-{{ weekly }}
-<md-button ng-click="onNextWeek()">
-    Next week
-</md-button>
-<!--<h3>{{ 'MONTHLY' | translate }}: </h3>-->
-<!--<pip-date-range pip-date-range-type="monthly" ng-model="monthly"></pip-date-range>-->
-<!--{{ monthly }}-->
-<!--<h3>{{ 'YEARLY' | translate}}: </h3>-->
-<!--<pip-date-range pip-date-range-type="yearly" ng-model="yearly"></pip-date-range>-->
-<!--{{ yearly }}-->
+<p class="text-body1 tm16 bm16">{{ daily }}</p>
 
-<!--<h3>Layout row</h3>-->
-<!--<div layout="row" layout-align="start center">-->
-    <!--<pip-date-range pip-date-range-type="weekly"></pip-date-range>-->
-<!--</div>-->
+<pre class="text-body1 color-window-bg p16">
+            &lt;<strong>pip-date-range</strong> pip-date-range-type="daily" ng-model="daily"&gt;
+            &lt;/<strong>pip-date-range</strong>&gt;
+</pre>
+<h3 class="text-subhead2">{{ 'WEEKLY' | translate}}: </h3>
+<pip-date-range pip-date-range-type="weekly" ng-model="weekly"></pip-date-range>
+<p class="text-body1 tm16 bm16">{{ weekly }}</p>
+<md-button ng-click="onNextWeek()">
+    {{ 'NEXT_WEEK' | translate }}
+</md-button>
+
+<pre class="text-body1 color-window-bg p16">
+            &lt;<strong>pip-date-range</strong> pip-date-range-type="weekly" ng-model="weekly"&gt;
+            &lt;/<strong>pip-date-range</strong>&gt;
+</pre>
+<h3 class="text-subhead2">{{ 'MONTHLY' | translate }}: </h3>
+<pip-date-range pip-date-range-type="monthly" ng-model="monthly"></pip-date-range>
+<p class="text-body1 tm16 bm16">{{ monthly }}</p>
+
+<pre class="text-body1 color-window-bg p16">
+            &lt;<strong>pip-date-range</strong> pip-date-range-type="monthly" ng-model="monthly"&gt;
+            &lt;/<strong>pip-date-range</strong>&gt;
+</pre>
+<h3 class="text-subhead2">{{ 'YEARLY' | translate}}: </h3>
+<pip-date-range pip-date-range-type="yearly" ng-model="yearly"></pip-date-range>
+<p class="text-body1 tm16 bm16">{{ yearly }}</p>
+
+<pre class="text-body1 color-window-bg p16">
+            &lt;<strong>pip-date-range</strong> pip-date-range-type="yearly" ng-model="yearly"&gt;
+            &lt;/<strong>pip-date-range</strong>&gt;
+</pre>

@@ -5,10 +5,12 @@
 
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
-            OPEN_CONFIRM: 'Open confirm dialog'
+            OPEN_CONFIRM: 'Open confirmation dialog',
+            CONFIRM_DIALOG: 'Confirmation dialog'
         });
         pipTranslateProvider.translations('ru', {
-            OPEN_CONFIRM: 'Открыть диалог родтверждения'
+            OPEN_CONFIRM: 'Открыть диалог родтверждения',
+            CONFIRM_DIALOG: 'Диалог подтверждения'
         });
     });
 
@@ -19,8 +21,6 @@
                     {
                         event: event,
                         title: 'Agree?',
-                        message: 'Stuff %s is really good',
-                        item: 'Loooooong naaaaaaaaaaaaaame',
                         ok: 'Agree',
                         cancel: 'Disagree'
                     },

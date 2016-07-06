@@ -6,11 +6,13 @@
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             INITIALIZED: 'Initialized',
-            NOT: 'Not'
+            NOT: 'Not',
+            COLORED: 'Colored'
         });
         pipTranslateProvider.translations('ru', {
             INITIALIZED: 'Инициализированный',
-            NOT: 'Не'
+            NOT: 'Не',
+            COLORED: 'Цветные'
         });
     });
 

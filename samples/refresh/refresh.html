@@ -1,6 +1,10 @@
+<h2 class="text-title tm0 bm24">Refresh {{ 'SAMPLE' | translate }}:</h2>
+
 <pip-refresh-button pip-text="refreshText" pip-visible="showRefresh" pip-refresh="onRefresh()">
 </pip-refresh-button>
 
-<div>
-    <md-button ng-click="onRefreshShow($event)">{{ 'SHOW_REFRESH' | translate }}</md-button>
-</div>
+<md-button ng-click="onRefreshShow($event)">{{ 'SHOW_REFRESH' | translate }}</md-button>
+<pre class="text-body1 color-window-bg p16">
+             &lt;<strong>pip-refresh-button pip-text="refreshText" pip-visible="showRefresh" pip-refresh="onRefresh()"</strong>&gt;
+				&lt;/<strong>pip-refresh-button</strong>&gt;
+        </pre>

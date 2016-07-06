@@ -5,14 +5,10 @@
 
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
-            THEME: 'Theme',
-            orange: 'Orange theme',
-            red: 'Red theme'
+            SHOW_PROGRESS: 'Show progress ring'
         });
         pipTranslateProvider.translations('ru', {
-            THEME: 'Тема',
-            orange: 'Оранжевая тема',
-            red: 'Красная тема'
+            SHOW_PROGRESS: 'Показать progress ring'
         });
     });
 

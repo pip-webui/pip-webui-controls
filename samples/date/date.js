@@ -14,19 +14,23 @@
             DAILY: 'Daily',
             WEEKLY: 'Weekly',
             MONTHLY: 'Monthly',
-            YEARLY: 'Yearly'
+            YEARLY: 'Yearly',
+            DISABLED: 'Disabled',
+            NEXT_WEEK: 'Next week'
         });
         pipTranslateProvider.translations('ru', {
             EVENT_NEW_START_TIME: 'Начало',
             EVENT_NEW_END_TIME: 'Конец',
             DATE: 'Дата',
             VALUE: 'Значение',
-            TIME_EDIT_TIME_VIEW: 'Изменения и просмотра полной даты',
+            TIME_EDIT_TIME_VIEW: 'Изменение и просмотр полной даты',
             DATE_RANGE: 'Диапозоны дат',
             DAILY: 'Суточный',
             WEEKLY: 'Недельный',
             MONTHLY: 'Месячный',
-            YEARLY: 'Годовой'
+            YEARLY: 'Годовой',
+            DISABLED: 'Отключенный',
+            NEXT_WEEK: 'Следующая неделя'
         });
     });
 

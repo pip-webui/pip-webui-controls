@@ -1,37 +1,47 @@
 <div>
-    <div>
-        <h2 class="m16">Type Tag</h2>
+    <h2 class="text-title tm0 bm24">Tags {{ 'SAMPLE' | translate }}</h2>
+    <h3 class="text-subhead2">{{ 'TYPE_TAG' | translate }}</h3>
+    <pip-tag-list pip-type="example3.type"
+                  pip-type-local="example3.typeLocal"
+                  pip-rebind="true">
+    </pip-tag-list>
 
-        <pip-tag-list pip-type="example3.type"
-                      pip-type-local="example3.typeLocal"
-                      pip-rebind="true">
-        </pip-tag-list>
+    <pre class="text-body1 color-window-bg p16">
+            &lt;<strong>pip-tag-list</strong> pip-type="example3.type"
+                            pip-type-local="example3.typeLocal"
+                            pip-rebind="true"&gt;
+            &lt;/<strong>pip-tag-list</strong>&gt;
+        </pre>
 
-    </div>
+    <md-divider class="tm8"></md-divider>
 
-
-    <h2 class="m16">Simple Tag List</h2>
+    <h3 class="text-subhead2">{{ 'SIMPLE_TAG_LIST' | translate }}</h3>
 
     <pip-tag-list pip-tags="example1.tags"
                   pip-rebind="true">
     </pip-tag-list>
 
+    <pre class="text-body1 color-window-bg p16">
+            &lt;<strong>pip-tag-list</strong> pip-tags="example1.tags"
+                                pip-rebind="true"&gt;
+            &lt;/<strong>pip-tag-list</strong>&gt;
+        </pre>
 
-    <h2 class="m16">Tag List with Entity Type Tag</h2>
+    <md-divider class="tm8"></md-divider>
+
+    <h3 class="text-subhead2">{{ 'TAGS_LIST_WITH_TYPE' | translate }}</h3>
 
     <pip-tag-list pip-tags="example2.tags"
                   pip-type="example2.type"
                   pip-rebind="true">
     </pip-tag-list>
 
-
-    <h2 class="m16">Tag List with Translated Entity Type Tag</h2>
-
-    <pip-tag-list pip-tags="example3.tags"
-                  pip-type="example3.type"
-                  pip-type-local="example3.typeLocal"
-                  pip-rebind="true">
-    </pip-tag-list>
+        <pre class="text-body1 color-window-bg p16">
+            &lt;<strong>pip-tag-list</strong> pip-tags="example2.tags"
+                            pip-type="example2.type"
+                            pip-rebind="true"&gt;
+            &lt;/<strong>pip-tag-list</strong>&gt;
+        </pre>
 
 
 </div>

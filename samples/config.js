@@ -44,7 +44,7 @@
                 { title: 'Tags', state: 'tags', url: '/tags',
                     controller: 'TagsController', templateUrl: '../samples/tags/tags.html' }
                 ],
-                contentItem, i, links = [];
+                contentItem, i;
 
             $mdIconProvider.iconSet('icons', 'images/icons.svg', 512);
 
@@ -66,7 +66,6 @@
             for (i = 0; i < content.length; i++) {
                 contentItem = content[i];
                 $stateProvider.state(contentItem.state, contentItem);
-                links.push({title: contentItem.title, url: contentItem.url});
             }
 
             pipAuthStateProvider.unauthorizedState('signin');
