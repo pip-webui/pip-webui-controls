@@ -51,21 +51,15 @@
                 { title: 'Tags', state: 'tags', url: '/tags',
                     controller: 'TagsController', templateUrl: '../samples/tags/tags.html' }
             ];
-
+    
             $scope.selected = {};
             $timeout(function () {
                 $scope.selected.pageIndex = _.findIndex($scope.pages, {state: $state.current.name});
             });
-            pipTheme.setCurrentTheme('blue');
 
             pipAppBar.showMenuNavIcon();
             pipAppBar.showLanguage();
             pipAppBar.showTitleText('CONTROLS');
-
-            $scope.onThemeClick = function (theme) {
-                $rootScope.$theme = theme;
-                pipTheme.setCurrentTheme(theme);
-            };
 
             $scope.onNavigationSelect = function (stateName) {
                 if ($state.current.name !== stateName) {
@@ -77,6 +71,11 @@
                 if ($state.current.name !== obj.state) {
                     $state.go(obj.state);
                 }
+            };
+
+            $scope.isEntryPage = function () {
+                return $state.current.name === 'signin' || $state.current.name === 'signup' ||
+                    $state.current.name === 'recover_password' || $state.current.name === 'post_signup';
             };
 
             $scope.isPadding = function () {

@@ -62,9 +62,9 @@
         </pip-sidenav>
 
         <pip-main-body ng-cloak layout="column" class="pip-main-body">
-            <md-toolbar class="pip-appbar-ext">
+            <md-toolbar class="pip-appbar-ext" ng-if="!isEntryPage()">
             </md-toolbar>
-            <pip-document class="pip-document">
+            <pip-document class="pip-document" ng-if="!isEntryPage()">
                 <div class="pip-menu-container">
                     <div class="pip-menu">
                         <md-list class="pip-menu pip-simple-list hide-xs"
@@ -88,6 +88,7 @@
                     </div>
                 </div>
             </pip-document>
+            <pip-card class="pip-card" ui-view ng-if="isEntryPage()"></pip-card>
         </pip-main-body>
     </pip-main>
 </body>
