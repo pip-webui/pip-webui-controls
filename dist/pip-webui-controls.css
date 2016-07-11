@@ -510,6 +510,7 @@ pip-toggle-buttons:focus {
   top: calc(50% - 70px);
   left: calc(50% - 50px);
   width: 100px;
+  z-index: 10;
 }
 .pip-routing-progress .loader:before {
   content: "";
