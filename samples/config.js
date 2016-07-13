@@ -71,13 +71,7 @@
             pipAuthStateProvider.unauthorizedState('signin');
             pipAuthStateProvider.authorizedState('progress');
 
-            $urlRouterProvider.otherwise(function ($injector, $location) {
-                if ($location.$$path === '') {
-                    return '/signin';
-                }
-
-                return '/progress';
-            });
+            $urlRouterProvider.otherwise('/progress');
 
             // Configure REST API
             pipRestProvider.serverUrl('http://alpha.pipservices.net');
@@ -86,10 +80,10 @@
             pipSideNavProvider.sections([
                 {
                     links: [{title: 'CONTROLS', url: '/progress'}]
-                },
+                }/*,
                 {
                     links: [{title: 'SIGNOUT', url: '/signout'}]
-                }
+                }*/
             ]);
         }
     );
