@@ -25,8 +25,12 @@
     });
 
     thisModule.controller('PopoverController',
-        function ($scope, $rootScope, $pipPopover, pipTranslate) {
-
+        function ($scope, $rootScope, $pipPopover, pipTranslate, pipAppBar) {
+            pipAppBar.hideShadow();
+            pipAppBar.showMenuNavIcon();
+            pipAppBar.showLanguage();
+            pipAppBar.showTitleText('CONTROLS');
+            
             $scope.title = pipTranslate.translate('TITLE_POPOVER');
             $scope.content = pipTranslate.translate('TEXT_POPOVER');
 

@@ -27,8 +27,12 @@
     });
 
     thisModule.controller('ConversionController',
-        function ($scope, pipConversionDialog) {
+        function ($scope, pipConversionDialog, pipAppBar) {
 
+            pipAppBar.showMenuNavIcon();
+            pipAppBar.showLanguage();
+            pipAppBar.showTitleText('CONTROLS');
+            
             $scope.onConvertParentDialog = function (event) {
                 pipConversionDialog.show(
                     {

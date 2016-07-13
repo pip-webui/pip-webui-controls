@@ -13,8 +13,12 @@
     });
 
     thisModule.controller('ProgressController',
-        function ($scope) {
-
+        function ($scope, pipAppBar) {
+            pipAppBar.hideShadow();
+            pipAppBar.showMenuNavIcon();
+            pipAppBar.showLanguage();
+            pipAppBar.showTitleText('CONTROLS');
+            
             $scope.progressOpen = progressOpen;
 
             function progressOpen() {

@@ -19,7 +19,11 @@
     });
 
     thisModule.controller('ImageSliderController',
-        function ($scope) {
+        function ($scope, pipAppBar) {
+
+            pipAppBar.showMenuNavIcon();
+            pipAppBar.showLanguage();
+            pipAppBar.showTitleText('CONTROLS');
 
             $scope.images = [{url: 'https://i.ytimg.com/vi/mW3S0u8bj58/maxresdefault.jpg'},
                 {url: 'https://www.catboxkingdom.com/wp-content/uploads/2014/06/Cute-Cats-cats-33440930-1280-800.jpg'},

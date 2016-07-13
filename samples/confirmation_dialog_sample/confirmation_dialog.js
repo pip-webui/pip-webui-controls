@@ -15,7 +15,11 @@
     });
 
     thisModule.controller('ConfirmationController',
-        function ($scope, pipConfirmationDialog) {
+        function ($scope, pipConfirmationDialog, pipAppBar) {
+            pipAppBar.showMenuNavIcon();
+            pipAppBar.showLanguage();
+            pipAppBar.showTitleText('CONTROLS');
+            
             $scope.onConfirmDialogOpen = function (event) {
                 pipConfirmationDialog.show(
                     {

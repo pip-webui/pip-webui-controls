@@ -24,7 +24,12 @@
     });
 
     thisModule.controller('OptionsController',
-        function ($scope, pipOptionsDialog, pipOptionsBigDialog) {
+        function ($scope, pipOptionsDialog, pipOptionsBigDialog, pipAppBar) {
+            pipAppBar.hideShadow();
+            pipAppBar.showMenuNavIcon();
+            pipAppBar.showLanguage();
+            pipAppBar.showTitleText('CONTROLS');
+            
             $scope.onOptionsDialogOpen = function (event) {
                 pipOptionsDialog.show(
                     {

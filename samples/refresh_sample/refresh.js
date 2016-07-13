@@ -15,7 +15,12 @@
     });
 
     thisModule.controller('RefreshController',
-        function ($scope) {
+        function ($scope, pipAppBar) {
+            pipAppBar.hideShadow();
+            pipAppBar.showMenuNavIcon();
+            pipAppBar.showLanguage();
+            pipAppBar.showTitleText('CONTROLS');
+            
             $scope.showRefresh = true;
             $scope.refreshText = '123 New Posts';
 

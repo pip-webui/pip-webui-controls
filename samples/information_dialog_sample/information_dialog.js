@@ -15,7 +15,12 @@
     });
 
     thisModule.controller('InformationController',
-        function ($scope, pipInformationDialog) {
+        function ($scope, pipInformationDialog, pipAppBar) {
+
+            pipAppBar.showMenuNavIcon();
+            pipAppBar.showLanguage();
+            pipAppBar.showTitleText('CONTROLS');
+            
             $scope.onInfoDialogOpen = function (event) {
                 pipInformationDialog.show(
                     {

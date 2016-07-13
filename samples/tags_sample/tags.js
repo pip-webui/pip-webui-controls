@@ -17,7 +17,12 @@
     });
 
     thisModule.controller('TagsController',
-        function ($scope, pipTranslate) {
+        function ($scope, pipTranslate, pipAppBar) {
+            pipAppBar.hideShadow();
+            pipAppBar.showMenuNavIcon();
+            pipAppBar.showLanguage();
+            pipAppBar.showTitleText('CONTROLS');
+            
             $scope.example1 = {};
             $scope.example2 = {};
             $scope.example3 = {};

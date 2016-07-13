@@ -17,7 +17,11 @@
     });
 
     thisModule.controller('ColorPickerController',
-        function ($scope) {
+        function ($scope, pipAppBar) {
+            pipAppBar.showMenuNavIcon();
+            pipAppBar.showLanguage();
+            pipAppBar.showTitleText('CONTROLS');
+            
             $scope.disabled = false;
             $scope.colors = ['purple', 'lightgreen', 'green', 'darkred', 'pink', 'yellow', 'cyan'];
             $scope.code = '<pip-color-picker ng-model="color" ng-disabled="disabled"' +

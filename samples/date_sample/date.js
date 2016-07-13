@@ -35,7 +35,12 @@
     });
 
     thisModule.controller('DateController',
-        function ($scope) {
+        function ($scope, pipAppBar) {
+
+            pipAppBar.showMenuNavIcon();
+            pipAppBar.showLanguage();
+            pipAppBar.showTitleText('CONTROLS');
+            
             $scope.specialDate = '1975-04-08T00:00:00.00';
             $scope.specialDateDisabled = false;
 

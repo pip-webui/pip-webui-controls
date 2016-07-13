@@ -17,7 +17,12 @@
     });
 
     thisModule.controller('ToggleButtonsController',
-        function ($scope) {
+        function ($scope, pipAppBar) {
+            pipAppBar.hideShadow();
+            pipAppBar.showMenuNavIcon();
+            pipAppBar.showLanguage();
+            pipAppBar.showTitleText('CONTROLS');
+
             $scope.buttonsCollection = [
                 {id: 'type LOW', name: 'LOW', disabled: false, filled: true},
                 {id: 'type NORMAL', name: 'NORMAL', disabled: false},

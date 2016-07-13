@@ -33,20 +33,20 @@
     <script src="../lib/pip-webui-nav.js"></script>
     <script src="../dist/pip-webui-controls.js"></script>
 
-    <script src="date/date.js"></script>
-    <script src="color_picker/color_picker.js"></script>
-    <script src="markdown/markdown.js"></script>
-    <script src="refresh/refresh.js"></script>
-    <script src="toggle_buttons/toggle_buttons.js"></script>
-    <script src="popover/popover.js"></script>
-    <script src="image_slider/image_slider.js"></script>
-    <script src="progress/progress.js"></script>
-    <script src="information_dialog/information_dialog.js"></script>
-    <script src="confirmation_dialog/confirmation_dialog.js"></script>
-    <script src="options_dialog/options_dialog.js"></script>
-    <script src="conversion_dialog/conversion_dialog.js"></script>
-    <script src="toasts/toasts.js"></script>
-    <script src="tags/tags.js"></script>
+    <script src="date_sample/date.js"></script>
+    <script src="color_picker_sample/color_picker.js"></script>
+    <script src="markdown_sample/markdown.js"></script>
+    <script src="refresh_sample/refresh.js"></script>
+    <script src="toggle_buttons_sample/toggle_buttons.js"></script>
+    <script src="popover_sample/popover.js"></script>
+    <script src="image_slider_sample/image_slider.js"></script>
+    <script src="progress_sample/progress.js"></script>
+    <script src="information_dialog_sample/information_dialog.js"></script>
+    <script src="confirmation_dialog_sample/confirmation_dialog.js"></script>
+    <script src="options_dialog_sample/options_dialog.js"></script>
+    <script src="conversion_dialog_sample/conversion_dialog.js"></script>
+    <script src="toasts_sample/toasts.js"></script>
+    <script src="tags_sample/tags.js"></script>
     <script src="config.js"></script>
     <script src="index.js"></script>
 
@@ -54,42 +54,43 @@
 
 <body ng-app="appBasicControls" ng-if="!$reset" ng-controller="pipSampleController"
       layout="column" class="pip-main layout-column">
-    <pip-main class="pip-main">
-        <pip-appbar>
-        </pip-appbar>
+<pip-main class="pip-main">
+    <pip-appbar>
+    </pip-appbar>
 
-        <pip-sidenav>
-        </pip-sidenav>
+    <pip-sidenav>
+    </pip-sidenav>
 
-        <pip-main-body ng-cloak layout="column" class="pip-main-body">
-            <md-toolbar class="pip-appbar-ext" ng-if="!isEntryPage()">
-            </md-toolbar>
-            <pip-document class="pip-document" ng-if="!isEntryPage()">
-                <div class="pip-menu-container">
-                    <div class="pip-menu">
-                        <md-list class="pip-menu pip-simple-list hide-xs"
-                                 pip-selected="selected.pageIndex"
-                                 pip-selected-watch="selected.navId"
-                                 pip-select="onNavigationSelect($event.id)">
-                            <md-list-item class="pip-simple-list-item pip-selectable"
-                                          ng-repeat="page in pages track by page.state"
-                                          md-ink-ripple
-                                          pip-id="{{:: page.state }}">
-                                <p>{{:: page.title }}</p>
-                            </md-list-item>
-                        </md-list>
-                    </div>
-                    <div class="pip-content-container">
-                        <pip-dropdown class="hide-gt-xs"
-                                      pip-actions="pages"
-                                      pip-dropdown-select="onDropdownSelect"
-                                      pip-active-index="selected.pageIndex"></pip-dropdown>
-                        <div ui-view class="p24"></div>
-                    </div>
+    <pip-main-body ng-cloak layout="column" class="pip-main-body" ng-if="!isEntryPage()">
+        <md-toolbar class="pip-appbar-ext">
+        </md-toolbar>
+        <pip-document class="pip-document">
+            <div class="pip-menu-container">
+
+                <md-list class="pip-menu pip-simple-list hide-xs"
+                         pip-selected="selected.pageIndex"
+                         pip-selected-watch="selected.navId"
+                         pip-select="onNavigationSelect($event.id)">
+                    <md-list-item class="pip-simple-list-item pip-selectable"
+                                  ng-repeat="page in pages track by page.state"
+                                  ng-class="{'selected': page.state == $state.name}"
+                                  md-ink-ripple
+                                  pip-id="{{:: page.state }}">
+                        <p>{{:: page.title }}</p>
+                    </md-list-item>
+                </md-list>
+
+                <div class="pip-content-container">
+                    <pip-dropdown class="hide-gt-xs"
+                                  pip-actions="pages"
+                                  pip-dropdown-select="onDropdownSelect"
+                                  pip-active-index="selected.pageIndex"></pip-dropdown>
+                    <div ui-view class="p24"></div>
                 </div>
-            </pip-document>
-            <pip-card class="pip-card" ui-view ng-if="isEntryPage()"></pip-card>
-        </pip-main-body>
-    </pip-main>
+            </div>
+        </pip-document>
+    </pip-main-body>
+    <pip-main-body ng-if="isEntryPage()" class="pip-main-body" ui-view></pip-main-body>
+</pip-main>
 </body>
 </html>

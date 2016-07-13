@@ -34,11 +34,15 @@
     });
 
     thisModule.controller('ToastsController',
-        function ($scope, pipToasts, pipTranslate) {
+        function ($scope, pipToasts, pipTranslate, pipAppBar) {
             var
                 messageCount = 0,
                 errorCount = 0;
-
+            pipAppBar.hideShadow();
+            pipAppBar.showMenuNavIcon();
+            pipAppBar.showLanguage();
+            pipAppBar.showTitleText('CONTROLS');
+            
             $scope.onNotificationShow = function () {
                 messageCount++;
                 pipToasts.showNotification(pipTranslate.translate('NOTIFICATION') + messageCount, ['accept', 'reject']);

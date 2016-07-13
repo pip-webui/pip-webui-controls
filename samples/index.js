@@ -5,7 +5,7 @@
         [
             'pipSampleConfig',
 
-            'pipSideNav', 'pipAppBar', 'pipDropdown', 'pipEntry',
+            'pipSideNav', 'pipAppBar', 'pipDropdown', 'pipEntry', 'pipLayout',
             // 3rd Party Modules
             'ui.router', 'ui.utils', 'ngResource', 'ngAria', 'ngCookies', 'ngSanitize', 'ngMessages',
             'ngMaterial', 'LocalStorageModule', 'angularFileUpload', 'ngAnimate',
@@ -37,29 +37,28 @@
                 { title: 'Refresh', state: 'refresh', url: '/refresh',
                     controller: 'RefreshController', templateUrl: '../samples/refresh/refresh.html' },
                 { title: 'Toggle Buttons', state: 'toggle_buttons', url: '/toggle_buttons',
-                    controller: 'ToggleButtonsController', templateUrl: '../samples/toggle_buttons/toggle_buttons.html' },
+                    controller: 'ToggleButtonsController', 
+                    templateUrl: '../samples/toggle_buttons/toggle_buttons.html' },
                 { title: 'Information dialog', state: 'information', url: '/information',
-                    controller: 'InformationController', templateUrl: '../samples/information_dialog/information_dialog.html' },
+                    controller: 'InformationController', 
+                    templateUrl: '../samples/information_dialog/information_dialog.html' },
                 { title: 'Confirmation dialog', state: 'confirmation', url: '/confirmation',
-                    controller: 'ConfirmationController', templateUrl: '../samples/confirmation_dialog/confirmation_dialog.html' },
+                    controller: 'ConfirmationController', 
+                    templateUrl: '../samples/confirmation_dialog/confirmation_dialog.html' },
                 { title: 'Options dialogs', state: 'options', url: '/options',
                     controller: 'OptionsController', templateUrl: '../samples/options_dialog/options_dialog.html' },
                 { title: 'Conversion dialogs', state: 'conversion', url: '/conversion',
-                    controller: 'ConversionController', templateUrl: '../samples/conversion_dialog/conversion_dialog.html' },
+                    controller: 'ConversionController', 
+                    templateUrl: '../samples/conversion_dialog/conversion_dialog.html' },
                 { title: 'Toasts', state: 'toasts', url: '/toasts',
                     controller: 'ToastsController', templateUrl: '../samples/toasts/toasts.html' },
                 { title: 'Tags', state: 'tags', url: '/tags',
                     controller: 'TagsController', templateUrl: '../samples/tags/tags.html' }
             ];
-    
             $scope.selected = {};
             $timeout(function () {
                 $scope.selected.pageIndex = _.findIndex($scope.pages, {state: $state.current.name});
             });
-
-            pipAppBar.showMenuNavIcon();
-            pipAppBar.showLanguage();
-            pipAppBar.showTitleText('CONTROLS');
 
             $scope.onNavigationSelect = function (stateName) {
                 if ($state.current.name !== stateName) {
