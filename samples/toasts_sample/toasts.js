@@ -29,7 +29,7 @@
             NOTIFICATIONS_ERROR: 'Ошибка',
             WITHOUT_ACTIONS: 'Без действий',
             SHOW_SMALL_NOTIFICATION: 'Показать маленькую нотифкацию',
-            SHOW_NOTIFICATION_WITHOUT_ACTIONS: 'Показать нотификацию с действиями'
+            SHOW_NOTIFICATION_WITHOUT_ACTIONS: 'Показать нотификацию без действий'
         });
     });
 
