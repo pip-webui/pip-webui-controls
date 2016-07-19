@@ -12,7 +12,7 @@
         pipTranslateProvider.translations('ru', {
             INITIALIZED: 'Инициализированный',
             NOT: 'Не',
-            COLORED: 'Цветные'
+            COLORED: 'Цветной'
         });
     });
 
