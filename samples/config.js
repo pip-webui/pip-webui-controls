@@ -12,8 +12,12 @@
     // Configure application services before start
     thisModule.config(
         function ($mdThemingProvider, $stateProvider, $urlRouterProvider, pipAuthStateProvider, pipTranslateProvider,
-                  pipRestProvider, pipSideNavProvider, pipAppBarProvider, pipEntryProvider, $mdIconProvider) {
+                  pipRestProvider, pipSideNavProvider, pipAppBarProvider, pipEntryProvider, $mdIconProvider, 
+                  $compileProvider, $httpProvider) {
 
+            $compileProvider.debugInfoEnabled(false);
+            $httpProvider.useApplyAsync(true);
+            
             var content = [
                 { title: 'Progress', state: 'progress', url: '/progress', auth: false,
                     controller: 'ProgressController', templateUrl: 'progress_sample/progress.html' },
