@@ -1,0 +1,87 @@
+<h2 class="text-title tm0 bm24">Image slider {{ 'SAMPLE' | translate }}</h2>
+
+<div>
+    <div class="w-stretch" layout="column" layout-align="center center">
+        <h3 class="text-subhead2 w-stretch">{{ 'FADING' | translate }}</h3>
+
+        <div pip-image-slider pip-animation-type="'fading'" class="w-stretch" pip-animation-interval="5000">
+            <div class="pip-animation-block w-stretch" ng-repeat="image in images">
+                <img src="{{ image.url }}" alt="{{ image.url }}" class="w-stretch"/>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
+    <pre class="text-body1 color-window-bg p16" ng-init="src = '{{ image.url }}'">
+        &lt;div <strong>pip-image-slider pip-animation-type="'fading'" class="w-stretch"
+                pip-animation-interval="5000"</strong>&gt;
+                &lt;div <strong>class="pip-animation-block w-stretch" ng-repeat="image in images"</strong>&gt;
+                    &lt;img src="{{ src }}" alt="{{ src }}" class="w-stretch"/&gt;
+                &lt;/div&gt;
+        &lt;/div&gt;
+    </pre>
+    <md-divider class="tm8 pip-list-divider"></md-divider>
+
+    <div class="w-stretch" layout="column" layout-align="center center">
+        <h3 class="text-subhead2 w-stretch" >{{ 'CAROUSEL' | translate }}</h3>
+
+        <div pip-image-slider pip-animation-type="'carousel'" id="pip-carousel" class="w-stretch"
+             pip-image-slider-index="slider2Index"
+             pip-animation-interval="3000">
+            <div class="pip-animation-block w-stretch" ng-repeat="image in images2">
+                <img src="{{ image.url }}" alt="{{ image.url }}" class="w-stretch"/>
+            </div>
+        </div>
+        <h3 class="text-subhead2">{{ 'PREV_NEXT_BUTTONS' | translate }}</h3>
+
+        <div class="w-stretch" layout="row" layout-align="center center">
+            <md-button pip-slider-button pip-slider-id="'pip-carousel'" pip-button-type="'prev'">
+                <md-icon md-svg-icon="icons:chevron-big-left"></md-icon>
+            </md-button>
+            <md-button pip-slider-button pip-slider-id="'pip-carousel'" pip-button-type="'next'">
+                <md-icon md-svg-icon="icons:chevron-big-right"></md-icon>
+            </md-button>
+        </div>
+
+
+        <h3 class="text-subhead2">{{ 'SLIDER_INDICATORS' | translate }}</h3>
+
+        <div class="w-stretch" layout="row" layout-align="center center">
+            <md-icon ng-repeat="image in images2"
+                     style="margin: 0px 20px"
+                     pip-slider-indicator pip-slider-id="'pip-carousel'"
+                     ng-class="{'color-accent': $index == slider2Index}" ng-attr-pip-slide-to="$index"
+                     md-svg-icon="{{ $index == slider2Index ? 'icons:radio-on' :'icons:radio-off' }}">
+            </md-icon>
+        </div>
+    </div>
+    <h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
+    <pre class="text-body1 color-window-bg p16"
+         ng-init="src = '{{ image.url }}'">
+        &lt;div <strong>pip-image-slider pip-animation-type="'carousel'" id="pip-carousel" class="w-stretch"
+             pip-image-slider-index="slider2Index"
+             pip-animation-interval="3000"</strong>&gt;
+            &lt;div <strong>class="pip-animation-block w-stretch" ng-repeat="image in images2"</strong>&gt;
+                &lt;img src="{{ src }}" alt="{{ src }}" class="w-stretch"/&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="w-stretch" layout="row" layout-align="center center"&gt;
+            &lt;md-button <strong>pip-slider-button pip-slider-id="'pip-carousel'" pip-button-type="'prev'"</strong>&gt;
+                &lt;md-icon md-svg-icon="icons:chevron-big-left"&gt;&lt;/md-icon&gt;
+            &lt;/md-button&gt;
+            &lt;md-button <strong>pip-slider-button pip-slider-id="'pip-carousel'" pip-button-type="'next'"</strong>&gt;
+                &lt;md-icon md-svg-icon="icons:chevron-big-right"&gt;&lt;/md-icon&gt;
+            &lt;/md-button&gt;
+        &lt;/div&gt;
+
+        &lt;div class="w-stretch" layout="row" layout-align="center center"&gt;
+            &lt;md-icon <strong> ng-repeat="image in images2"
+                     style="margin: 0px 20px"
+                     pip-slider-indicator pip-slider-id="'pip-carousel'"
+                     ng-class="{'color-accent': $index == slider2Index}" ng-attr-pip-slide-to="$index" </strong>
+                     md-svg-icon="{{ icon }}"&gt;
+            &lt;/md-icon&gt;
+        &lt;/div&gt;
+    </pre>
+</div>
