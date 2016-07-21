@@ -1,0 +1,75 @@
+<h2 class="text-title tm0 bm24">Popover {{ 'SAMPLE' | translate }}:</h2>
+<h3 class="text-subhead2">{{ 'SHOW_POPOVER' | translate }}</h3>
+<md-button class="lm0" ng-click="showTip()">Show Tip</md-button>
+<md-button ng-click="showQuote()">Show Quote</md-button>
+<md-input-container class="w-stretch bm0">
+    <textarea name="" ng-model="content" id="" cols="30" rows="10"></textarea>
+</md-input-container>
+<h3 class="text-subhead2 tm0">{{:: 'CODE' | translate}}</h3>
+<pre class="text-body1 color-window-bg p16" ng-init="titleSample = '{{ title }}'; contentSample = '{{ content }}'">
+             <strong>pipPopover.show</strong>({
+                    class: 'pip-tip',
+                    locals: {
+                        title: $scope.title,
+                        content: $scope.content
+                    },
+                    cancelCallback: function () {
+                        console.log('backdrop clicked');
+                    },
+                    controller: function($scope, $timeout) {
+                        $scope.title = $scope.locals.title;
+                        $scope.content = $scope.locals.content;
+                        $scope.image = 'http://www.izuminki.com/images/kolibri-vo-vsej-krase/11.jpg';
+
+                        $scope.onNextClick = function () {
+                            console.log('on next click');
+                            $pipPopover.hide();
+                        };
+
+                        $timeout(function() {
+                            $('.pip-popover').find('.pip-pic').css('background-image', 'url(' + $scope.image + ')');
+                        }, 200);
+                    },
+                    template: '&lt;div class="pip-title m24 bm16 text-subhead2"&gt;
+                        + {{ titleSample }}&lt;/div&gt;'
+                        + '&lt;div class="pip-content pip-popover-content p24 tp0 bp0 bm64"&gt;'
+                        + '&lt;div class="pip-pic bm16"&gt;&lt;/div&gt;
+                        + {{ contentSample }}&lt;/div&gt;'
+                        + '&lt;div class="pip-footer p24 tp8 bp8 rp16 position-bottom" layout="row" layout-align="start center"&gt;'
+                        + '&lt;div class="flex"&gt;&lt;/div&gt;&lt;md-button ng-click="onNextClick()"&gt;NEXT&lt;/md-button&gt;&lt;/div&gt;'
+                });
+        </pre>
+
+<md-input-container class="w50-stretch lp0" md-no-float="true">
+    <input type="text" placeholder="{{ ::'CLICK_HELP' | translate }}" ng-model="content1"/>
+    <md-icon class="position-right" style="right: initial; left: initial;" md-svg-icon="icons:help" ng-click="showHelp($event, content1)"></md-icon>
+</md-input-container>
+
+<md-input-container class="w50-stretch lp0 bm0" md-no-float="true">
+    <input type="text" placeholder="{{ ::'CLICK_HELP' | translate }}" ng-model="content2"/>
+    <md-icon class="position-right" style="right: initial; left: initial;" md-svg-icon="icons:help" ng-click="showHelp($event, content2)"></md-icon>
+</md-input-container>
+<h3 class="text-subhead2 tm0">{{:: 'CODE' | translate}}</h3>
+<pre class="text-body1 color-window-bg p16">
+                <strong>pipPopover.show</strong>({
+                    responsive: false,
+                    element: $event.currentTarget,
+                    class: 'pip-help',
+                    locals: {
+                      content: content || $scope.content
+                    },
+                    cancelCallback: function () {
+                        console.log('backdrop clicked');
+                    },
+                    controller: function($scope) {
+                        $scope.content = $scope.locals.content;
+
+                        $scope.onNextClick = function () {
+                            console.log('on next click');
+                            $pipPopover.hide();
+                        };
+                    },
+                    template: '&lt;div class="pip-title h24"&gt;&lt;/div&gt;&lt;div class="pip-content pip-popover-content lp24 rp24"&gt;'
+                    + '{{ contentSample }}&lt;/div&gt;&lt;div class="h24 pip-footer"&gt;&lt;/div&gt;'
+                });
+        </pre>

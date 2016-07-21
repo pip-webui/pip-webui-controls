@@ -1,0 +1,20 @@
+<h2 class="text-title tm0 bm24">{{ 'CONFIRM_DIALOG' | translate }}</h2>
+
+<md-button class="lm0" ng-click="onConfirmDialogOpen($event)">{{ 'OPEN_CONFIRM' | translate }}</md-button>
+<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
+<pre class="text-body1 color-window-bg p16">
+             <strong>pipConfirmationDialog.show</strong>(
+                    {
+                        event: event,
+                        title: 'Agree?',
+                        ok: 'Agree',
+                        cancel: 'Disagree'
+                    },
+                    function () {
+                        console.log('You agreed');
+                    },
+                    function () {
+                        console.log('You disagreed');
+                    }
+                );
+        </pre>

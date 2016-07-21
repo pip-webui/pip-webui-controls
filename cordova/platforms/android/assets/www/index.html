@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html class="no-scroll">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <title>Basic Controls</title>
+
+    <link rel="stylesheet" href="lib/pip-webui-lib.min.css"/>
+    <link rel="stylesheet" href="lib/pip-webui-css.min.css"/>
+    <link rel="stylesheet" href="lib/pip-webui-layouts.min.css"/>
+    <link rel="stylesheet" href="lib/pip-webui-nav.min.css"/>
+    <link rel="stylesheet" href="lib/pip-webui-entry.min.css"/>
+    <link rel="stylesheet" href="lib/pip-webui-locations.min.css"/>
+    <link rel="stylesheet" href="lib/pip-webui-pictures.min.css"/>
+
+    <link rel="stylesheet" href="pip-webui-controls.min.css"/>
+    <link rel="stylesheet" href="styles.css"/>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="https://www.google.com/jsapi"></script>
+    <script src="lib/pip-webui-lib.min.js"></script>
+    <script src="lib/pip-webui-core.min.js"></script>
+    <script src="lib/pip-webui-rest.min.js"></script>
+    <script src="lib/pip-webui-layouts.min.js"></script>
+    <script src="lib/pip-webui-pictures.min.js"></script>
+    <script src="lib/pip-webui-locations.min.js"></script>
+    <script src="lib/pip-webui-entry.min.js"></script>
+    <script src="lib/pip-webui-nav.min.js"></script>
+    <script src="pip-webui-controls.min.js"></script>
+
+    <script src="date_sample/date.js"></script>
+    <script src="color_picker_sample/color_picker.js"></script>
+    <script src="markdown_sample/markdown.js"></script>
+    <script src="refresh_sample/refresh.js"></script>
+    <script src="toggle_buttons_sample/toggle_buttons.js"></script>
+    <script src="popover_sample/popover.js"></script>
+    <script src="image_slider_sample/image_slider.js"></script>
+    <script src="progress_sample/progress.js"></script>
+    <script src="information_dialog_sample/information_dialog.js"></script>
+    <script src="confirmation_dialog_sample/confirmation_dialog.js"></script>
+    <script src="options_dialog_sample/options_dialog.js"></script>
+    <script src="conversion_dialog_sample/conversion_dialog.js"></script>
+    <script src="toasts_sample/toasts.js"></script>
+    <script src="tags_sample/tags.js"></script>
+    <script src="config.js"></script>
+    <script src="index.js"></script>
+
+    <script src="cordova.js"></script>
+    <script src="cordova_main.js"></script>
+</head>
+
+<body ng-app="appBasicControls" ng-if="!$reset" ng-controller="pipSampleController"
+      layout="column" class="pip-main layout-column">
+<pip-main class="pip-main">
+    <pip-appbar>
+    </pip-appbar>
+
+    <pip-sidenav>
+    </pip-sidenav>
+
+    <pip-main-body ng-cloak layout="column" class="pip-main-body" ng-if="!isEntryPage()">
+        <md-toolbar class="pip-appbar-ext">
+        </md-toolbar>
+        <pip-document class="pip-document">
+            <div class="pip-menu-container">
+
+                <md-list class="pip-menu pip-simple-list hide-xs"
+                         pip-selected="selected.pageIndex"
+                         pip-selected-watch="selected.navId"
+                         pip-select="onNavigationSelect($event.id)">
+                    <md-list-item class="pip-simple-list-item pip-selectable"
+                                  ng-repeat="page in pages track by page.state"
+                                  ng-class="{'selected': page.state == $state.name}"
+                                  md-ink-ripple
+                                  pip-id="{{:: page.state }}">
+                        <p>{{:: page.title }}</p>
+                    </md-list-item>
+                </md-list>
+
+                <div class="pip-content-container">
+                    <pip-dropdown class="hide-gt-xs"
+                                  pip-actions="pages"
+                                  pip-dropdown-select="onDropdownSelect"
+                                  pip-active-index="selected.pageIndex"></pip-dropdown>
+                    <div ui-view class="p24"></div>
+                </div>
+            </div>
+        </pip-document>
+    </pip-main-body>
+    <pip-main-body ng-if="isEntryPage()" class="pip-main-body" ui-view></pip-main-body>
+</pip-main>
+</body>
+</html>
