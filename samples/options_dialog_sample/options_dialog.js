@@ -24,7 +24,14 @@
     });
 
     thisModule.controller('OptionsController',
-        function ($scope, pipOptionsDialog, pipOptionsBigDialog, pipAppBar) {
+        function ($scope, pipOptionsDialog, pipOptionsBigDialog, pipAppBar, $timeout) {
+
+            $timeout(function() {
+                $('pre code').each(function(i, block) {
+                    Prism.highlightElement(block);
+                });
+            });
+            
             pipAppBar.hideShadow();
             pipAppBar.showMenuNavIcon();
             pipAppBar.showLanguage();

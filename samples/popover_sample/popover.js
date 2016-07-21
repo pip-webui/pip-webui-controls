@@ -25,7 +25,14 @@
     });
 
     thisModule.controller('PopoverController',
-        function ($scope, $rootScope, $pipPopover, pipTranslate, pipAppBar) {
+        function ($scope, $rootScope, $pipPopover, pipTranslate, pipAppBar, $timeout) {
+
+            $timeout(function() {
+                $('pre code').each(function(i, block) {
+                    Prism.highlightElement(block);
+                });
+            });
+
             pipAppBar.hideShadow();
             pipAppBar.showMenuNavIcon();
             pipAppBar.showLanguage();

@@ -6,14 +6,14 @@
                     class="bm16">
 </pip-toggle-buttons>
 
-<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
 <pre class="text-body1 color-window-bg p16">
-            &lt;<strong>pip-toggle-buttons ng-model="type"
-                                pip-rebind="true"
-                                pip-buttons="buttonsCollection"</strong>
-                                class="bm16"&gt;
-            &lt;/<strong>pip-toggle-buttons</strong>&gt;
-        </pre>
+<h3 class="text-subhead2 m0">{{:: 'CODE' | translate}}</h3>
+<code class="language-markup">&lt;pip-toggle-buttons ng-model="type"
+                    pip-rebind="true"
+                    pip-buttons="buttonsCollection"
+                    class="bm16"&gt;
+&lt;/pip-toggle-buttons&gt;</code>
+</pre>
 <md-divider class="tm8 pip-list-divider"></md-divider>
 <h3 class="text-subhead2">{{ 'INITIALIZED' | translate }}</h3>
 <pip-toggle-buttons ng-model="initType"
@@ -22,26 +22,24 @@
                     class="bm16">
 </pip-toggle-buttons>
 
-<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
 <pre class="text-body1 color-window-bg p16">
-    <strong>HTML:</strong>
+<h3 class="text-subhead2 m0">{{:: 'CODE' | translate}}</h3>
+HTML:
+<code class="language-markup">&lt;pip-toggle-buttons
+                    ng-model="initType"
+                    pip-rebind="true"
+                    pip-buttons="buttonsCollection2"
+                    class="bm16"&gt;
+&lt;/pip-toggle-buttons&gt;
+</code>
+JS:
+<code class="language-js">$scope.buttonsCollection2 = [
+    {id: 'type 1', name: 'LOW', disabled: false},
+    {id: 'type 2', name: 'NORMAL', disabled: false, filled: true},
+    {id: 'type 3', name: 'HIGH', disabled: false}
+];
 
-            &lt;<strong>pip-toggle-buttons
-                                ng-model="initType"</strong>
-                                pip-rebind="true"
-                                <strong>pip-buttons="buttonsCollection2"</strong>
-                                class="bm16"&gt;
-            &lt;/<strong>pip-toggle-buttons</strong>&gt;
-
-    <strong>JS:</strong>
-
-            <strong>$scope.buttonsCollection2</strong> = [
-                {id: 'type 1', name: 'LOW', disabled: false},
-                {id: 'type 2', name: 'NORMAL', disabled: false, <strong>filled: true</strong>},
-                {id: 'type 3', name: 'HIGH', disabled: false}
-            ];
-
-            <strong>$scope.initType = 'type 2'</strong>;
+$scope.initType = 'type 2';</code>
         </pre>
 <md-divider class="tm8 pip-list-divider"></md-divider>
 <h3 class="text-subhead2">{{ 'DISABLED' | translate }}</h3>
@@ -52,15 +50,15 @@
                     class="bm16">
 </pip-toggle-buttons>
 
-<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
 <pre class="text-body1 color-window-bg p16">
-            &lt;<strong>pip-toggle-buttons</strong> ng-model="initType"
-                                pip-rebind="true"
-                                <strong>ng-disabled="true"</strong>
-                                pip-buttons="buttonsCollection3"
-                                class="bm16"&gt;
-            &lt;/<strong>pip-toggle-buttons</strong>&gt;
-        </pre>
+<h3 class="text-subhead2 m0">{{:: 'CODE' | translate}}</h3>
+<code class="language-markup">&lt;pip-toggle-buttons ng-model="initType"
+                    pip-rebind="true"
+                    ng-disabled="true"
+                    pip-buttons="buttonsCollection3"
+                    class="bm16"&gt;
+&lt;/pip-toggle-buttons&gt;</code>
+</pre>
 <md-divider class="tm8 pip-list-divider"></md-divider>
 <h3 class="text-subhead2">{{ 'COLORED' | translate }}</h3>
 <pip-toggle-buttons ng-model="type"
@@ -69,24 +67,22 @@
                     class="bm16">
 </pip-toggle-buttons>
 
-<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
 <pre class="text-body1 color-window-bg p16">
-    <strong>HTML:</strong>
-
-            &lt;<strong>pip-toggle-buttons</strong> ng-model="type"
-                                pip-rebind="true"
-                                <strong>pip-buttons="buttonsColoredCollection"</strong>
-                                class="bm16"&gt;
-            &lt;/<strong>pip-toggle-buttons</strong>&gt;
-
-    <strong>JS:</strong>
-
-            <strong>$scope.buttonsColoredCollection</strong> = [
-                {id: 'type 1', name: 'LOW', disabled: false, <strong>backgroundColor: '#F06292'</strong>},
-                {id: 'type 2', name: 'NORMAL', disabled: false, <strong>backgroundColor: '#BA68C8'</strong>},
-                {id: 'type 3', name: 'HIGH', disabled: false, <strong>backgroundColor: '#009688'</strong>}
-            ];
-        </pre>
+<h3 class="text-subhead2 m0">{{:: 'CODE' | translate}}</h3>
+HTML:
+<code class="language-markup">&lt;pip-toggle-buttons ng-model="type"
+                    pip-rebind="true"
+                    pip-buttons="buttonsColoredCollection"
+                    class="bm16"&gt;
+&lt;/pip-toggle-buttons&gt;
+</code>
+JS:
+<code class="language-js">$scope.buttonsColoredCollection = [
+    {id: 'type 1', name: 'LOW', disabled: false, backgroundColor: '#F06292'},
+    {id: 'type 2', name: 'NORMAL', disabled: false, backgroundColor: '#BA68C8'},
+    {id: 'type 3', name: 'HIGH', disabled: false, backgroundColor: '#009688'}
+];</code>
+</pre>
 <md-divider class="tm8 pip-list-divider"></md-divider>
 <h3 class="text-subhead2">{{ 'COLORED' | translate }}, {{ 'DISABLED' | translate }}</h3>
 <pip-toggle-buttons ng-model="type"
@@ -96,12 +92,12 @@
                     class="bm16">
 </pip-toggle-buttons>
 
-<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
 <pre class="text-body1 color-window-bg p16">
-            &lt;<strong>pip-toggle-buttons</strong> ng-model="type"
-                                pip-rebind="true"
-                                <strong>ng-disabled="true"
-                                pip-buttons="buttonsColoredCollection"</strong>
-                                class="bm16"&gt;
-            &lt;/<strong>pip-toggle-buttons</strong>&gt;
-        </pre>
+<h3 class="text-subhead2 m0">{{:: 'CODE' | translate}}</h3>
+<code class="language-markup">&lt;pip-toggle-buttons ng-model="type"
+                    pip-rebind="true"
+                    ng-disabled="true"
+                    pip-buttons="buttonsColoredCollection"
+                    class="bm16"&gt;
+&lt;/pip-toggle-buttons&gt;</code>
+</pre>

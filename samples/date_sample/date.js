@@ -35,7 +35,13 @@
     });
 
     thisModule.controller('DateController',
-        function ($scope, pipAppBar) {
+        function ($scope, pipAppBar, $timeout) {
+
+            $timeout(function() {
+                $('pre code').each(function(i, block) {
+                    Prism.highlightElement(block);
+                });
+            });
 
             pipAppBar.showMenuNavIcon();
             pipAppBar.showLanguage();
@@ -43,6 +49,9 @@
             
             $scope.specialDate = '1975-04-08T00:00:00.00';
             $scope.specialDateDisabled = false;
+
+            $scope.startDate = '1975-04-08T00:00:00.00';
+            $scope.endDate = '1975-04-12T00:00:00.00';
 
             $scope.daily = new Date(Date.UTC(2016, 10, 1, 0, 0, 0));
             $scope.weekly = new Date(Date.UTC(2016, 10, 1, 0, 0, 0));

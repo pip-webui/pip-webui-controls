@@ -1,136 +1,145 @@
 <h2 class="text-title tm0 bm24">{{ 'OPTIONS_DIALOG' | translate }}</h2>
-<md-button class="lm0" ng-click="onOptionsDialogOpen($event)">{{ 'OPEN_OPTIONS' | translate }}</md-button>
+<md-button class="lm0 md-raised md-accent flat"
+           ng-click="onOptionsDialogOpen($event)">{{ 'OPEN_OPTIONS' | translate }}
+</md-button>
 
-<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
 <pre class="text-body1 color-window-bg p16">
-             <strong>pipOptionsDialog.show</strong>(
-                    {
-                        event: event,
-                        title: 'Choose Option',
-                        options: [
-                            { icon: 'star', name: 'option_1', title: 'Option 1', active: true },
-                            { icon: 'star', name: 'option_2', title: 'Option 2' },
-                            { icon: 'star', name: 'option_3', title: 'Option 3' },
-                            { name: 'option_4', title: 'Option 4' },
-                            { name: 'option_5', title: 'Option 5' }
-                        ]
-                    },
-                    function(option) {
-                        var optionName = option ? option.name : null;
-                        console.log('Selected option: ' + optionName);
-                    }
-                );
+<h3 class="text-subhead2 m0">{{:: 'CODE' | translate}}</h3>
+<code class="language-js">pipOptionsDialog.show(
+       {
+           event: event,
+           title: 'Choose Option',
+           options: [
+               { icon: 'star', name: 'option_1', title: 'Option 1', active: true },
+               { icon: 'star', name: 'option_2', title: 'Option 2' },
+               { icon: 'star', name: 'option_3', title: 'Option 3' },
+               { name: 'option_4', title: 'Option 4' },
+               { name: 'option_5', title: 'Option 5' }
+           ]
+       },
+       function(option) {
+           var optionName = option ? option.name : null;
+           console.log('Selected option: ' + optionName);
+       }
+   );
+</code>
         </pre>
 
 <md-divider class="tm8 pip-list-divider"></md-divider>
-<md-button class="lm0" ng-click="onOptionsBigDialogOpen($event)">{{ 'OPEN_OPTIONS_BIG' | translate }}</md-button>
+<md-button class="lm0 md-raised md-accent flat"
+           ng-click="onOptionsBigDialogOpen($event)">{{ 'OPEN_OPTIONS_BIG' | translate }}
+</md-button>
 
-<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
 <pre class="text-body1 color-window-bg p16">
-             <strong>pipOptionsBigDialog.show</strong>(
-                    {
-                        event: event,
-                        noActions: true,
-                        options: [
-                            {
-                                name: 'option_1',
-                                title: 'Option 1',
-                                subtitle: 'Assertively engineer stand-alone information vis-a-vis ethical partnerships. ' +
-                                'Dynamically extend accurate data after strategic infrastructures. ' +
-                                'Globally matrix intuitive potentialities without',
-                                active: true
-                            },
-                            {
-                                name: 'option_2',
-                                title: 'Option 2',
-                                subtitle: 'A goal, that is not important by itself and only needed as a step toward a bigger goal'
-                            },
-                            {name: 'option_3', title: 'Option 3', subtitle: 'Small subtitle'},
-                            {
-                                name: 'option_4',
-                                title: 'Big title: Energistically transition multimedia based ideas without ' +
-                                'mission-critical schemas. 4',
-                                subtitle: 'Small subtitle'
-                            }
+<h3 class="text-subhead2 m0">{{:: 'CODE' | translate}}</h3>
+<code class="language-js">pipOptionsBigDialog.show(
+{
+    event: event,
+    noActions: true,
+    options: [
+        {
+            name: 'option_1',
+            title: 'Option 1',
+            subtitle: 'Assertively engineer stand-alone information vis-a-vis ethical partnerships. ' +
+            'Dynamically extend accurate data after strategic infrastructures. ' +
+            'Globally matrix intuitive potentialities without',
+            active: true
+        },
+        {
+            name: 'option_2',
+            title: 'Option 2',
+            subtitle: 'A goal, that is not important by itself and only needed as a step toward a bigger goal'
+        },
+        {name: 'option_3', title: 'Option 3', subtitle: 'Small subtitle'},
+        {
+            name: 'option_4',
+            title: 'Big title: Energistically transition multimedia based ideas without ' +
+            'mission-critical schemas. 4',
+            subtitle: 'Small subtitle'
+        }
 
-                        ]
-                    },
-                    function (option) {
-                        var optionName = option ? option.option.name : null;
-                        console.log('Selected option: ' + optionName);
-                    }
-                );
+    ]
+},
+function (option) {
+    var optionName = option ? option.option.name : null;
+    console.log('Selected option: ' + optionName);
+});
+</code>
         </pre>
 
 <md-divider class="tm8 pip-list-divider"></md-divider>
-<md-button class="lm0" ng-click="onOptionsBigDialogOpenForContribs($event)">{{ 'OPEN_OPTIONS_BIG_CONTRIBS' | translate }}</md-button>
+<md-button class="lm0 md-raised md-accent flat"
+           ng-click="onOptionsBigDialogOpenForContribs($event)">{{ 'OPEN_OPTIONS_BIG_CONTRIBS' | translate }}
+</md-button>
 
-<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
 <pre class="text-body1 color-window-bg p16">
-             <strong>pipOptionsBigDialog.show</strong>(
-                    {
-                        event: event,
-                        options: [
-                            {
-                                name: 'option_1',
-                                text: '&lt;b&gt;Plan&lt;/b&gt; tasks and do all to perform it',
-                                active: true
-                            },
-                            {
-                                name: 'option_2',
-                                text: 'Assertively engineer stand-alone information vis-a-vis ethical partnerships. ' +
-                                'Dynamically extend accurate data after strategic infrastructures. ' +
-                                'Globally matrix intuitive potentialities without',
-                                active: true
-                            },
+<h3 class="text-subhead2 m0">{{:: 'CODE' | translate}}</h3>
+<code class="language-js">pipOptionsBigDialog.show(
+       {
+           event: event,
+           options: [
+               {
+                   name: 'option_1',
+                   text: '&lt;b&gt;Plan&lt;/b&gt; tasks and do all to perform it',
+                   active: true
+               },
+               {
+                   name: 'option_2',
+                   text: 'Assertively engineer stand-alone information vis-a-vis ethical partnerships. ' +
+                   'Dynamically extend accurate data after strategic infrastructures. ' +
+                   'Globally matrix intuitive potentialities without',
+                   active: true
+               },
 
-                        ]
-                    },
-                    function (option) {
-                        var optionName = option ? option.name : null;
-                        console.log('Selected option: ' + optionName);
-                    }
-                );
-        </pre>
+           ]
+       },
+       function (option) {
+           var optionName = option ? option.name : null;
+           console.log('Selected option: ' + optionName);
+       }
+   );
+</code>
+</pre>
 <md-divider class="tm8 pip-list-divider"></md-divider>
-<md-button class="lm0" ng-click="onRoleDialog($event)">{{ 'OPEN_ROLE_DIALOG' | translate }}</md-button>
+<md-button class="lm0 md-raised md-accent flat"
+           ng-click="onRoleDialog($event)">{{ 'OPEN_ROLE_DIALOG' | translate }}
+</md-button>
 
-<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
 <pre class="text-body1 color-window-bg p16">
-             <strong>pipOptionsBigDialog.show</strong>(
-                    {
-                        event: event,
-                        noActions: true,
-                        noTitle: true,
-                        hint: 'Professionally streamline flexible solutions with adaptive mindshare. ' +
-                        'Efficiently leverage other\'s.',
-                        options: [
-                            {
-                                name: 'option_1',
-                                title: 'Option 1',
-                                subtitle: 'Assertively engineer stand-alone information vis-a-vis ethical partnerships. ' +
-                                'Dynamically extend accurate data after strategic infrastructures. ' +
-                                'Globally matrix intuitive potentialities without',
-                                active: true
-                            },
-                            {
-                                name: 'option_2',
-                                title: 'Option 2',
-                                subtitle: 'A goal, that is not important by itself and only needed as a step toward a bigger goal'
-                            },
-                            {name: 'option_3', title: 'Option 3', subtitle: 'Small subtitle'},
-                            {
-                                name: 'option_4',
-                                title: 'Big title: Energistically transition multimedia based ideas without ' +
-                                'mission-critical schemas. 4',
-                                subtitle: 'Small subtitle'
-                            }
+<h3 class="text-subhead2 m0">{{:: 'CODE' | translate}}</h3>
+<code class="language-js"><strong>pipOptionsBigDialog.show</strong>(
+{
+    event: event,
+    noActions: true,
+    noTitle: true,
+    hint: 'Professionally streamline flexible solutions with adaptive mindshare. ' +
+    'Efficiently leverage other\'s.',
+    options: [
+        {
+            name: 'option_1',
+            title: 'Option 1',
+            subtitle: 'Assertively engineer stand-alone information vis-a-vis ethical partnerships. ' +
+            'Dynamically extend accurate data after strategic infrastructures. ' +
+            'Globally matrix intuitive potentialities without',
+            active: true
+        },
+        {
+            name: 'option_2',
+            title: 'Option 2',
+            subtitle: 'A goal, that is not important by itself and only needed as a step toward a bigger goal'
+        },
+        {name: 'option_3', title: 'Option 3', subtitle: 'Small subtitle'},
+        {
+            name: 'option_4',
+            title: 'Big title: Energistically transition multimedia based ideas without ' +
+            'mission-critical schemas. 4',
+            subtitle: 'Small subtitle'
+        }
 
-                        ]
-                    },
-                    function (option) {
-                        var optionName = option ? option.option.name : null;
-                        console.log('Selected option: ' + optionName);
-                    }
-                );
-        </pre>
+    ]
+},
+function (option) {
+    var optionName = option ? option.option.name : null;
+    console.log('Selected option: ' + optionName);
+});</code>
+</pre>

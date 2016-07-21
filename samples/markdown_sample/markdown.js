@@ -12,7 +12,8 @@
             CHANGE_TEXT: 'Change text of item',
             LINES: 'lines',
             LINE: 'line',
-            SAMPLE_WITH_ATTACHMENTS: 'Example with attachment:'
+            SAMPLE_WITH_ATTACHMENTS: 'Example with attachment:',
+            SAMPLE_CAPITAL: 'Sample'
         });
         pipTranslateProvider.translations('ru', {
             COMMON: 'Общий',
@@ -22,14 +23,21 @@
             CHANGE_TEXT: 'Изменить текст элемента',
             LINES: 'линий',
             LINE: 'линия',
-            SAMPLE_WITH_ATTACHMENTS: 'Пример с вложением:'
+            SAMPLE_WITH_ATTACHMENTS: 'Пример с вложением:',
+            SAMPLE_CAPITAL: 'Пример'
         });
     });
 
     thisModule.controller('MarkdownController',
-        function ($scope, pipAppBar) {
+        function ($scope, pipAppBar, $timeout) {
             /* eslint-disable max-len*/
 
+            $timeout(function() {
+                $('pre code').each(function(i, block) {
+                    Prism.highlightElement(block);
+                });
+            });
+            
             pipAppBar.hideShadow();
             pipAppBar.showMenuNavIcon();
             pipAppBar.showLanguage();

@@ -15,7 +15,14 @@
     });
 
     thisModule.controller('ConfirmationController',
-        function ($scope, pipConfirmationDialog, pipAppBar) {
+        function ($scope, pipConfirmationDialog, pipAppBar, $timeout) {
+
+            $timeout(function() {
+                $('pre code').each(function(i, block) {
+                    Prism.highlightElement(block);
+                });
+            });
+
             pipAppBar.showMenuNavIcon();
             pipAppBar.showLanguage();
             pipAppBar.showTitleText('CONTROLS');

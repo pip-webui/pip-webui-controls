@@ -27,8 +27,14 @@
     });
 
     thisModule.controller('ConversionController',
-        function ($scope, pipConversionDialog, pipAppBar) {
+        function ($scope, pipConversionDialog, pipAppBar, $timeout) {
 
+            $timeout(function() {
+                $('pre code').each(function(i, block) {
+                    Prism.highlightElement(block);
+                });
+            });
+            
             pipAppBar.showMenuNavIcon();
             pipAppBar.showLanguage();
             pipAppBar.showTitleText('CONTROLS');

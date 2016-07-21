@@ -20,7 +20,8 @@
 
     thisModule.controller('pipSampleController',
         function ($scope, $rootScope, $state, $mdSidenav, $timeout, pipTranslate, $mdTheming, pipTheme,
-                  $mdMedia, localStorageService, pipAppBar) {
+                  $mdMedia) {
+
             $scope.pages = [
                 { title: 'Progress', state: 'progress', url: '/progress',
                     controller: 'ProgressController', templateUrl: '../samples/progress/progress.html' },

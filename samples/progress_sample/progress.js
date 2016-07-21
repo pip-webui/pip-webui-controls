@@ -13,7 +13,14 @@
     });
 
     thisModule.controller('ProgressController',
-        function ($scope, pipAppBar) {
+        function ($scope, pipAppBar, $timeout) {
+
+            $timeout(function() {
+                $('pre code').each(function(i, block) {
+                    Prism.highlightElement(block);
+                });
+            });
+
             pipAppBar.hideShadow();
             pipAppBar.showMenuNavIcon();
             pipAppBar.showLanguage();

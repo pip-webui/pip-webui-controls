@@ -34,7 +34,14 @@
     });
 
     thisModule.controller('ToastsController',
-        function ($scope, pipToasts, pipTranslate, pipAppBar) {
+        function ($scope, pipToasts, pipTranslate, pipAppBar, $timeout) {
+
+            $timeout(function() {
+                $('pre code').each(function(i, block) {
+                    Prism.highlightElement(block);
+                });
+            });
+            
             var
                 messageCount = 0,
                 errorCount = 0;

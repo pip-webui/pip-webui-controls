@@ -15,7 +15,13 @@
     });
 
     thisModule.controller('InformationController',
-        function ($scope, pipInformationDialog, pipAppBar) {
+        function ($scope, pipInformationDialog, pipAppBar, $timeout) {
+
+            $timeout(function() {
+                $('pre code').each(function(i, block) {
+                    Prism.highlightElement(block);
+                });
+            });
 
             pipAppBar.showMenuNavIcon();
             pipAppBar.showLanguage();

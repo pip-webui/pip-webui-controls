@@ -8,10 +8,10 @@
     <pip-markdown pip-text="data.text" pip-rebind="true">
     </pip-markdown>
 
-    <h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
-    <pre class="text-body1 color-window-bg p16">
-                &lt;<strong>pip-markdown</strong> pip-text="data.text" pip-rebind="true"&gt;
-                &lt;/<strong>pip-markdown</strong>&gt;
+    <pre class="color-window-bg p16">
+<h3 class="text-subhead2 m0">{{:: 'CODE' | translate}}</h3>
+<code class="language-markup">&lt;pip-markdown pip-text="data.text" pip-rebind="true"&gt;
+&lt;/pip-markdown&gt;</code>
     </pre>
 
     <md-divider class="tm8 pip-list-divider"></md-divider>
@@ -37,29 +37,29 @@
             </pip-markdown>
         </div>
     </div>
-    <h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
     <pre class="text-body1 color-window-bg p16">
-        &lt;div flex layout="row"&gt;
-            &lt;div flex&gt;
-                &lt;h3 class="text-subhead2"&gt;5 {{ 'LINES' | translate }}:&lt;/h3&gt;
-                &lt;<strong>pip-markdown pip-text="data.text2" pip-rebind="true" pip-line-count="5"</strong>&gt;
-                &lt;/<strong>pip-markdown</strong>&gt;
-            &lt;/div&gt;
-            &lt;div flex&gt;
-                &lt;h3 class="text-subhead2"&gt;2 {{ 'LINES' | translate }}:&lt;/h3&gt;
-                &lt;<strong>pip-markdown pip-text="data.text2" pip-rebind="true" pip-line-count="2"</strong>&gt;
-                &lt;/<strong>pip-markdown</strong>&gt;
-            &lt;/div&gt;
-            &lt;div flex&gt;
-                &lt;h3 class="text-subhead2"&gt;1 {{ 'LINE' | translate }}:&lt;/h3&gt;
-                &lt;<strong>pip-markdown pip-text="data.text2" pip-rebind="true" pip-line-count="1"</strong>&gt;
-                &lt;/<strong>pip-markdown</strong>&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
+<h3 class="text-subhead2 m0">{{:: 'CODE' | translate}}</h3>
+<code class="language-markup">&lt;div flex layout="row"&gt;
+    &lt;div flex&gt;
+        &lt;h3 class="text-subhead2"&gt;5 {{ 'LINES' | translate }}:&lt;/h3&gt;
+        &lt;pip-markdown pip-text="data.text2" pip-rebind="true" pip-line-count="5"&gt;
+        &lt;/pip-markdown&gt;
+    &lt;/div&gt;
+    &lt;div flex&gt;
+        &lt;h3 class="text-subhead2"&gt;2 {{ 'LINES' | translate }}:&lt;/h3&gt;
+        &lt;pip-markdown pip-text="data.text2" pip-rebind="true" pip-line-count="2"&gt;
+        &lt;/pip-markdown&gt;
+    &lt;/div&gt;
+    &lt;div flex&gt;
+        &lt;h3 class="text-subhead2"&gt;1 {{ 'LINE' | translate }}:&lt;/h3&gt;
+        &lt;pip-markdown pip-text="data.text2" pip-rebind="true" pip-line-count="1"&gt;
+        &lt;/pip-markdown&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code>
     </pre>
     <md-divider class="tm8 pip-list-divider"></md-divider>
 
-    <h3 class="text-subhead2">{{ 'SAMPLE' | translate }} {{ 'IN' | translate }} md-list:</h3>
+    <h3 class="text-subhead2">{{ 'SAMPLE_CAPITAL' | translate }} {{ 'IN' | translate }} md-list:</h3>
 
     <md-list class="pip-menu markdown-sample-list pip-ref-list">
 
@@ -135,21 +135,21 @@
 
     </md-list>
 
-    <h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
     <pre class="text-body1 color-window-bg p16">
-        &lt;md-list&gt;
-            &lt;md-list-item class="pip-ref-list-item lp16" md-ink-ripple
-                layout="row" layout-align="start start"&gt;
-                &lt;img src="http://any_source.jpg"
-                     class="pip-pic"&gt;
-                &lt;div class="pip-content"&gt;
-                    &lt;p class="pip-title"&gt;{{item2.title}} &lt;/p&gt;
-                    &lt;span class="pip-subtitle"&gt;{{item2.time}}&lt;/span&gt;
-                    &lt;<strong>pip-markdown pip-text="item2.text" pip-list="true" pip-line-count="2"</strong>&gt;
-                    &lt;/<strong>pip-markdown</strong>&gt;
-                &lt;/div&gt;
-            &lt;/md-list-item&gt;
-        &lt;/md-list&gt;
+<h3 class="text-subhead2 m0">{{:: 'CODE' | translate}}</h3>
+<code class="language-markup">&lt;md-list&gt;
+    &lt;md-list-item class="pip-ref-list-item lp16" md-ink-ripple
+        layout="row" layout-align="start start"&gt;
+        &lt;img src="http://any_source.jpg"
+             class="pip-pic"&gt;
+        &lt;div class="pip-content"&gt;
+            &lt;p class="pip-title"&gt;{{item2.title}} &lt;/p&gt;
+            &lt;span class="pip-subtitle"&gt;{{item2.time}}&lt;/span&gt;
+            &lt;pip-markdown pip-text="item2.text" pip-list="true" pip-line-count="2"&gt;
+            &lt;/pip-markdown&gt;
+        &lt;/div&gt;
+    &lt;/md-list-item&gt;
+&lt;/md-list&gt;</code>
     </pre>
 
     <md-divider class="tm8 pip-list-divider"></md-divider>

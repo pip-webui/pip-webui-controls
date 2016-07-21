@@ -3,10 +3,11 @@
 <pip-refresh-button pip-text="refreshText" pip-visible="showRefresh" pip-refresh="onRefresh()">
 </pip-refresh-button>
 
-<md-button class="lm0" ng-click="onRefreshShow($event)">{{ 'SHOW_REFRESH' | translate }}</md-button>
+<md-button class="lm0 md-raised md-accent flat" ng-click="onRefreshShow($event)">{{ 'SHOW_REFRESH' | translate }}</md-button>
 
-<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
 <pre class="text-body1 color-window-bg p16">
-             &lt;<strong>pip-refresh-button pip-text="refreshText" pip-visible="showRefresh" pip-refresh="onRefresh()"</strong>&gt;
-				&lt;/<strong>pip-refresh-button</strong>&gt;
-        </pre>
+<h3 class="text-subhead2 m0">{{:: 'CODE' | translate}}</h3>
+<code class="language-markup">&lt;pip-refresh-button pip-text="refreshText" pip-visible="showRefresh" pip-refresh="onRefresh()"&gt;
+&lt;/pip-refresh-button&gt;
+</code>
+</pre>

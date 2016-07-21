@@ -3,10 +3,15 @@
 </pip-color-picker>
 <p class="text-body1 tm16 bm16">{{:: 'CURRENT_COLOR' | translate }}: <strong>{{ color }}</strong></p>
 <md-switch ng-model="disabled">Disabled</md-switch>
-<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
-<pre class="text-body1 color-window-bg p16">
-            &lt;<strong>pip-color-picker</strong>  ng-model="color" ng-disabled="disabled" <strong>pip-colors="colors"</strong>&gt;
-            &lt;/<strong>pip-color-picker</strong>&gt;
-
-            <strong>$scope.colors</strong> = ['purple', 'lightgreen', 'green', 'darkred', 'pink', 'yellow', 'cyan'];
+<pre class="p16 color-window-bg">
+<h3 class="text-subhead2 m0">{{:: 'CODE' | translate}}</h3>
+<strong>HTML:</strong>
+<code class="language-markup">
+&lt;pip-color-picker ng-model="color" ng-disabled="disabled" pip-colors="colors"&gt;
+&lt;/pip-color-picker&gt
+</code>
+<strong>JS:</strong>
+<code class="language-js">
+$scope.colors = ['purple', 'lightgreen', 'green', 'darkred', 'pink', 'yellow', 'cyan'];
+</code>
 </pre>
