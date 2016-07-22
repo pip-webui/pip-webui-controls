@@ -5,7 +5,7 @@
           style="height:initial; max-height: initial; ">
 
     <span class="flex-var m0 pip-text" ng-bind-html="message"></span>
-    <div layout="row" layout-align="end start" class="pip-actions" ng-if="actions.length > 0 || (toast.type=='error' && toast.error)">
+    <div class="layout-row layout-align-end-start" class="pip-actions" ng-if="actions.length > 0 || (toast.type=='error' && toast.error)">
         <md-button class="flex-fixed m0 lm8" ng-if="toast.type=='error' && toast.error" ng-click="onDetails()">Details</md-button>
         <md-button class="flex-fixed m0 lm8"
                    ng-click="onAction(action)"

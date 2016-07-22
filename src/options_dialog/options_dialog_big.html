@@ -3,29 +3,31 @@
 @copyright Digital Living Software Corp. 2014-2016
 -->
 
-<md-dialog class="pip-dialog pip-options-dialog-big" layout="column" min-width="400" md-theme="{{theme}}">
+<md-dialog class="pip-dialog pip-options-dialog-big layout-column"
+           min-width="400" md-theme="{{theme}}">
     <md-dialog-content class="pip-body p0 pip-scroll" ng-class="{'bp24': !noActions}">
         <div class="pip-header" ng-class="{'header-hint': noTitle && hint}">
-            <h3 class="m0 text-title"  ng-if="!noTitle">
+            <h3 class="m0 text-title" ng-if="!noTitle">
                 {{::title | translate}}
             </h3>
-            <div ng-show="noTitle && hint" class="dialog-hint" layout="row" layout-align="start center">
-                <div class="w40" flex-fixed><md-icon md-svg-icon="icons:info-circle-outline"></md-icon></div>
+            <div ng-show="noTitle && hint" class="dialog-hint layout-row layout-align-start-center">
+                <div class="w40" flex-fixed>
+                    <md-icon md-svg-icon="icons:info-circle-outline"></md-icon>
+                </div>
                 <div>{{::hint | translate}}</div>
             </div>
         </div>
-        <div class="pip-divider"  ng-if="!noTitle"></div>
+        <div class="pip-divider" ng-if="!noTitle"></div>
         <div class="pip-content">
             <div class="h8" ng-if="noTitle && hint"></div>
             <md-list class="pip-menu  pip-ref-list w-stretch"
                      pip-selected="optionIndex" index="{{optionIndex }}"
                      pip-select="onSelected($event)">
 
-                <md-list-item class="pip-ref-list-item pip-selectable"
+                <md-list-item class="pip-ref-list-item pip-selectable layout-row layout-align-start-center"
                               ng-class="{'selected' : option.name == selectedOptionName,
                               'divider-bottom': $index != options.length - 1}"
-                              layout="row" layout-align="start center" md-ink-ripple
-                              xxxxng-keypress="onKeyPress($event)"
+                              md-ink-ripple xxxxng-keypress="onKeyPress($event)"
                               ng-keyup="onKeyUp($event, $index)"
                               ng-repeat="option in options" ng-click="onOptionSelect($event, option)">
 

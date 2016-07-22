@@ -1,7 +1,7 @@
 <h2 class="text-title tm0 bm24">Image slider {{ 'SAMPLE' | translate }}</h2>
 
 <div>
-    <div class="w-stretch" layout="column" layout-align="center center">
+    <div class="w-stretch layout-column layout-align-center-center">
         <h3 class="text-subhead2 w-stretch">{{ 'FADING' | translate }}</h3>
 
         <div pip-image-slider pip-animation-type="'fading'" class="w-stretch" pip-animation-interval="5000">
@@ -24,7 +24,7 @@
     </pre>
     <md-divider class="tm8 pip-list-divider"></md-divider>
 
-    <div class="w-stretch" layout="column" layout-align="center center">
+    <div class="w-stretch layout-column layout-align-center-center">
         <h3 class="text-subhead2 w-stretch" >{{ 'CAROUSEL' | translate }}</h3>
 
         <div pip-image-slider pip-animation-type="'carousel'" id="pip-carousel" class="w-stretch"
@@ -36,7 +36,7 @@
         </div>
         <h3 class="text-subhead2">{{ 'PREV_NEXT_BUTTONS' | translate }}</h3>
 
-        <div class="w-stretch" layout="row" layout-align="center center">
+        <div class="w-stretch layout-row layout-align-center-center">
             <md-button pip-slider-button pip-slider-id="'pip-carousel'" pip-button-type="'prev'">
                 <md-icon md-svg-icon="icons:chevron-big-left"></md-icon>
             </md-button>
@@ -48,7 +48,7 @@
 
         <h3 class="text-subhead2">{{ 'SLIDER_INDICATORS' | translate }}</h3>
 
-        <div class="w-stretch" layout="row" layout-align="center center">
+        <div class="w-stretch layout-row layout-align-center-center">
             <md-icon ng-repeat="image in images2"
                      style="margin: 0px 20px"
                      pip-slider-indicator pip-slider-id="'pip-carousel'"
@@ -69,7 +69,7 @@
     &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div class="w-stretch" layout="row" layout-align="center center"&gt;
+&lt;div class="w-stretch layout-row layout-align-center-center"&gt;
     &lt;md-button pip-slider-button pip-slider-id="'pip-carousel'" pip-button-type="'prev'"&gt;
         &lt;md-icon md-svg-icon="icons:chevron-big-left"&gt;&lt;/md-icon&gt;
     &lt;/md-button&gt;
@@ -78,7 +78,7 @@
     &lt;/md-button&gt;
 &lt;/div&gt;
 
-&lt;div class="w-stretch" layout="row" layout-align="center center"&gt;
+&lt;div class="w-stretch layout-row layout-align-center-center"&gt;
     &lt;md-icon  ng-repeat="image in images2"
              style="margin: 0px 20px"
              pip-slider-indicator pip-slider-id="'pip-carousel'"

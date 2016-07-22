@@ -3,11 +3,11 @@
 @copyright Digital Living Software Corp. 2014-2016
 -->
 
-<div layout="row" class="event-edit" layout-xs="column" flex layout-align="start start">
+<div class="event-edit layout-row layout-xs-column flex layout-align-start-start">
     <div flex="47" class="w-stretch rm24-flex0">
         <p class="text-caption text-grey tm0">{{startLabel}}</p>
 
-        <div layout="row" layout-align="space-between center">
+        <div class="layout-row layout-align-space-between-center">
             <div class="rm16 pip-datepicker-container" flex="49">
                 <md-datepicker ng-model="data.startDate"
                                xmd-placeholder="{{startLabel}}"
@@ -30,8 +30,8 @@
     <div flex="47" class="w-stretch">
         <p class="text-caption text-grey tm0">{{endLabel}}</p>
 
-        <div layout="row" layout-align="space-between center">
-            <div class="rm16 pip-datepicker-container" flex="49">
+        <div class="layout-row layout-align-space-between-center">
+            <div class="rm16 pip-datepicker-container flex-49">
                 <md-datepicker ng-model="data.endDate"
                                xmd-placeholder="{{endLabel}}"
                                ng-disabled="isDisabled()"
