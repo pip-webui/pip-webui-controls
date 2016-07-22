@@ -20,18 +20,18 @@
 
     <textarea class="w-stretch bm24" placeholder="Enter text..." ng-model="data.text2" rows="8">
     </textarea>
-    <div flex layout="row">
-        <div flex>
+    <div class="flex layout-row">
+        <div class="flex">
             <h3 class="text-subhead2">5 {{ 'LINES' | translate }}:</h3>
             <pip-markdown pip-text="data.text2" pip-rebind="true" pip-line-count="5">
             </pip-markdown>
         </div>
-        <div flex>
+        <div class="flex">
             <h3 class="text-subhead2">2 {{ 'LINES' | translate }}:</h3>
             <pip-markdown pip-text="data.text2" pip-rebind="true" pip-line-count="2">
             </pip-markdown>
         </div>
-        <div flex>
+        <div class="flex">
             <h3 class="text-subhead2">1 {{ 'LINE' | translate }}:</h3>
             <pip-markdown pip-text="data.text2" pip-rebind="true" pip-line-count="1">
             </pip-markdown>
@@ -63,15 +63,14 @@
 
     <md-list class="pip-menu markdown-sample-list pip-ref-list">
 
-        <md-list-item class="pip-ref-list-item lp16" md-ink-ripple
-                      layout="row" layout-align="start start">
+        <md-list-item class="pip-ref-list-item lp16 layout-row layout-align-start-start" md-ink-ripple>
 
             <img src="http://thumbs.dreamstime.com/z/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846325.jpg"
                  class="pip-pic">
 
             <div class="pip-content">
-                <div layout="row" layout-align="space-between start">
-                    <div flex>
+                <div class="layout-row layout-align-space-between-start">
+                    <div class="flex">
                         <p class="pip-title">{{item.title}} </p>
 
                     <span class="pip-subtitle">
@@ -91,15 +90,14 @@
             </div>
         </md-list-item>
 
-        <md-list-item class="pip-ref-list-item lp16" md-ink-ripple
-                      layout="row" layout-align="start start">
+        <md-list-item class="pip-ref-list-item lp16 layout-row layout-align-start-start" md-ink-ripple>
 
             <img src="http://thumbs.dreamstime.com/z/businesswoman-profile-icon-female-portrait-flat-design-vector-illustration-47075248.jpg"
                  class="pip-pic">
 
             <div class="pip-content">
-                <div layout="row" layout-align="space-between start">
-                    <div class="rm8 line-height-string" flex>
+                <div class="layout-row layout-align-space-between-start">
+                    <div class="rm8 line-height-string flex">
                         <p class="pip-title">{{item.title}} </p>
 
                     <span class="pip-subtitle">
@@ -117,8 +115,8 @@
             </div>
         </md-list-item>
 
-        <md-list-item class="pip-ref-list-item lp16" md-ink-ripple
-                      layout="row" layout-align="start start">
+        <md-list-item class="pip-ref-list-item lp16 layout-row layout-align-start-start"
+                      md-ink-ripple>
 
             <img src="http://thumbs.dreamstime.com/z/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-47075239.jpg"
                  class="pip-pic">
@@ -159,8 +157,7 @@
     <textarea class="w-stretch bm24" placeholder="Enter text..." ng-model="item3.text" rows="6">
     </textarea>
     <md-list class="pip-menu markdown-sample-list pip-ref-list">
-        <md-list-item class="pip-ref-list-item lp16" md-ink-ripple
-                      layout="row" layout-align="start start">
+        <md-list-item class="pip-ref-list-item lp16 layout-row layout-align-start-start" md-ink-ripple>
 
             <img src="http://thumbs.dreamstime.com/z/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-47075239.jpg"
                  class="pip-pic">
@@ -180,8 +177,7 @@
 
     <h3 class="text-subhead2">{{ 'SAMPLE_WITH_ATTACHMENTS' | translate }}</h3>
     <md-list class="pip-menu markdown-sample-list pip-ref-list">
-        <md-list-item class="pip-ref-list-item lp16" md-ink-ripple
-                      layout="row" layout-align="start start">
+        <md-list-item class="pip-ref-list-item lp16 layout-row layout-align-start-start" md-ink-ripple>
 
             <div class="pip-content">
                 <p class="pip-title"></p>
