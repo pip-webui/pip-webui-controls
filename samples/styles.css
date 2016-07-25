@@ -2,7 +2,6 @@
     overflow-y: auto;
 }
 
-
 @media (min-width: 769px) {
     .pip-content-container {
         max-width: calc(100% - 300px) !important;
