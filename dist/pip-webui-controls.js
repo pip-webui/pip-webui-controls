@@ -70,7 +70,7 @@ module.run(['$templateCache', function($templateCache) {
     '@copyright Digital Living Software Corp. 2014-2016\n' +
     '-->\n' +
     '\n' +
-    '<md-dialog class="pip-dialog pip-confirmation-dialog" layout="column" width="400" md-theme="{{::theme}}">\n' +
+    '<md-dialog class="pip-dialog pip-confirmation-dialog layout-column" width="400" md-theme="{{::theme}}">\n' +
     '    <div class="pip-header text-subhead1">\n' +
     '        <h3 class="m0">{{:: title | translate }}</h3>\n' +
     '    </div>\n' +
@@ -98,7 +98,7 @@ module.run(['$templateCache', function($templateCache) {
     '@copyright Digital Living Software Corp. 2014-2016\n' +
     '-->\n' +
     '\n' +
-    '<md-dialog class="pip-dialog pip-conversion-dialog" layout="column" min-width="450" md-theme="{{theme}}">\n' +
+    '<md-dialog class="pip-dialog pip-conversion-dialog layout-column" min-width="450" md-theme="{{theme}}">\n' +
     '    <md-dialog-content class="pip-body p0 pip-scroll">\n' +
     '        <div class="pip-header" ng-if="!withoutTitle || deleted" ng-class="{\'header-hint\': withoutTitle && deleted}">\n' +
     '            <h3 class="m0 text-title" ng-hide="withoutTitle">\n' +
@@ -107,7 +107,7 @@ module.run(['$templateCache', function($templateCache) {
     '            <p class="tp8 pip-subtitle" ng-hide="withoutTitle">\n' +
     '                <span pip-translate-html="{{::subtitle | translate}}"/>\n' +
     '            </p>\n' +
-    '            <div ng-show="withoutTitle && deleted" class="dialog-hint" layout="row" layout-align="start center">\n' +
+    '            <div ng-show="withoutTitle && deleted" class="dialog-hint layout-row layout-align-start-center">\n' +
     '                <div class="w40" flex-fixed><md-icon md-svg-icon="icons:info-circle-outline"></md-icon></div>\n' +
     '                <div>{{::withoutTitle | translate}}</div>\n' +
     '            </div>\n' +
@@ -122,7 +122,7 @@ module.run(['$templateCache', function($templateCache) {
     '                     ng-class="{ selected: option.name == selectedOptionName,\n' +
     '                            \'divider-bottom\': $index < options.length - 1 }">\n' +
     '\n' +
-    '                        <div class="pip-content lp24-flex rp24-flex" flex>\n' +
+    '                        <div class="pip-content lp24-flex rp24-flex flex">\n' +
     '                            <div class="pip-title" ng-if="option.title">\n' +
     '                                {{::option.title | translate}}\n' +
     '                            </div>\n' +
@@ -155,24 +155,24 @@ module.run(['$templateCache', function($templateCache) {
     '@copyright Digital Living Software Corp. 2014-2016\n' +
     '-->\n' +
     '\n' +
-    '<div class="pip-date" tabindex="-1" layout="row" flex>\n' +
-    '	<md-input-container flex class="tm0">\n' +
-    '		<md-select class="pip-date-day tm0" ng-disabled="disableControls"\n' +
-    '				   ng-model="day" placeholder="{{dayLabel}}" ng-change="onDayChanged()" flex>\n' +
+    '<div class="pip-date layout-row flex" tabindex="-1">\n' +
+    '	<md-input-container class="tm0 flex">\n' +
+    '		<md-select class="pip-date-day tm0 flex" ng-disabled="disableControls"\n' +
+    '				   ng-model="day" placeholder="{{dayLabel}}" ng-change="onDayChanged()">\n' +
     '			<md-option ng-value="opt" ng-repeat="opt in days track by opt">{{:: opt }}</md-option>\n' +
     '		</md-select>\n' +
     '	</md-input-container>\n' +
     '	<div class="w16 flex-fixed"></div>\n' +
-    '	<md-input-container flex class="tm0">\n' +
-    '		<md-select class="pip-date-month tm0" ng-disabled="disableControls"\n' +
-    '				   ng-model="month" placeholder="{{monthLabel}}" ng-change="onMonthChanged()" flex>\n' +
+    '	<md-input-container class="tm0 flex">\n' +
+    '		<md-select class="pip-date-month tm0 flex" ng-disabled="disableControls"\n' +
+    '				   ng-model="month" placeholder="{{monthLabel}}" ng-change="onMonthChanged()">\n' +
     '			<md-option ng-value="opt.id" ng-repeat="opt in months track by opt.id">{{:: opt.name }}</md-option>\n' +
     '		</md-select>\n' +
     '	</md-input-container>\n' +
     '	<div class="w16 flex-fixed"></div>\n' +
-    '	<md-input-container flex class="tm0">\n' +
-    '		<md-select class="pip-date-year tm0" ng-disabled="disableControls"\n' +
-    '				   ng-model="year" placeholder="{{yearLabel}}" ng-change="onYearChanged()" flex>\n' +
+    '	<md-input-container class="tm0 flex">\n' +
+    '		<md-select class="pip-date-year tm0 flex" ng-disabled="disableControls"\n' +
+    '				   ng-model="year" placeholder="{{yearLabel}}" ng-change="onYearChanged()">\n' +
     '			<md-option ng-value="opt" ng-repeat="opt in years track by opt">{{:: opt }}</md-option>\n' +
     '		</md-select>\n' +
     '	</md-input-container>\n' +
@@ -194,8 +194,8 @@ module.run(['$templateCache', function($templateCache) {
     '@copyright Digital Living Software Corp. 2014-2016\n' +
     '-->\n' +
     '\n' +
-    '<div class="pip-date-range" tabindex="-1" layout="row" flex>\n' +
-    '    <md-input-container flex ng-show="isDay()" class="tm0 pip-day"\n' +
+    '<div class="pip-date-range layout-row flex" tabindex="-1">\n' +
+    '    <md-input-container ng-show="isDay()" class="tm0 pip-day flex"\n' +
     '            ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
     '        <md-select class="select-day w-stretch"\n' +
     '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
@@ -211,7 +211,7 @@ module.run(['$templateCache', function($templateCache) {
     '            </md-option>\n' +
     '        </md-select>\n' +
     '    </md-input-container>\n' +
-    '    <md-input-container flex ng-show="isWeek()" class="tm0"\n' +
+    '    <md-input-container ng-show="isWeek()" class="tm0 flex"\n' +
     '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
     '        <md-select class="select-week w-stretch"\n' +
     '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
@@ -230,7 +230,7 @@ module.run(['$templateCache', function($templateCache) {
     '         ng-class="{\'w16\': $mdMedia(\'gt-xs\'), \'w8\':  $mdMedia(\'xs\')}"\n' +
     '         ng-show="isDay() || isWeek()">\n' +
     '    </div>\n' +
-    '    <md-input-container flex ng-show="isMonth() && !monthFormatShort " class="tm0 min-w72"\n' +
+    '    <md-input-container ng-show="isMonth() && !monthFormatShort " class="tm0 flex min-w72"\n' +
     '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
     '        <md-select class="select-month w-stretch"\n' +
     '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
@@ -246,7 +246,7 @@ module.run(['$templateCache', function($templateCache) {
     '            </md-option>\n' +
     '        </md-select>\n' +
     '    </md-input-container>\n' +
-    '    <md-input-container flex ng-show="isMonth() && monthFormatShort" class="tm0"\n' +
+    '    <md-input-container ng-show="isMonth() && monthFormatShort" class="flex tm0"\n' +
     '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
     '        <md-select class="select-month w-stretch"\n' +
     '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
@@ -266,7 +266,7 @@ module.run(['$templateCache', function($templateCache) {
     '         ng-class="{\'w16\': $mdMedia(\'gt-xs\'), \'w8\':  $mdMedia(\'xs\')}"\n' +
     '         ng-show="isMonth()">\n' +
     '    </div>\n' +
-    '    <md-input-container flex class="tm0"\n' +
+    '    <md-input-container class="tm0 flex"\n' +
     '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
     '        <md-select class="select-year w-stretch"\n' +
     '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
@@ -299,42 +299,48 @@ module.run(['$templateCache', function($templateCache) {
     '@copyright Digital Living Software Corp. 2014-2016\n' +
     '-->\n' +
     '\n' +
-    '<md-dialog class="pip-dialog pip-details-dialog" layout="column" width="400" md-theme="{{theme}}">\n' +
+    '<md-dialog class="pip-dialog pip-details-dialog layout-column" width="400" md-theme="{{theme}}">\n' +
     '    <div class="pip-body">\n' +
     '\n' +
     '        <div class="pip-header p0 bp8  text-subhead1">{{::\'ERROR_DETAILS\' | translate}}</div>\n' +
-    '        <div layout="row" layout-align="start center" class="h48 text-body2 color-secondary-text" ng-if="error.code || (error.data && error.data.code)">\n' +
+    '        <div class="layout-row layout-align-start-center h48 text-body2 color-secondary-text"\n' +
+    '             ng-if="error.code || (error.data && error.data.code)">\n' +
     '            {{::\'CODE\' | translate}}\n' +
     '        </div>\n' +
-    '        <div layout="row" layout-align="start center" ng-if="error.code || (error.data && error.data.code)">\n' +
+    '        <div class="layout-row layout-align-start-center" ng-if="error.code || (error.data && error.data.code)">\n' +
     '            {{error.code || error.data.code}}\n' +
     '        </div>\n' +
     '\n' +
-    '        <div layout="row" layout-align="start center" class="h48 text-body2 color-secondary-text" ng-if="error.path || (error.data && error.data.path)">\n' +
+    '        <div class="layout-row layout-align-start-center h48 text-body2 color-secondary-text"\n' +
+    '             ng-if="error.path || (error.data && error.data.path)">\n' +
     '            {{::\'PATH\' | translate}}\n' +
     '        </div>\n' +
-    '        <div layout="row" layout-align="start center" ng-if="error.path || (error.data && error.data.path)">\n' +
+    '        <div class="layout-row layout-align-start-center" ng-if="error.path || (error.data && error.data.path)">\n' +
     '            {{error.path || error.data.path}}\n' +
     '        </div>\n' +
     '\n' +
-    '        <div layout="row" layout-align="start center" class="h48 text-body2 color-secondary-text" ng-if="error.error || (error.data && error.data.error)">\n' +
+    '        <div class="h48 text-body2 color-secondary-text layout-row layout-align-start-center"\n' +
+    '             ng-if="error.error || (error.data && error.data.error)">\n' +
     '            {{::\'ERROR\' | translate}}\n' +
     '        </div>\n' +
-    '        <div layout="row" layout-align="start center" ng-if="error.error || (error.data && error.data.error)">\n' +
+    '        <div class="layout-row layout-align-start-center" ng-if="error.error || (error.data && error.data.error)">\n' +
     '            {{error.error || error.data.error}}\n' +
     '        </div>\n' +
     '\n' +
-    '        <div layout="row" layout-align="start center" class="h48 text-body2 color-secondary-text" ng-if="error.method || (error.data && error.data.method)">\n' +
+    '        <div class="h48 text-body2 color-secondary-text layout-row layout-align-start-center"\n' +
+    '             ng-if="error.method || (error.data && error.data.method)">\n' +
     '            {{::\'METHOD\' | translate}}\n' +
     '        </div>\n' +
-    '        <div layout="row" layout-align="start center" ng-if="error.method || (error.data && error.data.method)">\n' +
+    '        <div class="layout-row layout-align-start-center" ng-if="error.method || (error.data && error.data.method)">\n' +
     '            {{error.method || error.data.method}}\n' +
     '        </div>\n' +
     '\n' +
-    '        <div layout="row" layout-align="start center" class="h48 text-body2 color-secondary-text" ng-if="error.message || (error.data && error.data.message)">\n' +
+    '        <div class="h48 text-body2 color-secondary-text layout-row layout-align-start-center"\n' +
+    '             ng-if="error.message || (error.data && error.data.message)">\n' +
     '            {{::\'MESSAGE\' | translate}}\n' +
     '        </div>\n' +
-    '        <div layout="row" layout-align="start center" ng-if="error.message || (error.data && error.data.message)">\n' +
+    '        <div class="layout-row layout-align-start-center"\n' +
+    '             ng-if="error.message || (error.data && error.data.message)">\n' +
     '            {{error.message || error.data.message}}\n' +
     '        </div>\n' +
     '    </div>\n' +
@@ -361,7 +367,8 @@ module.run(['$templateCache', function($templateCache) {
     '@copyright Digital Living Software Corp. 2014-2016\n' +
     '-->\n' +
     '\n' +
-    '<md-dialog class="pip-dialog pip-information-dialog" layout="column" width="400" md-theme="{{theme}}">\n' +
+    '<md-dialog class="pip-dialog pip-information-dialog layout-column"\n' +
+    '           width="400" md-theme="{{theme}}">\n' +
     '    <div class="pip-header">\n' +
     '        <h3 class="m0">{{ title | translate }}</h3>\n' +
     '    </div>\n' +
@@ -393,7 +400,8 @@ module.run(['$templateCache', function($templateCache) {
     '@copyright Digital Living Software Corp. 2014-2016\n' +
     '-->\n' +
     '\n' +
-    '<md-dialog class="pip-dialog pip-options-dialog" layout="column" min-width="400" md-theme="{{theme}}">\n' +
+    '<md-dialog class="pip-dialog pip-options-dialog layout-column"\n' +
+    '           min-width="400" md-theme="{{theme}}">\n' +
     '    <md-dialog-content class="pip-body lp0 tp0 rp0 bp24 pip-scroll">\n' +
     '        <div class="pip-header" >\n' +
     '            <h3 class="m0 bm16 text-title">{{::title | translate}}</h3>\n' +
@@ -446,29 +454,31 @@ module.run(['$templateCache', function($templateCache) {
     '@copyright Digital Living Software Corp. 2014-2016\n' +
     '-->\n' +
     '\n' +
-    '<md-dialog class="pip-dialog pip-options-dialog-big" layout="column" min-width="400" md-theme="{{theme}}">\n' +
+    '<md-dialog class="pip-dialog pip-options-dialog-big layout-column"\n' +
+    '           min-width="400" md-theme="{{theme}}">\n' +
     '    <md-dialog-content class="pip-body p0 pip-scroll" ng-class="{\'bp24\': !noActions}">\n' +
     '        <div class="pip-header" ng-class="{\'header-hint\': noTitle && hint}">\n' +
-    '            <h3 class="m0 text-title"  ng-if="!noTitle">\n' +
+    '            <h3 class="m0 text-title" ng-if="!noTitle">\n' +
     '                {{::title | translate}}\n' +
     '            </h3>\n' +
-    '            <div ng-show="noTitle && hint" class="dialog-hint" layout="row" layout-align="start center">\n' +
-    '                <div class="w40" flex-fixed><md-icon md-svg-icon="icons:info-circle-outline"></md-icon></div>\n' +
+    '            <div ng-show="noTitle && hint" class="dialog-hint layout-row layout-align-start-center">\n' +
+    '                <div class="w40" flex-fixed>\n' +
+    '                    <md-icon md-svg-icon="icons:info-circle-outline"></md-icon>\n' +
+    '                </div>\n' +
     '                <div>{{::hint | translate}}</div>\n' +
     '            </div>\n' +
     '        </div>\n' +
-    '        <div class="pip-divider"  ng-if="!noTitle"></div>\n' +
+    '        <div class="pip-divider" ng-if="!noTitle"></div>\n' +
     '        <div class="pip-content">\n' +
     '            <div class="h8" ng-if="noTitle && hint"></div>\n' +
     '            <md-list class="pip-menu  pip-ref-list w-stretch"\n' +
     '                     pip-selected="optionIndex" index="{{optionIndex }}"\n' +
     '                     pip-select="onSelected($event)">\n' +
     '\n' +
-    '                <md-list-item class="pip-ref-list-item pip-selectable"\n' +
+    '                <md-list-item class="pip-ref-list-item pip-selectable layout-row layout-align-start-center"\n' +
     '                              ng-class="{\'selected\' : option.name == selectedOptionName,\n' +
     '                              \'divider-bottom\': $index != options.length - 1}"\n' +
-    '                              layout="row" layout-align="start center" md-ink-ripple\n' +
-    '                              xxxxng-keypress="onKeyPress($event)"\n' +
+    '                              md-ink-ripple xxxxng-keypress="onKeyPress($event)"\n' +
     '                              ng-keyup="onKeyUp($event, $index)"\n' +
     '                              ng-repeat="option in options" ng-click="onOptionSelect($event, option)">\n' +
     '\n' +
@@ -561,7 +571,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('progress/routing_progress.html',
-    '<div class="pip-routing-progress" layout="column" layout-align="center center"\n' +
+    '<div class="pip-routing-progress layout-column layout-align-center-center"\n' +
     '     ng-show="$routing || $reset || toolInitialized">\n' +
     '    <div class="loader">\n' +
     '        <svg class="circular" viewBox="25 25 50 50">\n' +
@@ -616,11 +626,11 @@ module.run(['$templateCache', function($templateCache) {
     '@copyright Digital Living Software Corp. 2014-2016\n' +
     '-->\n' +
     '\n' +
-    '<div layout="row" class="event-edit" layout-xs="column" flex layout-align="start start">\n' +
+    '<div class="event-edit layout-row layout-xs-column flex layout-align-start-start">\n' +
     '    <div flex="47" class="w-stretch rm24-flex0">\n' +
     '        <p class="text-caption text-grey tm0">{{startLabel}}</p>\n' +
     '\n' +
-    '        <div layout="row" layout-align="space-between center">\n' +
+    '        <div class="layout-row layout-align-space-between-center">\n' +
     '            <div class="rm16 pip-datepicker-container" flex="49">\n' +
     '                <md-datepicker ng-model="data.startDate"\n' +
     '                               xmd-placeholder="{{startLabel}}"\n' +
@@ -643,8 +653,8 @@ module.run(['$templateCache', function($templateCache) {
     '    <div flex="47" class="w-stretch">\n' +
     '        <p class="text-caption text-grey tm0">{{endLabel}}</p>\n' +
     '\n' +
-    '        <div layout="row" layout-align="space-between center">\n' +
-    '            <div class="rm16 pip-datepicker-container" flex="49">\n' +
+    '        <div class="layout-row layout-align-space-between-center">\n' +
+    '            <div class="rm16 pip-datepicker-container flex-49">\n' +
     '                <md-datepicker ng-model="data.endDate"\n' +
     '                               xmd-placeholder="{{endLabel}}"\n' +
     '                               ng-disabled="isDisabled()"\n' +
@@ -700,7 +710,7 @@ module.run(['$templateCache', function($templateCache) {
     '          style="height:initial; max-height: initial; ">\n' +
     '\n' +
     '    <span class="flex-var m0 pip-text" ng-bind-html="message"></span>\n' +
-    '    <div layout="row" layout-align="end start" class="pip-actions" ng-if="actions.length > 0 || (toast.type==\'error\' && toast.error)">\n' +
+    '    <div class="layout-row layout-align-end-start" class="pip-actions" ng-if="actions.length > 0 || (toast.type==\'error\' && toast.error)">\n' +
     '        <md-button class="flex-fixed m0 lm8" ng-if="toast.type==\'error\' && toast.error" ng-click="onDetails()">Details</md-button>\n' +
     '        <md-button class="flex-fixed m0 lm8"\n' +
     '                   ng-click="onAction(action)"\n' +
