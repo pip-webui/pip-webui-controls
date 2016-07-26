@@ -5,7 +5,7 @@
         [
             'pipSampleConfig',
 
-            'pipSideNav', 'pipAppBar', 'pipDropdown', 'pipEntry', 'pipLayout',
+            'pipDropdown', 'pipLayout',
             // 3rd Party Modules
             'ui.router', 'ui.utils', 'ngResource', 'ngAria', 'ngCookies', 'ngSanitize', 'ngMessages',
             'ngMaterial', 'LocalStorageModule', 'angularFileUpload', 'ngAnimate',
