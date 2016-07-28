@@ -1,17 +1,20 @@
-<a name="1.0.0"></a>
-### 1.0.0 (2016-04-30)
+# Pip.WebUI.Controls Changelog
 
-#### Features
-* **markdown** Markdown hypertext formatting
-* **color** picker Color picker
-* **date time** Date time controls
-* **progress** Routing progress control
-* **refresh** Refresh button control
-* **toggle buttons** Toggle buttons control
-* **dialogs** Information, confirmation, options, error details
+## <a name="1.0.0"></a> 1.0.0 (2016-07-30)
 
-#### Breaking Changes
-* API in most controls was changed since the previous version
+Initial release with collection of basic controls.
 
-#### Bug Fixes
+### Features
+* **markdown**: markdown hypertext formatting
+* **color**: color picker control
+* **date time**: date and time editing controls
+* **routing progress**: routing progress control
+* **refresh button**: refresh button control
+* **toggle buttons**: toggle buttons control
+* **basic dialogs**: information, confirmation, options and error details
+
+### Breaking Changes
+No breaking changes in this version
+
+### Bug Fixes
 No fixes in this version
