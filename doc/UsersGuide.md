@@ -2,6 +2,11 @@
 
 ## <a name="contents"></a> Contents
 - [Installing](#install)
+- [pip-color-picker directive](#color_picker)
+- [pip-date directive](#date)
+- [pip-time-view directive](#time_view)
+- [pip-time-edit directive](#time_edit)
+- [pip-image-slider directive](#image_slider)
 - [Questions and bugs](#issues)
 
 
@@ -39,40 +44,94 @@ Register **pipControls** module in angular module dependencies.
 angular.module('myApp',[..., 'pipControls']);
 ```
 
-**Color picker** control allows to select a color from predefined pallette.
+## <a name="color_picker"></a> pip-color-picker directive
+
+**pip-color-picker** directive allows to select a color from predefined pallette.
+
+### Usage
+Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-color-picker.png"/>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/color_picker)
 
-**Date** control allows to set a date using 3 comboboxes for day, month and year.
+### Attributes
+Todo: Document all directive attributes
+
+
+## <a name="date"></a> pip-date directive
+
+**pip-date** directive allows to set a date using 3 comboboxes for day, month and year.
+
+### Usage
+Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 Todo: Add screenshot for pip-date control here
 
-**Date range** control allows to pick a specific date range on daily, weekly, monthly or yearly time interval. 
+### Attributes
+Todo: Document all directive attributes
+
+
+## <a name="date_range"></a> pip-date-range directive
+
+**pip-date-range** directive allows to pick a specific date range on daily, weekly, monthly or yearly time interval. 
 This control can be helpful in various calendars and planning tools.
+
+### Usage
+Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-date.png"/>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/date)
 
-**Time view** control visualizes specific time interval
+### Attributes
+Todo: Document all directive attributes
+
+
+## <a name="time_view"></a> pip-time-view directive
+
+**pip-time-view** directive visualizes specific time interval
+
+### Usage
+Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-time-view.png"/>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/tags)
 
-**Time edit** control allows to specify time interval rounded to days or half-hour chunks
+### Attributes
+Todo: Document all directive attributes
+
+
+## <a name="time_edit"></a> pip-time-edit directive
+
+**pip-time-edit** directive allows to specify time interval rounded to days or half-hour chunks
+
+### Usage
+Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-time-edit.png"/>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/tags)
 
-**Image slider** creates an interactive image carusel with smooth animations. This control is usually used on landing or guidance screens.
+### Attributes
+Todo: Document all directive attributes
+
+
+## <a name="image_slider"></a> pip-image-slider directive
+
+**pip-image-slider** directive creates an interactive image carusel with smooth animations. It is usually used on landing or guidance screens.
+
+### Usage
+Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-slider.png"/>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/image_slider)
+
+### Attributes
+Todo: Document all directive attributes
+
 
 **Markdown** control visualizes hypertext formated as markdown and converted int HTML.
 
