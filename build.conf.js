@@ -35,9 +35,9 @@ module.exports = {
         ]
     },
     samples: {
-        port: 8060,
+        port: 8060
     },
     api: {
-        port: 8061,
+        port: 8061
     }
 };
