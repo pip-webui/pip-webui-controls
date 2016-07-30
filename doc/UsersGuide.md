@@ -277,7 +277,33 @@ Todo: Describe here dialog methods
 
 ## <a name="confirmation_dialog"></a> pipConfirmationDialog
 
-**pipConfirmationDialog** show message with question and YES and NO buttons.
+**pipConfirmationDialog** shows message with question and YES and NO buttons.
+
+### Usage
+Todo: Add code snippet to demonstrate call of the dialog
+
+Todo: Add screenshot with the dialog
+
+### Methods
+Todo: Describe here dialog methods
+
+
+## <a name="error_dialog"></a> pipErrorDialog
+
+**pipErrorDialog** shows error message with collapsible details.
+
+### Usage
+Todo: Add code snippet to demonstrate call of the dialog
+
+Todo: Add screenshot with the dialog
+
+### Methods
+Todo: Describe here dialog methods
+
+
+## <a name="options_dialog"></a> pipOptionsDialog
+
+**pipOptionsDialog** allows to pick one from several available options.
 
 ### Usage
 Todo: Add code snippet to demonstrate call of the dialog
