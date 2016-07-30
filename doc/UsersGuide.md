@@ -7,6 +7,12 @@
 - [pip-time-view directive](#time_view)
 - [pip-time-edit directive](#time_edit)
 - [pip-image-slider directive](#image_slider)
+- [pip-markdown directive](#markdown)
+- [pip-popover directive](#popover)
+- [pip-routing-progress directive](#routing_progress)
+- [pip-refresh-button directive](#refresh_button)
+- [pip-tag-list directive](#tag_list)
+- [pip-toggle-buttons directive](#toggle_buttons)
 - [Questions and bugs](#issues)
 
 
@@ -133,47 +139,101 @@ See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.ht
 Todo: Document all directive attributes
 
 
-**Markdown** control visualizes hypertext formated as markdown and converted int HTML.
+## <a name="markdown"></a> pip-markdown directive
+
+**pip-markdown** directive visualizes hypertext formated as markdown and converted int HTML.
+
+### Usage
+Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-markdown.png"/>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/markdown)
 
-**Popover** control provides nice looking popovers with achors. Usually that control is used for context guidance.
+### Attributes
+Todo: Document all directive attributes
+
+
+## <a name="popover"></a> pip-popover directive
+
+**pip-popover** directive provides nice looking popovers with achors. Usually that control is used for context guidance.
+
+### Usage
+Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-popover.png"/>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/popover)
 
-**Progress** control shows animated ring with a logo inside. It is used in page transitions and initial application loading.
+### Attributes
+Todo: Document all directive attributes
+
+
+## <a name="routing_progress"></a> pip-routing-progress directive
+
+**pip-routing-progress** directive shows animated ring with a logo inside. It is used in page transitions and initial application loading.
+
+### Usage
+Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-progress.png"/>
 
 See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/progress)
 
-**Refresh button** shows at the top of the screen when new data is available. By clicking on it, user triggers the update. It is used as a visual confirmation of he data arrival and helps to manager user expectations.
+### Attributes
+Todo: Document all directive attributes
+
+
+## <a name="refresh_button"></a> pip-refresh-button directive
+
+**pip-refresh-button** shows at the top of the screen when new data is available. By clicking on it, user triggers the update. It is used as a visual confirmation of he data arrival and helps to manager user expectations.
+
+### Usage
+Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-btn-refresh.png"/>
 
 See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/refresh)
 
-**Tags** control visializes a list of read-only chips (tags)
+### Attributes
+Todo: Document all directive attributes
+
+
+## <a name="tag_list"></a> pip-tag-list directive
+
+**pip-tag-list** directive visializes a list of read-only chips (tags)
+
+### Usage
+Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-tags.png"/>
 
 See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/tags)
+
+### Attributes
+Todo: Document all directive attributes
+
+
+## <a name="toggle_buttons"></a> pip-toggle-buttons directive
+
+**pip-toggle-buttons** directive implement multiple radio buttons. Only one of them can be pressed at any time. On phones buttons are replaced with dropdown list.
+
+### Usage
+Todo: Add HTML snipper to demonstrate the directive with all attributes
+
+<img src="images/img-toggle-btns.png"/>
+
+See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/toggle_buttons)
+
+### Attributes
+Todo: Document all directive attributes
+
 
 **Toast** services allows to show toast messages, formatted in different ways and presented in priority order. It ensures that one toast message will not hide another one, until timeout expires or users handles it.
 
 <img src="images/img-toast.png"/>
 
 See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/toasts)
-
-**Toggle buttons** control implement multiple radio buttons. Only one of them can be pressed at any time. On phones buttons are replaced with dropdown list.
-
-<img src="images/img-toggle-btns.png"/>
-
-See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/toggle_buttons)
 
 **Standard dialogs** simplify developer task to show various messages. It includes:
 - Information message dialog
