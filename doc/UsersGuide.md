@@ -13,6 +13,11 @@
 - [pip-refresh-button directive](#refresh_button)
 - [pip-tag-list directive](#tag_list)
 - [pip-toggle-buttons directive](#toggle_buttons)
+- [pipToasts service](#toasts)
+- [pipInformationDialog](#information_dialog)
+- [pipConfirmationDialog](#confirmation_dialog)
+- [pipErrorDialog](#error_dialog)
+- [pipOptionsDialog](#error_dialog)
 - [Questions and bugs](#issues)
 
 
@@ -229,21 +234,26 @@ See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.h
 Todo: Document all directive attributes
 
 
-**Toast** services allows to show toast messages, formatted in different ways and presented in priority order. It ensures that one toast message will not hide another one, until timeout expires or users handles it.
+## <a name="toasts_service"></a> pipToasts service
+
+**pipToast** services allows to show toast messages, formatted in different ways and presented in priority order. It ensures that one toast message will not hide another one, until timeout expires or users handles it.
+
+### Usage
+Todo: Add code snippet to demonstrate use of pipToasts service
 
 <img src="images/img-toast.png"/>
 
 See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/toasts)
 
-**Standard dialogs** simplify developer task to show various messages. It includes:
-- Information message dialog
-- Confirmation message dialog
-- Error message dialog
-- Option selection dialog
+### Methods
+Todo: Describe methods of pipToasts service 
 
-<img src="images/img-info-dialog.png"/>
 
-Standard dialogs require only few lines of code from developers:
+## <a name="information_dialog"></a> pipInformationDialog
+
+**pipInformationDialog** show dialog with information message and OK button.
+
+### Usage
 ```javascript
  pipInformationDialog.show(
         {
@@ -259,7 +269,24 @@ Standard dialogs require only few lines of code from developers:
     );
 ```
 
-See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/color_picker)
+<img src="images/img-info-dialog.png"/>
+
+### Methods
+Todo: Describe here dialog methods
+
+
+## <a name="confirmation_dialog"></a> pipConfirmationDialog
+
+**pipConfirmationDialog** show message with question and YES and NO buttons.
+
+### Usage
+Todo: Add code snippet to demonstrate call of the dialog
+
+Todo: Add screenshot with the dialog
+
+### Methods
+Todo: Describe here dialog methods
+
 
 
 ## <a name="issues"></a> Questions and bugs
