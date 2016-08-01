@@ -21,7 +21,7 @@
 
         'pipDate',
         'pipDateRange',
-        'pipTimeEdit',
+        'pipTimeRangeEdit',
         'pipTimeRange',
 
         'pipInformationDialog',

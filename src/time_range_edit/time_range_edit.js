@@ -2,9 +2,9 @@
 (function (angular, _) {
     'use strict';
 
-    var thisModule = angular.module('pipTimeEdit', ['pipUtils', 'pipTranslate']);
+    var thisModule = angular.module('pipTimeRangeEdit', ['pipUtils', 'pipTranslate']);
 
-    thisModule.directive('pipTimeEdit',
+    thisModule.directive('pipTimeRangeEdit',
         function () {
             return {
                 restrict: 'EA',
@@ -17,13 +17,13 @@
                     disabled: '&ngDisabled',
                     pipSize: '='
                 },
-                templateUrl: 'time_edit/time_edit.html',
-                controller: 'pipTimeEditController'
+                templateUrl: 'time_range_edit/time_range_edit.html',
+                controller: 'pipTimeRangeEditController'
             };
         }
     );
 
-    thisModule.controller('pipTimeEditController',
+    thisModule.controller('pipTimeRangeEditController',
         function ($scope, $element, $attrs, pipDates, pipTranslate) {
 
             function getDateJSON(value) {
@@ -268,7 +268,7 @@
             });
 
             // Add class
-            $element.addClass('pip-time-edit');
+            $element.addClass('pip-time-range-edit');
         }
     );
 
