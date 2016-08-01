@@ -4,8 +4,8 @@
 - [Installing](#install)
 - [pip-color-picker directive](#color_picker)
 - [pip-date directive](#date)
-- [pip-time-view directive](#time_view)
-- [pip-time-edit directive](#time_edit)
+- [pip-time-range directive](#time_range)
+- [pip-time-range-edit directive](#time_range_edit)
 - [pip-image-slider directive](#image_slider)
 - [pip-markdown directive](#markdown)
 - [pip-popover directive](#popover)
@@ -100,14 +100,14 @@ See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.ht
 Todo: Document all directive attributes
 
 
-## <a name="time_view"></a> pip-time-view directive
+## <a name="time_range"></a> pip-time-range directive
 
-**pip-time-view** directive visualizes specific time interval
+**pip-time-range** directive visualizes specific time interval
 
 ### Usage
 Todo: Add HTML snipper to demonstrate the directive with all attributes
 
-<img src="images/img-time-view.png"/>
+<img src="images/img-time-range.png"/>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/tags)
 
@@ -115,14 +115,14 @@ See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.ht
 Todo: Document all directive attributes
 
 
-## <a name="time_edit"></a> pip-time-edit directive
+## <a name="time_range_edit"></a> pip-time-range-edit directive
 
-**pip-time-edit** directive allows to specify time interval rounded to days or half-hour chunks
+**pip-time-range-edit** directive allows to specify time interval rounded to days or half-hour chunks
 
 ### Usage
 Todo: Add HTML snipper to demonstrate the directive with all attributes
 
-<img src="images/img-time-edit.png"/>
+<img src="images/img-time-range-edit.png"/>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/tags)
 
