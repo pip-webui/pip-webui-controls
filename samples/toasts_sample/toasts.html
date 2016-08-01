@@ -1,7 +1,7 @@
-<h2 class="text-title tm0 bm24">Toasts {{ 'SAMPLE' | translate }}</h2>
-<h3 class="text-subhead2">{{ 'SIMPLE' | translate }}</h3>
+<h2 class="text-title tm0 bm24">Toasts {{:: 'SAMPLE' | translate }}</h2>
+<h3 class="text-subhead2">{{:: 'SIMPLE' | translate }}</h3>
 <md-button class="lm0 md-raised md-accent flat"
-           ng-click="onNotificationShow($event)">{{'SHOW_NOTIFICATION' | translate}}
+           ng-click="onNotificationShow($event)">{{::'SHOW_NOTIFICATION' | translate}}
 </md-button>
 
 <pre class="text-body1 color-window-bg p16">
@@ -10,9 +10,9 @@
 </pre>
 
 <md-divider class="tm8 pip-list-divider"></md-divider>
-<h3 class="text-subhead2">{{ 'SMALL' | translate }}</h3>
+<h3 class="text-subhead2">{{:: 'SMALL' | translate }}</h3>
 <md-button class="lm0 md-raised md-accent flat"
-           ng-click="onNotificationSmallShow($event)">{{'SHOW_SMALL_NOTIFICATION' | translate}}
+           ng-click="onNotificationSmallShow($event)">{{::'SHOW_SMALL_NOTIFICATION' | translate}}
 </md-button>
 
 <pre class="text-body1 color-window-bg p16"><h3 class="text-subhead2 m0">{{:: 'CODE' | translate}}</h3>
@@ -20,8 +20,10 @@
 </pre>
 
 <md-divider class="tm8 pip-list-divider"></md-divider>
-<h3 class="text-subhead2">{{ 'NOTIFICATIONS_ERROR' | translate }}</h3>
-<md-button class="lm0 md-raised md-accent flat" ng-click="onErrorShow($event)">{{'SHOW_ERROR' | translate}}</md-button>
+<h3 class="text-subhead2">{{:: 'NOTIFICATIONS_ERROR' | translate }}</h3>
+<md-button class="lm0 md-raised md-accent flat" ng-click="onErrorShow($event)">
+    {{::'SHOW_ERROR' | translate}}
+</md-button>
 
 <pre class="text-body1 color-window-bg p16">
 <h3 class="text-subhead2 m0">{{:: 'CODE' | translate}}</h3>
@@ -38,9 +40,9 @@ pipToasts.showError(pipTranslate.translate('ERROR') + errorCount, null, null, nu
         </pre>
 
 <md-divider class="tm8 pip-list-divider"></md-divider>
-<h3 class="text-subhead2">{{ 'WITHOUT_ACTIONS' | translate }}</h3>
+<h3 class="text-subhead2">{{:: 'WITHOUT_ACTIONS' | translate }}</h3>
 <md-button class="lm0 md-raised md-accent flat"
-           ng-click="onNotificationHideActions($event)">{{'SHOW_NOTIFICATION_WITHOUT_ACTIONS' | translate}}
+           ng-click="onNotificationHideActions($event)">{{::'SHOW_NOTIFICATION_WITHOUT_ACTIONS' | translate}}
 </md-button>
 
 <pre class="text-body1 color-window-bg p16">

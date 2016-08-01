@@ -1,7 +1,7 @@
-<h2 class="text-title tm0 bm24">{{'DATE' | translate}}:</h2>
+<h2 class="text-title tm0 bm24">{{:: 'DATE' | translate}}:</h2>
 <pip-date  pip-time-mode="past" ng-model="specialDate" >
 </pip-date>
-<p class="text-body1 tm16 bm16">{{ 'VALUE' | translate }}: {{ specialDate || 'NULL'  }}</p>
+<p class="text-body1 tm16 bm16">{{:: 'VALUE' | translate }}: {{ specialDate || 'NULL'  }}</p>
 
 <pre class="text-body1 color-window-bg p16">
 <h3 class="text-subhead2 m0">{{:: 'CODE' | translate}}</h3>
@@ -10,7 +10,7 @@
 </code>
 </pre>
 
-<h3 class="text-subhead2">{{ 'DISABLED' | translate }} </h3>
+<h3 class="text-subhead2">{{:: 'DISABLED' | translate }} </h3>
 <pip-date ng-model="specialDate" ng-disabled="true">
 </pip-date>
 
@@ -23,7 +23,7 @@
 
 <md-divider class="tm8 pip-list-divider"></md-divider>
 
-<h2 class="text-title tm24 bm24">{{ 'TIME_EDIT_TIME_VIEW' | translate }}:</h2>
+<h2 class="text-title tm24 bm24">{{:: 'TIME_EDIT_TIME_VIEW' | translate }}:</h2>
 
 <pip-time-edit pip-start-date="startDate" pip-end-date="endDate"></pip-time-edit>
 
@@ -42,7 +42,7 @@
 &lt;/pip-time-range&gt;
 </code>
 </pre>
-<h3 class="text-subhead2">{{ 'DISABLED' | translate }}</h3>
+<h3 class="text-subhead2">{{:: 'DISABLED' | translate }}</h3>
 <pip-time-edit pip-start-date="startDate" pip-end-date="endDate" ng-disabled="true"></pip-time-edit>
 
 <pre class="text-body1 color-window-bg p16">
@@ -54,10 +54,10 @@
 
 <md-divider class="tm8 pip-list-divider"></md-divider>
 
-<h2 class="text-title tm24 bm24">{{ 'DATE_RANGE' | translate }}:</h2>
-<h3 class="text-subhead2">{{ 'DAILY' | translate }}: </h3>
+<h2 class="text-title tm24 bm24">{{:: 'DATE_RANGE' | translate }}:</h2>
+<h3 class="text-subhead2">{{:: 'DAILY' | translate }}: </h3>
 <pip-date-range pip-date-range-type="daily" ng-model="daily"></pip-date-range>
-<p class="text-body1 tm16 bm16">{{ 'VALUE' | translate }}: {{ daily }}</p>
+<p class="text-body1 tm16 bm16">{{:: 'VALUE' | translate }}: {{ daily }}</p>
 
 <pre class="text-body1 color-window-bg p16">
 <h3 class="text-subhead2 m0">{{:: 'CODE' | translate}}</h3>
@@ -68,11 +68,11 @@
 
 <md-divider class="tm8 pip-list-divider"></md-divider>
 
-<h3 class="text-subhead2">{{ 'WEEKLY' | translate}}: </h3>
+<h3 class="text-subhead2">{{:: 'WEEKLY' | translate}}: </h3>
 <pip-date-range pip-date-range-type="weekly" ng-model="weekly"></pip-date-range>
-<p class="text-body1 tm16 bm16">{{ 'VALUE' | translate }}: {{ weekly }}</p>
+<p class="text-body1 tm16 bm16">{{:: 'VALUE' | translate }}: {{ weekly }}</p>
 <md-button class="lm0 md-raised md-accent flat" ng-click="onNextWeek()">
-    {{ 'NEXT_WEEK' | translate }}
+    {{:: 'NEXT_WEEK' | translate }}
 </md-button>
 
 <pre class="text-body1 color-window-bg p16">
@@ -84,9 +84,9 @@
 
 <md-divider class="tm8 pip-list-divider"></md-divider>
 
-<h3 class="text-subhead2">{{ 'MONTHLY' | translate }}: </h3>
+<h3 class="text-subhead2">{{:: 'MONTHLY' | translate }}: </h3>
 <pip-date-range pip-date-range-type="monthly" ng-model="monthly"></pip-date-range>
-<p class="text-body1 tm16 bm16">{{ 'VALUE' | translate }}: {{ monthly }}</p>
+<p class="text-body1 tm16 bm16">{{:: 'VALUE' | translate }}: {{ monthly }}</p>
 
 <h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
 <pre class="text-body1 color-window-bg p16">
@@ -98,9 +98,9 @@
 
 <md-divider class="tm8 pip-list-divider"></md-divider>
 
-<h3 class="text-subhead2">{{ 'YEARLY' | translate}}: </h3>
+<h3 class="text-subhead2">{{:: 'YEARLY' | translate}}: </h3>
 <pip-date-range pip-date-range-type="yearly" ng-model="yearly"></pip-date-range>
-<p class="text-body1 tm16 bm16">{{ 'VALUE' | translate }}: {{ yearly }}</p>
+<p class="text-body1 tm16 bm16">{{:: 'VALUE' | translate }}: {{ yearly }}</p>
 
 <pre class="text-body1 color-window-bg p16">
 <h3 class="text-subhead2 m0">{{:: 'CODE' | translate}}</h3>
