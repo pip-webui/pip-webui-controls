@@ -28,7 +28,6 @@
         'pipConfirmationDialog',
         'pipOptionsDialog',
         'pipOptionsBigDialog',
-        'pipConversionDialog',
         'pipErrorDetailsDialog'
     ]);
 

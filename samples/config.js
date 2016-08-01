@@ -41,9 +41,7 @@
                     controller: 'ConfirmationController', templateUrl: 'confirmation_dialog_sample/confirmation_dialog.html' },
                 { title: 'Options', state: 'options', url: '/options', auth: false,
                     controller: 'OptionsController', templateUrl: 'options_dialog_sample/options_dialog.html' },
-                { title: 'Conversion', state: 'conversion', url: '/conversion', auth: false,
-                    controller: 'ConversionController', templateUrl: 'conversion_dialog_sample/conversion_dialog.html' },
-                { title: 'Toasts', state: 'toasts', url: '/toasts', auth: false,
+               { title: 'Toasts', state: 'toasts', url: '/toasts', auth: false,
                     controller: 'ToastsController', templateUrl: 'toasts_sample/toasts.html' },
                 { title: 'Tags', state: 'tags', url: '/tags', auth: false,
                     controller: 'TagsController', templateUrl: 'tags_sample/tags.html' }

@@ -14,7 +14,7 @@
             'appBasicControls.Markdown', 'appBasicControls.Refresh', 'appBasicControls.ToggleButtons',
             'appBasicControls.Information', 'appBasicControls.Confirmation', 'appBasicControls.Options',
             'appBasicControls.Popover', 'appBasicControls.ImageSlider', 'appBasicControls.Progress',
-            'appBasicControls.Conversion', 'appBasicControls.Tags'
+            'appBasicControls.Tags'
         ]
     );
 
@@ -48,9 +48,6 @@
                     templateUrl: '../samples/confirmation_dialog/confirmation_dialog.html' },
                 { title: 'Options dialogs', state: 'options', url: '/options',
                     controller: 'OptionsController', templateUrl: '../samples/options_dialog/options_dialog.html' },
-                { title: 'Conversion dialogs', state: 'conversion', url: '/conversion',
-                    controller: 'ConversionController', 
-                    templateUrl: '../samples/conversion_dialog/conversion_dialog.html' },
                 { title: 'Toasts', state: 'toasts', url: '/toasts',
                     controller: 'ToastsController', templateUrl: '../samples/toasts/toasts.html' },
                 { title: 'Tags', state: 'tags', url: '/tags',
