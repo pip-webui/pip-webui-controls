@@ -22,7 +22,7 @@
         'pipDate',
         'pipDateRange',
         'pipTimeEdit',
-        'pipTimeView',
+        'pipTimeRange',
 
         'pipInformationDialog',
         'pipConfirmationDialog',

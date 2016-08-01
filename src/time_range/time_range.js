@@ -6,9 +6,9 @@
 (function (angular, _) {
     'use strict';
 
-    var thisModule = angular.module('pipTimeView', ['pipUtils']);
+    var thisModule = angular.module('pipTimeRange', ['pipUtils']);
 
-    thisModule.directive('pipTimeView',
+    thisModule.directive('pipTimeRange',
         function (pipUtils) {
             return {
                 restrict: 'EA',
@@ -16,7 +16,7 @@
                     pipStartDate: '=',
                     pipEndDate: '='
                 },
-                templateUrl: 'time_view/time_view.html',
+                templateUrl: 'time_range/time_range.html',
                 link: function ($scope, $element, $attrs) {
 
                     function getDateJSON(value) {
@@ -59,7 +59,7 @@
                     }
 
                     // Add class
-                    $element.addClass('pip-time-view');
+                    $element.addClass('pip-time-range');
                 }
             };
         }
