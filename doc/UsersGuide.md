@@ -80,8 +80,9 @@ Todo: Document all directive attributes
 
 ### Usage
 ```html
+<pip-date  pip-time-mode="past" ng-model="specialDate" >
+</pip-date>
 ```
-Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 Todo: Add screenshot for pip-date control here
 
@@ -96,8 +97,8 @@ This control can be helpful in various calendars and planning tools.
 
 ### Usage
 ```html
+<pip-date-range pip-date-range-type="daily" ng-model="daily"></pip-date-range>
 ```
-Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-date.png"/>
 
@@ -113,8 +114,8 @@ Todo: Document all directive attributes
 
 ### Usage
 ```html
+<pip-time-range pip-start-date="startDate" pip-end-date="endDate" pip-rebind="true"></pip-time-range>
 ```
-Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-time-range.png"/>
 
@@ -130,8 +131,8 @@ Todo: Document all directive attributes
 
 ### Usage
 ```html
+<pip-time-range-edit pip-start-date="startDate" pip-end-date="endDate"></pip-time-range-edit>
 ```
-Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-time-range-edit.png"/>
 
@@ -147,8 +148,12 @@ Todo: Document all directive attributes
 
 ### Usage
 ```html
+<div pip-image-slider pip-animation-type="'fading'" class="w-stretch" pip-animation-interval="5000">
+     <div class="pip-animation-block w-stretch" ng-repeat="image in images">
+         <img src="{{ image.url }}" alt="{{ image.url }}" class="w-stretch"/>
+     </div>
+</div>
 ```
-Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-slider.png"/>
 
@@ -164,8 +169,8 @@ Todo: Document all directive attributes
 
 ### Usage
 ```html
+<pip-markdown pip-text="text" pip-rebind="true" pip-line-count="5"></pip-markdown>
 ```
-Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-markdown.png"/>
 
@@ -198,8 +203,8 @@ Todo: Document all directive attributes
 
 ### Usage
 ```html
+<pip-routing-progress></pip-routing-progress>
 ```
-Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-progress.png"/>
 
@@ -215,8 +220,9 @@ Todo: Document all directive attributes
 
 ### Usage
 ```html
+<pip-refresh-button pip-text="refreshText" pip-visible="showRefresh" pip-refresh="onRefresh()">
+</pip-refresh-button>
 ```
-Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-btn-refresh.png"/>
 
@@ -232,8 +238,12 @@ Todo: Document all directive attributes
 
 ### Usage
 ```html
+<pip-tag-list pip-tags="tags"
+              pip-type="type"
+              pip-type-local="typeLocal"
+              pip-rebind="true">
+</pip-tag-list>
 ```
-Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-tags.png"/>
 
@@ -249,8 +259,11 @@ Todo: Document all directive attributes
 
 ### Usage
 ```html
+<pip-toggle-buttons ng-model="activeButton"
+                    pip-rebind="true"
+                    pip-buttons="buttonsCollection">
+</pip-toggle-buttons>
 ```
-Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-toggle-btns.png"/>
 
