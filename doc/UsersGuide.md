@@ -79,16 +79,15 @@ See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.ht
 
 ### Usage
 ```html
-<pip-date pip-time-mode="past" ng-model="specialDate" >
+<pip-date pip-time-mode="past" ng-model="specialDate"
+          ng-change="changeFunction" ng-disabled="false">
 </pip-date>
 ```
 
 <img src="images/img-date.png"/>
 
 ### Attributes
-* **pip-time-mode**
-Todo: Document all directive attributes
-
+* **pip-time-mode** - interval of time for forming of dates (past, future). By default not set.
 
 ## <a name="date_range"></a> pip-date-range directive
 
@@ -97,7 +96,8 @@ This control can be helpful in various calendars and planning tools.
 
 ### Usage
 ```html
-<pip-date-range pip-date-range-type="daily" ng-model="daily"></pip-date-range>
+<pip-date-range pip-date-range-type="daily" ng-model="daily"
+                pip-no-line="false"></pip-date-range>
 ```
 
 <img src="images/img-date-range.png"/>
@@ -105,8 +105,8 @@ This control can be helpful in various calendars and planning tools.
 See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/date)
 
 ### Attributes
-Todo: Document all directive attributes
-
+* **pip-date-range-type** - interval of time for forming of dates (daily, weekly, yearly)
+* **pip-no-line** - boolean attribute. If pip-no-line equal true add class 'pip-no-line'. By default equal false
 
 ## <a name="time_range"></a> pip-time-range directive
 
@@ -122,8 +122,8 @@ Todo: Document all directive attributes
 See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/tags)
 
 ### Attributes
-Todo: Document all directive attributes
-
+* **pip-start-date** - first date
+* **pip-end-date** - second date
 
 ## <a name="time_range_edit"></a> pip-time-range-edit directive
 
@@ -139,8 +139,8 @@ Todo: Document all directive attributes
 See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/tags)
 
 ### Attributes
-Todo: Document all directive attributes
-
+* **pip-start-date** - start date
+* **pip-end-date** - end date
 
 ## <a name="image_slider"></a> pip-image-slider directive
 
@@ -160,8 +160,8 @@ Todo: Document all directive attributes
 See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/image_slider)
 
 ### Attributes
-Todo: Document all directive attributes
-
+* **pip-animation-type** - type of animation (carousel, fading)
+* **pip-animation-interval** - interval animation in ms. By default equal 4500 ms
 
 ## <a name="markdown"></a> pip-markdown directive
 
@@ -177,8 +177,9 @@ Todo: Document all directive attributes
 See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/markdown)
 
 ### Attributes
-Todo: Document all directive attributes
-
+* **pip-text** - text object
+* **pip-line-count** - max number of lines for a display
+* **pip-rebind** - binding field pip-text. By default equal false
 
 ## <a name="popover"></a> pip-popover directive
 
@@ -210,10 +211,6 @@ Todo: Document all directive attributes
 
 See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/progress)
 
-### Attributes
-Todo: Document all directive attributes
-
-
 ## <a name="refresh_button"></a> pip-refresh-button directive
 
 **pip-refresh-button** shows at the top of the screen when new data is available. By clicking on it, user triggers the update. It is used as a visual confirmation of he data arrival and helps to manager user expectations.
@@ -229,8 +226,8 @@ Todo: Document all directive attributes
 See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/refresh)
 
 ### Attributes
-Todo: Document all directive attributes
-
+* **pip-text** - string to display text in refresh toast 
+* **pip-refresh** - function for updating string
 
 ## <a name="tag_list"></a> pip-tag-list directive
 
@@ -250,8 +247,10 @@ Todo: Document all directive attributes
 See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/tags)
 
 ### Attributes
-Todo: Document all directive attributes
-
+* **pip-tags** - array of tags
+* **pip-type** - string for type chips
+* **pip-type-local** - string to display type chips
+* **pip-rebind** - binding pip-tags array. By default equal false
 
 ## <a name="toggle_buttons"></a> pip-toggle-buttons directive
 
