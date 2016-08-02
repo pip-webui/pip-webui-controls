@@ -61,7 +61,10 @@ angular.module('myApp',[..., 'pipControls']);
 **pip-color-picker** directive allows to select a color from predefined pallette.
 
 ### Usage
-Todo: Add HTML snipper to demonstrate the directive with all attributes
+```html
+<pip-color-picker ng-model="color" ng-disabled="disabled" pip-colors="colors">
+</pip-color-picker>
+```
 
 <img src="images/img-color-picker.png"/>
 
@@ -76,6 +79,8 @@ Todo: Document all directive attributes
 **pip-date** directive allows to set a date using 3 comboboxes for day, month and year.
 
 ### Usage
+```html
+```
 Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 Todo: Add screenshot for pip-date control here
@@ -90,6 +95,8 @@ Todo: Document all directive attributes
 This control can be helpful in various calendars and planning tools.
 
 ### Usage
+```html
+```
 Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-date.png"/>
@@ -105,6 +112,8 @@ Todo: Document all directive attributes
 **pip-time-range** directive visualizes specific time interval
 
 ### Usage
+```html
+```
 Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-time-range.png"/>
@@ -120,6 +129,8 @@ Todo: Document all directive attributes
 **pip-time-range-edit** directive allows to specify time interval rounded to days or half-hour chunks
 
 ### Usage
+```html
+```
 Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-time-range-edit.png"/>
@@ -135,6 +146,8 @@ Todo: Document all directive attributes
 **pip-image-slider** directive creates an interactive image carusel with smooth animations. It is usually used on landing or guidance screens.
 
 ### Usage
+```html
+```
 Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-slider.png"/>
@@ -150,6 +163,8 @@ Todo: Document all directive attributes
 **pip-markdown** directive visualizes hypertext formated as markdown and converted int HTML.
 
 ### Usage
+```html
+```
 Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-markdown.png"/>
@@ -165,6 +180,8 @@ Todo: Document all directive attributes
 **pip-popover** directive provides nice looking popovers with achors. Usually that control is used for context guidance.
 
 ### Usage
+```html
+```
 Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-popover.png"/>
@@ -180,6 +197,8 @@ Todo: Document all directive attributes
 **pip-routing-progress** directive shows animated ring with a logo inside. It is used in page transitions and initial application loading.
 
 ### Usage
+```html
+```
 Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-progress.png"/>
@@ -195,6 +214,8 @@ Todo: Document all directive attributes
 **pip-refresh-button** shows at the top of the screen when new data is available. By clicking on it, user triggers the update. It is used as a visual confirmation of he data arrival and helps to manager user expectations.
 
 ### Usage
+```html
+```
 Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-btn-refresh.png"/>
@@ -210,6 +231,8 @@ Todo: Document all directive attributes
 **pip-tag-list** directive visializes a list of read-only chips (tags)
 
 ### Usage
+```html
+```
 Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-tags.png"/>
@@ -225,6 +248,8 @@ Todo: Document all directive attributes
 **pip-toggle-buttons** directive implement multiple radio buttons. Only one of them can be pressed at any time. On phones buttons are replaced with dropdown list.
 
 ### Usage
+```html
+```
 Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-toggle-btns.png"/>
