@@ -334,7 +334,7 @@ Todo: Describe here dialog methods
 ### Usage
 Todo: Add code snippet to demonstrate call of the dialog
 
-Todo: Add screenshot with the dialog
+<img src="images/img-errors-dialog.png"/>
 
 ### Methods
 Todo: Describe here dialog methods
