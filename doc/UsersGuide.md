@@ -269,8 +269,8 @@ See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.h
 See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/toggle_buttons)
 
 ### Attributes
-Todo: Document all directive attributes
-
+* **buttonsCollection** - array buttons 
+* **pip-rebind** - binding buttonsCollection array. By default equal false
 
 ## <a name="toasts_service"></a> pipToasts service
 
@@ -285,7 +285,13 @@ See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.h
 
 ### Methods
 Todo: Describe methods of pipToasts service 
-
+* **showNotification**
+* **showMessage**
+* **showError**
+* **hideAllToasts**
+* **clearToasts** - delete 
+* **removeToastsById**
+* **getToastById** - return data toast
 
 ## <a name="information_dialog"></a> pipInformationDialog
 
