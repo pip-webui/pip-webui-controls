@@ -71,8 +71,7 @@ angular.module('myApp',[..., 'pipControls']);
 See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/color_picker)
 
 ### Attributes
-Todo: Document all directive attributes
-
+* **pip-colors** - colors array
 
 ## <a name="date"></a> pip-date directive
 
@@ -80,13 +79,14 @@ Todo: Document all directive attributes
 
 ### Usage
 ```html
-<pip-date  pip-time-mode="past" ng-model="specialDate" >
+<pip-date pip-time-mode="past" ng-model="specialDate" >
 </pip-date>
 ```
 
-Todo: Add screenshot for pip-date control here
+<img src="images/img-date.png"/>
 
 ### Attributes
+* **pip-time-mode**
 Todo: Document all directive attributes
 
 
@@ -100,7 +100,7 @@ This control can be helpful in various calendars and planning tools.
 <pip-date-range pip-date-range-type="daily" ng-model="daily"></pip-date-range>
 ```
 
-<img src="images/img-date.png"/>
+<img src="images/img-date-range.png"/>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/date)
 
