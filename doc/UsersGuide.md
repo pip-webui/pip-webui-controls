@@ -186,17 +186,27 @@ See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.ht
 **pip-popover** directive provides nice looking popovers with achors. Usually that control is used for context guidance.
 
 ### Usage
-```html
+```javascript 
+pipPopover.show({
+   class: 'pip-tip',
+   locals: {
+       title: $scope.title,
+       content: $scope.content
+   },
+   cancelCallback: function () {
+       console.log('backdrop clicked');
+   },
+   controller: 'customController',
+   template: 'custom.html'
+});
 ```
-Todo: Add HTML snipper to demonstrate the directive with all attributes
 
 <img src="images/img-popover.png"/>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/popover)
 
-### Attributes
-Todo: Document all directive attributes
-
+### Methods
+* **show** - open popover
 
 ## <a name="routing_progress"></a> pip-routing-progress directive
 
@@ -277,21 +287,35 @@ See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.h
 **pipToast** services allows to show toast messages, formatted in different ways and presented in priority order. It ensures that one toast message will not hide another one, until timeout expires or users handles it.
 
 ### Usage
-Todo: Add code snippet to demonstrate use of pipToasts service
-
+```javascript
+thisModule.controller('ToastsController',
+  function (pipToasts) {
+  
+     pipToasts.showNotification('Do you want accept goal?', ['accept', 'reject']);
+     ...
+     var error = {
+           path: '/api/1.0/parties/:id/followers',
+           method: 'POST',
+           code: 400,
+           name: 'Bad Request',
+           error: 1402,
+           message: 'Missing party information'
+     };
+     pipToasts.showError(error.message, null, null, null, error);
+ });
+```
 <img src="images/img-toast.png"/>
 
 See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/toasts)
 
 ### Methods
-Todo: Describe methods of pipToasts service 
-* **showNotification**
-* **showMessage**
-* **showError**
-* **hideAllToasts**
-* **clearToasts** - delete 
-* **removeToastsById**
-* **getToastById** - return data toast
+* **showNotification** - show toast with notification message and actions
+* **showMessage** - show toast with notification message 
+* **showError** - show toast with error message
+* **hideAllToasts** - hide all toasts in queue
+* **clearToasts** - delete all toasts in queue
+* **removeToastsById** - delete toast in queue when id toast equal id in params
+* **getToastById** - return data toast by id
 
 ## <a name="information_dialog"></a> pipInformationDialog
 
@@ -316,8 +340,7 @@ Todo: Describe methods of pipToasts service
 <img src="images/img-info-dialog.png"/>
 
 ### Methods
-Todo: Describe here dialog methods
-
+* **show** - open information dialog
 
 ## <a name="confirmation_dialog"></a> pipConfirmationDialog
 
@@ -342,8 +365,7 @@ Todo: Describe here dialog methods
 ```
 
 ### Methods
-Todo: Describe here dialog methods
-
+* **show** - open confirmation dialog
 
 ## <a name="error_dialog"></a> pipErrorDialog
 
@@ -364,8 +386,7 @@ Todo: Describe here dialog methods
 <img src="images/img-errors-dialog.png"/>
 
 ### Methods
-Todo: Describe here dialog methods
-
+* **show** - open errors details dialog
 
 ## <a name="options_dialog"></a> pipOptionsDialog
 
@@ -395,8 +416,7 @@ Todo: Describe here dialog methods
 <img src="images/img-options-dialog.png"/>
 
 ### Methods
-Todo: Describe here dialog methods
-
+* **show** - open options dialog
 
 ## <a name="issues"></a> Questions and bugs
 
