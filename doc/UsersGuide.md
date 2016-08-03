@@ -324,9 +324,22 @@ Todo: Describe here dialog methods
 **pipConfirmationDialog** shows message with question and YES and NO buttons.
 
 ### Usage
-Todo: Add code snippet to demonstrate call of the dialog
-
-Todo: Add screenshot with the dialog
+```javascript
+ pipConfirmationDialog.show(
+        {
+            event: event,
+            title: 'Agree?',
+            ok: 'Agree',
+            cancel: 'Disagree'
+        },
+        function () {
+            console.log('You agreed');
+        },
+        function () {
+            console.log('You disagreed');
+        }
+    );
+```
 
 ### Methods
 Todo: Describe here dialog methods
@@ -337,7 +350,16 @@ Todo: Describe here dialog methods
 **pipErrorDialog** shows error message with collapsible details.
 
 ### Usage
-Todo: Add code snippet to demonstrate call of the dialog
+```javascript
+ pipErrorDetailsDialog.show(
+     {
+         error: $scope.error,
+         ok: 'Ok'
+     },
+     function () {},
+     function () {}
+ );
+```
 
 <img src="images/img-errors-dialog.png"/>
 
@@ -350,7 +372,25 @@ Todo: Describe here dialog methods
 **pipOptionsDialog** allows to pick one from several available options.
 
 ### Usage
-Todo: Add code snippet to demonstrate call of the dialog
+```javascript
+ pipOptionsDialog.show(
+        {
+            event: event,
+            title: 'Choose Option',
+            options: [
+                { icon: 'star', name: 'option_1', title: 'Option 1', active: true },
+                { icon: 'star', name: 'option_2', title: 'Option 2' },
+                { icon: 'star', name: 'option_3', title: 'Option 3' },
+                { name: 'option_4', title: 'Option 4' },
+                { name: 'option_5', title: 'Option 5' }
+            ]
+        },
+        function(option) {
+            var optionName = option ? option.name : null;
+            console.log('Selected option: ' + optionName);
+        }
+    );
+```
 
 <img src="images/img-options-dialog.png"/>
 
