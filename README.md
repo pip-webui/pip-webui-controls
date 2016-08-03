@@ -14,13 +14,15 @@ See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.ht
 
 **Date** control allows to set a date using 3 comboboxes for day, month and year.
 
-Todo: Add screenshot for pip-date control here
+<a href="doc/images/img-date.png" style="border: 3px ridge #c8d2df; display: inline-block">
+    <img src="images/img-date.png"/>
+</a>
 
 **Date range** control allows to pick a specific date range on daily, weekly, monthly or yearly time interval. 
 This control can be helpful in various calendars and planning tools.
 
-<a href="doc/images/img-date.png" style="border: 3px ridge #c8d2df; display: inline-block">
-    <img src="doc/images/img-date.png"/>
+<a href="doc/images/img-date-range.png" style="border: 3px ridge #c8d2df; display: inline-block">
+    <img src="doc/images/img-date-range.png"/>
 </a>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/date)
