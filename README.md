@@ -27,18 +27,18 @@ This control can be helpful in various calendars and planning tools.
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/date)
 
-**Time view** control visualizes specific time interval
+**Time range** control visualizes specific time interval
 
-<a href="doc/images/img-time-view.png" style="border: 3px ridge #c8d2df; display: inline-block">
-    <img src="doc/images/img-time-view.png"/>
+<a href="doc/images/img-time-range.png" style="border: 3px ridge #c8d2df; display: inline-block">
+    <img src="doc/images/img-time-range.png"/>
 </a>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/tags)
 
-**Time edit** control allows to specify time interval rounded to days or half-hour chunks
+**Time range** control allows to specify time interval rounded to days or half-hour chunks
 
-<a href="doc/images/img-time-edit.png" style="border: 3px ridge #c8d2df; display: inline-block">
-    <img src="doc/images/img-time-edit.png"/>
+<a href="doc/images/img-time-range-edit.png" style="border: 3px ridge #c8d2df; display: inline-block">
+    <img src="doc/images/img-time-range-edit.png"/>
 </a>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/tags)
