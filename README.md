@@ -33,7 +33,7 @@ See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.ht
     <img src="doc/images/img-time-range.png"/>
 </a>
 
-See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/tags)
+See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/time_range)
 
 **Time range** control allows to specify time interval rounded to days or half-hour chunks
 
@@ -41,7 +41,7 @@ See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.ht
     <img src="doc/images/img-time-range-edit.png"/>
 </a>
 
-See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/tags)
+See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/time_range_edit)
 
 **Image slider** creates an interactive image carusel with smooth animations. This control is usually used on landing or guidance screens.
 
