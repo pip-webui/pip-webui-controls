@@ -29,6 +29,7 @@
         "tests",
         "samples",
         "scripts",
+        "cordova",
         "build.*",
         "gulpfile.js",
         "karma.conf.js"
