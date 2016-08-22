@@ -91,6 +91,111 @@ try {
   module = angular.module('pipBasicControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('date_range/date_range.html',
+    '<!--\n' +
+    '@file Date range control content\n' +
+    '@copyright Digital Living Software Corp. 2014-2016\n' +
+    '-->\n' +
+    '\n' +
+    '<div class="pip-date-range layout-row flex" tabindex="-1">\n' +
+    '    <md-input-container ng-show="isDay()" class="tm0 pip-day flex"\n' +
+    '            ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
+    '        <md-select class="select-day w-stretch"\n' +
+    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
+    '                   ng-disable="{{disableControls}}"\n' +
+    '                   md-on-open="onDayClick()"\n' +
+    '                   ng-model="day"\n' +
+    '                   ng-change="onDayChanged()"\n' +
+    '                   placeholder="{{dayLabel}}"\n' +
+    '                   aria-label="DAY">\n' +
+    '\n' +
+    '            <md-option ng-value="opt" ng-repeat="opt in days track by opt ">\n' +
+    '               {{nameDays[$index]}} {{ opt }}\n' +
+    '            </md-option>\n' +
+    '        </md-select>\n' +
+    '    </md-input-container>\n' +
+    '    <md-input-container ng-show="isWeek()" class="tm0 flex"\n' +
+    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
+    '        <md-select class="select-week w-stretch"\n' +
+    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
+    '                   ng-disable="{{disableControls}}"\n' +
+    '                   ng-model="week"\n' +
+    '                   ng-change="onWeekChange()"\n' +
+    '                   placeholder="{{weekLabel}}"\n' +
+    '                   aria-label="WEEK">\n' +
+    '\n' +
+    '            <md-option ng-value="opt.id" ng-repeat="opt in weeks track by opt.id">\n' +
+    '                {{ opt.name }}\n' +
+    '            </md-option>\n' +
+    '        </md-select>\n' +
+    '    </md-input-container >\n' +
+    '    <div class="flex-fixed"\n' +
+    '         ng-class="{\'w16\': $mdMedia(\'gt-xs\'), \'w8\':  $mdMedia(\'xs\')}"\n' +
+    '         ng-show="isDay() || isWeek()">\n' +
+    '    </div>\n' +
+    '    <md-input-container ng-show="isMonth() && !monthFormatShort " class="tm0 flex min-w72"\n' +
+    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
+    '        <md-select class="select-month w-stretch"\n' +
+    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
+    '                   ng-disable="{{disableControls}}"\n' +
+    '                   md-on-open="onMonthClick()"\n' +
+    '                   ng-model="month"\n' +
+    '                   ng-change="onMonthChanged()"\n' +
+    '                   placeholder="{{monthLabel}}"\n' +
+    '                   aria-label="MONTH">\n' +
+    '\n' +
+    '            <md-option ng-value="opt.id" ng-repeat="opt in months track by opt.id">\n' +
+    '                {{ opt.name }}\n' +
+    '            </md-option>\n' +
+    '        </md-select>\n' +
+    '    </md-input-container>\n' +
+    '    <md-input-container ng-show="isMonth() && monthFormatShort" class="flex tm0"\n' +
+    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
+    '        <md-select class="select-month w-stretch"\n' +
+    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
+    '                   ng-disable="{{disableControls}}"\n' +
+    '                   md-on-open="onMonthClick()"\n' +
+    '                   ng-model="month"\n' +
+    '                   ng-change="onMonthChanged()"\n' +
+    '                   placeholder="{{monthLabel}}"\n' +
+    '                   aria-label="MONTH">\n' +
+    '\n' +
+    '            <md-option ng-value="opt.id" ng-repeat="opt in shortMonths track by opt.id">\n' +
+    '                {{ opt.name }}\n' +
+    '            </md-option>\n' +
+    '        </md-select>\n' +
+    '    </md-input-container>\n' +
+    '    <div class="flex-fixed"\n' +
+    '         ng-class="{\'w16\': $mdMedia(\'gt-xs\'), \'w8\':  $mdMedia(\'xs\')}"\n' +
+    '         ng-show="isMonth()">\n' +
+    '    </div>\n' +
+    '    <md-input-container class="tm0 flex"\n' +
+    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
+    '        <md-select class="select-year w-stretch"\n' +
+    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
+    '                   ng-disable="{{disableControls}}"\n' +
+    '                   md-on-open="onYearClick()"\n' +
+    '                   ng-model="year"\n' +
+    '                   ng-change="onYearChanged()"\n' +
+    '                   placeholder="{{yearLabel}}"\n' +
+    '                   aria-label="YEAR">\n' +
+    '\n' +
+    '            <md-option ng-value="opt" ng-repeat="opt in years track by opt">\n' +
+    '                {{ opt }}\n' +
+    '            </md-option>\n' +
+    '        </md-select>\n' +
+    '    </md-input-container>\n' +
+    '</div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipBasicControls.Templates');
+} catch (e) {
+  module = angular.module('pipBasicControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('date/date.html',
     '<!--\n' +
     '@file Date control content\n' +
@@ -188,111 +293,6 @@ module.run(['$templateCache', function($templateCache) {
     '    </div>\n' +
     '</md-dialog>\n' +
     '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipBasicControls.Templates');
-} catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('date_range/date_range.html',
-    '<!--\n' +
-    '@file Date range control content\n' +
-    '@copyright Digital Living Software Corp. 2014-2016\n' +
-    '-->\n' +
-    '\n' +
-    '<div class="pip-date-range layout-row flex" tabindex="-1">\n' +
-    '    <md-input-container ng-show="isDay()" class="tm0 pip-day flex"\n' +
-    '            ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
-    '        <md-select class="select-day w-stretch"\n' +
-    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
-    '                   ng-disable="{{disableControls}}"\n' +
-    '                   md-on-open="onDayClick()"\n' +
-    '                   ng-model="day"\n' +
-    '                   ng-change="onDayChanged()"\n' +
-    '                   placeholder="{{dayLabel}}"\n' +
-    '                   aria-label="DAY">\n' +
-    '\n' +
-    '            <md-option ng-value="opt" ng-repeat="opt in days track by opt ">\n' +
-    '               {{nameDays[$index]}} {{ opt }}\n' +
-    '            </md-option>\n' +
-    '        </md-select>\n' +
-    '    </md-input-container>\n' +
-    '    <md-input-container ng-show="isWeek()" class="tm0 flex"\n' +
-    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
-    '        <md-select class="select-week w-stretch"\n' +
-    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
-    '                   ng-disable="{{disableControls}}"\n' +
-    '                   ng-model="week"\n' +
-    '                   ng-change="onWeekChange()"\n' +
-    '                   placeholder="{{weekLabel}}"\n' +
-    '                   aria-label="WEEK">\n' +
-    '\n' +
-    '            <md-option ng-value="opt.id" ng-repeat="opt in weeks track by opt.id">\n' +
-    '                {{ opt.name }}\n' +
-    '            </md-option>\n' +
-    '        </md-select>\n' +
-    '    </md-input-container >\n' +
-    '    <div class="flex-fixed"\n' +
-    '         ng-class="{\'w16\': $mdMedia(\'gt-xs\'), \'w8\':  $mdMedia(\'xs\')}"\n' +
-    '         ng-show="isDay() || isWeek()">\n' +
-    '    </div>\n' +
-    '    <md-input-container ng-show="isMonth() && !monthFormatShort " class="tm0 flex min-w72"\n' +
-    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
-    '        <md-select class="select-month w-stretch"\n' +
-    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
-    '                   ng-disable="{{disableControls}}"\n' +
-    '                   md-on-open="onMonthClick()"\n' +
-    '                   ng-model="month"\n' +
-    '                   ng-change="onMonthChanged()"\n' +
-    '                   placeholder="{{monthLabel}}"\n' +
-    '                   aria-label="MONTH">\n' +
-    '\n' +
-    '            <md-option ng-value="opt.id" ng-repeat="opt in months track by opt.id">\n' +
-    '                {{ opt.name }}\n' +
-    '            </md-option>\n' +
-    '        </md-select>\n' +
-    '    </md-input-container>\n' +
-    '    <md-input-container ng-show="isMonth() && monthFormatShort" class="flex tm0"\n' +
-    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
-    '        <md-select class="select-month w-stretch"\n' +
-    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
-    '                   ng-disable="{{disableControls}}"\n' +
-    '                   md-on-open="onMonthClick()"\n' +
-    '                   ng-model="month"\n' +
-    '                   ng-change="onMonthChanged()"\n' +
-    '                   placeholder="{{monthLabel}}"\n' +
-    '                   aria-label="MONTH">\n' +
-    '\n' +
-    '            <md-option ng-value="opt.id" ng-repeat="opt in shortMonths track by opt.id">\n' +
-    '                {{ opt.name }}\n' +
-    '            </md-option>\n' +
-    '        </md-select>\n' +
-    '    </md-input-container>\n' +
-    '    <div class="flex-fixed"\n' +
-    '         ng-class="{\'w16\': $mdMedia(\'gt-xs\'), \'w8\':  $mdMedia(\'xs\')}"\n' +
-    '         ng-show="isMonth()">\n' +
-    '    </div>\n' +
-    '    <md-input-container class="tm0 flex"\n' +
-    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
-    '        <md-select class="select-year w-stretch"\n' +
-    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
-    '                   ng-disable="{{disableControls}}"\n' +
-    '                   md-on-open="onYearClick()"\n' +
-    '                   ng-model="year"\n' +
-    '                   ng-change="onYearChanged()"\n' +
-    '                   placeholder="{{yearLabel}}"\n' +
-    '                   aria-label="YEAR">\n' +
-    '\n' +
-    '            <md-option ng-value="opt" ng-repeat="opt in years track by opt">\n' +
-    '                {{ opt }}\n' +
-    '            </md-option>\n' +
-    '        </md-select>\n' +
-    '    </md-input-container>\n' +
-    '</div>');
 }]);
 })();
 
@@ -838,6 +838,255 @@ module.run(['$templateCache', function($templateCache) {
 })(window.angular);
 
 /**
+ * @file Date control
+ * @copyright Digital Living Software Corp. 2014-2016
+ * @todo
+ * - Improve samples int sampler app
+ * - Optimize. It is way to slow on samples
+ */
+
+(function (angular, _) {
+    'use strict';
+
+    var thisModule = angular.module('pipDate', ['pipBasicControls.Templates']);
+
+    thisModule.directive('pipDate',
+        function () {
+            return {
+                restrict: 'EA',
+                require: 'ngModel',
+                scope: {
+                    timeMode: '@pipTimeMode',
+                    disabled: '&ngDisabled',
+                    model: '=ngModel',
+                    ngChange: '&'
+                },
+                templateUrl: 'date/date.html',
+                controller: 'pipDateController'
+            };
+        }
+    );
+
+    thisModule.controller('pipDateController',
+        ['$scope', '$element', 'pipTranslate', function ($scope, $element, pipTranslate) {
+            var value;
+
+            function dayList(month, year) {
+                var count = 31, days = [], i;
+
+                if (month === 4 || month === 6 || month === 9 || month === 11) {
+                    count = 30;
+                } else if (month === 2) {
+                    if (year) {
+                        // Calculate leap year (primitive)
+                        count = year % 4 === 0 ? 29 : 28;
+                    } else {
+                        count = 28;
+                    }
+                }
+
+                for (i = 1; i <= count; i++) {
+                    days.push(i);
+                }
+
+                return days;
+            }
+
+            function monthList() {
+                var months = [], i;
+
+                for (i = 1; i <= 12; i++) {
+                    months.push({
+                        id: i,
+                        name: pipTranslate.translate('MONTH_' + i)
+                    });
+                }
+
+                return months;
+            }
+
+            function yearList() {
+                var i,
+                    currentYear = new Date().getFullYear(),
+                    startYear = $scope.timeMode === 'future' ? currentYear : currentYear - 100,
+                    endYear = $scope.timeMode === 'past' ? currentYear : currentYear + 100,
+                    years = [];
+
+                if ($scope.timeMode === 'past') {
+                    for (i = endYear; i >= startYear; i--) {
+                        years.push(i);
+                    }
+                } else {
+                    for (i = startYear; i <= endYear; i++) {
+                        years.push(i);
+                    }
+                }
+
+                return years;
+            }
+
+            function adjustDay() {
+                var days = dayList($scope.month, $scope.year);
+
+                if ($scope.days.length !== days.length) {
+                    if ($scope.day > days.length) {
+                        $scope.day = days.length;
+                    }
+
+                    $scope.days = days;
+                }
+            }
+
+            function getValue(v) {
+                var value = v ? _.isDate(v) ? v : new Date(v) : null,
+                    day = value ? value.getDate() : null,
+                    month = value ? value.getMonth() + 1 : null,
+                    year = value ? value.getFullYear() : null;
+
+                // Update day list if month and year were changed
+                if ($scope.month !== month && $scope.year !== year) {
+                    $scope.days = dayList($scope.month, $scope.year);
+                }
+
+                // Assign values to scope
+                $scope.day = day;
+                $scope.month = month;
+                $scope.year = year;
+            }
+
+            function setValue() {
+                var value;
+
+                if ($scope.day && $scope.month && $scope.year) {
+                    value = new Date($scope.year, $scope.month - 1, $scope.day, 0, 0, 0, 0);
+                    $scope.model = value;
+                    $scope.ngChange();
+                }
+            }
+
+            $scope.onDayChanged = function () {
+                setValue();
+            };
+
+            $scope.onMonthChanged = function () {
+                adjustDay();
+                setValue();
+            };
+
+            $scope.onYearChanged = function () {
+                adjustDay();
+                setValue();
+            };
+
+            // Set initial values
+            value = $scope.model ? _.isDate($scope.model) ? $scope.model : new Date($scope.model) : null;
+            $scope.day = value ? value.getDate() : null;
+            $scope.month = value ? value.getMonth() + 1 : null;
+            $scope.year = value ? value.getFullYear() : null;
+
+            $scope.dayLabel = pipTranslate.translate('DAY');
+            $scope.monthLabel = pipTranslate.translate('MONTH');
+            $scope.yearLabel = pipTranslate.translate('YEAR');
+
+            $scope.days = dayList($scope.month, $scope.year);
+            $scope.months = monthList();
+            $scope.years = yearList();
+
+            $scope.disableControls = $scope.disabled ? $scope.disabled() : false;
+
+            // React on changes
+            $scope.$watch('model', function (newValue) {
+                getValue(newValue);
+            });
+
+            $scope.$watch($scope.disabled, function (newValue) {
+                $scope.disableControls = newValue;
+            });
+        }]
+    );
+
+})(window.angular, window._);
+
+
+/**
+ * @file Confirmation dialog
+ * @copyright Digital Living Software Corp. 2014-2016
+ * @todo
+ * - Improve sample in sampler app
+ */
+
+(function (angular) {
+    'use strict';
+
+    var thisModule = angular.module('pipErrorDetailsDialog',
+        ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
+
+    /* eslint-disable quote-props */
+    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            'ERROR_DETAILS': 'Error details',
+            'CODE': 'Code',
+            'PATH': 'Path',
+            'ERROR': 'Error code',
+            'METHOD': 'Method',
+            'MESSAGE': 'Message'
+
+        });
+        pipTranslateProvider.translations('ru', {
+            'ERROR_DETAILS': 'Детали ошибки',
+            'CODE': 'Код',
+            'PATH': 'Путь',
+            'ERROR': 'Код ошибки',
+            'METHOD': 'Метод',
+            'MESSAGE': 'Сообщение'
+        });
+    }]);
+    /* eslint-enable quote-props */
+
+    thisModule.factory('pipErrorDetailsDialog',
+        ['$mdDialog', function ($mdDialog) {
+            return {
+                show: function (params, successCallback, cancelCallback) {
+                    $mdDialog.show({
+                        targetEvent: params.event,
+                        templateUrl: 'error_details_dialog/error_details_dialog.html',
+                        controller: 'pipErrorDetailsDialogController',
+                        locals: {params: params},
+                        clickOutsideToClose: true
+                    })
+                        .then(function () {
+                            if (successCallback) {
+                                successCallback();
+                            }
+                        }, function () {
+                            if (cancelCallback) {
+                                cancelCallback();
+                            }
+                        });
+                }
+            };
+        }]
+    );
+
+    thisModule.controller('pipErrorDetailsDialogController',
+        ['$scope', '$rootScope', '$mdDialog', 'pipTranslate', 'params', function ($scope, $rootScope, $mdDialog, pipTranslate, params) {
+            $scope.error = params.error;
+            $scope.ok = params.ok || 'OK';
+            $scope.cancel = params.cancel || 'CANCEL';
+
+            $scope.onCancel = function () {
+                $mdDialog.cancel();
+            };
+
+            $scope.onOk = function () {
+                $mdDialog.hide();
+            };
+        }]
+    );
+
+})(window.angular);
+
+/**
  * @file Date range control
  * @copyright Digital Living Software Corp. 2014-2016
  * @todo
@@ -1251,255 +1500,6 @@ module.run(['$templateCache', function($templateCache) {
     );
 
 })(window.angular, window._);
-
-/**
- * @file Date control
- * @copyright Digital Living Software Corp. 2014-2016
- * @todo
- * - Improve samples int sampler app
- * - Optimize. It is way to slow on samples
- */
-
-(function (angular, _) {
-    'use strict';
-
-    var thisModule = angular.module('pipDate', ['pipBasicControls.Templates']);
-
-    thisModule.directive('pipDate',
-        function () {
-            return {
-                restrict: 'EA',
-                require: 'ngModel',
-                scope: {
-                    timeMode: '@pipTimeMode',
-                    disabled: '&ngDisabled',
-                    model: '=ngModel',
-                    ngChange: '&'
-                },
-                templateUrl: 'date/date.html',
-                controller: 'pipDateController'
-            };
-        }
-    );
-
-    thisModule.controller('pipDateController',
-        ['$scope', '$element', 'pipTranslate', function ($scope, $element, pipTranslate) {
-            var value;
-
-            function dayList(month, year) {
-                var count = 31, days = [], i;
-
-                if (month === 4 || month === 6 || month === 9 || month === 11) {
-                    count = 30;
-                } else if (month === 2) {
-                    if (year) {
-                        // Calculate leap year (primitive)
-                        count = year % 4 === 0 ? 29 : 28;
-                    } else {
-                        count = 28;
-                    }
-                }
-
-                for (i = 1; i <= count; i++) {
-                    days.push(i);
-                }
-
-                return days;
-            }
-
-            function monthList() {
-                var months = [], i;
-
-                for (i = 1; i <= 12; i++) {
-                    months.push({
-                        id: i,
-                        name: pipTranslate.translate('MONTH_' + i)
-                    });
-                }
-
-                return months;
-            }
-
-            function yearList() {
-                var i,
-                    currentYear = new Date().getFullYear(),
-                    startYear = $scope.timeMode === 'future' ? currentYear : currentYear - 100,
-                    endYear = $scope.timeMode === 'past' ? currentYear : currentYear + 100,
-                    years = [];
-
-                if ($scope.timeMode === 'past') {
-                    for (i = endYear; i >= startYear; i--) {
-                        years.push(i);
-                    }
-                } else {
-                    for (i = startYear; i <= endYear; i++) {
-                        years.push(i);
-                    }
-                }
-
-                return years;
-            }
-
-            function adjustDay() {
-                var days = dayList($scope.month, $scope.year);
-
-                if ($scope.days.length !== days.length) {
-                    if ($scope.day > days.length) {
-                        $scope.day = days.length;
-                    }
-
-                    $scope.days = days;
-                }
-            }
-
-            function getValue(v) {
-                var value = v ? _.isDate(v) ? v : new Date(v) : null,
-                    day = value ? value.getDate() : null,
-                    month = value ? value.getMonth() + 1 : null,
-                    year = value ? value.getFullYear() : null;
-
-                // Update day list if month and year were changed
-                if ($scope.month !== month && $scope.year !== year) {
-                    $scope.days = dayList($scope.month, $scope.year);
-                }
-
-                // Assign values to scope
-                $scope.day = day;
-                $scope.month = month;
-                $scope.year = year;
-            }
-
-            function setValue() {
-                var value;
-
-                if ($scope.day && $scope.month && $scope.year) {
-                    value = new Date($scope.year, $scope.month - 1, $scope.day, 0, 0, 0, 0);
-                    $scope.model = value;
-                    $scope.ngChange();
-                }
-            }
-
-            $scope.onDayChanged = function () {
-                setValue();
-            };
-
-            $scope.onMonthChanged = function () {
-                adjustDay();
-                setValue();
-            };
-
-            $scope.onYearChanged = function () {
-                adjustDay();
-                setValue();
-            };
-
-            // Set initial values
-            value = $scope.model ? _.isDate($scope.model) ? $scope.model : new Date($scope.model) : null;
-            $scope.day = value ? value.getDate() : null;
-            $scope.month = value ? value.getMonth() + 1 : null;
-            $scope.year = value ? value.getFullYear() : null;
-
-            $scope.dayLabel = pipTranslate.translate('DAY');
-            $scope.monthLabel = pipTranslate.translate('MONTH');
-            $scope.yearLabel = pipTranslate.translate('YEAR');
-
-            $scope.days = dayList($scope.month, $scope.year);
-            $scope.months = monthList();
-            $scope.years = yearList();
-
-            $scope.disableControls = $scope.disabled ? $scope.disabled() : false;
-
-            // React on changes
-            $scope.$watch('model', function (newValue) {
-                getValue(newValue);
-            });
-
-            $scope.$watch($scope.disabled, function (newValue) {
-                $scope.disableControls = newValue;
-            });
-        }]
-    );
-
-})(window.angular, window._);
-
-
-/**
- * @file Confirmation dialog
- * @copyright Digital Living Software Corp. 2014-2016
- * @todo
- * - Improve sample in sampler app
- */
-
-(function (angular) {
-    'use strict';
-
-    var thisModule = angular.module('pipErrorDetailsDialog',
-        ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
-
-    /* eslint-disable quote-props */
-    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            'ERROR_DETAILS': 'Error details',
-            'CODE': 'Code',
-            'PATH': 'Path',
-            'ERROR': 'Error code',
-            'METHOD': 'Method',
-            'MESSAGE': 'Message'
-
-        });
-        pipTranslateProvider.translations('ru', {
-            'ERROR_DETAILS': 'Детали ошибки',
-            'CODE': 'Код',
-            'PATH': 'Путь',
-            'ERROR': 'Код ошибки',
-            'METHOD': 'Метод',
-            'MESSAGE': 'Сообщение'
-        });
-    }]);
-    /* eslint-enable quote-props */
-
-    thisModule.factory('pipErrorDetailsDialog',
-        ['$mdDialog', function ($mdDialog) {
-            return {
-                show: function (params, successCallback, cancelCallback) {
-                    $mdDialog.show({
-                        targetEvent: params.event,
-                        templateUrl: 'error_details_dialog/error_details_dialog.html',
-                        controller: 'pipErrorDetailsDialogController',
-                        locals: {params: params},
-                        clickOutsideToClose: true
-                    })
-                        .then(function () {
-                            if (successCallback) {
-                                successCallback();
-                            }
-                        }, function () {
-                            if (cancelCallback) {
-                                cancelCallback();
-                            }
-                        });
-                }
-            };
-        }]
-    );
-
-    thisModule.controller('pipErrorDetailsDialogController',
-        ['$scope', '$rootScope', '$mdDialog', 'pipTranslate', 'params', function ($scope, $rootScope, $mdDialog, pipTranslate, params) {
-            $scope.error = params.error;
-            $scope.ok = params.ok || 'OK';
-            $scope.cancel = params.cancel || 'CANCEL';
-
-            $scope.onCancel = function () {
-                $mdDialog.cancel();
-            };
-
-            $scope.onOk = function () {
-                $mdDialog.hide();
-            };
-        }]
-    );
-
-})(window.angular);
 
 /**
  * @file Image slider control
@@ -2315,6 +2315,29 @@ module.run(['$templateCache', function($templateCache) {
 })(window.angular, window.jQuery, window._);
 
 /**
+ * @file Routing progress control
+ * @description
+ * This progress control is enabled by ui router
+ * while switching between pages
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+(function (angular) {
+    'use strict';
+
+    var thisModule = angular.module('pipRoutingProgress', ['ngMaterial']);
+
+    thisModule.directive('pipRoutingProgress', function () {
+        return {
+            restrict: 'EA',
+            replace: true,
+            templateUrl: 'progress/routing_progress.html'
+        };
+    });
+
+})(window.angular);
+
+/**
  * @file Refresh button control
  * @copyright Digital Living Software Corp. 2014-2016
  */
@@ -2382,29 +2405,6 @@ module.run(['$templateCache', function($templateCache) {
 
 })(window.angular);
 
-
-/**
- * @file Routing progress control
- * @description
- * This progress control is enabled by ui router
- * while switching between pages
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-(function (angular) {
-    'use strict';
-
-    var thisModule = angular.module('pipRoutingProgress', ['ngMaterial']);
-
-    thisModule.directive('pipRoutingProgress', function () {
-        return {
-            restrict: 'EA',
-            replace: true,
-            templateUrl: 'progress/routing_progress.html'
-        };
-    });
-
-})(window.angular);
 
 /**
  * @file Tag list control
@@ -2806,84 +2806,6 @@ module.run(['$templateCache', function($templateCache) {
 })(window.angular, window._);
 
 /**
- * @file Toggle buttons control
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-(function (angular, _) {
-    'use strict';
-
-    var thisModule = angular.module('pipToggleButtons', ['pipBasicControls.Templates']);
-
-    thisModule.directive('pipToggleButtons',
-        function () {
-            return {
-                restrict: 'EA',
-                scope: {
-                    ngDisabled: '&',
-                    buttons: '=pipButtons',
-                    currentButtonValue: '=ngModel',
-                    currentButton: '=?pipButtonObject',
-                    change: '&ngChange'
-                },
-                templateUrl: 'toggle_buttons/toggle_buttons.html',
-                controller: ['$scope', '$element', '$attrs', '$mdMedia', '$timeout', function ($scope, $element, $attrs, $mdMedia, $timeout) {
-                    var index;
-
-                    $scope.$mdMedia = $mdMedia;
-                    $scope.class = $attrs.class || '';
-
-                    if (!$scope.buttons || _.isArray($scope.buttons) && $scope.buttons.length === 0) {
-                        $scope.buttons = [];
-                    }
-
-                    index = _.indexOf($scope.buttons, _.find($scope.buttons, {id: $scope.currentButtonValue}));
-                    $scope.currentButtonIndex = index < 0 ? 0 : index;
-                    $scope.currentButton = $scope.buttons.length > 0 ? $scope.buttons[$scope.currentButtonIndex]
-                        : $scope.currentButton;
-
-                    $scope.buttonSelected = function (index) {
-                        if ($scope.disabled()) {
-                            return;
-                        }
-
-                        $scope.currentButtonIndex = index;
-                        $scope.currentButton = $scope.buttons[$scope.currentButtonIndex];
-                        $scope.currentButtonValue = $scope.currentButton.id || index;
-
-                        $timeout(function () {
-                            if ($scope.change) {
-                                $scope.change();
-                            }
-                        });
-                    };
-
-                    $scope.enterSpacePress = function (event) {
-                        $scope.buttonSelected(event.index);
-                    };
-
-                    $scope.disabled = function () {
-                        if ($scope.ngDisabled) {
-                            return $scope.ngDisabled();
-                        }
-                    };
-                }],
-                link: function (scope, elem) {
-                    elem
-                        .on('focusin', function () {
-                            elem.addClass('focused-container');
-                        })
-                        .on('focusout', function () {
-                            elem.removeClass('focused-container');
-                        });
-                }
-            };
-        }
-    );
-
-})(window.angular, window._);
-
-/**
  * @file Toasts management service
  * @copyright Digital Living Software Corp. 2014-2016
  * @todo Replace ngAudio with alternative service
@@ -3132,6 +3054,84 @@ module.run(['$templateCache', function($templateCache) {
                 }
             }
         }]
+    );
+
+})(window.angular, window._);
+
+/**
+ * @file Toggle buttons control
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+(function (angular, _) {
+    'use strict';
+
+    var thisModule = angular.module('pipToggleButtons', ['pipBasicControls.Templates']);
+
+    thisModule.directive('pipToggleButtons',
+        function () {
+            return {
+                restrict: 'EA',
+                scope: {
+                    ngDisabled: '&',
+                    buttons: '=pipButtons',
+                    currentButtonValue: '=ngModel',
+                    currentButton: '=?pipButtonObject',
+                    change: '&ngChange'
+                },
+                templateUrl: 'toggle_buttons/toggle_buttons.html',
+                controller: ['$scope', '$element', '$attrs', '$mdMedia', '$timeout', function ($scope, $element, $attrs, $mdMedia, $timeout) {
+                    var index;
+
+                    $scope.$mdMedia = $mdMedia;
+                    $scope.class = $attrs.class || '';
+
+                    if (!$scope.buttons || _.isArray($scope.buttons) && $scope.buttons.length === 0) {
+                        $scope.buttons = [];
+                    }
+
+                    index = _.indexOf($scope.buttons, _.find($scope.buttons, {id: $scope.currentButtonValue}));
+                    $scope.currentButtonIndex = index < 0 ? 0 : index;
+                    $scope.currentButton = $scope.buttons.length > 0 ? $scope.buttons[$scope.currentButtonIndex]
+                        : $scope.currentButton;
+
+                    $scope.buttonSelected = function (index) {
+                        if ($scope.disabled()) {
+                            return;
+                        }
+
+                        $scope.currentButtonIndex = index;
+                        $scope.currentButton = $scope.buttons[$scope.currentButtonIndex];
+                        $scope.currentButtonValue = $scope.currentButton.id || index;
+
+                        $timeout(function () {
+                            if ($scope.change) {
+                                $scope.change();
+                            }
+                        });
+                    };
+
+                    $scope.enterSpacePress = function (event) {
+                        $scope.buttonSelected(event.index);
+                    };
+
+                    $scope.disabled = function () {
+                        if ($scope.ngDisabled) {
+                            return $scope.ngDisabled();
+                        }
+                    };
+                }],
+                link: function (scope, elem) {
+                    elem
+                        .on('focusin', function () {
+                            elem.addClass('focused-container');
+                        })
+                        .on('focusout', function () {
+                            elem.removeClass('focused-container');
+                        });
+                }
+            };
+        }
     );
 
 })(window.angular, window._);
