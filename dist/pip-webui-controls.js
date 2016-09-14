@@ -336,24 +336,6 @@ try {
   module = angular.module('pipBasicControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('popover/popover.template.html',
-    '<div ng-if="params.templateUrl" class=\'pip-popover flex layout-column\'\n' +
-    '     ng-click="onPopoverClick($event)" ng-include="params.templateUrl">\n' +
-    '</div>\n' +
-    '\n' +
-    '<div ng-if="params.template" class=\'pip-popover\' ng-click="onPopoverClick($event)">\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipBasicControls.Templates');
-} catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('options_dialog/options_dialog.html',
     '<!--\n' +
     '@file Options dialog content\n' +
@@ -512,6 +494,24 @@ try {
   module = angular.module('pipBasicControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('popover/popover.template.html',
+    '<div ng-if="params.templateUrl" class=\'pip-popover flex layout-column\'\n' +
+    '     ng-click="onPopoverClick($event)" ng-include="params.templateUrl">\n' +
+    '</div>\n' +
+    '\n' +
+    '<div ng-if="params.template" class=\'pip-popover\' ng-click="onPopoverClick($event)">\n' +
+    '</div>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipBasicControls.Templates');
+} catch (e) {
+  module = angular.module('pipBasicControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('progress/routing_progress.html',
     '<div class="pip-routing-progress layout-column layout-align-center-center"\n' +
     '     ng-show="$routing || $reset || toolInitialized">\n' +
@@ -538,22 +538,6 @@ try {
   module = angular.module('pipBasicControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('time_range/time_range.html',
-    '<p>\n' +
-    '    <span ng-if="data.start != null">{{data.start | formatShortDateTime}}</span>\n' +
-    '    <span  class="rm4 lm4" ng-if="data.start && data.end"> - </span>\n' +
-    '    <span ng-if="data.end != null">{{data.end | formatShortDateTime}}</span>\n' +
-    '</p>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipBasicControls.Templates');
-} catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('tags/tag_list.html',
     '<div class="pip-chip rm4 pip-type-chip pip-type-chip-left {{\'bg-\' + pipType + \'-chips\'}}"\n' +
     '     ng-if="pipType && !pipTypeLocal">\n' +
@@ -568,6 +552,22 @@ module.run(['$templateCache', function($templateCache) {
     '<div class="pip-chip rm4" ng-repeat="tag in pipTags">\n' +
     '    <span>{{::tag}}</span>\n' +
     '</div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipBasicControls.Templates');
+} catch (e) {
+  module = angular.module('pipBasicControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('time_range/time_range.html',
+    '<p>\n' +
+    '    <span ng-if="data.start != null">{{data.start | formatShortDateTime}}</span>\n' +
+    '    <span  class="rm4 lm4" ng-if="data.start && data.end"> - </span>\n' +
+    '    <span ng-if="data.end != null">{{data.end | formatShortDateTime}}</span>\n' +
+    '</p>');
 }]);
 })();
 
@@ -1424,84 +1424,6 @@ module.run(['$templateCache', function($templateCache) {
 })(window.angular, window._);
 
 /**
- * @file Confirmation dialog
- * @copyright Digital Living Software Corp. 2014-2016
- * @todo
- * - Improve sample in sampler app
- */
-
-(function (angular) {
-    'use strict';
-
-    var thisModule = angular.module('pipErrorDetailsDialog',
-        ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
-
-    /* eslint-disable quote-props */
-    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            'ERROR_DETAILS': 'Error details',
-            'CODE': 'Code',
-            'PATH': 'Path',
-            'ERROR': 'Error code',
-            'METHOD': 'Method',
-            'MESSAGE': 'Message'
-
-        });
-        pipTranslateProvider.translations('ru', {
-            'ERROR_DETAILS': 'Детали ошибки',
-            'CODE': 'Код',
-            'PATH': 'Путь',
-            'ERROR': 'Код ошибки',
-            'METHOD': 'Метод',
-            'MESSAGE': 'Сообщение'
-        });
-    }]);
-    /* eslint-enable quote-props */
-
-    thisModule.factory('pipErrorDetailsDialog',
-        ['$mdDialog', function ($mdDialog) {
-            return {
-                show: function (params, successCallback, cancelCallback) {
-                    $mdDialog.show({
-                        targetEvent: params.event,
-                        templateUrl: 'error_details_dialog/error_details_dialog.html',
-                        controller: 'pipErrorDetailsDialogController',
-                        locals: {params: params},
-                        clickOutsideToClose: true
-                    })
-                        .then(function () {
-                            if (successCallback) {
-                                successCallback();
-                            }
-                        }, function () {
-                            if (cancelCallback) {
-                                cancelCallback();
-                            }
-                        });
-                }
-            };
-        }]
-    );
-
-    thisModule.controller('pipErrorDetailsDialogController',
-        ['$scope', '$rootScope', '$mdDialog', 'pipTranslate', 'params', function ($scope, $rootScope, $mdDialog, pipTranslate, params) {
-            $scope.error = params.error;
-            $scope.ok = params.ok || 'OK';
-            $scope.cancel = params.cancel || 'CANCEL';
-
-            $scope.onCancel = function () {
-                $mdDialog.cancel();
-            };
-
-            $scope.onOk = function () {
-                $mdDialog.hide();
-            };
-        }]
-    );
-
-})(window.angular);
-
-/**
  * @file Image slider control
  * @copyright Digital Living Software Corp. 2014-2016
  */
@@ -1723,6 +1645,84 @@ module.run(['$templateCache', function($templateCache) {
     );
 
 })(window.angular, window._, window.jQuery);
+
+/**
+ * @file Confirmation dialog
+ * @copyright Digital Living Software Corp. 2014-2016
+ * @todo
+ * - Improve sample in sampler app
+ */
+
+(function (angular) {
+    'use strict';
+
+    var thisModule = angular.module('pipErrorDetailsDialog',
+        ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
+
+    /* eslint-disable quote-props */
+    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            'ERROR_DETAILS': 'Error details',
+            'CODE': 'Code',
+            'PATH': 'Path',
+            'ERROR': 'Error code',
+            'METHOD': 'Method',
+            'MESSAGE': 'Message'
+
+        });
+        pipTranslateProvider.translations('ru', {
+            'ERROR_DETAILS': 'Детали ошибки',
+            'CODE': 'Код',
+            'PATH': 'Путь',
+            'ERROR': 'Код ошибки',
+            'METHOD': 'Метод',
+            'MESSAGE': 'Сообщение'
+        });
+    }]);
+    /* eslint-enable quote-props */
+
+    thisModule.factory('pipErrorDetailsDialog',
+        ['$mdDialog', function ($mdDialog) {
+            return {
+                show: function (params, successCallback, cancelCallback) {
+                    $mdDialog.show({
+                        targetEvent: params.event,
+                        templateUrl: 'error_details_dialog/error_details_dialog.html',
+                        controller: 'pipErrorDetailsDialogController',
+                        locals: {params: params},
+                        clickOutsideToClose: true
+                    })
+                        .then(function () {
+                            if (successCallback) {
+                                successCallback();
+                            }
+                        }, function () {
+                            if (cancelCallback) {
+                                cancelCallback();
+                            }
+                        });
+                }
+            };
+        }]
+    );
+
+    thisModule.controller('pipErrorDetailsDialogController',
+        ['$scope', '$rootScope', '$mdDialog', 'pipTranslate', 'params', function ($scope, $rootScope, $mdDialog, pipTranslate, params) {
+            $scope.error = params.error;
+            $scope.ok = params.ok || 'OK';
+            $scope.cancel = params.cancel || 'CANCEL';
+
+            $scope.onCancel = function () {
+                $mdDialog.cancel();
+            };
+
+            $scope.onOk = function () {
+                $mdDialog.hide();
+            };
+        }]
+    );
+
+})(window.angular);
 
 /**
  * @file Information dialog
@@ -2460,75 +2460,6 @@ module.run(['$templateCache', function($templateCache) {
 })(window.angular);
 
 
-/**
- * @file Time control
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-(function (angular, _) {
-    'use strict';
-
-    var thisModule = angular.module('pipTimeRange', ['pipUtils']);
-
-    thisModule.directive('pipTimeRange',
-        ['pipUtils', function (pipUtils) {
-            return {
-                restrict: 'EA',
-                scope: {
-                    pipStartDate: '=',
-                    pipEndDate: '='
-                },
-                templateUrl: 'time_range/time_range.html',
-                link: function ($scope, $element, $attrs) {
-
-                    function getDateJSON(value) {
-                        return value ? new Date(value) : null;
-                    }
-
-                    function defineStartDate() {
-                        if ($scope.pipStartDate !== null && $scope.pipStartDate !== undefined) {
-                            $scope.data.start = _.isDate($scope.pipStartDate) ? $scope.pipStartDate
-                                : getDateJSON($scope.pipStartDate);
-                        }
-                    }
-
-                    function defineEndDate() {
-                        if ($scope.pipEndDate !== null && $scope.pipEndDate !== undefined) {
-                            $scope.data.end = _.isDate($scope.pipEndDate) ? $scope.pipEndDate
-                                : getDateJSON($scope.pipEndDate);
-                        }
-                    }
-
-                    $scope.data = {};
-                    $scope.data.start = null;
-                    $scope.data.end = null;
-                    defineStartDate();
-                    defineEndDate();
-
-                    if (pipUtils.toBoolean($attrs.pipRebind)) {
-                        $scope.$watch('pipStartDate',
-                            function () {
-                                $scope.data.start = null;
-                                defineStartDate();
-                            }
-                        );
-                        $scope.$watch('pipEndDate',
-                            function () {
-                                $scope.data.end = null;
-                                defineEndDate();
-                            }
-                        );
-                    }
-
-                    // Add class
-                    $element.addClass('pip-time-range');
-                }
-            };
-        }]
-    );
-
-})(window.angular, window._);
-
 
 (function (angular, _) {
     'use strict';
@@ -2800,6 +2731,75 @@ module.run(['$templateCache', function($templateCache) {
 
             // Add class
             $element.addClass('pip-time-range-edit');
+        }]
+    );
+
+})(window.angular, window._);
+
+/**
+ * @file Time control
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+(function (angular, _) {
+    'use strict';
+
+    var thisModule = angular.module('pipTimeRange', ['pipUtils']);
+
+    thisModule.directive('pipTimeRange',
+        ['pipUtils', function (pipUtils) {
+            return {
+                restrict: 'EA',
+                scope: {
+                    pipStartDate: '=',
+                    pipEndDate: '='
+                },
+                templateUrl: 'time_range/time_range.html',
+                link: function ($scope, $element, $attrs) {
+
+                    function getDateJSON(value) {
+                        return value ? new Date(value) : null;
+                    }
+
+                    function defineStartDate() {
+                        if ($scope.pipStartDate !== null && $scope.pipStartDate !== undefined) {
+                            $scope.data.start = _.isDate($scope.pipStartDate) ? $scope.pipStartDate
+                                : getDateJSON($scope.pipStartDate);
+                        }
+                    }
+
+                    function defineEndDate() {
+                        if ($scope.pipEndDate !== null && $scope.pipEndDate !== undefined) {
+                            $scope.data.end = _.isDate($scope.pipEndDate) ? $scope.pipEndDate
+                                : getDateJSON($scope.pipEndDate);
+                        }
+                    }
+
+                    $scope.data = {};
+                    $scope.data.start = null;
+                    $scope.data.end = null;
+                    defineStartDate();
+                    defineEndDate();
+
+                    if (pipUtils.toBoolean($attrs.pipRebind)) {
+                        $scope.$watch('pipStartDate',
+                            function () {
+                                $scope.data.start = null;
+                                defineStartDate();
+                            }
+                        );
+                        $scope.$watch('pipEndDate',
+                            function () {
+                                $scope.data.end = null;
+                                defineEndDate();
+                            }
+                        );
+                    }
+
+                    // Add class
+                    $element.addClass('pip-time-range');
+                }
+            };
         }]
     );
 
