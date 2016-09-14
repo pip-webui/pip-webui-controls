@@ -91,6 +91,45 @@ try {
   module = angular.module('pipBasicControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('date/date.html',
+    '<!--\n' +
+    '@file Date control content\n' +
+    '@copyright Digital Living Software Corp. 2014-2016\n' +
+    '-->\n' +
+    '\n' +
+    '<div class="pip-date layout-row flex" tabindex="-1">\n' +
+    '	<md-input-container class="tm0 flex">\n' +
+    '		<md-select class="pip-date-day tm0 flex" ng-disabled="disableControls"\n' +
+    '				   ng-model="day" placeholder="{{dayLabel}}" ng-change="onDayChanged()">\n' +
+    '			<md-option ng-value="opt" ng-repeat="opt in days track by opt">{{:: opt }}</md-option>\n' +
+    '		</md-select>\n' +
+    '	</md-input-container>\n' +
+    '	<div class="w16 flex-fixed"></div>\n' +
+    '	<md-input-container class="tm0 flex">\n' +
+    '		<md-select class="pip-date-month tm0 flex" ng-disabled="disableControls"\n' +
+    '				   ng-model="month" placeholder="{{monthLabel}}" ng-change="onMonthChanged()">\n' +
+    '			<md-option ng-value="opt.id" ng-repeat="opt in months track by opt.id">{{:: opt.name }}</md-option>\n' +
+    '		</md-select>\n' +
+    '	</md-input-container>\n' +
+    '	<div class="w16 flex-fixed"></div>\n' +
+    '	<md-input-container class="tm0 flex">\n' +
+    '		<md-select class="pip-date-year tm0 flex" ng-disabled="disableControls"\n' +
+    '				   ng-model="year" placeholder="{{yearLabel}}" ng-change="onYearChanged()">\n' +
+    '			<md-option ng-value="opt" ng-repeat="opt in years track by opt">{{:: opt }}</md-option>\n' +
+    '		</md-select>\n' +
+    '	</md-input-container>\n' +
+    '</div>\n' +
+    '					');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipBasicControls.Templates');
+} catch (e) {
+  module = angular.module('pipBasicControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('date_range/date_range.html',
     '<!--\n' +
     '@file Date range control content\n' +
@@ -196,45 +235,6 @@ try {
   module = angular.module('pipBasicControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('date/date.html',
-    '<!--\n' +
-    '@file Date control content\n' +
-    '@copyright Digital Living Software Corp. 2014-2016\n' +
-    '-->\n' +
-    '\n' +
-    '<div class="pip-date layout-row flex" tabindex="-1">\n' +
-    '	<md-input-container class="tm0 flex">\n' +
-    '		<md-select class="pip-date-day tm0 flex" ng-disabled="disableControls"\n' +
-    '				   ng-model="day" placeholder="{{dayLabel}}" ng-change="onDayChanged()">\n' +
-    '			<md-option ng-value="opt" ng-repeat="opt in days track by opt">{{:: opt }}</md-option>\n' +
-    '		</md-select>\n' +
-    '	</md-input-container>\n' +
-    '	<div class="w16 flex-fixed"></div>\n' +
-    '	<md-input-container class="tm0 flex">\n' +
-    '		<md-select class="pip-date-month tm0 flex" ng-disabled="disableControls"\n' +
-    '				   ng-model="month" placeholder="{{monthLabel}}" ng-change="onMonthChanged()">\n' +
-    '			<md-option ng-value="opt.id" ng-repeat="opt in months track by opt.id">{{:: opt.name }}</md-option>\n' +
-    '		</md-select>\n' +
-    '	</md-input-container>\n' +
-    '	<div class="w16 flex-fixed"></div>\n' +
-    '	<md-input-container class="tm0 flex">\n' +
-    '		<md-select class="pip-date-year tm0 flex" ng-disabled="disableControls"\n' +
-    '				   ng-model="year" placeholder="{{yearLabel}}" ng-change="onYearChanged()">\n' +
-    '			<md-option ng-value="opt" ng-repeat="opt in years track by opt">{{:: opt }}</md-option>\n' +
-    '		</md-select>\n' +
-    '	</md-input-container>\n' +
-    '</div>\n' +
-    '					');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipBasicControls.Templates');
-} catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('error_details_dialog/error_details_dialog.html',
     '<!--\n' +
     '@file Confirmation dialog template\n' +
@@ -325,6 +325,24 @@ module.run(['$templateCache', function($templateCache) {
     '        </div>\n' +
     '    </div>\n' +
     '</md-dialog>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipBasicControls.Templates');
+} catch (e) {
+  module = angular.module('pipBasicControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('popover/popover.template.html',
+    '<div ng-if="params.templateUrl" class=\'pip-popover flex layout-column\'\n' +
+    '     ng-click="onPopoverClick($event)" ng-include="params.templateUrl">\n' +
+    '</div>\n' +
+    '\n' +
+    '<div ng-if="params.template" class=\'pip-popover\' ng-click="onPopoverClick($event)">\n' +
+    '</div>\n' +
     '');
 }]);
 })();
@@ -494,24 +512,6 @@ try {
   module = angular.module('pipBasicControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('popover/popover.template.html',
-    '<div ng-if="params.templateUrl" class=\'pip-popover flex layout-column\'\n' +
-    '     ng-click="onPopoverClick($event)" ng-include="params.templateUrl">\n' +
-    '</div>\n' +
-    '\n' +
-    '<div ng-if="params.template" class=\'pip-popover\' ng-click="onPopoverClick($event)">\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipBasicControls.Templates');
-} catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('progress/routing_progress.html',
     '<div class="pip-routing-progress layout-column layout-align-center-center"\n' +
     '     ng-show="$routing || $reset || toolInitialized">\n' +
@@ -528,6 +528,22 @@ module.run(['$templateCache', function($templateCache) {
     '\n' +
     '</div>\n' +
     '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipBasicControls.Templates');
+} catch (e) {
+  module = angular.module('pipBasicControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('time_range/time_range.html',
+    '<p>\n' +
+    '    <span ng-if="data.start != null">{{data.start | formatShortDateTime}}</span>\n' +
+    '    <span  class="rm4 lm4" ng-if="data.start && data.end"> - </span>\n' +
+    '    <span ng-if="data.end != null">{{data.end | formatShortDateTime}}</span>\n' +
+    '</p>');
 }]);
 })();
 
@@ -628,12 +644,25 @@ try {
   module = angular.module('pipBasicControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('time_range/time_range.html',
-    '<p>\n' +
-    '    <span ng-if="data.start != null">{{data.start | formatShortDateTime}}</span>\n' +
-    '    <span  class="rm4 lm4" ng-if="data.start && data.end"> - </span>\n' +
-    '    <span ng-if="data.end != null">{{data.end | formatShortDateTime}}</span>\n' +
-    '</p>');
+  $templateCache.put('toast/toast.html',
+    '<md-toast class="md-action pip-toast"\n' +
+    '          ng-class="{\'pip-error\': toast.type==\'error\',\n' +
+    '          \'pip-column-toast\': toast.type == \'error\' || toast.actions.length > 1 || actionLenght > 4,\n' +
+    '          \'pip-no-action-toast\': actionLenght == 0}"\n' +
+    '          style="height:initial; max-height: initial; ">\n' +
+    '\n' +
+    '    <span class="flex-var m0 pip-text" ng-bind-html="message"></span>\n' +
+    '    <div class="layout-row layout-align-end-start" class="pip-actions" ng-if="actions.length > 0 || (toast.type==\'error\' && toast.error)">\n' +
+    '        <md-button class="flex-fixed m0 lm8" ng-if="toast.type==\'error\' && toast.error" ng-click="onDetails()">Details</md-button>\n' +
+    '        <md-button class="flex-fixed m0 lm8"\n' +
+    '                   ng-click="onAction(action)"\n' +
+    '                   ng-repeat="action in actions"\n' +
+    '                   aria-label="{{::action| translate}}">\n' +
+    '            {{::action| translate}}\n' +
+    '        </md-button>\n' +
+    '    </div>\n' +
+    '\n' +
+    '</md-toast>');
 }]);
 })();
 
@@ -666,35 +695,6 @@ module.run(['$templateCache', function($templateCache) {
     '    </md-select>\n' +
     '</md-input-container>\n' +
     '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipBasicControls.Templates');
-} catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('toast/toast.html',
-    '<md-toast class="md-action pip-toast"\n' +
-    '          ng-class="{\'pip-error\': toast.type==\'error\',\n' +
-    '          \'pip-column-toast\': toast.type == \'error\' || toast.actions.length > 1 || actionLenght > 4,\n' +
-    '          \'pip-no-action-toast\': actionLenght == 0}"\n' +
-    '          style="height:initial; max-height: initial; ">\n' +
-    '\n' +
-    '    <span class="flex-var m0 pip-text" ng-bind-html="message"></span>\n' +
-    '    <div class="layout-row layout-align-end-start" class="pip-actions" ng-if="actions.length > 0 || (toast.type==\'error\' && toast.error)">\n' +
-    '        <md-button class="flex-fixed m0 lm8" ng-if="toast.type==\'error\' && toast.error" ng-click="onDetails()">Details</md-button>\n' +
-    '        <md-button class="flex-fixed m0 lm8"\n' +
-    '                   ng-click="onAction(action)"\n' +
-    '                   ng-repeat="action in actions"\n' +
-    '                   aria-label="{{::action| translate}}">\n' +
-    '            {{::action| translate}}\n' +
-    '        </md-button>\n' +
-    '    </div>\n' +
-    '\n' +
-    '</md-toast>');
 }]);
 })();
 
@@ -1792,6 +1792,135 @@ module.run(['$templateCache', function($templateCache) {
 })(window.angular, window._);
 
 /**
+ * @file Markdown control
+ * @copyright Digital Living Software Corp. 2014-2016
+ * @todo
+ * - Move css styles under control
+ * - Improve samples in sampler app
+ */
+
+(function (angular, marked, _) {
+    'use strict';
+
+    var thisModule = angular.module('pipMarkdown', ['ngSanitize', 'pipUtils', 'pipTranslate']);
+
+    /* eslint-disable quote-props */
+    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            'MARKDOWN_ATTACHMENTS': 'Attachments:',
+            'checklist': 'Checklist',
+            'documents': 'Documents',
+            'pictures': 'Pictures',
+            'location': 'Location',
+            'time': 'Time'
+        });
+        pipTranslateProvider.translations('ru', {
+            'MARKDOWN_ATTACHMENTS': 'Вложения:',
+            'checklist': 'Список',
+            'documents': 'Документы',
+            'pictures': 'Изображения',
+            'location': 'Местонахождение',
+            'time': 'Время'
+        });
+    }]);
+    /* eslint-enable quote-props */
+
+    thisModule.directive('pipMarkdown',
+        ['$parse', 'pipUtils', 'pipTranslate', function ($parse, pipUtils, pipTranslate) {
+            return {
+                restrict: 'EA',
+                scope: false,
+                link: function ($scope, $element, $attrs) {
+                    var
+                        textGetter = $parse($attrs.pipText),
+                        listGetter = $parse($attrs.pipList),
+                        clampGetter = $parse($attrs.pipLineCount);
+
+                    function describeAttachments(array) {
+                        var attachString = '',
+                            attachTypes = [];
+
+                        _.each(array, function (attach) {
+                            if (attach.type && attach.type !== 'text') {
+                                if (attachString.length === 0) {
+                                    attachString = pipTranslate.translate('MARKDOWN_ATTACHMENTS');
+                                }
+
+                                if (attachTypes.indexOf(attach.type) < 0) {
+                                    attachTypes.push(attach.type);
+                                    attachString += attachTypes.length > 1 ? ', ' : ' ';
+                                    attachString += pipTranslate.translate(attach.type);
+                                }
+                            }
+                        });
+
+                        return attachString;
+                    }
+
+                    function bindText(value) {
+                        var textString, isClamped, height, options, obj;
+
+                        if (_.isArray(value)) {
+                            obj = _.find(value, function (item) {
+                                return item.type === 'text' && item.text;
+                            });
+
+                            textString = obj ? obj.text : describeAttachments(value);
+                        } else {
+                            textString = value;
+                        }
+
+                        isClamped = $attrs.pipLineCount && _.isNumber(clampGetter());
+                        isClamped = isClamped && textString && textString.length > 0;
+                        options = {
+                            gfm: true,
+                            tables: true,
+                            breaks: true,
+                            sanitize: true,
+                            pedantic: true,
+                            smartLists: true,
+                            smartypents: false
+                        };
+                        textString = marked(textString || '', options);
+                        if (isClamped) {
+                            height = 1.5 * clampGetter();
+                        }
+                        // Assign value as HTML
+                        $element.html('<div' + (isClamped ? listGetter() ? 'class="pip-markdown-content ' +
+                            'pip-markdown-list" style="max-height: ' + height + 'em">'
+                                : ' class="pip-markdown-content" style="max-height: ' + height + 'em">' : listGetter()
+                                ? ' class="pip-markdown-list">' : '>') + textString + '</div>');
+                        $element.find('a').attr('target', 'blank');
+                        if (!listGetter() && isClamped) {
+                            $element.append('<div class="pip-gradient-block"></div>');
+                        }
+                    }
+
+                    // Fill the text
+                    bindText(textGetter($scope));
+
+                    // Also optimization to avoid watch if it is unnecessary
+                    if (pipUtils.toBoolean($attrs.pipRebind)) {
+                        $scope.$watch(textGetter, function (newValue) {
+                            bindText(newValue);
+                        });
+                    }
+
+                    $scope.$on('pipWindowResized', function () {
+                        bindText(textGetter($scope));
+                    });
+
+                    // Add class
+                    $element.addClass('pip-markdown');
+                }
+            };
+        }]
+    );
+
+})(window.angular, window.marked, window._);
+
+
+/**
  * @file Options dialog
  * @copyright Digital Living Software Corp. 2014-2016
  * @todo
@@ -2027,135 +2156,6 @@ module.run(['$templateCache', function($templateCache) {
     );
 
 })(window.angular, window.jQuery, window._);
-
-/**
- * @file Markdown control
- * @copyright Digital Living Software Corp. 2014-2016
- * @todo
- * - Move css styles under control
- * - Improve samples in sampler app
- */
-
-(function (angular, marked, _) {
-    'use strict';
-
-    var thisModule = angular.module('pipMarkdown', ['ngSanitize', 'pipUtils', 'pipTranslate']);
-
-    /* eslint-disable quote-props */
-    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            'MARKDOWN_ATTACHMENTS': 'Attachments:',
-            'checklist': 'Checklist',
-            'documents': 'Documents',
-            'pictures': 'Pictures',
-            'location': 'Location',
-            'time': 'Time'
-        });
-        pipTranslateProvider.translations('ru', {
-            'MARKDOWN_ATTACHMENTS': 'Вложения:',
-            'checklist': 'Список',
-            'documents': 'Документы',
-            'pictures': 'Изображения',
-            'location': 'Местонахождение',
-            'time': 'Время'
-        });
-    }]);
-    /* eslint-enable quote-props */
-
-    thisModule.directive('pipMarkdown',
-        ['$parse', 'pipUtils', 'pipTranslate', function ($parse, pipUtils, pipTranslate) {
-            return {
-                restrict: 'EA',
-                scope: false,
-                link: function ($scope, $element, $attrs) {
-                    var
-                        textGetter = $parse($attrs.pipText),
-                        listGetter = $parse($attrs.pipList),
-                        clampGetter = $parse($attrs.pipLineCount);
-
-                    function describeAttachments(array) {
-                        var attachString = '',
-                            attachTypes = [];
-
-                        _.each(array, function (attach) {
-                            if (attach.type && attach.type !== 'text') {
-                                if (attachString.length === 0) {
-                                    attachString = pipTranslate.translate('MARKDOWN_ATTACHMENTS');
-                                }
-
-                                if (attachTypes.indexOf(attach.type) < 0) {
-                                    attachTypes.push(attach.type);
-                                    attachString += attachTypes.length > 1 ? ', ' : ' ';
-                                    attachString += pipTranslate.translate(attach.type);
-                                }
-                            }
-                        });
-
-                        return attachString;
-                    }
-
-                    function bindText(value) {
-                        var textString, isClamped, height, options, obj;
-
-                        if (_.isArray(value)) {
-                            obj = _.find(value, function (item) {
-                                return item.type === 'text' && item.text;
-                            });
-
-                            textString = obj ? obj.text : describeAttachments(value);
-                        } else {
-                            textString = value;
-                        }
-
-                        isClamped = $attrs.pipLineCount && _.isNumber(clampGetter());
-                        isClamped = isClamped && textString && textString.length > 0;
-                        options = {
-                            gfm: true,
-                            tables: true,
-                            breaks: true,
-                            sanitize: true,
-                            pedantic: true,
-                            smartLists: true,
-                            smartypents: false
-                        };
-                        textString = marked(textString || '', options);
-                        if (isClamped) {
-                            height = 1.5 * clampGetter();
-                        }
-                        // Assign value as HTML
-                        $element.html('<div' + (isClamped ? listGetter() ? 'class="pip-markdown-content ' +
-                            'pip-markdown-list" style="max-height: ' + height + 'em">'
-                                : ' class="pip-markdown-content" style="max-height: ' + height + 'em">' : listGetter()
-                                ? ' class="pip-markdown-list">' : '>') + textString + '</div>');
-                        $element.find('a').attr('target', 'blank');
-                        if (!listGetter() && isClamped) {
-                            $element.append('<div class="pip-gradient-block"></div>');
-                        }
-                    }
-
-                    // Fill the text
-                    bindText(textGetter($scope));
-
-                    // Also optimization to avoid watch if it is unnecessary
-                    if (pipUtils.toBoolean($attrs.pipRebind)) {
-                        $scope.$watch(textGetter, function (newValue) {
-                            bindText(newValue);
-                        });
-                    }
-
-                    $scope.$on('pipWindowResized', function () {
-                        bindText(textGetter($scope));
-                    });
-
-                    // Add class
-                    $element.addClass('pip-markdown');
-                }
-            };
-        }]
-    );
-
-})(window.angular, window.marked, window._);
-
 
 /**
  * @file Popover control
@@ -2407,6 +2407,60 @@ module.run(['$templateCache', function($templateCache) {
 
 
 /**
+ * @file Tag list control
+ * @copyright Digital Living Software Corp. 2014-2015
+ * @todo
+ * - Improve samples in sampler app
+ * - What's pipType and pipTypeLocal? Give better name
+ * - Do not use ng-if, instead generate template statically
+ */
+
+(function (angular) {
+    'use strict';
+
+    var thisModule = angular.module('pipTagList', ['pipCore']);
+
+    /**
+     * pipTags - set of tags
+     * pipType - additional type tag
+     * pipTypeLocal - additional translated type tag
+     */
+    thisModule.directive('pipTagList',
+        ['$parse', function ($parse) {
+            return {
+                restrict: 'EA',
+                scope: {
+                    pipTags: '=',
+                    pipType: '=',
+                    pipTypeLocal: '='
+                },
+                templateUrl: 'tags/tag_list.html',
+                controller: ['$scope', '$element', '$attrs', 'pipUtils', function ($scope, $element, $attrs, pipUtils) {
+                    var tagsGetter;
+
+                    tagsGetter = $parse($attrs.pipTags);
+                    $element.css('display', 'block');
+                    // Set tags
+                    $scope.tags = tagsGetter($scope);
+
+                    // Also optimization to avoid watch if it is unnecessary
+                    if (pipUtils.toBoolean($attrs.pipRebind)) {
+                        $scope.$watch(tagsGetter, function () {
+                            $scope.tags = tagsGetter($scope);
+                        });
+                    }
+
+                    // Add class
+                    $element.addClass('pip-tag-list');
+                }]
+            };
+        }]
+    );
+
+})(window.angular);
+
+
+/**
  * @file Time control
  * @copyright Digital Living Software Corp. 2014-2016
  */
@@ -2474,60 +2528,6 @@ module.run(['$templateCache', function($templateCache) {
     );
 
 })(window.angular, window._);
-
-/**
- * @file Tag list control
- * @copyright Digital Living Software Corp. 2014-2015
- * @todo
- * - Improve samples in sampler app
- * - What's pipType and pipTypeLocal? Give better name
- * - Do not use ng-if, instead generate template statically
- */
-
-(function (angular) {
-    'use strict';
-
-    var thisModule = angular.module('pipTagList', ['pipCore']);
-
-    /**
-     * pipTags - set of tags
-     * pipType - additional type tag
-     * pipTypeLocal - additional translated type tag
-     */
-    thisModule.directive('pipTagList',
-        ['$parse', function ($parse) {
-            return {
-                restrict: 'EA',
-                scope: {
-                    pipTags: '=',
-                    pipType: '=',
-                    pipTypeLocal: '='
-                },
-                templateUrl: 'tags/tag_list.html',
-                controller: ['$scope', '$element', '$attrs', 'pipUtils', function ($scope, $element, $attrs, pipUtils) {
-                    var tagsGetter;
-
-                    tagsGetter = $parse($attrs.pipTags);
-                    $element.css('display', 'block');
-                    // Set tags
-                    $scope.tags = tagsGetter($scope);
-
-                    // Also optimization to avoid watch if it is unnecessary
-                    if (pipUtils.toBoolean($attrs.pipRebind)) {
-                        $scope.$watch(tagsGetter, function () {
-                            $scope.tags = tagsGetter($scope);
-                        });
-                    }
-
-                    // Add class
-                    $element.addClass('pip-tag-list');
-                }]
-            };
-        }]
-    );
-
-})(window.angular);
-
 
 
 (function (angular, _) {
