@@ -1,3 +1,194 @@
+/**
+ * @file Registration of basic WebUI controls
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+/* global angular */
+
+(function (angular) {
+    'use strict';
+
+    angular.module('pipControls', [
+        'pipMarkdown',
+        'pipToggleButtons',
+        'pipRefreshButton',
+        'pipColorPicker',
+        'pipRoutingProgress',
+        'pipPopover',
+        'pipImageSlider',
+        'pipToasts',
+        'pipTagList',
+
+        'pipDate',
+        'pipDateRange',
+        'pipTimeRangeEdit',
+        'pipTimeRange',
+
+        'pipInformationDialog',
+        'pipConfirmationDialog',
+        'pipOptionsDialog',
+        'pipOptionsBigDialog',
+        'pipErrorDetailsDialog'
+    ]);
+
+    angular.module('pipBasicControls', ['pipControls']);
+
+})(window.angular);
+
+
+(function(module) {
+try {
+  module = angular.module('pipBasicControls.Templates');
+} catch (e) {
+  module = angular.module('pipBasicControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('color_picker/color_picker.html',
+    '<ul class="pip-color-picker lp0 {{class}}" pip-selected="currentColorIndex" pip-enter-space-press="enterSpacePress($event)">\n' +
+    '    <li tabindex="-1" ng-repeat="color in colors track by color">\n' +
+    '        <md-button  tabindex="-1" class="md-icon-button pip-selectable" ng-click="selectColor($index)" aria-label="color" ng-disabled="disabled()">\n' +
+    '            <md-icon ng-style="{\'color\': color}" md-svg-icon="icons:{{ color == currentColor ? \'circle\' : \'radio-off\' }}">\n' +
+    '            </md-icon>\n' +
+    '        </md-button>\n' +
+    '    </li>\n' +
+    '</ul>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipBasicControls.Templates');
+} catch (e) {
+  module = angular.module('pipBasicControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('confirmation_dialog/confirmation_dialog.html',
+    '<!--\n' +
+    '@file Confirmation dialog template\n' +
+    '@copyright Digital Living Software Corp. 2014-2016\n' +
+    '-->\n' +
+    '\n' +
+    '<md-dialog class="pip-dialog pip-confirmation-dialog layout-column" width="400" md-theme="{{::theme}}">\n' +
+    '    <div class="pip-header text-subhead1">\n' +
+    '        <h3 class="m0">{{:: title | translate }}</h3>\n' +
+    '    </div>\n' +
+    '    <div class="pip-footer">\n' +
+    '        <div>\n' +
+    '            <md-button ng-click="onCancel()">{{:: cancel | translate }}</md-button>\n' +
+    '            <md-button class="md-accent" ng-click="onOk()">{{:: ok | translate }}</md-button>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '</md-dialog>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipBasicControls.Templates');
+} catch (e) {
+  module = angular.module('pipBasicControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('date_range/date_range.html',
+    '<!--\n' +
+    '@file Date range control content\n' +
+    '@copyright Digital Living Software Corp. 2014-2016\n' +
+    '-->\n' +
+    '\n' +
+    '<div class="pip-date-range layout-row flex" tabindex="-1">\n' +
+    '    <md-input-container ng-show="isDay()" class="tm0 pip-day flex"\n' +
+    '            ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
+    '        <md-select class="select-day w-stretch"\n' +
+    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
+    '                   ng-disable="{{disableControls}}"\n' +
+    '                   md-on-open="onDayClick()"\n' +
+    '                   ng-model="day"\n' +
+    '                   ng-change="onDayChanged()"\n' +
+    '                   placeholder="{{dayLabel}}"\n' +
+    '                   aria-label="DAY">\n' +
+    '\n' +
+    '            <md-option ng-value="opt" ng-repeat="opt in days track by opt ">\n' +
+    '               {{nameDays[$index]}} {{ opt }}\n' +
+    '            </md-option>\n' +
+    '        </md-select>\n' +
+    '    </md-input-container>\n' +
+    '    <md-input-container ng-show="isWeek()" class="tm0 flex"\n' +
+    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
+    '        <md-select class="select-week w-stretch"\n' +
+    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
+    '                   ng-disable="{{disableControls}}"\n' +
+    '                   ng-model="week"\n' +
+    '                   ng-change="onWeekChange()"\n' +
+    '                   placeholder="{{weekLabel}}"\n' +
+    '                   aria-label="WEEK">\n' +
+    '\n' +
+    '            <md-option ng-value="opt.id" ng-repeat="opt in weeks track by opt.id">\n' +
+    '                {{ opt.name }}\n' +
+    '            </md-option>\n' +
+    '        </md-select>\n' +
+    '    </md-input-container >\n' +
+    '    <div class="flex-fixed"\n' +
+    '         ng-class="{\'w16\': $mdMedia(\'gt-xs\'), \'w8\':  $mdMedia(\'xs\')}"\n' +
+    '         ng-show="isDay() || isWeek()">\n' +
+    '    </div>\n' +
+    '    <md-input-container ng-show="isMonth() && !monthFormatShort " class="tm0 flex min-w72"\n' +
+    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
+    '        <md-select class="select-month w-stretch"\n' +
+    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
+    '                   ng-disable="{{disableControls}}"\n' +
+    '                   md-on-open="onMonthClick()"\n' +
+    '                   ng-model="month"\n' +
+    '                   ng-change="onMonthChanged()"\n' +
+    '                   placeholder="{{monthLabel}}"\n' +
+    '                   aria-label="MONTH">\n' +
+    '\n' +
+    '            <md-option ng-value="opt.id" ng-repeat="opt in months track by opt.id">\n' +
+    '                {{ opt.name }}\n' +
+    '            </md-option>\n' +
+    '        </md-select>\n' +
+    '    </md-input-container>\n' +
+    '    <md-input-container ng-show="isMonth() && monthFormatShort" class="flex tm0"\n' +
+    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
+    '        <md-select class="select-month w-stretch"\n' +
+    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
+    '                   ng-disable="{{disableControls}}"\n' +
+    '                   md-on-open="onMonthClick()"\n' +
+    '                   ng-model="month"\n' +
+    '                   ng-change="onMonthChanged()"\n' +
+    '                   placeholder="{{monthLabel}}"\n' +
+    '                   aria-label="MONTH">\n' +
+    '\n' +
+    '            <md-option ng-value="opt.id" ng-repeat="opt in shortMonths track by opt.id">\n' +
+    '                {{ opt.name }}\n' +
+    '            </md-option>\n' +
+    '        </md-select>\n' +
+    '    </md-input-container>\n' +
+    '    <div class="flex-fixed"\n' +
+    '         ng-class="{\'w16\': $mdMedia(\'gt-xs\'), \'w8\':  $mdMedia(\'xs\')}"\n' +
+    '         ng-show="isMonth()">\n' +
+    '    </div>\n' +
+    '    <md-input-container class="tm0 flex"\n' +
+    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
+    '        <md-select class="select-year w-stretch"\n' +
+    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
+    '                   ng-disable="{{disableControls}}"\n' +
+    '                   md-on-open="onYearClick()"\n' +
+    '                   ng-model="year"\n' +
+    '                   ng-change="onYearChanged()"\n' +
+    '                   placeholder="{{yearLabel}}"\n' +
+    '                   aria-label="YEAR">\n' +
+    '\n' +
+    '            <md-option ng-value="opt" ng-repeat="opt in years track by opt">\n' +
+    '                {{ opt }}\n' +
+    '            </md-option>\n' +
+    '        </md-select>\n' +
+    '    </md-input-container>\n' +
+    '</div>');
+}]);
+})();
+
 (function(module) {
 try {
   module = angular.module('pipBasicControls.Templates');
@@ -134,6 +325,24 @@ module.run(['$templateCache', function($templateCache) {
     '        </div>\n' +
     '    </div>\n' +
     '</md-dialog>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipBasicControls.Templates');
+} catch (e) {
+  module = angular.module('pipBasicControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('popover/popover.template.html',
+    '<div ng-if="params.templateUrl" class=\'pip-popover flex layout-column\'\n' +
+    '     ng-click="onPopoverClick($event)" ng-include="params.templateUrl">\n' +
+    '</div>\n' +
+    '\n' +
+    '<div ng-if="params.template" class=\'pip-popover\' ng-click="onPopoverClick($event)">\n' +
+    '</div>\n' +
     '');
 }]);
 })();
@@ -303,230 +512,6 @@ try {
   module = angular.module('pipBasicControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('popover/popover.template.html',
-    '<div ng-if="params.templateUrl" class=\'pip-popover flex layout-column\'\n' +
-    '     ng-click="onPopoverClick($event)" ng-include="params.templateUrl">\n' +
-    '</div>\n' +
-    '\n' +
-    '<div ng-if="params.template" class=\'pip-popover\' ng-click="onPopoverClick($event)">\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipBasicControls.Templates');
-} catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('color_picker/color_picker.html',
-    '<ul class="pip-color-picker lp0 {{class}}" pip-selected="currentColorIndex" pip-enter-space-press="enterSpacePress($event)">\n' +
-    '    <li tabindex="-1" ng-repeat="color in colors track by color">\n' +
-    '        <md-button  tabindex="-1" class="md-icon-button pip-selectable" ng-click="selectColor($index)" aria-label="color" ng-disabled="disabled()">\n' +
-    '            <md-icon ng-style="{\'color\': color}" md-svg-icon="icons:{{ color == currentColor ? \'circle\' : \'radio-off\' }}">\n' +
-    '            </md-icon>\n' +
-    '        </md-button>\n' +
-    '    </li>\n' +
-    '</ul>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipBasicControls.Templates');
-} catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('confirmation_dialog/confirmation_dialog.html',
-    '<!--\n' +
-    '@file Confirmation dialog template\n' +
-    '@copyright Digital Living Software Corp. 2014-2016\n' +
-    '-->\n' +
-    '\n' +
-    '<md-dialog class="pip-dialog pip-confirmation-dialog layout-column" width="400" md-theme="{{::theme}}">\n' +
-    '    <div class="pip-header text-subhead1">\n' +
-    '        <h3 class="m0">{{:: title | translate }}</h3>\n' +
-    '    </div>\n' +
-    '    <div class="pip-footer">\n' +
-    '        <div>\n' +
-    '            <md-button ng-click="onCancel()">{{:: cancel | translate }}</md-button>\n' +
-    '            <md-button class="md-accent" ng-click="onOk()">{{:: ok | translate }}</md-button>\n' +
-    '        </div>\n' +
-    '    </div>\n' +
-    '</md-dialog>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipBasicControls.Templates');
-} catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('tags/tag_list.html',
-    '<div class="pip-chip rm4 pip-type-chip pip-type-chip-left {{\'bg-\' + pipType + \'-chips\'}}"\n' +
-    '     ng-if="pipType && !pipTypeLocal">\n' +
-    '\n' +
-    '    <span>{{pipType.toUpperCase() | translate | uppercase}}</span>\n' +
-    '</div>\n' +
-    '<div class="pip-chip rm4 pip-type-chip pip-type-chip-left {{\'bg-\' + pipType + \'-chips\'}}"\n' +
-    '     ng-if="pipType && pipTypeLocal">\n' +
-    '\n' +
-    '    <span>{{pipTypeLocal.toUpperCase() | translate | uppercase}}</span>\n' +
-    '</div>\n' +
-    '<div class="pip-chip rm4" ng-repeat="tag in pipTags">\n' +
-    '    <span>{{::tag}}</span>\n' +
-    '</div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipBasicControls.Templates');
-} catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('date_range/date_range.html',
-    '<!--\n' +
-    '@file Date range control content\n' +
-    '@copyright Digital Living Software Corp. 2014-2016\n' +
-    '-->\n' +
-    '\n' +
-    '<div class="pip-date-range layout-row flex" tabindex="-1">\n' +
-    '    <md-input-container ng-show="isDay()" class="tm0 pip-day flex"\n' +
-    '            ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
-    '        <md-select class="select-day w-stretch"\n' +
-    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
-    '                   ng-disable="{{disableControls}}"\n' +
-    '                   md-on-open="onDayClick()"\n' +
-    '                   ng-model="day"\n' +
-    '                   ng-change="onDayChanged()"\n' +
-    '                   placeholder="{{dayLabel}}"\n' +
-    '                   aria-label="DAY">\n' +
-    '\n' +
-    '            <md-option ng-value="opt" ng-repeat="opt in days track by opt ">\n' +
-    '               {{nameDays[$index]}} {{ opt }}\n' +
-    '            </md-option>\n' +
-    '        </md-select>\n' +
-    '    </md-input-container>\n' +
-    '    <md-input-container ng-show="isWeek()" class="tm0 flex"\n' +
-    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
-    '        <md-select class="select-week w-stretch"\n' +
-    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
-    '                   ng-disable="{{disableControls}}"\n' +
-    '                   ng-model="week"\n' +
-    '                   ng-change="onWeekChange()"\n' +
-    '                   placeholder="{{weekLabel}}"\n' +
-    '                   aria-label="WEEK">\n' +
-    '\n' +
-    '            <md-option ng-value="opt.id" ng-repeat="opt in weeks track by opt.id">\n' +
-    '                {{ opt.name }}\n' +
-    '            </md-option>\n' +
-    '        </md-select>\n' +
-    '    </md-input-container >\n' +
-    '    <div class="flex-fixed"\n' +
-    '         ng-class="{\'w16\': $mdMedia(\'gt-xs\'), \'w8\':  $mdMedia(\'xs\')}"\n' +
-    '         ng-show="isDay() || isWeek()">\n' +
-    '    </div>\n' +
-    '    <md-input-container ng-show="isMonth() && !monthFormatShort " class="tm0 flex min-w72"\n' +
-    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
-    '        <md-select class="select-month w-stretch"\n' +
-    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
-    '                   ng-disable="{{disableControls}}"\n' +
-    '                   md-on-open="onMonthClick()"\n' +
-    '                   ng-model="month"\n' +
-    '                   ng-change="onMonthChanged()"\n' +
-    '                   placeholder="{{monthLabel}}"\n' +
-    '                   aria-label="MONTH">\n' +
-    '\n' +
-    '            <md-option ng-value="opt.id" ng-repeat="opt in months track by opt.id">\n' +
-    '                {{ opt.name }}\n' +
-    '            </md-option>\n' +
-    '        </md-select>\n' +
-    '    </md-input-container>\n' +
-    '    <md-input-container ng-show="isMonth() && monthFormatShort" class="flex tm0"\n' +
-    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
-    '        <md-select class="select-month w-stretch"\n' +
-    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
-    '                   ng-disable="{{disableControls}}"\n' +
-    '                   md-on-open="onMonthClick()"\n' +
-    '                   ng-model="month"\n' +
-    '                   ng-change="onMonthChanged()"\n' +
-    '                   placeholder="{{monthLabel}}"\n' +
-    '                   aria-label="MONTH">\n' +
-    '\n' +
-    '            <md-option ng-value="opt.id" ng-repeat="opt in shortMonths track by opt.id">\n' +
-    '                {{ opt.name }}\n' +
-    '            </md-option>\n' +
-    '        </md-select>\n' +
-    '    </md-input-container>\n' +
-    '    <div class="flex-fixed"\n' +
-    '         ng-class="{\'w16\': $mdMedia(\'gt-xs\'), \'w8\':  $mdMedia(\'xs\')}"\n' +
-    '         ng-show="isMonth()">\n' +
-    '    </div>\n' +
-    '    <md-input-container class="tm0 flex"\n' +
-    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
-    '        <md-select class="select-year w-stretch"\n' +
-    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
-    '                   ng-disable="{{disableControls}}"\n' +
-    '                   md-on-open="onYearClick()"\n' +
-    '                   ng-model="year"\n' +
-    '                   ng-change="onYearChanged()"\n' +
-    '                   placeholder="{{yearLabel}}"\n' +
-    '                   aria-label="YEAR">\n' +
-    '\n' +
-    '            <md-option ng-value="opt" ng-repeat="opt in years track by opt">\n' +
-    '                {{ opt }}\n' +
-    '            </md-option>\n' +
-    '        </md-select>\n' +
-    '    </md-input-container>\n' +
-    '</div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipBasicControls.Templates');
-} catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('toast/toast.html',
-    '<md-toast class="md-action pip-toast"\n' +
-    '          ng-class="{\'pip-error\': toast.type==\'error\',\n' +
-    '          \'pip-column-toast\': toast.type == \'error\' || toast.actions.length > 1 || actionLenght > 4,\n' +
-    '          \'pip-no-action-toast\': actionLenght == 0}"\n' +
-    '          style="height:initial; max-height: initial; ">\n' +
-    '\n' +
-    '    <span class="flex-var m0 pip-text" ng-bind-html="message"></span>\n' +
-    '    <div class="layout-row layout-align-end-start" class="pip-actions" ng-if="actions.length > 0 || (toast.type==\'error\' && toast.error)">\n' +
-    '        <md-button class="flex-fixed m0 lm8" ng-if="toast.type==\'error\' && toast.error" ng-click="onDetails()">Details</md-button>\n' +
-    '        <md-button class="flex-fixed m0 lm8"\n' +
-    '                   ng-click="onAction(action)"\n' +
-    '                   ng-repeat="action in actions"\n' +
-    '                   aria-label="{{::action| translate}}">\n' +
-    '            {{::action| translate}}\n' +
-    '        </md-button>\n' +
-    '    </div>\n' +
-    '\n' +
-    '</md-toast>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipBasicControls.Templates');
-} catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('progress/routing_progress.html',
     '<div class="pip-routing-progress layout-column layout-align-center-center"\n' +
     '     ng-show="$routing || $reset || toolInitialized">\n' +
@@ -553,28 +538,12 @@ try {
   module = angular.module('pipBasicControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('toggle_buttons/toggle_buttons.html',
-    '<div class="pip-toggle-buttons flex layout-row {{class}}" pip-selected="bufButtonIndex" pip-enter-space-press="enterSpacePress($event)"\n' +
-    '     ng-if="$mdMedia(\'gt-xs\')">\n' +
-    '    <md-button tabindex="-1" ng-repeat="button in buttons"\n' +
-    '               ng-class="{\'md-accent md-raised selected color-accent-bg\' : currentButtonIndex == $index}"\n' +
-    '               ng-attr-style="{{ \'background-color:\' + (currentButtonIndex == $index ? button.backgroundColor : \'\') + \'!important\' }}"\n' +
-    '               class="pip-selectable pip-chip-button flex" ng-click="buttonSelected($index, $event)"\n' +
-    '               ng-disabled="button.disabled || disabled()">\n' +
-    '        {{button.name || button.title | translate}}\n' +
-    '        <span ng-if="button.checked || button.complete || button.filled" class="pip-tagged">*</span>\n' +
-    '    </md-button>\n' +
-    '</div>\n' +
-    '\n' +
-    '<md-input-container class="md-block" ng-if="$mdMedia(\'xs\')">\n' +
-    '    <md-select ng-model="currentButtonIndex" ng-disabled="disabled()" aria-label="DROPDOWN" md-on-close="buttonSelected(currentButtonIndex)">\n' +
-    '        <md-option ng-repeat="action in buttons" value="{{ ::$index }}">\n' +
-    '            {{ (action.title || action.name) | translate }}\n' +
-    '            <span ng-if="action.checked || action.complete || action.filled" class="pip-tagged">*</span>\n' +
-    '        </md-option>\n' +
-    '    </md-select>\n' +
-    '</md-input-container>\n' +
-    '');
+  $templateCache.put('time_range/time_range.html',
+    '<p>\n' +
+    '    <span ng-if="data.start != null">{{data.start | formatShortDateTime}}</span>\n' +
+    '    <span  class="rm4 lm4" ng-if="data.start && data.end"> - </span>\n' +
+    '    <span ng-if="data.end != null">{{data.end | formatShortDateTime}}</span>\n' +
+    '</p>');
 }]);
 })();
 
@@ -585,12 +554,20 @@ try {
   module = angular.module('pipBasicControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('time_range/time_range.html',
-    '<p>\n' +
-    '    <span ng-if="data.start != null">{{data.start | formatShortDateTime}}</span>\n' +
-    '    <span  class="rm4 lm4" ng-if="data.start && data.end"> - </span>\n' +
-    '    <span ng-if="data.end != null">{{data.end | formatShortDateTime}}</span>\n' +
-    '</p>');
+  $templateCache.put('tags/tag_list.html',
+    '<div class="pip-chip rm4 pip-type-chip pip-type-chip-left {{\'bg-\' + pipType + \'-chips\'}}"\n' +
+    '     ng-if="pipType && !pipTypeLocal">\n' +
+    '\n' +
+    '    <span>{{pipType.toUpperCase() | translate | uppercase}}</span>\n' +
+    '</div>\n' +
+    '<div class="pip-chip rm4 pip-type-chip pip-type-chip-left {{\'bg-\' + pipType + \'-chips\'}}"\n' +
+    '     ng-if="pipType && pipTypeLocal">\n' +
+    '\n' +
+    '    <span>{{pipTypeLocal.toUpperCase() | translate | uppercase}}</span>\n' +
+    '</div>\n' +
+    '<div class="pip-chip rm4" ng-repeat="tag in pipTags">\n' +
+    '    <span>{{::tag}}</span>\n' +
+    '</div>');
 }]);
 })();
 
@@ -660,43 +637,66 @@ module.run(['$templateCache', function($templateCache) {
 }]);
 })();
 
-/**
- * @file Registration of basic WebUI controls
- * @copyright Digital Living Software Corp. 2014-2016
- */
+(function(module) {
+try {
+  module = angular.module('pipBasicControls.Templates');
+} catch (e) {
+  module = angular.module('pipBasicControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('toggle_buttons/toggle_buttons.html',
+    '<div class="pip-toggle-buttons flex layout-row {{class}}" pip-selected="bufButtonIndex" pip-enter-space-press="enterSpacePress($event)"\n' +
+    '     ng-if="$mdMedia(\'gt-xs\')">\n' +
+    '    <md-button tabindex="-1" ng-repeat="button in buttons"\n' +
+    '               ng-class="{\'md-accent md-raised selected color-accent-bg\' : currentButtonIndex == $index}"\n' +
+    '               ng-attr-style="{{ \'background-color:\' + (currentButtonIndex == $index ? button.backgroundColor : \'\') + \'!important\' }}"\n' +
+    '               class="pip-selectable pip-chip-button flex" ng-click="buttonSelected($index, $event)"\n' +
+    '               ng-disabled="button.disabled || disabled()">\n' +
+    '        {{button.name || button.title | translate}}\n' +
+    '        <span ng-if="button.checked || button.complete || button.filled" class="pip-tagged">*</span>\n' +
+    '    </md-button>\n' +
+    '</div>\n' +
+    '\n' +
+    '<md-input-container class="md-block" ng-if="$mdMedia(\'xs\')">\n' +
+    '    <md-select ng-model="currentButtonIndex" ng-disabled="disabled()" aria-label="DROPDOWN" md-on-close="buttonSelected(currentButtonIndex)">\n' +
+    '        <md-option ng-repeat="action in buttons" value="{{ ::$index }}">\n' +
+    '            {{ (action.title || action.name) | translate }}\n' +
+    '            <span ng-if="action.checked || action.complete || action.filled" class="pip-tagged">*</span>\n' +
+    '        </md-option>\n' +
+    '    </md-select>\n' +
+    '</md-input-container>\n' +
+    '');
+}]);
+})();
 
-/* global angular */
-
-(function (angular) {
-    'use strict';
-
-    angular.module('pipControls', [
-        'pipMarkdown',
-        'pipToggleButtons',
-        'pipRefreshButton',
-        'pipColorPicker',
-        'pipRoutingProgress',
-        'pipPopover',
-        'pipImageSlider',
-        'pipToasts',
-        'pipTagList',
-
-        'pipDate',
-        'pipDateRange',
-        'pipTimeRangeEdit',
-        'pipTimeRange',
-
-        'pipInformationDialog',
-        'pipConfirmationDialog',
-        'pipOptionsDialog',
-        'pipOptionsBigDialog',
-        'pipErrorDetailsDialog'
-    ]);
-
-    angular.module('pipBasicControls', ['pipControls']);
-
-})(window.angular);
-
+(function(module) {
+try {
+  module = angular.module('pipBasicControls.Templates');
+} catch (e) {
+  module = angular.module('pipBasicControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('toast/toast.html',
+    '<md-toast class="md-action pip-toast"\n' +
+    '          ng-class="{\'pip-error\': toast.type==\'error\',\n' +
+    '          \'pip-column-toast\': toast.type == \'error\' || toast.actions.length > 1 || actionLenght > 4,\n' +
+    '          \'pip-no-action-toast\': actionLenght == 0}"\n' +
+    '          style="height:initial; max-height: initial; ">\n' +
+    '\n' +
+    '    <span class="flex-var m0 pip-text" ng-bind-html="message"></span>\n' +
+    '    <div class="layout-row layout-align-end-start" class="pip-actions" ng-if="actions.length > 0 || (toast.type==\'error\' && toast.error)">\n' +
+    '        <md-button class="flex-fixed m0 lm8" ng-if="toast.type==\'error\' && toast.error" ng-click="onDetails()">Details</md-button>\n' +
+    '        <md-button class="flex-fixed m0 lm8"\n' +
+    '                   ng-click="onAction(action)"\n' +
+    '                   ng-repeat="action in actions"\n' +
+    '                   aria-label="{{::action| translate}}">\n' +
+    '            {{::action| translate}}\n' +
+    '        </md-button>\n' +
+    '    </div>\n' +
+    '\n' +
+    '</md-toast>');
+}]);
+})();
 
 /**
  * @file Color picker control
@@ -1792,6 +1792,243 @@ module.run(['$templateCache', function($templateCache) {
 })(window.angular, window._);
 
 /**
+ * @file Options dialog
+ * @copyright Digital Living Software Corp. 2014-2016
+ * @todo
+ * - Improve sample in sampler app
+ * - Remove deleted hack in the controller
+ */
+
+(function (angular, $, _) {
+    'use strict';
+
+    var thisModule = angular.module('pipOptionsDialog',
+        ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
+
+    /* eslint-disable quote-props */
+    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            'OPTIONS_TITLE': 'Choose Option'
+        });
+        pipTranslateProvider.translations('ru', {
+            'OPTIONS_TITLE': 'Выберите опцию'
+        });
+    }]);
+    /* eslint-enable quote-props */
+
+    thisModule.factory('pipOptionsDialog',
+        ['$mdDialog', function ($mdDialog) {
+            return {
+                show: function (params, successCallback, cancelCallback) {
+                    if (params.event) {
+                        params.event.stopPropagation();
+                        params.event.preventDefault();
+                    }
+
+                    function focusToggleControl() {
+                        if (params.event && params.event.currentTarget) {
+                            params.event.currentTarget.focus();
+                        }
+                    }
+
+                    $mdDialog.show({
+                        targetEvent: params.event,
+                        templateUrl: 'options_dialog/options_dialog.html',
+                        controller: 'pipOptionsDialogController',
+                        locals: {params: params},
+                        clickOutsideToClose: true
+                    })
+                        .then(function (option) {
+                            focusToggleControl();
+
+                            if (successCallback) {
+                                successCallback(option);
+                            }
+                        }, function () {
+                            focusToggleControl();
+                            if (cancelCallback) {
+                                cancelCallback();
+                            }
+                        });
+                }
+            };
+        }]
+    );
+    thisModule.controller('pipOptionsDialogController',
+        ['$scope', '$rootScope', '$mdDialog', 'params', function ($scope, $rootScope, $mdDialog, params) {
+            $scope.theme = $rootScope.$theme;
+            $scope.title = params.title || 'OPTIONS_TITLE';
+            $scope.options = params.options;
+            $scope.selectedOption = _.find(params.options, {active: true}) || {};
+            $scope.selectedOptionName = $scope.selectedOption.name;
+            $scope.applyButtonTitle = params.appleButtonTitle || 'SELECT';
+            $scope.deleted = params.deleted;
+            $scope.deletedTitle = params.deletedTitle;
+            $scope.onOptionSelect = function (event, option) {
+                event.stopPropagation();
+                $scope.selectedOptionName = option.name;
+            };
+            $scope.onKeyPress = function (event) {
+                if (event.keyCode === 32 || event.keyCode === 13) {
+                    event.stopPropagation();
+                    event.preventDefault();
+                    $scope.onSelect();
+                }
+            };
+            $scope.onCancel = function () {
+                $mdDialog.cancel();
+            };
+            $scope.onSelect = function () {
+                var option;
+
+                option = _.find(params.options, {name: $scope.selectedOptionName});
+                $mdDialog.hide({option: option, deleted: $scope.deleted});
+            };
+            // Setting focus to input control
+            function focusInput() {
+                var list;
+
+                list = $('.pip-options-dialog .pip-list');
+                list.focus();
+            }
+
+            setTimeout(focusInput, 500);
+        }]
+    );
+
+})(window.angular, window.jQuery, window._);
+
+/**
+ * @file Options dialog
+ * @copyright Digital Living Software Corp. 2014-2016
+ * @todo
+ * - Improve sample in sampler app
+ * - Remove deleted hack in the controller
+ */
+
+(function (angular, $, _) {
+    'use strict';
+
+    var thisModule = angular.module('pipOptionsBigDialog',
+        ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
+
+    /* eslint-disable quote-props */
+    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            'OPTIONS_TITLE': 'Choose Option'
+        });
+        pipTranslateProvider.translations('ru', {
+            'OPTIONS_TITLE': 'Выберите опцию'
+        });
+    }]);
+    /* eslint-enable quote-props */
+
+    thisModule.factory('pipOptionsBigDialog',
+        ['$mdDialog', function ($mdDialog) {
+            return {
+                show: function (params, successCallback, cancelCallback) {
+                    if (params.event) {
+                        params.event.stopPropagation();
+                        params.event.preventDefault();
+                    }
+
+                    function focusToggleControl() {
+                        if (params.event && params.event.currentTarget) {
+                            params.event.currentTarget.focus();
+                        }
+                    }
+
+                    $mdDialog.show({
+                        targetEvent: params.event,
+                        templateUrl: 'options_dialog/options_dialog_big.html',
+                        controller: 'pipOptionsDialogBigController',
+                        locals: {params: params},
+                        clickOutsideToClose: true
+                    })
+                        .then(function (option) {
+                            focusToggleControl();
+
+                            if (successCallback) {
+                                successCallback(option);
+                            }
+                        }, function () {
+                            focusToggleControl();
+                            if (cancelCallback) {
+                                cancelCallback();
+                            }
+                        });
+                }
+            };
+        }]
+    );
+
+    thisModule.controller('pipOptionsDialogBigController',
+        ['$scope', '$rootScope', '$mdDialog', 'params', function ($scope, $rootScope, $mdDialog, params) {
+            $scope.theme = $rootScope.$theme;
+            $scope.title = params.title || 'OPTIONS_TITLE';
+            $scope.options = params.options;
+            $scope.noActions = params.noActions || false;
+            $scope.noTitle = params.noTitle || false;
+            $scope.hint = params.hint || '';
+            $scope.selectedOption = _.find(params.options, {active: true}) || {};
+            $scope.selectedOptionName = $scope.selectedOption.name;
+            $scope.optionIndex = _.findIndex(params.options, $scope.selectedOption);
+            $scope.applyButtonTitle = params.applyButtonTitle || 'SELECT';
+
+            $scope.deleted = params.deleted;
+            $scope.deletedTitle = params.deletedTitle;
+
+            $scope.onOptionSelect = function (event, option) {
+                event.stopPropagation();
+                $scope.selectedOptionName = option.name;
+
+                if ($scope.noActions) {
+                    $scope.onSelect();
+                }
+            };
+
+            $scope.onSelected = function () {
+                $scope.selectedOptionName = $scope.options[$scope.optionIndex].name;
+
+                if ($scope.noActions) {
+                    // $scope.onSelect();
+                }
+            };
+
+            $scope.onKeyUp = function (event, index) {
+                if (event.keyCode === 32 || event.keyCode === 13) {
+                    event.stopPropagation();
+                    event.preventDefault();
+                    if (index !== undefined && index > -1 && index < $scope.options.length) {
+                        $scope.selectedOptionName = $scope.options[index].name;
+                        $scope.onSelect();
+                    }
+                }
+            };
+            $scope.onCancel = function () {
+                $mdDialog.cancel();
+            };
+            $scope.onSelect = function () {
+                var option;
+
+                option = _.find($scope.options, {name: $scope.selectedOptionName});
+                $mdDialog.hide({option: option, deleted: $scope.deleted});
+            };
+            // Setting focus to input control
+            function focusInput() {
+                var list;
+
+                list = $('.pip-options-dialog .pip-list');
+                list.focus();
+            }
+
+            setTimeout(focusInput, 500);
+        }]
+    );
+
+})(window.angular, window.jQuery, window._);
+
+/**
  * @file Markdown control
  * @copyright Digital Living Software Corp. 2014-2016
  * @todo
@@ -2078,241 +2315,73 @@ module.run(['$templateCache', function($templateCache) {
 })(window.angular, window.jQuery, window._);
 
 /**
- * @file Options dialog
+ * @file Refresh button control
  * @copyright Digital Living Software Corp. 2014-2016
- * @todo
- * - Improve sample in sampler app
- * - Remove deleted hack in the controller
  */
 
-(function (angular, $, _) {
+(function (angular) {
     'use strict';
 
-    var thisModule = angular.module('pipOptionsDialog',
-        ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
+    var thisModule = angular.module('pipRefreshButton', ['ngMaterial']);
 
-    /* eslint-disable quote-props */
-    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            'OPTIONS_TITLE': 'Choose Option'
-        });
-        pipTranslateProvider.translations('ru', {
-            'OPTIONS_TITLE': 'Выберите опцию'
-        });
-    }]);
-    /* eslint-enable quote-props */
-
-    thisModule.factory('pipOptionsDialog',
-        ['$mdDialog', function ($mdDialog) {
+    thisModule.directive('pipRefreshButton',
+        ['$parse', function ($parse) {
             return {
-                show: function (params, successCallback, cancelCallback) {
-                    if (params.event) {
-                        params.event.stopPropagation();
-                        params.event.preventDefault();
+                restrict: 'EA',
+                scope: false,
+                template: String() +
+                '<md-button class="pip-refresh-button" tabindex="-1" ng-click="onClick($event)" aria-label="REFRESH">' +
+                '<md-icon md-svg-icon="icons:refresh"></md-icon>' +
+                '<span class="pip-refresh-text"></span>' +
+                '</md-button>',
+                replace: false,
+                link: function ($scope, $element, $attrs) {
+                    var width, text, show,
+                        textGetter = $parse($attrs.pipText),
+                        visibleGetter = $parse($attrs.pipVisible),
+                        refreshGetter = $parse($attrs.pipRefresh),
+                        $button = $element.children('.md-button'),
+                        $text = $button.children('.pip-refresh-text');
+
+                    show = function () {
+                        // Set a new text
+                        text = textGetter($scope);
+                        $text.text(text);
+
+                        // Show button
+                        $button.show();
+
+                        // Adjust position
+                        width = $button.width();
+                        $button.css('margin-left', '-' + width / 2 + 'px');
+                    };
+
+                    function hide() {
+                        $button.hide();
                     }
 
-                    function focusToggleControl() {
-                        if (params.event && params.event.currentTarget) {
-                            params.event.currentTarget.focus();
+                    $scope.onClick = function () {
+                        refreshGetter($scope);
+                    };
+
+                    $scope.$watch(visibleGetter, function (newValue) {
+                        if (newValue) {
+                            show();
+                        } else {
+                            hide();
                         }
-                    }
+                    });
 
-                    $mdDialog.show({
-                        targetEvent: params.event,
-                        templateUrl: 'options_dialog/options_dialog.html',
-                        controller: 'pipOptionsDialogController',
-                        locals: {params: params},
-                        clickOutsideToClose: true
-                    })
-                        .then(function (option) {
-                            focusToggleControl();
-
-                            if (successCallback) {
-                                successCallback(option);
-                            }
-                        }, function () {
-                            focusToggleControl();
-                            if (cancelCallback) {
-                                cancelCallback();
-                            }
-                        });
-                }
-            };
-        }]
-    );
-    thisModule.controller('pipOptionsDialogController',
-        ['$scope', '$rootScope', '$mdDialog', 'params', function ($scope, $rootScope, $mdDialog, params) {
-            $scope.theme = $rootScope.$theme;
-            $scope.title = params.title || 'OPTIONS_TITLE';
-            $scope.options = params.options;
-            $scope.selectedOption = _.find(params.options, {active: true}) || {};
-            $scope.selectedOptionName = $scope.selectedOption.name;
-            $scope.applyButtonTitle = params.appleButtonTitle || 'SELECT';
-            $scope.deleted = params.deleted;
-            $scope.deletedTitle = params.deletedTitle;
-            $scope.onOptionSelect = function (event, option) {
-                event.stopPropagation();
-                $scope.selectedOptionName = option.name;
-            };
-            $scope.onKeyPress = function (event) {
-                if (event.keyCode === 32 || event.keyCode === 13) {
-                    event.stopPropagation();
-                    event.preventDefault();
-                    $scope.onSelect();
-                }
-            };
-            $scope.onCancel = function () {
-                $mdDialog.cancel();
-            };
-            $scope.onSelect = function () {
-                var option;
-
-                option = _.find(params.options, {name: $scope.selectedOptionName});
-                $mdDialog.hide({option: option, deleted: $scope.deleted});
-            };
-            // Setting focus to input control
-            function focusInput() {
-                var list;
-
-                list = $('.pip-options-dialog .pip-list');
-                list.focus();
-            }
-
-            setTimeout(focusInput, 500);
-        }]
-    );
-
-})(window.angular, window.jQuery, window._);
-
-/**
- * @file Options dialog
- * @copyright Digital Living Software Corp. 2014-2016
- * @todo
- * - Improve sample in sampler app
- * - Remove deleted hack in the controller
- */
-
-(function (angular, $, _) {
-    'use strict';
-
-    var thisModule = angular.module('pipOptionsBigDialog',
-        ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
-
-    /* eslint-disable quote-props */
-    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            'OPTIONS_TITLE': 'Choose Option'
-        });
-        pipTranslateProvider.translations('ru', {
-            'OPTIONS_TITLE': 'Выберите опцию'
-        });
-    }]);
-    /* eslint-enable quote-props */
-
-    thisModule.factory('pipOptionsBigDialog',
-        ['$mdDialog', function ($mdDialog) {
-            return {
-                show: function (params, successCallback, cancelCallback) {
-                    if (params.event) {
-                        params.event.stopPropagation();
-                        params.event.preventDefault();
-                    }
-
-                    function focusToggleControl() {
-                        if (params.event && params.event.currentTarget) {
-                            params.event.currentTarget.focus();
-                        }
-                    }
-
-                    $mdDialog.show({
-                        targetEvent: params.event,
-                        templateUrl: 'options_dialog/options_dialog_big.html',
-                        controller: 'pipOptionsDialogBigController',
-                        locals: {params: params},
-                        clickOutsideToClose: true
-                    })
-                        .then(function (option) {
-                            focusToggleControl();
-
-                            if (successCallback) {
-                                successCallback(option);
-                            }
-                        }, function () {
-                            focusToggleControl();
-                            if (cancelCallback) {
-                                cancelCallback();
-                            }
-                        });
+                    $scope.$watch(textGetter, function (newValue) {
+                        $text.text(newValue);
+                    });
                 }
             };
         }]
     );
 
-    thisModule.controller('pipOptionsDialogBigController',
-        ['$scope', '$rootScope', '$mdDialog', 'params', function ($scope, $rootScope, $mdDialog, params) {
-            $scope.theme = $rootScope.$theme;
-            $scope.title = params.title || 'OPTIONS_TITLE';
-            $scope.options = params.options;
-            $scope.noActions = params.noActions || false;
-            $scope.noTitle = params.noTitle || false;
-            $scope.hint = params.hint || '';
-            $scope.selectedOption = _.find(params.options, {active: true}) || {};
-            $scope.selectedOptionName = $scope.selectedOption.name;
-            $scope.optionIndex = _.findIndex(params.options, $scope.selectedOption);
-            $scope.applyButtonTitle = params.applyButtonTitle || 'SELECT';
+})(window.angular);
 
-            $scope.deleted = params.deleted;
-            $scope.deletedTitle = params.deletedTitle;
-
-            $scope.onOptionSelect = function (event, option) {
-                event.stopPropagation();
-                $scope.selectedOptionName = option.name;
-
-                if ($scope.noActions) {
-                    $scope.onSelect();
-                }
-            };
-
-            $scope.onSelected = function () {
-                $scope.selectedOptionName = $scope.options[$scope.optionIndex].name;
-
-                if ($scope.noActions) {
-                    // $scope.onSelect();
-                }
-            };
-
-            $scope.onKeyUp = function (event, index) {
-                if (event.keyCode === 32 || event.keyCode === 13) {
-                    event.stopPropagation();
-                    event.preventDefault();
-                    if (index !== undefined && index > -1 && index < $scope.options.length) {
-                        $scope.selectedOptionName = $scope.options[index].name;
-                        $scope.onSelect();
-                    }
-                }
-            };
-            $scope.onCancel = function () {
-                $mdDialog.cancel();
-            };
-            $scope.onSelect = function () {
-                var option;
-
-                option = _.find($scope.options, {name: $scope.selectedOptionName});
-                $mdDialog.hide({option: option, deleted: $scope.deleted});
-            };
-            // Setting focus to input control
-            function focusInput() {
-                var list;
-
-                list = $('.pip-options-dialog .pip-list');
-                list.focus();
-            }
-
-            setTimeout(focusInput, 500);
-        }]
-    );
-
-})(window.angular, window.jQuery, window._);
 
 /**
  * @file Routing progress control
@@ -2384,75 +2453,6 @@ module.run(['$templateCache', function($templateCache) {
                     // Add class
                     $element.addClass('pip-tag-list');
                 }]
-            };
-        }]
-    );
-
-})(window.angular);
-
-
-/**
- * @file Refresh button control
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-(function (angular) {
-    'use strict';
-
-    var thisModule = angular.module('pipRefreshButton', ['ngMaterial']);
-
-    thisModule.directive('pipRefreshButton',
-        ['$parse', function ($parse) {
-            return {
-                restrict: 'EA',
-                scope: false,
-                template: String() +
-                '<md-button class="pip-refresh-button" tabindex="-1" ng-click="onClick($event)" aria-label="REFRESH">' +
-                '<md-icon md-svg-icon="icons:refresh"></md-icon>' +
-                '<span class="pip-refresh-text"></span>' +
-                '</md-button>',
-                replace: false,
-                link: function ($scope, $element, $attrs) {
-                    var width, text, show,
-                        textGetter = $parse($attrs.pipText),
-                        visibleGetter = $parse($attrs.pipVisible),
-                        refreshGetter = $parse($attrs.pipRefresh),
-                        $button = $element.children('.md-button'),
-                        $text = $button.children('.pip-refresh-text');
-
-                    show = function () {
-                        // Set a new text
-                        text = textGetter($scope);
-                        $text.text(text);
-
-                        // Show button
-                        $button.show();
-
-                        // Adjust position
-                        width = $button.width();
-                        $button.css('margin-left', '-' + width / 2 + 'px');
-                    };
-
-                    function hide() {
-                        $button.hide();
-                    }
-
-                    $scope.onClick = function () {
-                        refreshGetter($scope);
-                    };
-
-                    $scope.$watch(visibleGetter, function (newValue) {
-                        if (newValue) {
-                            show();
-                        } else {
-                            hide();
-                        }
-                    });
-
-                    $scope.$watch(textGetter, function (newValue) {
-                        $text.text(newValue);
-                    });
-                }
             };
         }]
     );
@@ -2806,84 +2806,6 @@ module.run(['$templateCache', function($templateCache) {
 })(window.angular, window._);
 
 /**
- * @file Toggle buttons control
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-(function (angular, _) {
-    'use strict';
-
-    var thisModule = angular.module('pipToggleButtons', ['pipBasicControls.Templates']);
-
-    thisModule.directive('pipToggleButtons',
-        function () {
-            return {
-                restrict: 'EA',
-                scope: {
-                    ngDisabled: '&',
-                    buttons: '=pipButtons',
-                    currentButtonValue: '=ngModel',
-                    currentButton: '=?pipButtonObject',
-                    change: '&ngChange'
-                },
-                templateUrl: 'toggle_buttons/toggle_buttons.html',
-                controller: ['$scope', '$element', '$attrs', '$mdMedia', '$timeout', function ($scope, $element, $attrs, $mdMedia, $timeout) {
-                    var index;
-
-                    $scope.$mdMedia = $mdMedia;
-                    $scope.class = $attrs.class || '';
-
-                    if (!$scope.buttons || _.isArray($scope.buttons) && $scope.buttons.length === 0) {
-                        $scope.buttons = [];
-                    }
-
-                    index = _.indexOf($scope.buttons, _.find($scope.buttons, {id: $scope.currentButtonValue}));
-                    $scope.currentButtonIndex = index < 0 ? 0 : index;
-                    $scope.currentButton = $scope.buttons.length > 0 ? $scope.buttons[$scope.currentButtonIndex]
-                        : $scope.currentButton;
-
-                    $scope.buttonSelected = function (index) {
-                        if ($scope.disabled()) {
-                            return;
-                        }
-
-                        $scope.currentButtonIndex = index;
-                        $scope.currentButton = $scope.buttons[$scope.currentButtonIndex];
-                        $scope.currentButtonValue = $scope.currentButton.id || index;
-
-                        $timeout(function () {
-                            if ($scope.change) {
-                                $scope.change();
-                            }
-                        });
-                    };
-
-                    $scope.enterSpacePress = function (event) {
-                        $scope.buttonSelected(event.index);
-                    };
-
-                    $scope.disabled = function () {
-                        if ($scope.ngDisabled) {
-                            return $scope.ngDisabled();
-                        }
-                    };
-                }],
-                link: function (scope, elem) {
-                    elem
-                        .on('focusin', function () {
-                            elem.addClass('focused-container');
-                        })
-                        .on('focusout', function () {
-                            elem.removeClass('focused-container');
-                        });
-                }
-            };
-        }
-    );
-
-})(window.angular, window._);
-
-/**
  * @file Toasts management service
  * @copyright Digital Living Software Corp. 2014-2016
  * @todo Replace ngAudio with alternative service
@@ -3132,6 +3054,84 @@ module.run(['$templateCache', function($templateCache) {
                 }
             }
         }]
+    );
+
+})(window.angular, window._);
+
+/**
+ * @file Toggle buttons control
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+(function (angular, _) {
+    'use strict';
+
+    var thisModule = angular.module('pipToggleButtons', ['pipBasicControls.Templates']);
+
+    thisModule.directive('pipToggleButtons',
+        function () {
+            return {
+                restrict: 'EA',
+                scope: {
+                    ngDisabled: '&',
+                    buttons: '=pipButtons',
+                    currentButtonValue: '=ngModel',
+                    currentButton: '=?pipButtonObject',
+                    change: '&ngChange'
+                },
+                templateUrl: 'toggle_buttons/toggle_buttons.html',
+                controller: ['$scope', '$element', '$attrs', '$mdMedia', '$timeout', function ($scope, $element, $attrs, $mdMedia, $timeout) {
+                    var index;
+
+                    $scope.$mdMedia = $mdMedia;
+                    $scope.class = $attrs.class || '';
+
+                    if (!$scope.buttons || _.isArray($scope.buttons) && $scope.buttons.length === 0) {
+                        $scope.buttons = [];
+                    }
+
+                    index = _.indexOf($scope.buttons, _.find($scope.buttons, {id: $scope.currentButtonValue}));
+                    $scope.currentButtonIndex = index < 0 ? 0 : index;
+                    $scope.currentButton = $scope.buttons.length > 0 ? $scope.buttons[$scope.currentButtonIndex]
+                        : $scope.currentButton;
+
+                    $scope.buttonSelected = function (index) {
+                        if ($scope.disabled()) {
+                            return;
+                        }
+
+                        $scope.currentButtonIndex = index;
+                        $scope.currentButton = $scope.buttons[$scope.currentButtonIndex];
+                        $scope.currentButtonValue = $scope.currentButton.id || index;
+
+                        $timeout(function () {
+                            if ($scope.change) {
+                                $scope.change();
+                            }
+                        });
+                    };
+
+                    $scope.enterSpacePress = function (event) {
+                        $scope.buttonSelected(event.index);
+                    };
+
+                    $scope.disabled = function () {
+                        if ($scope.ngDisabled) {
+                            return $scope.ngDisabled();
+                        }
+                    };
+                }],
+                link: function (scope, elem) {
+                    elem
+                        .on('focusin', function () {
+                            elem.addClass('focused-container');
+                        })
+                        .on('focusout', function () {
+                            elem.removeClass('focused-container');
+                        });
+                }
+            };
+        }
     );
 
 })(window.angular, window._);
