@@ -91,45 +91,6 @@ try {
   module = angular.module('pipBasicControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('date/date.html',
-    '<!--\n' +
-    '@file Date control content\n' +
-    '@copyright Digital Living Software Corp. 2014-2016\n' +
-    '-->\n' +
-    '\n' +
-    '<div class="pip-date layout-row flex" tabindex="-1">\n' +
-    '	<md-input-container class="tm0 flex">\n' +
-    '		<md-select class="pip-date-day tm0 flex" ng-disabled="disableControls"\n' +
-    '				   ng-model="day" placeholder="{{dayLabel}}" ng-change="onDayChanged()">\n' +
-    '			<md-option ng-value="opt" ng-repeat="opt in days track by opt">{{:: opt }}</md-option>\n' +
-    '		</md-select>\n' +
-    '	</md-input-container>\n' +
-    '	<div class="w16 flex-fixed"></div>\n' +
-    '	<md-input-container class="tm0 flex">\n' +
-    '		<md-select class="pip-date-month tm0 flex" ng-disabled="disableControls"\n' +
-    '				   ng-model="month" placeholder="{{monthLabel}}" ng-change="onMonthChanged()">\n' +
-    '			<md-option ng-value="opt.id" ng-repeat="opt in months track by opt.id">{{:: opt.name }}</md-option>\n' +
-    '		</md-select>\n' +
-    '	</md-input-container>\n' +
-    '	<div class="w16 flex-fixed"></div>\n' +
-    '	<md-input-container class="tm0 flex">\n' +
-    '		<md-select class="pip-date-year tm0 flex" ng-disabled="disableControls"\n' +
-    '				   ng-model="year" placeholder="{{yearLabel}}" ng-change="onYearChanged()">\n' +
-    '			<md-option ng-value="opt" ng-repeat="opt in years track by opt">{{:: opt }}</md-option>\n' +
-    '		</md-select>\n' +
-    '	</md-input-container>\n' +
-    '</div>\n' +
-    '					');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipBasicControls.Templates');
-} catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('date_range/date_range.html',
     '<!--\n' +
     '@file Date range control content\n' +
@@ -293,6 +254,45 @@ module.run(['$templateCache', function($templateCache) {
     '    </div>\n' +
     '</md-dialog>\n' +
     '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipBasicControls.Templates');
+} catch (e) {
+  module = angular.module('pipBasicControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('date/date.html',
+    '<!--\n' +
+    '@file Date control content\n' +
+    '@copyright Digital Living Software Corp. 2014-2016\n' +
+    '-->\n' +
+    '\n' +
+    '<div class="pip-date layout-row flex" tabindex="-1">\n' +
+    '	<md-input-container class="tm0 flex">\n' +
+    '		<md-select class="pip-date-day tm0 flex" ng-disabled="disableControls"\n' +
+    '				   ng-model="day" placeholder="{{dayLabel}}" ng-change="onDayChanged()">\n' +
+    '			<md-option ng-value="opt" ng-repeat="opt in days track by opt">{{:: opt }}</md-option>\n' +
+    '		</md-select>\n' +
+    '	</md-input-container>\n' +
+    '	<div class="w16 flex-fixed"></div>\n' +
+    '	<md-input-container class="tm0 flex">\n' +
+    '		<md-select class="pip-date-month tm0 flex" ng-disabled="disableControls"\n' +
+    '				   ng-model="month" placeholder="{{monthLabel}}" ng-change="onMonthChanged()">\n' +
+    '			<md-option ng-value="opt.id" ng-repeat="opt in months track by opt.id">{{:: opt.name }}</md-option>\n' +
+    '		</md-select>\n' +
+    '	</md-input-container>\n' +
+    '	<div class="w16 flex-fixed"></div>\n' +
+    '	<md-input-container class="tm0 flex">\n' +
+    '		<md-select class="pip-date-year tm0 flex" ng-disabled="disableControls"\n' +
+    '				   ng-model="year" placeholder="{{yearLabel}}" ng-change="onYearChanged()">\n' +
+    '			<md-option ng-value="opt" ng-repeat="opt in years track by opt">{{:: opt }}</md-option>\n' +
+    '		</md-select>\n' +
+    '	</md-input-container>\n' +
+    '</div>\n' +
+    '					');
 }]);
 })();
 
@@ -494,24 +494,6 @@ try {
   module = angular.module('pipBasicControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('popover/popover.template.html',
-    '<div ng-if="params.templateUrl" class=\'pip-popover flex layout-column\'\n' +
-    '     ng-click="onPopoverClick($event)" ng-include="params.templateUrl">\n' +
-    '</div>\n' +
-    '\n' +
-    '<div ng-if="params.template" class=\'pip-popover\' ng-click="onPopoverClick($event)">\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipBasicControls.Templates');
-} catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('progress/routing_progress.html',
     '<div class="pip-routing-progress layout-column layout-align-center-center"\n' +
     '     ng-show="$routing || $reset || toolInitialized">\n' +
@@ -538,20 +520,14 @@ try {
   module = angular.module('pipBasicControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('tags/tag_list.html',
-    '<div class="pip-chip rm4 pip-type-chip pip-type-chip-left {{\'bg-\' + pipType + \'-chips\'}}"\n' +
-    '     ng-if="pipType && !pipTypeLocal">\n' +
-    '\n' +
-    '    <span>{{pipType.toUpperCase() | translate | uppercase}}</span>\n' +
+  $templateCache.put('popover/popover.template.html',
+    '<div ng-if="params.templateUrl" class=\'pip-popover flex layout-column\'\n' +
+    '     ng-click="onPopoverClick($event)" ng-include="params.templateUrl">\n' +
     '</div>\n' +
-    '<div class="pip-chip rm4 pip-type-chip pip-type-chip-left {{\'bg-\' + pipType + \'-chips\'}}"\n' +
-    '     ng-if="pipType && pipTypeLocal">\n' +
     '\n' +
-    '    <span>{{pipTypeLocal.toUpperCase() | translate | uppercase}}</span>\n' +
+    '<div ng-if="params.template" class=\'pip-popover\' ng-click="onPopoverClick($event)">\n' +
     '</div>\n' +
-    '<div class="pip-chip rm4" ng-repeat="tag in pipTags">\n' +
-    '    <span>{{::tag}}</span>\n' +
-    '</div>');
+    '');
 }]);
 })();
 
@@ -568,6 +544,30 @@ module.run(['$templateCache', function($templateCache) {
     '    <span  class="rm4 lm4" ng-if="data.start && data.end"> - </span>\n' +
     '    <span ng-if="data.end != null">{{data.end | formatShortDateTime}}</span>\n' +
     '</p>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipBasicControls.Templates');
+} catch (e) {
+  module = angular.module('pipBasicControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('tags/tag_list.html',
+    '<div class="pip-chip rm4 pip-type-chip pip-type-chip-left {{\'bg-\' + pipType + \'-chips\'}}"\n' +
+    '     ng-if="pipType && !pipTypeLocal">\n' +
+    '\n' +
+    '    <span>{{pipType.toUpperCase() | translate | uppercase}}</span>\n' +
+    '</div>\n' +
+    '<div class="pip-chip rm4 pip-type-chip pip-type-chip-left {{\'bg-\' + pipType + \'-chips\'}}"\n' +
+    '     ng-if="pipType && pipTypeLocal">\n' +
+    '\n' +
+    '    <span>{{pipTypeLocal.toUpperCase() | translate | uppercase}}</span>\n' +
+    '</div>\n' +
+    '<div class="pip-chip rm4" ng-repeat="tag in pipTags">\n' +
+    '    <span>{{::tag}}</span>\n' +
+    '</div>');
 }]);
 })();
 
@@ -836,177 +836,6 @@ module.run(['$templateCache', function($templateCache) {
     );
 
 })(window.angular);
-
-/**
- * @file Date control
- * @copyright Digital Living Software Corp. 2014-2016
- * @todo
- * - Improve samples int sampler app
- * - Optimize. It is way to slow on samples
- */
-
-(function (angular, _) {
-    'use strict';
-
-    var thisModule = angular.module('pipDate', ['pipBasicControls.Templates']);
-
-    thisModule.directive('pipDate',
-        function () {
-            return {
-                restrict: 'EA',
-                require: 'ngModel',
-                scope: {
-                    timeMode: '@pipTimeMode',
-                    disabled: '&ngDisabled',
-                    model: '=ngModel',
-                    ngChange: '&'
-                },
-                templateUrl: 'date/date.html',
-                controller: 'pipDateController'
-            };
-        }
-    );
-
-    thisModule.controller('pipDateController',
-        ['$scope', '$element', 'pipTranslate', function ($scope, $element, pipTranslate) {
-            var value;
-
-            function dayList(month, year) {
-                var count = 31, days = [], i;
-
-                if (month === 4 || month === 6 || month === 9 || month === 11) {
-                    count = 30;
-                } else if (month === 2) {
-                    if (year) {
-                        // Calculate leap year (primitive)
-                        count = year % 4 === 0 ? 29 : 28;
-                    } else {
-                        count = 28;
-                    }
-                }
-
-                for (i = 1; i <= count; i++) {
-                    days.push(i);
-                }
-
-                return days;
-            }
-
-            function monthList() {
-                var months = [], i;
-
-                for (i = 1; i <= 12; i++) {
-                    months.push({
-                        id: i,
-                        name: pipTranslate.translate('MONTH_' + i)
-                    });
-                }
-
-                return months;
-            }
-
-            function yearList() {
-                var i,
-                    currentYear = new Date().getFullYear(),
-                    startYear = $scope.timeMode === 'future' ? currentYear : currentYear - 100,
-                    endYear = $scope.timeMode === 'past' ? currentYear : currentYear + 100,
-                    years = [];
-
-                if ($scope.timeMode === 'past') {
-                    for (i = endYear; i >= startYear; i--) {
-                        years.push(i);
-                    }
-                } else {
-                    for (i = startYear; i <= endYear; i++) {
-                        years.push(i);
-                    }
-                }
-
-                return years;
-            }
-
-            function adjustDay() {
-                var days = dayList($scope.month, $scope.year);
-
-                if ($scope.days.length !== days.length) {
-                    if ($scope.day > days.length) {
-                        $scope.day = days.length;
-                    }
-
-                    $scope.days = days;
-                }
-            }
-
-            function getValue(v) {
-                var value = v ? _.isDate(v) ? v : new Date(v) : null,
-                    day = value ? value.getDate() : null,
-                    month = value ? value.getMonth() + 1 : null,
-                    year = value ? value.getFullYear() : null;
-
-                // Update day list if month and year were changed
-                if ($scope.month !== month && $scope.year !== year) {
-                    $scope.days = dayList($scope.month, $scope.year);
-                }
-
-                // Assign values to scope
-                $scope.day = day;
-                $scope.month = month;
-                $scope.year = year;
-            }
-
-            function setValue() {
-                var value;
-
-                if ($scope.day && $scope.month && $scope.year) {
-                    value = new Date($scope.year, $scope.month - 1, $scope.day, 0, 0, 0, 0);
-                    $scope.model = value;
-                    $scope.ngChange();
-                }
-            }
-
-            $scope.onDayChanged = function () {
-                setValue();
-            };
-
-            $scope.onMonthChanged = function () {
-                adjustDay();
-                setValue();
-            };
-
-            $scope.onYearChanged = function () {
-                adjustDay();
-                setValue();
-            };
-
-            // Set initial values
-            value = $scope.model ? _.isDate($scope.model) ? $scope.model : new Date($scope.model) : null;
-            $scope.day = value ? value.getDate() : null;
-            $scope.month = value ? value.getMonth() + 1 : null;
-            $scope.year = value ? value.getFullYear() : null;
-
-            $scope.dayLabel = pipTranslate.translate('DAY');
-            $scope.monthLabel = pipTranslate.translate('MONTH');
-            $scope.yearLabel = pipTranslate.translate('YEAR');
-
-            $scope.days = dayList($scope.month, $scope.year);
-            $scope.months = monthList();
-            $scope.years = yearList();
-
-            $scope.disableControls = $scope.disabled ? $scope.disabled() : false;
-
-            // React on changes
-            $scope.$watch('model', function (newValue) {
-                getValue(newValue);
-            });
-
-            $scope.$watch($scope.disabled, function (newValue) {
-                $scope.disableControls = newValue;
-            });
-        }]
-    );
-
-})(window.angular, window._);
-
 
 /**
  * @file Date range control
@@ -1422,6 +1251,177 @@ module.run(['$templateCache', function($templateCache) {
     );
 
 })(window.angular, window._);
+
+/**
+ * @file Date control
+ * @copyright Digital Living Software Corp. 2014-2016
+ * @todo
+ * - Improve samples int sampler app
+ * - Optimize. It is way to slow on samples
+ */
+
+(function (angular, _) {
+    'use strict';
+
+    var thisModule = angular.module('pipDate', ['pipBasicControls.Templates']);
+
+    thisModule.directive('pipDate',
+        function () {
+            return {
+                restrict: 'EA',
+                require: 'ngModel',
+                scope: {
+                    timeMode: '@pipTimeMode',
+                    disabled: '&ngDisabled',
+                    model: '=ngModel',
+                    ngChange: '&'
+                },
+                templateUrl: 'date/date.html',
+                controller: 'pipDateController'
+            };
+        }
+    );
+
+    thisModule.controller('pipDateController',
+        ['$scope', '$element', 'pipTranslate', function ($scope, $element, pipTranslate) {
+            var value;
+
+            function dayList(month, year) {
+                var count = 31, days = [], i;
+
+                if (month === 4 || month === 6 || month === 9 || month === 11) {
+                    count = 30;
+                } else if (month === 2) {
+                    if (year) {
+                        // Calculate leap year (primitive)
+                        count = year % 4 === 0 ? 29 : 28;
+                    } else {
+                        count = 28;
+                    }
+                }
+
+                for (i = 1; i <= count; i++) {
+                    days.push(i);
+                }
+
+                return days;
+            }
+
+            function monthList() {
+                var months = [], i;
+
+                for (i = 1; i <= 12; i++) {
+                    months.push({
+                        id: i,
+                        name: pipTranslate.translate('MONTH_' + i)
+                    });
+                }
+
+                return months;
+            }
+
+            function yearList() {
+                var i,
+                    currentYear = new Date().getFullYear(),
+                    startYear = $scope.timeMode === 'future' ? currentYear : currentYear - 100,
+                    endYear = $scope.timeMode === 'past' ? currentYear : currentYear + 100,
+                    years = [];
+
+                if ($scope.timeMode === 'past') {
+                    for (i = endYear; i >= startYear; i--) {
+                        years.push(i);
+                    }
+                } else {
+                    for (i = startYear; i <= endYear; i++) {
+                        years.push(i);
+                    }
+                }
+
+                return years;
+            }
+
+            function adjustDay() {
+                var days = dayList($scope.month, $scope.year);
+
+                if ($scope.days.length !== days.length) {
+                    if ($scope.day > days.length) {
+                        $scope.day = days.length;
+                    }
+
+                    $scope.days = days;
+                }
+            }
+
+            function getValue(v) {
+                var value = v ? _.isDate(v) ? v : new Date(v) : null,
+                    day = value ? value.getDate() : null,
+                    month = value ? value.getMonth() + 1 : null,
+                    year = value ? value.getFullYear() : null;
+
+                // Update day list if month and year were changed
+                if ($scope.month !== month && $scope.year !== year) {
+                    $scope.days = dayList($scope.month, $scope.year);
+                }
+
+                // Assign values to scope
+                $scope.day = day;
+                $scope.month = month;
+                $scope.year = year;
+            }
+
+            function setValue() {
+                var value;
+
+                if ($scope.day && $scope.month && $scope.year) {
+                    value = new Date($scope.year, $scope.month - 1, $scope.day, 0, 0, 0, 0);
+                    $scope.model = value;
+                    $scope.ngChange();
+                }
+            }
+
+            $scope.onDayChanged = function () {
+                setValue();
+            };
+
+            $scope.onMonthChanged = function () {
+                adjustDay();
+                setValue();
+            };
+
+            $scope.onYearChanged = function () {
+                adjustDay();
+                setValue();
+            };
+
+            // Set initial values
+            value = $scope.model ? _.isDate($scope.model) ? $scope.model : new Date($scope.model) : null;
+            $scope.day = value ? value.getDate() : null;
+            $scope.month = value ? value.getMonth() + 1 : null;
+            $scope.year = value ? value.getFullYear() : null;
+
+            $scope.dayLabel = pipTranslate.translate('DAY');
+            $scope.monthLabel = pipTranslate.translate('MONTH');
+            $scope.yearLabel = pipTranslate.translate('YEAR');
+
+            $scope.days = dayList($scope.month, $scope.year);
+            $scope.months = monthList();
+            $scope.years = yearList();
+
+            $scope.disableControls = $scope.disabled ? $scope.disabled() : false;
+
+            // React on changes
+            $scope.$watch('model', function (newValue) {
+                getValue(newValue);
+            });
+
+            $scope.$watch($scope.disabled, function (newValue) {
+                $scope.disableControls = newValue;
+            });
+        }]
+    );
+
+})(window.angular, window._);
+
 
 /**
  * @file Confirmation dialog
@@ -1921,6 +1921,186 @@ module.run(['$templateCache', function($templateCache) {
 
 
 /**
+ * @file Popover control
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+(function (angular, $, _) {
+    'use strict';
+
+    var thisModule = angular.module('pipPopover', ['pipAssert']);
+
+    thisModule.directive('pipPopover', function () {
+        return {
+            restrict: 'EA',
+            scope: true,
+            templateUrl: 'popover/popover.template.html',
+            controller: ['$scope', '$rootScope', '$element', '$timeout', '$compile', function ($scope, $rootScope, $element, $timeout, $compile) {
+                var backdropElement, content;
+
+                backdropElement = $('.pip-popover-backdrop');
+                backdropElement.on('click keydown scroll', backdropClick);
+                backdropElement.addClass($scope.params.responsive !== false ? 'pip-responsive' : '');
+
+                $timeout(function () {
+                    position();
+                    if ($scope.params.template) {
+                        content = $compile($scope.params.template)($scope);
+                        $element.find('.pip-popover').append(content);
+                    }
+
+                    init();
+                });
+
+                $timeout(function () {
+                    calcHeight();
+                }, 200);
+
+                $scope.onPopoverClick = onPopoverClick;
+                $scope = _.defaults($scope, $scope.$parent);    // eslint-disable-line 
+
+                $rootScope.$on('pipPopoverResize', onResize);
+                $(window).resize(onResize);
+
+                function init() {
+                    backdropElement.addClass('opened');
+                    $('.pip-popover-backdrop').focus();
+                    if ($scope.params.timeout) {
+                        $timeout(function () {
+                            closePopover();
+                        }, $scope.params.timeout);
+                    }
+                }
+
+                function backdropClick() {
+                    if ($scope.params.cancelCallback) {
+                        $scope.params.cancelCallback();
+                    }
+
+                    closePopover();
+                }
+
+                function closePopover() {
+                    backdropElement.removeClass('opened');
+                    $timeout(function () {
+                        backdropElement.remove();
+                    }, 100);
+                }
+
+                function onPopoverClick($e) {
+                    $e.stopPropagation();
+                }
+
+                function position() {
+                    if ($scope.params.element) {
+                        var element = $($scope.params.element),
+                            pos = element.offset(),
+                            width = element.width(),
+                            height = element.height(),
+                            docWidth = $(document).width(),
+                            docHeight = $(document).height(),
+                            popover = backdropElement.find('.pip-popover');
+
+                        if (pos) {
+                            popover
+                                .css('max-width', docWidth - (docWidth - pos.left))
+                                .css('max-height', docHeight - (pos.top + height) - 32, 0)
+                                .css('left', pos.left - popover.width() + width / 2)
+                                .css('top', pos.top + height + 16);
+                        }
+                    }
+                }
+
+                function calcHeight() {
+                    if ($scope.params.calcHeight === false) { return; }
+
+                    var popover = backdropElement.find('.pip-popover'),
+                        title = popover.find('.pip-title'),
+                        footer = popover.find('.pip-footer'),
+                        content = popover.find('.pip-content'),
+                        contentHeight = popover.height() - title.outerHeight(true) - footer.outerHeight(true);
+
+                    content.css('max-height', Math.max(contentHeight, 0) + 'px').css('box-sizing', 'border-box');
+                }
+
+                function onResize() {
+                    backdropElement.find('.pip-popover').find('.pip-content').css('max-height', '100%');
+                    position();
+                    calcHeight();
+                }
+            }]
+        };
+    });
+
+    thisModule.service('$pipPopover',
+        ['$compile', '$rootScope', '$timeout', function ($compile, $rootScope, $timeout) {
+            var popoverTemplate;
+
+            popoverTemplate = "<div class='pip-popover-backdrop {{ params.class }}' ng-controller='params.controller'" +
+                " tabindex='1'> <pip-popover pip-params='params'> </pip-popover> </div>";
+
+            return {
+                show: onShow,
+                hide: onHide,
+                resize: onResize
+            };
+
+            function onShow(p) {
+                var element, scope, params, content;
+
+                element = $('body');
+                if (element.find('md-backdrop').length > 0) { return; }
+                onHide();
+                scope = $rootScope.$new();
+                params = p && _.isObject(p) ? p : {};
+                scope.params = params;
+                scope.locals = params.locals;
+                content = $compile(popoverTemplate)(scope);
+                element.append(content);
+            }
+
+            function onHide() {
+                var backdropElement = $('.pip-popover-backdrop');
+
+                backdropElement.removeClass('opened');
+                $timeout(function () {
+                    backdropElement.remove();
+                }, 100);
+            }
+
+            function onResize() {
+                $rootScope.$broadcast('pipPopoverResize');
+            }
+
+        }]
+    );
+
+})(window.angular, window.jQuery, window._);
+
+/**
+ * @file Routing progress control
+ * @description
+ * This progress control is enabled by ui router
+ * while switching between pages
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+(function (angular) {
+    'use strict';
+
+    var thisModule = angular.module('pipRoutingProgress', ['ngMaterial']);
+
+    thisModule.directive('pipRoutingProgress', function () {
+        return {
+            restrict: 'EA',
+            replace: true,
+            templateUrl: 'progress/routing_progress.html'
+        };
+    });
+
+})(window.angular);
+
+/**
  * @file Options dialog
  * @copyright Digital Living Software Corp. 2014-2016
  * @todo
@@ -2158,186 +2338,6 @@ module.run(['$templateCache', function($templateCache) {
 })(window.angular, window.jQuery, window._);
 
 /**
- * @file Popover control
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-(function (angular, $, _) {
-    'use strict';
-
-    var thisModule = angular.module('pipPopover', ['pipAssert']);
-
-    thisModule.directive('pipPopover', function () {
-        return {
-            restrict: 'EA',
-            scope: true,
-            templateUrl: 'popover/popover.template.html',
-            controller: ['$scope', '$rootScope', '$element', '$timeout', '$compile', function ($scope, $rootScope, $element, $timeout, $compile) {
-                var backdropElement, content;
-
-                backdropElement = $('.pip-popover-backdrop');
-                backdropElement.on('click keydown scroll', backdropClick);
-                backdropElement.addClass($scope.params.responsive !== false ? 'pip-responsive' : '');
-
-                $timeout(function () {
-                    position();
-                    if ($scope.params.template) {
-                        content = $compile($scope.params.template)($scope);
-                        $element.find('.pip-popover').append(content);
-                    }
-
-                    init();
-                });
-
-                $timeout(function () {
-                    calcHeight();
-                }, 200);
-
-                $scope.onPopoverClick = onPopoverClick;
-                $scope = _.defaults($scope, $scope.$parent);    // eslint-disable-line 
-
-                $rootScope.$on('pipPopoverResize', onResize);
-                $(window).resize(onResize);
-
-                function init() {
-                    backdropElement.addClass('opened');
-                    $('.pip-popover-backdrop').focus();
-                    if ($scope.params.timeout) {
-                        $timeout(function () {
-                            closePopover();
-                        }, $scope.params.timeout);
-                    }
-                }
-
-                function backdropClick() {
-                    if ($scope.params.cancelCallback) {
-                        $scope.params.cancelCallback();
-                    }
-
-                    closePopover();
-                }
-
-                function closePopover() {
-                    backdropElement.removeClass('opened');
-                    $timeout(function () {
-                        backdropElement.remove();
-                    }, 100);
-                }
-
-                function onPopoverClick($e) {
-                    $e.stopPropagation();
-                }
-
-                function position() {
-                    if ($scope.params.element) {
-                        var element = $($scope.params.element),
-                            pos = element.offset(),
-                            width = element.width(),
-                            height = element.height(),
-                            docWidth = $(document).width(),
-                            docHeight = $(document).height(),
-                            popover = backdropElement.find('.pip-popover');
-
-                        if (pos) {
-                            popover
-                                .css('max-width', docWidth - (docWidth - pos.left))
-                                .css('max-height', docHeight - (pos.top + height) - 32, 0)
-                                .css('left', pos.left - popover.width() + width / 2)
-                                .css('top', pos.top + height + 16);
-                        }
-                    }
-                }
-
-                function calcHeight() {
-                    if ($scope.params.calcHeight === false) { return; }
-
-                    var popover = backdropElement.find('.pip-popover'),
-                        title = popover.find('.pip-title'),
-                        footer = popover.find('.pip-footer'),
-                        content = popover.find('.pip-content'),
-                        contentHeight = popover.height() - title.outerHeight(true) - footer.outerHeight(true);
-
-                    content.css('max-height', Math.max(contentHeight, 0) + 'px').css('box-sizing', 'border-box');
-                }
-
-                function onResize() {
-                    backdropElement.find('.pip-popover').find('.pip-content').css('max-height', '100%');
-                    position();
-                    calcHeight();
-                }
-            }]
-        };
-    });
-
-    thisModule.service('$pipPopover',
-        ['$compile', '$rootScope', '$timeout', function ($compile, $rootScope, $timeout) {
-            var popoverTemplate;
-
-            popoverTemplate = "<div class='pip-popover-backdrop {{ params.class }}' ng-controller='params.controller'" +
-                " tabindex='1'> <pip-popover pip-params='params'> </pip-popover> </div>";
-
-            return {
-                show: onShow,
-                hide: onHide,
-                resize: onResize
-            };
-
-            function onShow(p) {
-                var element, scope, params, content;
-
-                element = $('body');
-                if (element.find('md-backdrop').length > 0) { return; }
-                onHide();
-                scope = $rootScope.$new();
-                params = p && _.isObject(p) ? p : {};
-                scope.params = params;
-                scope.locals = params.locals;
-                content = $compile(popoverTemplate)(scope);
-                element.append(content);
-            }
-
-            function onHide() {
-                var backdropElement = $('.pip-popover-backdrop');
-
-                backdropElement.removeClass('opened');
-                $timeout(function () {
-                    backdropElement.remove();
-                }, 100);
-            }
-
-            function onResize() {
-                $rootScope.$broadcast('pipPopoverResize');
-            }
-
-        }]
-    );
-
-})(window.angular, window.jQuery, window._);
-
-/**
- * @file Routing progress control
- * @description
- * This progress control is enabled by ui router
- * while switching between pages
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-(function (angular) {
-    'use strict';
-
-    var thisModule = angular.module('pipRoutingProgress', ['ngMaterial']);
-
-    thisModule.directive('pipRoutingProgress', function () {
-        return {
-            restrict: 'EA',
-            replace: true,
-            templateUrl: 'progress/routing_progress.html'
-        };
-    });
-
-})(window.angular);
-
-/**
  * @file Refresh button control
  * @copyright Digital Living Software Corp. 2014-2016
  */
@@ -2459,75 +2459,6 @@ module.run(['$templateCache', function($templateCache) {
 
 })(window.angular);
 
-
-/**
- * @file Time control
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-(function (angular, _) {
-    'use strict';
-
-    var thisModule = angular.module('pipTimeRange', ['pipUtils']);
-
-    thisModule.directive('pipTimeRange',
-        ['pipUtils', function (pipUtils) {
-            return {
-                restrict: 'EA',
-                scope: {
-                    pipStartDate: '=',
-                    pipEndDate: '='
-                },
-                templateUrl: 'time_range/time_range.html',
-                link: function ($scope, $element, $attrs) {
-
-                    function getDateJSON(value) {
-                        return value ? new Date(value) : null;
-                    }
-
-                    function defineStartDate() {
-                        if ($scope.pipStartDate !== null && $scope.pipStartDate !== undefined) {
-                            $scope.data.start = _.isDate($scope.pipStartDate) ? $scope.pipStartDate
-                                : getDateJSON($scope.pipStartDate);
-                        }
-                    }
-
-                    function defineEndDate() {
-                        if ($scope.pipEndDate !== null && $scope.pipEndDate !== undefined) {
-                            $scope.data.end = _.isDate($scope.pipEndDate) ? $scope.pipEndDate
-                                : getDateJSON($scope.pipEndDate);
-                        }
-                    }
-
-                    $scope.data = {};
-                    $scope.data.start = null;
-                    $scope.data.end = null;
-                    defineStartDate();
-                    defineEndDate();
-
-                    if (pipUtils.toBoolean($attrs.pipRebind)) {
-                        $scope.$watch('pipStartDate',
-                            function () {
-                                $scope.data.start = null;
-                                defineStartDate();
-                            }
-                        );
-                        $scope.$watch('pipEndDate',
-                            function () {
-                                $scope.data.end = null;
-                                defineEndDate();
-                            }
-                        );
-                    }
-
-                    // Add class
-                    $element.addClass('pip-time-range');
-                }
-            };
-        }]
-    );
-
-})(window.angular, window._);
 
 
 (function (angular, _) {
@@ -2800,6 +2731,75 @@ module.run(['$templateCache', function($templateCache) {
 
             // Add class
             $element.addClass('pip-time-range-edit');
+        }]
+    );
+
+})(window.angular, window._);
+
+/**
+ * @file Time control
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+(function (angular, _) {
+    'use strict';
+
+    var thisModule = angular.module('pipTimeRange', ['pipUtils']);
+
+    thisModule.directive('pipTimeRange',
+        ['pipUtils', function (pipUtils) {
+            return {
+                restrict: 'EA',
+                scope: {
+                    pipStartDate: '=',
+                    pipEndDate: '='
+                },
+                templateUrl: 'time_range/time_range.html',
+                link: function ($scope, $element, $attrs) {
+
+                    function getDateJSON(value) {
+                        return value ? new Date(value) : null;
+                    }
+
+                    function defineStartDate() {
+                        if ($scope.pipStartDate !== null && $scope.pipStartDate !== undefined) {
+                            $scope.data.start = _.isDate($scope.pipStartDate) ? $scope.pipStartDate
+                                : getDateJSON($scope.pipStartDate);
+                        }
+                    }
+
+                    function defineEndDate() {
+                        if ($scope.pipEndDate !== null && $scope.pipEndDate !== undefined) {
+                            $scope.data.end = _.isDate($scope.pipEndDate) ? $scope.pipEndDate
+                                : getDateJSON($scope.pipEndDate);
+                        }
+                    }
+
+                    $scope.data = {};
+                    $scope.data.start = null;
+                    $scope.data.end = null;
+                    defineStartDate();
+                    defineEndDate();
+
+                    if (pipUtils.toBoolean($attrs.pipRebind)) {
+                        $scope.$watch('pipStartDate',
+                            function () {
+                                $scope.data.start = null;
+                                defineStartDate();
+                            }
+                        );
+                        $scope.$watch('pipEndDate',
+                            function () {
+                                $scope.data.end = null;
+                                defineEndDate();
+                            }
+                        );
+                    }
+
+                    // Add class
+                    $element.addClass('pip-time-range');
+                }
+            };
         }]
     );
 
