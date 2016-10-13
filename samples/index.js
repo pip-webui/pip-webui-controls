@@ -9,7 +9,7 @@
             // 3rd Party Modules
             'ui.router', 'ui.utils', 'ngResource', 'ngAria', 'ngCookies', 'ngSanitize', 'ngMessages',
             'ngMaterial', 'LocalStorageModule', 'angularFileUpload', 'ngAnimate',
-            'pipCore', 'pipBasicControls', 'appCoreServices.Toasts', 'pipData',
+            'pipCore', 'pipBasicControls', 'appCoreServices.Toasts', 'pipData',  'pipTheme',
 
             'appBasicControls.Date', 'appBasicControls.ColorPicker',
             'appBasicControls.Markdown', 'appBasicControls.Refresh', 'appBasicControls.ToggleButtons',
