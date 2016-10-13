@@ -2,6 +2,15 @@
  * @file Toasts management service
  * @copyright Digital Living Software Corp. 2014-2016
  * @todo Replace ngAudio with alternative service
+ * 
+ * toast.error structure:
+ * data: {
+ *  code: error code,
+ *  path: 
+ *  error: 
+ *  method:
+ *  message: 
+ * }
  */
 
 (function (angular, _) {

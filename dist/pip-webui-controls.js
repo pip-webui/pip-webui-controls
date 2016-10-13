@@ -1,3 +1,36 @@
+/**
+ * @file Registration of basic WebUI controls
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+/* global angular */
+
+(function (angular) {
+    'use strict';
+
+    angular.module('pipControls', [
+        'pipMarkdown',
+        'pipToggleButtons',
+        'pipRefreshButton',
+        'pipColorPicker',
+        'pipRoutingProgress',
+        'pipPopover',
+        'pipImageSlider',
+        'pipToasts',
+        'pipTagList',
+
+        'pipInformationDialog',
+        'pipConfirmationDialog',
+        'pipOptionsDialog',
+        'pipOptionsBigDialog',
+        'pipErrorDetailsDialog'
+    ]);
+
+    angular.module('pipBasicControls', ['pipControls']);
+
+})(window.angular);
+
+
 (function(module) {
 try {
   module = angular.module('pipBasicControls.Templates');
@@ -43,150 +76,6 @@ module.run(['$templateCache', function($templateCache) {
     '    </div>\n' +
     '</md-dialog>\n' +
     '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipBasicControls.Templates');
-} catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('date_range/date_range.html',
-    '<!--\n' +
-    '@file Date range control content\n' +
-    '@copyright Digital Living Software Corp. 2014-2016\n' +
-    '-->\n' +
-    '\n' +
-    '<div class="pip-date-range layout-row flex" tabindex="-1">\n' +
-    '    <md-input-container ng-show="isDay()" class="tm0 pip-day flex"\n' +
-    '            ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
-    '        <md-select class="select-day w-stretch"\n' +
-    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
-    '                   ng-disable="{{disableControls}}"\n' +
-    '                   md-on-open="onDayClick()"\n' +
-    '                   ng-model="day"\n' +
-    '                   ng-change="onDayChanged()"\n' +
-    '                   placeholder="{{dayLabel}}"\n' +
-    '                   aria-label="DAY">\n' +
-    '\n' +
-    '            <md-option ng-value="opt" ng-repeat="opt in days track by opt ">\n' +
-    '               {{nameDays[$index]}} {{ opt }}\n' +
-    '            </md-option>\n' +
-    '        </md-select>\n' +
-    '    </md-input-container>\n' +
-    '    <md-input-container ng-show="isWeek()" class="tm0 flex"\n' +
-    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
-    '        <md-select class="select-week w-stretch"\n' +
-    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
-    '                   ng-disable="{{disableControls}}"\n' +
-    '                   ng-model="week"\n' +
-    '                   ng-change="onWeekChange()"\n' +
-    '                   placeholder="{{weekLabel}}"\n' +
-    '                   aria-label="WEEK">\n' +
-    '\n' +
-    '            <md-option ng-value="opt.id" ng-repeat="opt in weeks track by opt.id">\n' +
-    '                {{ opt.name }}\n' +
-    '            </md-option>\n' +
-    '        </md-select>\n' +
-    '    </md-input-container >\n' +
-    '    <div class="flex-fixed"\n' +
-    '         ng-class="{\'w16\': $mdMedia(\'gt-xs\'), \'w8\':  $mdMedia(\'xs\')}"\n' +
-    '         ng-show="isDay() || isWeek()">\n' +
-    '    </div>\n' +
-    '    <md-input-container ng-show="isMonth() && !monthFormatShort " class="tm0 flex min-w72"\n' +
-    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
-    '        <md-select class="select-month w-stretch"\n' +
-    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
-    '                   ng-disable="{{disableControls}}"\n' +
-    '                   md-on-open="onMonthClick()"\n' +
-    '                   ng-model="month"\n' +
-    '                   ng-change="onMonthChanged()"\n' +
-    '                   placeholder="{{monthLabel}}"\n' +
-    '                   aria-label="MONTH">\n' +
-    '\n' +
-    '            <md-option ng-value="opt.id" ng-repeat="opt in months track by opt.id">\n' +
-    '                {{ opt.name }}\n' +
-    '            </md-option>\n' +
-    '        </md-select>\n' +
-    '    </md-input-container>\n' +
-    '    <md-input-container ng-show="isMonth() && monthFormatShort" class="flex tm0"\n' +
-    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
-    '        <md-select class="select-month w-stretch"\n' +
-    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
-    '                   ng-disable="{{disableControls}}"\n' +
-    '                   md-on-open="onMonthClick()"\n' +
-    '                   ng-model="month"\n' +
-    '                   ng-change="onMonthChanged()"\n' +
-    '                   placeholder="{{monthLabel}}"\n' +
-    '                   aria-label="MONTH">\n' +
-    '\n' +
-    '            <md-option ng-value="opt.id" ng-repeat="opt in shortMonths track by opt.id">\n' +
-    '                {{ opt.name }}\n' +
-    '            </md-option>\n' +
-    '        </md-select>\n' +
-    '    </md-input-container>\n' +
-    '    <div class="flex-fixed"\n' +
-    '         ng-class="{\'w16\': $mdMedia(\'gt-xs\'), \'w8\':  $mdMedia(\'xs\')}"\n' +
-    '         ng-show="isMonth()">\n' +
-    '    </div>\n' +
-    '    <md-input-container class="tm0 flex"\n' +
-    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
-    '        <md-select class="select-year w-stretch"\n' +
-    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
-    '                   ng-disable="{{disableControls}}"\n' +
-    '                   md-on-open="onYearClick()"\n' +
-    '                   ng-model="year"\n' +
-    '                   ng-change="onYearChanged()"\n' +
-    '                   placeholder="{{yearLabel}}"\n' +
-    '                   aria-label="YEAR">\n' +
-    '\n' +
-    '            <md-option ng-value="opt" ng-repeat="opt in years track by opt">\n' +
-    '                {{ opt }}\n' +
-    '            </md-option>\n' +
-    '        </md-select>\n' +
-    '    </md-input-container>\n' +
-    '</div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipBasicControls.Templates');
-} catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('date/date.html',
-    '<!--\n' +
-    '@file Date control content\n' +
-    '@copyright Digital Living Software Corp. 2014-2016\n' +
-    '-->\n' +
-    '\n' +
-    '<div class="pip-date layout-row flex" tabindex="-1">\n' +
-    '	<md-input-container class="tm0 flex">\n' +
-    '		<md-select class="pip-date-day tm0 flex" ng-disabled="disableControls"\n' +
-    '				   ng-model="day" placeholder="{{dayLabel}}" ng-change="onDayChanged()">\n' +
-    '			<md-option ng-value="opt" ng-repeat="opt in days track by opt">{{:: opt }}</md-option>\n' +
-    '		</md-select>\n' +
-    '	</md-input-container>\n' +
-    '	<div class="w16 flex-fixed"></div>\n' +
-    '	<md-input-container class="tm0 flex">\n' +
-    '		<md-select class="pip-date-month tm0 flex" ng-disabled="disableControls"\n' +
-    '				   ng-model="month" placeholder="{{monthLabel}}" ng-change="onMonthChanged()">\n' +
-    '			<md-option ng-value="opt.id" ng-repeat="opt in months track by opt.id">{{:: opt.name }}</md-option>\n' +
-    '		</md-select>\n' +
-    '	</md-input-container>\n' +
-    '	<div class="w16 flex-fixed"></div>\n' +
-    '	<md-input-container class="tm0 flex">\n' +
-    '		<md-select class="pip-date-year tm0 flex" ng-disabled="disableControls"\n' +
-    '				   ng-model="year" placeholder="{{yearLabel}}" ng-change="onYearChanged()">\n' +
-    '			<md-option ng-value="opt" ng-repeat="opt in years track by opt">{{:: opt }}</md-option>\n' +
-    '		</md-select>\n' +
-    '	</md-input-container>\n' +
-    '</div>\n' +
-    '					');
 }]);
 })();
 
@@ -524,88 +413,6 @@ try {
   module = angular.module('pipBasicControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('time_range/time_range.html',
-    '<p>\n' +
-    '    <span ng-if="data.start != null">{{data.start | formatShortDateTime}}</span>\n' +
-    '    <span  class="rm4 lm4" ng-if="data.start && data.end"> - </span>\n' +
-    '    <span ng-if="data.end != null">{{data.end | formatShortDateTime}}</span>\n' +
-    '</p>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipBasicControls.Templates');
-} catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('time_range_edit/time_range_edit.html',
-    '<!--\n' +
-    '@file Time edit control content\n' +
-    '@copyright Digital Living Software Corp. 2014-2016\n' +
-    '-->\n' +
-    '\n' +
-    '<div class="event-edit layout-row layout-xs-column flex layout-align-start-start">\n' +
-    '    <div flex="47" class="w-stretch rm24-flex0">\n' +
-    '        <p class="text-caption text-grey tm0">{{startLabel}}</p>\n' +
-    '\n' +
-    '        <div class="layout-row layout-align-space-between-center">\n' +
-    '            <div class="rm16 pip-datepicker-container" flex="49">\n' +
-    '                <md-datepicker ng-model="data.startDate"\n' +
-    '                               xmd-placeholder="{{startLabel}}"\n' +
-    '                               ng-change="onChangeStartDate()"\n' +
-    '                               ng-disabled="isDisabled()"\n' +
-    '                               aria-label="START-DATE">\n' +
-    '                </md-datepicker>\n' +
-    '            </div>\n' +
-    '            <div flex>\n' +
-    '                <md-input-container class="w-stretch tm0">\n' +
-    '                    <md-select aria-label="START-TIME" class="tm0 bm0" ng-model="data.startTime" ng-disabled="isDisabled()"\n' +
-    '                               ng-change="onChangeStartTime()">\n' +
-    '                        <md-option ng-value="opt.id" ng-repeat="opt in intervalTimeCollection track by opt.id">{{ opt.time }}\n' +
-    '                        </md-option>\n' +
-    '                    </md-select>\n' +
-    '                </md-input-container>\n' +
-    '            </div>\n' +
-    '        </div>\n' +
-    '    </div>\n' +
-    '    <div flex="47" class="w-stretch">\n' +
-    '        <p class="text-caption text-grey tm0">{{endLabel}}</p>\n' +
-    '\n' +
-    '        <div class="layout-row layout-align-space-between-center">\n' +
-    '            <div class="rm16 pip-datepicker-container flex-49">\n' +
-    '                <md-datepicker ng-model="data.endDate"\n' +
-    '                               xmd-placeholder="{{endLabel}}"\n' +
-    '                               ng-disabled="isDisabled()"\n' +
-    '                               ng-change="onChangeEndDate()"\n' +
-    '                               aria-label="END-DATE">\n' +
-    '                </md-datepicker>\n' +
-    '            </div>\n' +
-    '            <div flex>\n' +
-    '                <md-input-container class="w-stretch tm0">\n' +
-    '                    <md-select aria-label="END-TIME" class="tm0 bm0" ng-model="data.endTime" ng-change="onChangeEndTime()"\n' +
-    '                               ng-disabled="isDisabled()">\n' +
-    '                        <md-option ng-value="opt.id" ng-repeat="opt in intervalTimeCollection track by opt.id">{{\n' +
-    '                            opt.time }}\n' +
-    '                        </md-option>\n' +
-    '                    </md-select>\n' +
-    '                </md-input-container>\n' +
-    '            </div>\n' +
-    '        </div>\n' +
-    '    </div>\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipBasicControls.Templates');
-} catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('toast/toast.html',
     '<md-toast class="md-action pip-toast"\n' +
     '          ng-class="{\'pip-error\': toast.type==\'error\',\n' +
@@ -661,42 +468,71 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 /**
- * @file Registration of basic WebUI controls
+ * @file Confirmation dialog
  * @copyright Digital Living Software Corp. 2014-2016
  */
-
-/* global angular */
 
 (function (angular) {
     'use strict';
 
-    angular.module('pipControls', [
-        'pipMarkdown',
-        'pipToggleButtons',
-        'pipRefreshButton',
-        'pipColorPicker',
-        'pipRoutingProgress',
-        'pipPopover',
-        'pipImageSlider',
-        'pipToasts',
-        'pipTagList',
+    var thisModule = angular.module('pipConfirmationDialog',
+        ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
 
-        'pipDate',
-        'pipDateRange',
-        'pipTimeRangeEdit',
-        'pipTimeRange',
+    /* eslint-disable quote-props */
+    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            'CONFIRM_TITLE': 'Confirm'
+        });
+        pipTranslateProvider.translations('ru', {
+            'CONFIRM_TITLE': 'Подтвердите'
+        });
+    }]);
+    /* eslint-enable quote-props */
 
-        'pipInformationDialog',
-        'pipConfirmationDialog',
-        'pipOptionsDialog',
-        'pipOptionsBigDialog',
-        'pipErrorDetailsDialog'
-    ]);
+    thisModule.factory('pipConfirmationDialog',
+        ['$mdDialog', function ($mdDialog) {
+            return {
+                show: function (params, successCallback, cancelCallback) {
+                    $mdDialog.show({
+                        targetEvent: params.event,
+                        templateUrl: 'confirmation_dialog/confirmation_dialog.html',
+                        controller: 'pipConfirmationDialogController',
+                        locals: { params: params },
+                        clickOutsideToClose: true
+                    })
+                    .then(function () {
+                        if (successCallback) {
+                            successCallback();
+                        }
+                    }, function () {
+                        if (cancelCallback) {
+                            cancelCallback();
+                        }
+                    });
+                }
+            };
+        }]
+    );
 
-    angular.module('pipBasicControls', ['pipControls']);
+    thisModule.controller('pipConfirmationDialogController',
+        ['$scope', '$rootScope', '$mdDialog', 'pipTranslate', 'params', function ($scope, $rootScope, $mdDialog, pipTranslate, params) {
+            $scope.theme = $rootScope.$theme;
+            $scope.title = params.title || 'CONFIRM_TITLE';
+
+            $scope.ok = params.ok || 'OK';
+            $scope.cancel = params.cancel || 'CANCEL';
+
+            $scope.onCancel = function () {
+                $mdDialog.cancel();
+            };
+
+            $scope.onOk = function () {
+                $mdDialog.hide();
+            };
+        }]
+    );
 
 })(window.angular);
-
 
 /**
  * @file Color picker control
@@ -773,488 +609,6 @@ module.run(['$templateCache', function($templateCache) {
 /**
  * @file Confirmation dialog
  * @copyright Digital Living Software Corp. 2014-2016
- */
-
-(function (angular) {
-    'use strict';
-
-    var thisModule = angular.module('pipConfirmationDialog',
-        ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
-
-    /* eslint-disable quote-props */
-    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            'CONFIRM_TITLE': 'Confirm'
-        });
-        pipTranslateProvider.translations('ru', {
-            'CONFIRM_TITLE': 'Подтвердите'
-        });
-    }]);
-    /* eslint-enable quote-props */
-
-    thisModule.factory('pipConfirmationDialog',
-        ['$mdDialog', function ($mdDialog) {
-            return {
-                show: function (params, successCallback, cancelCallback) {
-                    $mdDialog.show({
-                        targetEvent: params.event,
-                        templateUrl: 'confirmation_dialog/confirmation_dialog.html',
-                        controller: 'pipConfirmationDialogController',
-                        locals: { params: params },
-                        clickOutsideToClose: true
-                    })
-                    .then(function () {
-                        if (successCallback) {
-                            successCallback();
-                        }
-                    }, function () {
-                        if (cancelCallback) {
-                            cancelCallback();
-                        }
-                    });
-                }
-            };
-        }]
-    );
-
-    thisModule.controller('pipConfirmationDialogController',
-        ['$scope', '$rootScope', '$mdDialog', 'pipTranslate', 'params', function ($scope, $rootScope, $mdDialog, pipTranslate, params) {
-            $scope.theme = $rootScope.$theme;
-            $scope.title = params.title || 'CONFIRM_TITLE';
-
-            $scope.ok = params.ok || 'OK';
-            $scope.cancel = params.cancel || 'CANCEL';
-
-            $scope.onCancel = function () {
-                $mdDialog.cancel();
-            };
-
-            $scope.onOk = function () {
-                $mdDialog.hide();
-            };
-        }]
-    );
-
-})(window.angular);
-
-/**
- * @file Date range control
- * @copyright Digital Living Software Corp. 2014-2016
- * @todo
- * - Improve samples int sampler app
- * - Optimize. It is way to slow on samples
- */
-
-/*
- pip-date-range-type
- [ daily,  weekly,  monthly,  yearly ]
- */
-
-(function (angular, _) {
-    'use strict';
-    var thisModule = angular.module('pipDateRange', []);
-
-    thisModule.directive('pipDateRange',
-        function () {
-            return {
-                restrict: 'EA',
-                require: 'ngModel',
-                scope: {
-                    timeMode: '@pipTimeMode',
-                    disabled: '&ngDisabled',
-                    model: '=ngModel',
-                    pipChanged: '&',
-                    pipDateRangeType: '@',
-                    pipDateFormat: '@',
-                    pipNoLine: '@'
-                },
-                templateUrl: 'date_range/date_range.html',
-                controller: 'pipDateRangeController'
-            };
-        });
-
-    thisModule.controller('pipDateRangeController',
-        ['$scope', '$element', 'pipTranslate', '$mdMedia', '$rootScope', function ($scope, $element, pipTranslate, $mdMedia, $rootScope) {
-            var currentDate,
-                currentYear,
-                currentMonth,
-                currentDay,
-                prevState = {}, currentState = {};
-
-            currentDate = new Date();
-            currentYear = currentDate.getUTCFullYear();
-            currentMonth = currentDate.getUTCMonth() + 1;
-            currentDay = currentDate.getUTCDate();
-            $scope.daysWeek = {
-                en: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-                ru: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
-            };
-
-            $scope.onDayChanged = function () {
-                setValue();
-            };
-
-            $scope.onMonthChanged = function () {
-                if ($scope.pipDateRangeType === 'weekly') {
-                    var date, dayOfWeek;
-
-                    date = new Date(Date.UTC($scope.year, $scope.month - 1, 1));
-                    dayOfWeek = date.getUTCDay() ? date.getUTCDay() : 7;
-                    $scope.week = getWeekByDate(dayOfWeek, $scope.month - 1, $scope.year);
-                    correctWeek();
-                    adjustWeek();
-                } else {
-                    adjustDay();
-                }
-                setValue();
-            };
-
-            $scope.onYearChanged = function () {
-                var date, dayOfWeek;
-
-                date = new Date(Date.UTC($scope.year, $scope.month - 1, 1));
-                dayOfWeek = date.getUTCDay() ? date.getUTCDay() : 7;
-                if ($scope.pipDateRangeType === 'weekly') {
-                    $scope.week = getWeekByDate(dayOfWeek, $scope.month - 1, $scope.year);
-                    adjustWeek();
-                    correctWeek();
-                } else {
-                    adjustDay();
-                }
-                setValue();
-            };
-
-            $scope.onWeekChange = function () {
-                if ($scope.pipDateRangeType === 'weekly') {
-                    adjustWeek();
-                    correctWeek();
-                } else {
-                    adjustDay();
-                }
-                setValue();
-            };
-
-            // visibility
-            $scope.isDay = function () {
-                return $scope.pipDateRangeType === 'daily';
-            };
-
-            $scope.isWeek = function () {
-                return $scope.pipDateRangeType === 'weekly';
-            };
-
-            $scope.isMonth = function () {
-                return $scope.pipDateRangeType === 'daily' ||
-                    $scope.pipDateRangeType === 'weekly' ||
-                    $scope.pipDateRangeType === 'monthly';
-            };
-
-            $scope.onChange = function () {
-                if ($scope.pipChanged) {
-                    $scope.pipChanged();
-                }
-            };
-
-            function setCurrent() {
-                currentState.day = $scope.day;
-                currentState.month = $scope.month;
-                currentState.year = $scope.year;
-                currentState.week = $scope.week;
-                currentState.dateRangeType = $scope.pipDateRangeType;
-                currentState.model = $scope.model;
-            }
-
-            function fillLists() {
-                $scope.days = dayList($scope.month, $scope.year);
-                $scope.weeks = weekList($scope.month, $scope.year);
-                $scope.months = monthList();
-                $scope.shortMonths = monthList(true);
-                $scope.years = yearList();
-
-            }
-
-            function correctWeek() {
-                if (!prevState.model || prevState.model && prevState.model.getTime() >= $scope.model.getTime()) {
-                    // if shift week -> increase month
-                    if ($scope.weeks && $scope.weeks[$scope.week] && $scope.weeks[$scope.week].id <= 0) {
-                        if ($scope.month < 12) {
-                            $scope.month += 1;
-                        } else {
-                            $scope.month = 1;
-                            $scope.year += 1;
-                        }
-                        fillLists();
-                    }
-                }
-            }
-
-            function init() {
-                var value;
-
-                value = $scope.model ? new Date($scope.model) : null;
-                $scope.day = value ? value.getUTCDate() : null;
-                $scope.month = value ? value.getUTCMonth() + 1 : null;
-                $scope.year = value ? value.getUTCFullYear() : null;
-                $scope.week = value ? getWeekByDate($scope.day, $scope.month - 1, $scope.year) : null;
-
-                fillLists();
-
-                if ($scope.pipDateRangeType === 'weekly') {
-                    correctWeek();
-                    adjustWeek();
-                } else {
-                    adjustDay();
-                }
-                setValue();
-            }
-
-            // Set initial values
-            $scope.$mdMedia = $mdMedia;
-
-            init();
-
-            $scope.disableControls = $scope.disabled ? $scope.disabled() : false;
-
-            // React on changes
-            $scope.$watch('model', function (newValue, oldValue) {
-                if (newValue !== oldValue) {
-                    getValue(newValue);
-                }
-            });
-
-            $scope.$watch($scope.disabled, function (newValue) {
-                $scope.disableControls = newValue;
-            });
-
-            $scope.$watch('pipDateRangeType', function (newValue, oldValue) {
-                if (newValue !== oldValue && oldValue) {
-                    init();
-                }
-            });
-
-            $scope.onYearClick = function () {
-                if (!$scope.year) {
-                    $scope.year = currentYear;
-                }
-            };
-
-            $scope.onMonthClick = function () {
-                if (!$scope.month) {
-                    $scope.month = currentMonth;
-                }
-            };
-
-            $scope.onDayClick = function () {
-                if (!$scope.year) {
-                    $scope.day = currentDay;
-                }
-            };
-            // ---------------------------------------------------------------------------------------
-
-            function getCountDay(month, year) {
-                var count = 31;
-
-                if (month === 4 || month === 6 || month === 9 || month === 11) {
-                    count = 30;
-                } else if (month === 2) {
-                    if (year) {
-                        // Calculate leap year (primitive)
-                        count = year % 4 === 0 ? 29 : 28;
-                    } else {
-                        count = 28;
-                    }
-                }
-
-                return count;
-            }
-
-            function dayList(month, year) {
-                var count, days, i, ln;
-
-                ln = $rootScope.$language || 'en';
-                count = getCountDay(month, year);
-                $scope.nameDays = [];
-                days = [];
-                for (i = 1; i <= count; i++) {
-                    days.push(i);
-                    $scope.nameDays.push($scope.daysWeek[ln][new Date(year, month - 1, i).getDay()]);
-                }
-
-                return days;
-            }
-
-            function getWeekByDate(day, month, year) {
-                var date, dayOfWeek, startWeek;
-
-                date = new Date(Date.UTC(year, month, day));
-                dayOfWeek = date.getUTCDay() ? date.getUTCDay() : 7;
-
-                if (dayOfWeek === 1) {
-                    startWeek = day;
-                } else {
-                    startWeek = day + 1 - dayOfWeek;
-                }
-
-                return startWeek;
-            }
-
-            function getWeek(day, countDay, countPrevMonthDay) {
-                var endDay, startDay;
-
-                endDay = day + 6 > countDay ? countDay - day - 6 : day + 6;
-                startDay = day > 0 ? day : countPrevMonthDay + day;
-
-                return startDay.toString() + ' - ' + (Math.abs(endDay)).toString();
-            }
-
-            function weekList(month, year) { // возвращает список начала надели
-                var weeks, countDay, countPrevMonthDay, startWeek;
-
-                weeks = [];  // в массиве первые дни недели в текущем месяце
-                countDay = getCountDay(month, year);
-                startWeek = getWeekByDate(1, month - 1, year);
-
-                countPrevMonthDay = month - 1 ? getCountDay(month - 1, year) : getCountDay(12, year - 1);
-                while (startWeek < countDay + 1) {
-                    weeks.push({
-                        id: startWeek,
-                        name: getWeek(startWeek, countDay, countPrevMonthDay)
-                    });
-                    startWeek = startWeek + 7;
-                }
-
-                return weeks;
-            }
-
-            function monthList() {
-                var months, i;
-
-                months = [];
-                for (i = 1; i <= 12; i++) {
-                    months.push({
-                        id: i,
-                        name: pipTranslate.translate('MONTH_' + i)
-                    });
-                }
-
-                return months;
-            }
-
-            function yearList() {
-                var startYear, i,
-                    endYear,
-                    years = [];
-
-                switch ($scope.timeMode) {
-                    case 'future':
-                        startYear = currentYear;
-                        endYear = currentYear + 100;
-                        break;
-                    case 'past':
-                        startYear = currentYear - 100;
-                        endYear = currentYear;
-                        break;
-                    case 'now':
-                        startYear = currentYear - 50;
-                        endYear = currentYear + 100;
-                        break;
-                    default:
-                        startYear = currentYear - 50;
-                        endYear = currentYear + 50;
-                        break;
-                }
-                if ($scope.timeMode === 'future') {
-                    for (i = startYear; i <= endYear; i++) {
-                        years.push(i);
-                    }
-                } else {
-                    for (i = endYear; i >= startYear; i--) {
-                        years.push(i);
-                    }
-                }
-
-                return years;
-            }
-
-            function adjustDay() {
-                var days = dayList($scope.month, $scope.year);
-
-                switch ($scope.pipDateRangeType) {
-                    case 'monthly':
-                        $scope.day = 1;
-                        break;
-                    case 'yearly':
-                        $scope.month = 1;
-                        $scope.day = 1;
-                        break;
-                    default:
-                        if ($scope.days.length !== days.length) {
-                            if ($scope.day > days.length) {
-                                $scope.day = days.length;
-                            }
-                        }
-                        break;
-                }
-                $scope.days = days;
-            }
-
-            function adjustWeek() {
-                var weeks;
-
-                weeks = weekList($scope.month, $scope.year);
-                $scope.week = getWeekByDate($scope.week, $scope.month - 1, $scope.year);
-                $scope.weeks = weeks;
-            }
-
-            function getValue(v) {
-                var value, day, month, year, week;
-
-                value = v ? new Date(v) : null;
-                // Define values
-                day = value ? value.getUTCDate() : null;
-                month = value ? value.getUTCMonth() + 1 : null;
-                year = value ? value.getUTCFullYear() : null;
-                week = value ? getWeekByDate(day, month - 1, year) : null;
-                // Exit if nothing to update
-                if ($scope.day === day && $scope.month === month && $scope.year === year && $scope.week === week) {
-                    return;
-                }
-                // Assign values to scope
-                $scope.day = day;
-                $scope.month = month;
-                $scope.year = year;
-                $scope.week = week;
-
-                // Define data sources
-                $scope.days = dayList($scope.month, $scope.year);
-                $scope.weeks = weekList($scope.month, $scope.year);
-            }
-
-            function setValue() {
-                var value;
-
-                if ($scope.pipDateRangeType === 'weekly') {
-                    value = new Date($scope.year, $scope.month - 1, $scope.week, 0, 0, 0, 0);
-                    value = new Date(value.getTime() - value.getTimezoneOffset() * 60000);
-                    $scope.model = value;
-                } else {
-                    value = new Date($scope.year, $scope.month - 1, $scope.day, 0, 0, 0, 0);
-                    value = new Date(value.getTime() - value.getTimezoneOffset() * 60000);
-                    $scope.model = value;
-                }
-
-                prevState = _.cloneDeep(currentState);
-                setCurrent();
-                $scope.onChange();
-            }
-        }]
-    );
-
-})(window.angular, window._);
-
-/**
- * @file Confirmation dialog
- * @copyright Digital Living Software Corp. 2014-2016
  * @todo
  * - Improve sample in sampler app
  */
@@ -1314,6 +668,7 @@ module.run(['$templateCache', function($templateCache) {
 
     thisModule.controller('pipErrorDetailsDialogController',
         ['$scope', '$rootScope', '$mdDialog', 'pipTranslate', 'params', function ($scope, $rootScope, $mdDialog, pipTranslate, params) {
+            $scope.theme = $rootScope.$theme
             $scope.error = params.error;
             $scope.ok = params.ok || 'OK';
             $scope.cancel = params.cancel || 'CANCEL';
@@ -1329,177 +684,6 @@ module.run(['$templateCache', function($templateCache) {
     );
 
 })(window.angular);
-
-/**
- * @file Date control
- * @copyright Digital Living Software Corp. 2014-2016
- * @todo
- * - Improve samples int sampler app
- * - Optimize. It is way to slow on samples
- */
-
-(function (angular, _) {
-    'use strict';
-
-    var thisModule = angular.module('pipDate', ['pipBasicControls.Templates']);
-
-    thisModule.directive('pipDate',
-        function () {
-            return {
-                restrict: 'EA',
-                require: 'ngModel',
-                scope: {
-                    timeMode: '@pipTimeMode',
-                    disabled: '&ngDisabled',
-                    model: '=ngModel',
-                    ngChange: '&'
-                },
-                templateUrl: 'date/date.html',
-                controller: 'pipDateController'
-            };
-        }
-    );
-
-    thisModule.controller('pipDateController',
-        ['$scope', '$element', 'pipTranslate', function ($scope, $element, pipTranslate) {
-            var value;
-
-            function dayList(month, year) {
-                var count = 31, days = [], i;
-
-                if (month === 4 || month === 6 || month === 9 || month === 11) {
-                    count = 30;
-                } else if (month === 2) {
-                    if (year) {
-                        // Calculate leap year (primitive)
-                        count = year % 4 === 0 ? 29 : 28;
-                    } else {
-                        count = 28;
-                    }
-                }
-
-                for (i = 1; i <= count; i++) {
-                    days.push(i);
-                }
-
-                return days;
-            }
-
-            function monthList() {
-                var months = [], i;
-
-                for (i = 1; i <= 12; i++) {
-                    months.push({
-                        id: i,
-                        name: pipTranslate.translate('MONTH_' + i)
-                    });
-                }
-
-                return months;
-            }
-
-            function yearList() {
-                var i,
-                    currentYear = new Date().getFullYear(),
-                    startYear = $scope.timeMode === 'future' ? currentYear : currentYear - 100,
-                    endYear = $scope.timeMode === 'past' ? currentYear : currentYear + 100,
-                    years = [];
-
-                if ($scope.timeMode === 'past') {
-                    for (i = endYear; i >= startYear; i--) {
-                        years.push(i);
-                    }
-                } else {
-                    for (i = startYear; i <= endYear; i++) {
-                        years.push(i);
-                    }
-                }
-
-                return years;
-            }
-
-            function adjustDay() {
-                var days = dayList($scope.month, $scope.year);
-
-                if ($scope.days.length !== days.length) {
-                    if ($scope.day > days.length) {
-                        $scope.day = days.length;
-                    }
-
-                    $scope.days = days;
-                }
-            }
-
-            function getValue(v) {
-                var value = v ? _.isDate(v) ? v : new Date(v) : null,
-                    day = value ? value.getDate() : null,
-                    month = value ? value.getMonth() + 1 : null,
-                    year = value ? value.getFullYear() : null;
-
-                // Update day list if month and year were changed
-                if ($scope.month !== month && $scope.year !== year) {
-                    $scope.days = dayList($scope.month, $scope.year);
-                }
-
-                // Assign values to scope
-                $scope.day = day;
-                $scope.month = month;
-                $scope.year = year;
-            }
-
-            function setValue() {
-                var value;
-
-                if ($scope.day && $scope.month && $scope.year) {
-                    value = new Date($scope.year, $scope.month - 1, $scope.day, 0, 0, 0, 0);
-                    $scope.model = value;
-                    $scope.ngChange();
-                }
-            }
-
-            $scope.onDayChanged = function () {
-                setValue();
-            };
-
-            $scope.onMonthChanged = function () {
-                adjustDay();
-                setValue();
-            };
-
-            $scope.onYearChanged = function () {
-                adjustDay();
-                setValue();
-            };
-
-            // Set initial values
-            value = $scope.model ? _.isDate($scope.model) ? $scope.model : new Date($scope.model) : null;
-            $scope.day = value ? value.getDate() : null;
-            $scope.month = value ? value.getMonth() + 1 : null;
-            $scope.year = value ? value.getFullYear() : null;
-
-            $scope.dayLabel = pipTranslate.translate('DAY');
-            $scope.monthLabel = pipTranslate.translate('MONTH');
-            $scope.yearLabel = pipTranslate.translate('YEAR');
-
-            $scope.days = dayList($scope.month, $scope.year);
-            $scope.months = monthList();
-            $scope.years = yearList();
-
-            $scope.disableControls = $scope.disabled ? $scope.disabled() : false;
-
-            // React on changes
-            $scope.$watch('model', function (newValue) {
-                getValue(newValue);
-            });
-
-            $scope.$watch($scope.disabled, function (newValue) {
-                $scope.disableControls = newValue;
-            });
-        }]
-    );
-
-})(window.angular, window._);
-
 
 /**
  * @file Image slider control
@@ -1921,6 +1105,163 @@ module.run(['$templateCache', function($templateCache) {
 
 
 /**
+ * @file Popover control
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+(function (angular, $, _) {
+    'use strict';
+
+    var thisModule = angular.module('pipPopover', ['pipAssert']);
+
+    thisModule.directive('pipPopover', function () {
+        return {
+            restrict: 'EA',
+            scope: true,
+            templateUrl: 'popover/popover.template.html',
+            controller: ['$scope', '$rootScope', '$element', '$timeout', '$compile', function ($scope, $rootScope, $element, $timeout, $compile) {
+                var backdropElement, content;
+
+                backdropElement = $('.pip-popover-backdrop');
+                backdropElement.on('click keydown scroll', backdropClick);
+                backdropElement.addClass($scope.params.responsive !== false ? 'pip-responsive' : '');
+
+                $timeout(function () {
+                    position();
+                    if ($scope.params.template) {
+                        content = $compile($scope.params.template)($scope);
+                        $element.find('.pip-popover').append(content);
+                    }
+
+                    init();
+                });
+
+                $timeout(function () {
+                    calcHeight();
+                }, 200);
+
+                $scope.onPopoverClick = onPopoverClick;
+                $scope = _.defaults($scope, $scope.$parent);    // eslint-disable-line 
+
+                $rootScope.$on('pipPopoverResize', onResize);
+                $(window).resize(onResize);
+
+                function init() {
+                    backdropElement.addClass('opened');
+                    $('.pip-popover-backdrop').focus();
+                    if ($scope.params.timeout) {
+                        $timeout(function () {
+                            closePopover();
+                        }, $scope.params.timeout);
+                    }
+                }
+
+                function backdropClick() {
+                    if ($scope.params.cancelCallback) {
+                        $scope.params.cancelCallback();
+                    }
+
+                    closePopover();
+                }
+
+                function closePopover() {
+                    backdropElement.removeClass('opened');
+                    $timeout(function () {
+                        backdropElement.remove();
+                    }, 100);
+                }
+
+                function onPopoverClick($e) {
+                    $e.stopPropagation();
+                }
+
+                function position() {
+                    if ($scope.params.element) {
+                        var element = $($scope.params.element),
+                            pos = element.offset(),
+                            width = element.width(),
+                            height = element.height(),
+                            docWidth = $(document).width(),
+                            docHeight = $(document).height(),
+                            popover = backdropElement.find('.pip-popover');
+
+                        if (pos) {
+                            popover
+                                .css('max-width', docWidth - (docWidth - pos.left))
+                                .css('max-height', docHeight - (pos.top + height) - 32, 0)
+                                .css('left', pos.left - popover.width() + width / 2)
+                                .css('top', pos.top + height + 16);
+                        }
+                    }
+                }
+
+                function calcHeight() {
+                    if ($scope.params.calcHeight === false) { return; }
+
+                    var popover = backdropElement.find('.pip-popover'),
+                        title = popover.find('.pip-title'),
+                        footer = popover.find('.pip-footer'),
+                        content = popover.find('.pip-content'),
+                        contentHeight = popover.height() - title.outerHeight(true) - footer.outerHeight(true);
+
+                    content.css('max-height', Math.max(contentHeight, 0) + 'px').css('box-sizing', 'border-box');
+                }
+
+                function onResize() {
+                    backdropElement.find('.pip-popover').find('.pip-content').css('max-height', '100%');
+                    position();
+                    calcHeight();
+                }
+            }]
+        };
+    });
+
+    thisModule.service('$pipPopover',
+        ['$compile', '$rootScope', '$timeout', function ($compile, $rootScope, $timeout) {
+            var popoverTemplate;
+
+            popoverTemplate = "<div class='pip-popover-backdrop {{ params.class }}' ng-controller='params.controller'" +
+                " tabindex='1'> <pip-popover pip-params='params'> </pip-popover> </div>";
+
+            return {
+                show: onShow,
+                hide: onHide,
+                resize: onResize
+            };
+
+            function onShow(p) {
+                var element, scope, params, content;
+
+                element = $('body');
+                if (element.find('md-backdrop').length > 0) { return; }
+                onHide();
+                scope = $rootScope.$new();
+                params = p && _.isObject(p) ? p : {};
+                scope.params = params;
+                scope.locals = params.locals;
+                content = $compile(popoverTemplate)(scope);
+                element.append(content);
+            }
+
+            function onHide() {
+                var backdropElement = $('.pip-popover-backdrop');
+
+                backdropElement.removeClass('opened');
+                $timeout(function () {
+                    backdropElement.remove();
+                }, 100);
+            }
+
+            function onResize() {
+                $rootScope.$broadcast('pipPopoverResize');
+            }
+
+        }]
+    );
+
+})(window.angular, window.jQuery, window._);
+
+/**
  * @file Options dialog
  * @copyright Digital Living Software Corp. 2014-2016
  * @todo
@@ -2158,186 +1499,6 @@ module.run(['$templateCache', function($templateCache) {
 })(window.angular, window.jQuery, window._);
 
 /**
- * @file Popover control
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-(function (angular, $, _) {
-    'use strict';
-
-    var thisModule = angular.module('pipPopover', ['pipAssert']);
-
-    thisModule.directive('pipPopover', function () {
-        return {
-            restrict: 'EA',
-            scope: true,
-            templateUrl: 'popover/popover.template.html',
-            controller: ['$scope', '$rootScope', '$element', '$timeout', '$compile', function ($scope, $rootScope, $element, $timeout, $compile) {
-                var backdropElement, content;
-
-                backdropElement = $('.pip-popover-backdrop');
-                backdropElement.on('click keydown scroll', backdropClick);
-                backdropElement.addClass($scope.params.responsive !== false ? 'pip-responsive' : '');
-
-                $timeout(function () {
-                    position();
-                    if ($scope.params.template) {
-                        content = $compile($scope.params.template)($scope);
-                        $element.find('.pip-popover').append(content);
-                    }
-
-                    init();
-                });
-
-                $timeout(function () {
-                    calcHeight();
-                }, 200);
-
-                $scope.onPopoverClick = onPopoverClick;
-                $scope = _.defaults($scope, $scope.$parent);    // eslint-disable-line 
-
-                $rootScope.$on('pipPopoverResize', onResize);
-                $(window).resize(onResize);
-
-                function init() {
-                    backdropElement.addClass('opened');
-                    $('.pip-popover-backdrop').focus();
-                    if ($scope.params.timeout) {
-                        $timeout(function () {
-                            closePopover();
-                        }, $scope.params.timeout);
-                    }
-                }
-
-                function backdropClick() {
-                    if ($scope.params.cancelCallback) {
-                        $scope.params.cancelCallback();
-                    }
-
-                    closePopover();
-                }
-
-                function closePopover() {
-                    backdropElement.removeClass('opened');
-                    $timeout(function () {
-                        backdropElement.remove();
-                    }, 100);
-                }
-
-                function onPopoverClick($e) {
-                    $e.stopPropagation();
-                }
-
-                function position() {
-                    if ($scope.params.element) {
-                        var element = $($scope.params.element),
-                            pos = element.offset(),
-                            width = element.width(),
-                            height = element.height(),
-                            docWidth = $(document).width(),
-                            docHeight = $(document).height(),
-                            popover = backdropElement.find('.pip-popover');
-
-                        if (pos) {
-                            popover
-                                .css('max-width', docWidth - (docWidth - pos.left))
-                                .css('max-height', docHeight - (pos.top + height) - 32, 0)
-                                .css('left', pos.left - popover.width() + width / 2)
-                                .css('top', pos.top + height + 16);
-                        }
-                    }
-                }
-
-                function calcHeight() {
-                    if ($scope.params.calcHeight === false) { return; }
-
-                    var popover = backdropElement.find('.pip-popover'),
-                        title = popover.find('.pip-title'),
-                        footer = popover.find('.pip-footer'),
-                        content = popover.find('.pip-content'),
-                        contentHeight = popover.height() - title.outerHeight(true) - footer.outerHeight(true);
-
-                    content.css('max-height', Math.max(contentHeight, 0) + 'px').css('box-sizing', 'border-box');
-                }
-
-                function onResize() {
-                    backdropElement.find('.pip-popover').find('.pip-content').css('max-height', '100%');
-                    position();
-                    calcHeight();
-                }
-            }]
-        };
-    });
-
-    thisModule.service('$pipPopover',
-        ['$compile', '$rootScope', '$timeout', function ($compile, $rootScope, $timeout) {
-            var popoverTemplate;
-
-            popoverTemplate = "<div class='pip-popover-backdrop {{ params.class }}' ng-controller='params.controller'" +
-                " tabindex='1'> <pip-popover pip-params='params'> </pip-popover> </div>";
-
-            return {
-                show: onShow,
-                hide: onHide,
-                resize: onResize
-            };
-
-            function onShow(p) {
-                var element, scope, params, content;
-
-                element = $('body');
-                if (element.find('md-backdrop').length > 0) { return; }
-                onHide();
-                scope = $rootScope.$new();
-                params = p && _.isObject(p) ? p : {};
-                scope.params = params;
-                scope.locals = params.locals;
-                content = $compile(popoverTemplate)(scope);
-                element.append(content);
-            }
-
-            function onHide() {
-                var backdropElement = $('.pip-popover-backdrop');
-
-                backdropElement.removeClass('opened');
-                $timeout(function () {
-                    backdropElement.remove();
-                }, 100);
-            }
-
-            function onResize() {
-                $rootScope.$broadcast('pipPopoverResize');
-            }
-
-        }]
-    );
-
-})(window.angular, window.jQuery, window._);
-
-/**
- * @file Routing progress control
- * @description
- * This progress control is enabled by ui router
- * while switching between pages
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-(function (angular) {
-    'use strict';
-
-    var thisModule = angular.module('pipRoutingProgress', ['ngMaterial']);
-
-    thisModule.directive('pipRoutingProgress', function () {
-        return {
-            restrict: 'EA',
-            replace: true,
-            templateUrl: 'progress/routing_progress.html'
-        };
-    });
-
-})(window.angular);
-
-/**
  * @file Refresh button control
  * @copyright Digital Living Software Corp. 2014-2016
  */
@@ -2407,6 +1568,29 @@ module.run(['$templateCache', function($templateCache) {
 
 
 /**
+ * @file Routing progress control
+ * @description
+ * This progress control is enabled by ui router
+ * while switching between pages
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+(function (angular) {
+    'use strict';
+
+    var thisModule = angular.module('pipRoutingProgress', ['ngMaterial']);
+
+    thisModule.directive('pipRoutingProgress', function () {
+        return {
+            restrict: 'EA',
+            replace: true,
+            templateUrl: 'progress/routing_progress.html'
+        };
+    });
+
+})(window.angular);
+
+/**
  * @file Tag list control
  * @copyright Digital Living Software Corp. 2014-2015
  * @todo
@@ -2461,346 +1645,79 @@ module.run(['$templateCache', function($templateCache) {
 
 
 /**
- * @file Time control
+ * @file Toggle buttons control
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
 (function (angular, _) {
     'use strict';
 
-    var thisModule = angular.module('pipTimeRange', ['pipUtils']);
+    var thisModule = angular.module('pipToggleButtons', ['pipBasicControls.Templates']);
 
-    thisModule.directive('pipTimeRange',
-        ['pipUtils', function (pipUtils) {
-            return {
-                restrict: 'EA',
-                scope: {
-                    pipStartDate: '=',
-                    pipEndDate: '='
-                },
-                templateUrl: 'time_range/time_range.html',
-                link: function ($scope, $element, $attrs) {
-
-                    function getDateJSON(value) {
-                        return value ? new Date(value) : null;
-                    }
-
-                    function defineStartDate() {
-                        if ($scope.pipStartDate !== null && $scope.pipStartDate !== undefined) {
-                            $scope.data.start = _.isDate($scope.pipStartDate) ? $scope.pipStartDate
-                                : getDateJSON($scope.pipStartDate);
-                        }
-                    }
-
-                    function defineEndDate() {
-                        if ($scope.pipEndDate !== null && $scope.pipEndDate !== undefined) {
-                            $scope.data.end = _.isDate($scope.pipEndDate) ? $scope.pipEndDate
-                                : getDateJSON($scope.pipEndDate);
-                        }
-                    }
-
-                    $scope.data = {};
-                    $scope.data.start = null;
-                    $scope.data.end = null;
-                    defineStartDate();
-                    defineEndDate();
-
-                    if (pipUtils.toBoolean($attrs.pipRebind)) {
-                        $scope.$watch('pipStartDate',
-                            function () {
-                                $scope.data.start = null;
-                                defineStartDate();
-                            }
-                        );
-                        $scope.$watch('pipEndDate',
-                            function () {
-                                $scope.data.end = null;
-                                defineEndDate();
-                            }
-                        );
-                    }
-
-                    // Add class
-                    $element.addClass('pip-time-range');
-                }
-            };
-        }]
-    );
-
-})(window.angular, window._);
-
-
-(function (angular, _) {
-    'use strict';
-
-    var thisModule = angular.module('pipTimeRangeEdit', ['pipUtils', 'pipTranslate']);
-
-    thisModule.directive('pipTimeRangeEdit',
+    thisModule.directive('pipToggleButtons',
         function () {
             return {
                 restrict: 'EA',
                 scope: {
-                    pipStartDate: '=',
-                    pipChanged: '&',
-                    pipEndDate: '=',
-                    pipStartLabel: '@',
-                    pipEndLabel: '@',
-                    disabled: '&ngDisabled',
-                    pipSize: '='
+                    ngDisabled: '&',
+                    buttons: '=pipButtons',
+                    currentButtonValue: '=ngModel',
+                    currentButton: '=?pipButtonObject',
+                    change: '&ngChange'
                 },
-                templateUrl: 'time_range_edit/time_range_edit.html',
-                controller: 'pipTimeRangeEditController'
+                templateUrl: 'toggle_buttons/toggle_buttons.html',
+                controller: ['$scope', '$element', '$attrs', '$mdMedia', '$timeout', function ($scope, $element, $attrs, $mdMedia, $timeout) {
+                    var index;
+
+                    $scope.$mdMedia = $mdMedia;
+                    $scope.class = $attrs.class || '';
+
+                    if (!$scope.buttons || _.isArray($scope.buttons) && $scope.buttons.length === 0) {
+                        $scope.buttons = [];
+                    }
+
+                    index = _.indexOf($scope.buttons, _.find($scope.buttons, {id: $scope.currentButtonValue}));
+                    $scope.currentButtonIndex = index < 0 ? 0 : index;
+                    $scope.currentButton = $scope.buttons.length > 0 ? $scope.buttons[$scope.currentButtonIndex]
+                        : $scope.currentButton;
+
+                    $scope.buttonSelected = function (index) {
+                        if ($scope.disabled()) {
+                            return;
+                        }
+
+                        $scope.currentButtonIndex = index;
+                        $scope.currentButton = $scope.buttons[$scope.currentButtonIndex];
+                        $scope.currentButtonValue = $scope.currentButton.id || index;
+
+                        $timeout(function () {
+                            if ($scope.change) {
+                                $scope.change();
+                            }
+                        });
+                    };
+
+                    $scope.enterSpacePress = function (event) {
+                        $scope.buttonSelected(event.index);
+                    };
+
+                    $scope.disabled = function () {
+                        if ($scope.ngDisabled) {
+                            return $scope.ngDisabled();
+                        }
+                    };
+                }],
+                link: function (scope, elem) {
+                    elem
+                        .on('focusin', function () {
+                            elem.addClass('focused-container');
+                        })
+                        .on('focusout', function () {
+                            elem.removeClass('focused-container');
+                        });
+                }
             };
         }
-    );
-
-    thisModule.controller('pipTimeRangeEditController',
-        ['$scope', '$element', '$attrs', 'pipDates', 'pipTranslate', function ($scope, $element, $attrs, pipDates, pipTranslate) {
-
-            function getDateJSON(value) {
-                return value ? new Date(value) : null;
-            }
-
-            function setDuration() {
-                var start, end;
-
-                if (!$scope.data.startDate || !$scope.data.endDate) {
-                    return null;
-                }
-                start = new Date($scope.data.startDate.getTime() + $scope.data.startTime * 60 * 1000);
-                end = new Date($scope.data.endDate.getTime() + $scope.data.endTime * 60 * 1000);
-
-                return end - start;
-            }
-
-            function validateStartDate() {
-                var date, start, end;
-
-                // если начальная дата не задана, обнуляем и выходим
-                if (!$scope.data.startDate) {
-                    $scope.data.startTime = null;
-
-                    return;
-                }
-
-                // еcли не задано начальное время - задаем его
-                if (!$scope.data.startTime) {
-                    if (!$scope.data.endTime) {
-                        date = new Date();
-                        date = date.getTime() - pipDates.toStartDay(date);
-                        $scope.data.startTime = Math.floor(date / (30 * 60 * 1000)) * 30;
-                    } else {
-                        $scope.data.startTime = $scope.data.endTime === 0 ? 0 : $scope.data.endTime - 30;
-                    }
-                }
-
-                // если конечная дата не задана, обнуляем и выходим
-                if (!$scope.data.endDate) {
-                    $scope.data.endTime = null;
-
-                    return;
-                }
-
-                start = new Date($scope.data.startDate.getTime() + $scope.data.startTime * 60 * 1000);
-
-                // Если есть длительность, то сохраняем ее. Длительность можно изменить только изменяя конечную дату
-                if ($scope.data.duration) {
-                    end = new Date(start.getTime() + $scope.data.duration);
-                    $scope.data.endDate = pipDates.toStartDay(end);
-                    end = end.getTime() - $scope.data.endDate.getTime();
-                    $scope.data.endTime = Math.floor(end / (30 * 60 * 1000)) * 30;
-                } else {
-                    // Если нет длительности сравниваем даты
-                    end = new Date($scope.data.endDate.getTime() + $scope.data.endTime * 60 * 1000);
-                    if (start >= end) {
-                        // Если начальная дата больше, то двигаем конечную дату
-                        $scope.data.endDate = pipDates.toStartDay(new Date(start.getTime() + 30 * 60000));
-                        $scope.data.endTime = ($scope.data.startTime + 30) % 1440;
-                    }
-                }
-            }
-
-            function validateEndDate() {
-                var date, start, end;
-
-                // если начальная дата не задана, обнуляем и выходим
-                if (!$scope.data.endDate) {
-                    $scope.data.endTime = null;
-
-                    return;
-                }
-
-                // еcли не задано конечное время - задаем его
-                if (!$scope.data.endTime) {
-                    if (!$scope.data.startTime) {
-                        date = new Date();
-                        date = date.getTime() - pipDates.toStartDay(date);
-                        $scope.data.endTime = Math.floor(date / (30 * 60 * 1000)) * 30;
-                    } else {
-                        $scope.data.endTime = $scope.data.startTime === 1410 ? 1410 : $scope.data.startTime + 30;
-                    }
-                }
-
-                // если yачальная дата не задана, обнуляем и выходим
-                if (!$scope.data.startDate) {
-                    $scope.data.startTime = null;
-
-                    return;
-                }
-
-                start = new Date($scope.data.startDate.getTime() + $scope.data.startTime * 60 * 1000);
-                end = new Date($scope.data.endDate.getTime() + $scope.data.endTime * 60 * 1000);
-
-                if (start >= end) {
-                    // Если начальная дата больше, то двигаем начальную дату
-                    $scope.data.startDate = pipDates.toStartDay(new Date(end.getTime() - 30 * 60000));
-                    $scope.data.startTime = $scope.data.endTime % 1440 === 0 ? 1410 : $scope.data.endTime - 30;
-                }
-
-                $scope.data.duration = setDuration();
-            }
-
-            function setDate() {
-                var time;
-
-                $scope.data.bind = false;
-
-                if ($scope.data.startDate) {
-                    time = $scope.data.startTime ? $scope.data.startTime * 60 * 1000 : 0;
-                    $scope.pipStartDate = new Date($scope.data.startDate.getTime() + time);
-                }
-
-                if ($scope.data.endDate) {
-                    time = $scope.data.endTime ? $scope.data.endTime * 60 * 1000 : 0;
-                    $scope.pipEndDate = new Date($scope.data.endDate.getTime() + time);
-                }
-
-                $scope.data.bind = true;
-            }
-
-            function defineDate() {
-                var start, end;
-
-                if ($scope.pipStartDate !== null && $scope.pipStartDate !== undefined) {
-                    start = _.isDate($scope.pipStartDate) ? $scope.pipStartDate : null;
-
-                    if (!start) {
-                        start = getDateJSON($scope.pipStartDate);
-                    }
-
-                    $scope.data.startDate = pipDates.toStartDay(start);
-                    $scope.data.startTime = (new Date(start) - $scope.data.startDate) / (60 * 1000);
-                }
-
-                if ($scope.pipEndDate !== null && $scope.pipEndDate !== undefined) {
-                    end = _.isDate($scope.pipEndDate) ? $scope.pipEndDate : null;
-
-                    if (!start) {
-                        end = getDateJSON($scope.pipEndDate);
-                    }
-
-                    $scope.data.endDate = pipDates.toStartDay(end);
-                    $scope.data.endTime = (new Date(end) - $scope.data.endDate) / (60 * 1000);
-                }
-
-                validateStartDate();
-                $scope.data.duration = setDuration();
-                setDate();
-            }
-
-            function getTimeInterval() {
-                var result, i, j, minutes;
-
-                result = [];
-                for (i = 0; i < 24; i++) {
-                    for (j = 0; j < 2; j++) {
-                        minutes = j * 30;
-                        result.push({
-                            id: i * 60 + minutes,
-                            time: _.pad(i.toString(), 3, '0').substr(0, 2) + ':' + _.pad(minutes.toString(), 2, '0')
-                        });
-                    }
-                }
-
-                return result;
-            }
-
-            function initDate() {
-                $scope.data.startDate = null;
-                $scope.data.startTime = null;
-                $scope.data.endDate = null;
-                $scope.data.endTime = null;
-                $scope.data.duration = null;
-            }
-
-            // initialize data
-            $scope.intervalTimeCollection = getTimeInterval();
-            $scope.data = {};
-            $scope.startLabel = $scope.pipStartLabel ? pipTranslate.translate($scope.pipStartLabel)
-                : pipTranslate.translate('EVENT_NEW_START_TIME');
-            $scope.endLabel = $scope.pipEndLabel ? pipTranslate.translate($scope.pipEndLabel)
-                : pipTranslate.translate('EVENT_NEW_END_TIME');
-            initDate();
-            defineDate();
-
-            // process function
-            $scope.onChangeStartDate = function () {
-                validateStartDate();
-                $scope.data.duration = setDuration();
-                setDate();
-                $scope.pipChanged();
-            };
-
-            $scope.onChangeEndDate = function () {
-                validateEndDate();
-                $scope.data.duration = setDuration();
-                setDate();
-                $scope.pipChanged();
-            };
-
-            $scope.onChangeStartTime = function () {
-                if (!$scope.data.startDate) {
-                    $scope.data.startDate = pipDates.toStartDay(new Date());
-                }
-                validateStartDate();
-                $scope.data.duration = setDuration();
-                setDate();
-                $scope.pipChanged();
-            };
-
-            $scope.onChangeEndTime = function () {
-                if (!$scope.data.endDate) {
-                    $scope.data.endDate = pipDates.toStartDay(new Date());
-                }
-
-                validateEndDate();
-                $scope.data.duration = setDuration();
-                setDate();
-                $scope.pipChanged();
-            };
-
-            $scope.isDisabled = function () {
-                if ($scope.disabled) {
-                    return $scope.disabled();
-                }
-
-                return false;
-            };
-
-            $scope.$watchGroup([$scope.pipStartDate, $scope.pipEndDate], function () {
-                if ($scope.data.bind) {
-                    initDate();
-                    defineDate();
-                }
-            });
-
-            $scope.$watch($scope.disabled, function (newValue) {
-                $scope.disableControls = newValue;
-            });
-
-            // Add class
-            $element.addClass('pip-time-range-edit');
-        }]
     );
 
 })(window.angular, window._);
@@ -2809,6 +1726,15 @@ module.run(['$templateCache', function($templateCache) {
  * @file Toasts management service
  * @copyright Digital Living Software Corp. 2014-2016
  * @todo Replace ngAudio with alternative service
+ * 
+ * toast.error structure:
+ * data: {
+ *  code: error code,
+ *  path: 
+ *  error: 
+ *  method:
+ *  message: 
+ * }
  */
 
 (function (angular, _) {
@@ -3054,84 +1980,6 @@ module.run(['$templateCache', function($templateCache) {
                 }
             }
         }]
-    );
-
-})(window.angular, window._);
-
-/**
- * @file Toggle buttons control
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-(function (angular, _) {
-    'use strict';
-
-    var thisModule = angular.module('pipToggleButtons', ['pipBasicControls.Templates']);
-
-    thisModule.directive('pipToggleButtons',
-        function () {
-            return {
-                restrict: 'EA',
-                scope: {
-                    ngDisabled: '&',
-                    buttons: '=pipButtons',
-                    currentButtonValue: '=ngModel',
-                    currentButton: '=?pipButtonObject',
-                    change: '&ngChange'
-                },
-                templateUrl: 'toggle_buttons/toggle_buttons.html',
-                controller: ['$scope', '$element', '$attrs', '$mdMedia', '$timeout', function ($scope, $element, $attrs, $mdMedia, $timeout) {
-                    var index;
-
-                    $scope.$mdMedia = $mdMedia;
-                    $scope.class = $attrs.class || '';
-
-                    if (!$scope.buttons || _.isArray($scope.buttons) && $scope.buttons.length === 0) {
-                        $scope.buttons = [];
-                    }
-
-                    index = _.indexOf($scope.buttons, _.find($scope.buttons, {id: $scope.currentButtonValue}));
-                    $scope.currentButtonIndex = index < 0 ? 0 : index;
-                    $scope.currentButton = $scope.buttons.length > 0 ? $scope.buttons[$scope.currentButtonIndex]
-                        : $scope.currentButton;
-
-                    $scope.buttonSelected = function (index) {
-                        if ($scope.disabled()) {
-                            return;
-                        }
-
-                        $scope.currentButtonIndex = index;
-                        $scope.currentButton = $scope.buttons[$scope.currentButtonIndex];
-                        $scope.currentButtonValue = $scope.currentButton.id || index;
-
-                        $timeout(function () {
-                            if ($scope.change) {
-                                $scope.change();
-                            }
-                        });
-                    };
-
-                    $scope.enterSpacePress = function (event) {
-                        $scope.buttonSelected(event.index);
-                    };
-
-                    $scope.disabled = function () {
-                        if ($scope.ngDisabled) {
-                            return $scope.ngDisabled();
-                        }
-                    };
-                }],
-                link: function (scope, elem) {
-                    elem
-                        .on('focusin', function () {
-                            elem.addClass('focused-container');
-                        })
-                        .on('focusout', function () {
-                            elem.removeClass('focused-container');
-                        });
-                }
-            };
-        }
     );
 
 })(window.angular, window._);

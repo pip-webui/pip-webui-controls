@@ -25,8 +25,6 @@
                     controller: 'PopoverController', templateUrl: 'popover_sample/popover.html' },
                 { title: 'Image slider', state: 'image_slider', url: '/image_slider', auth: false,
                     controller: 'ImageSliderController', templateUrl: 'image_slider_sample/image_slider.html' },
-                { title: 'Date', state: 'date', url: '/date', auth: false,
-                    controller: 'DateController', templateUrl: 'date_sample/date.html' },
                 { title: 'Color Picker', state: 'color_picker', url: '/color_picker', auth: false,
                     controller: 'ColorPickerController', templateUrl: 'color_picker_sample/color_picker.html' },
                 { title: 'Markdown', state: 'markdown', url: '/markdown', auth: false,

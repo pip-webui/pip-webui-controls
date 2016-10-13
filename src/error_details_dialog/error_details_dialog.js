@@ -60,6 +60,7 @@
 
     thisModule.controller('pipErrorDetailsDialogController',
         function ($scope, $rootScope, $mdDialog, pipTranslate, params) {
+            $scope.theme = $rootScope.$theme
             $scope.error = params.error;
             $scope.ok = params.ok || 'OK';
             $scope.cancel = params.cancel || 'CANCEL';

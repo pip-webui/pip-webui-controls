@@ -19,11 +19,6 @@
         'pipToasts',
         'pipTagList',
 
-        'pipDate',
-        'pipDateRange',
-        'pipTimeRangeEdit',
-        'pipTimeRange',
-
         'pipInformationDialog',
         'pipConfirmationDialog',
         'pipOptionsDialog',

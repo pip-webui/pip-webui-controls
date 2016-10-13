@@ -1,5 +1,7 @@
 # Pip.WebUI.Controls Changelog
 
+Extract date and time editing controls
+
 ## <a name="1.0.0"></a> 1.0.0 (2016-07-30)
 
 Initial release with collection of basic controls.

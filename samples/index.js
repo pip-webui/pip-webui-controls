@@ -9,9 +9,9 @@
             // 3rd Party Modules
             'ui.router', 'ui.utils', 'ngResource', 'ngAria', 'ngCookies', 'ngSanitize', 'ngMessages',
             'ngMaterial', 'LocalStorageModule', 'angularFileUpload', 'ngAnimate',
-            'pipCore', 'pipBasicControls', 'appCoreServices.Toasts', 'pipData',
+            'pipCore', 'pipBasicControls', 'appCoreServices.Toasts', 'pipData', 'pipTheme',
 
-            'appBasicControls.Date', 'appBasicControls.ColorPicker',
+            'appBasicControls.ColorPicker',
             'appBasicControls.Markdown', 'appBasicControls.Refresh', 'appBasicControls.ToggleButtons',
             'appBasicControls.Information', 'appBasicControls.Confirmation', 'appBasicControls.Options',
             'appBasicControls.Popover', 'appBasicControls.ImageSlider', 'appBasicControls.Progress',
@@ -30,8 +30,6 @@
                     controller: 'PopoverController', templateUrl: '../samples/popover/popover.html' },
                 { title: 'Image slider', state: 'image_slider', url: '/image_slider',
                     controller: 'ImageSliderController', templateUrl: '../samples/image_slider/image_slider.html' },
-                { title: 'Date', state: 'date', url: '/date',
-                    controller: 'DateController', templateUrl: '../samples/date/date.html' },
                 { title: 'Color Picker', state: 'color_picker', url: '/color_picker',
                     controller: 'ColorPickerController', templateUrl: '../samples/color_picker/color_picker.html' },
                 { title: 'Markdown', state: 'markdown', url: '/markdown',
