@@ -86,6 +86,153 @@ try {
   module = angular.module('pipBasicControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
+<<<<<<< HEAD
+=======
+  $templateCache.put('date/date.html',
+    '<!--\n' +
+    '@file Date control content\n' +
+    '@copyright Digital Living Software Corp. 2014-2016\n' +
+    '-->\n' +
+    '\n' +
+    '<div class="pip-date layout-row flex" tabindex="-1">\n' +
+    '	<md-input-container class="tm0 flex">\n' +
+    '		<md-select class="pip-date-day tm0 flex" ng-disabled="disableControls"\n' +
+    '				   ng-model="day" placeholder="{{dayLabel}}" ng-change="onDayChanged()">\n' +
+    '			<md-option ng-value="opt" ng-repeat="opt in days track by opt">{{:: opt }}</md-option>\n' +
+    '		</md-select>\n' +
+    '	</md-input-container>\n' +
+    '	<div class="w16 flex-fixed"></div>\n' +
+    '	<md-input-container class="tm0 flex">\n' +
+    '		<md-select class="pip-date-month tm0 flex" ng-disabled="disableControls"\n' +
+    '				   ng-model="month" placeholder="{{monthLabel}}" ng-change="onMonthChanged()">\n' +
+    '			<md-option ng-value="opt.id" ng-repeat="opt in months track by opt.id">{{:: opt.name }}</md-option>\n' +
+    '		</md-select>\n' +
+    '	</md-input-container>\n' +
+    '	<div class="w16 flex-fixed"></div>\n' +
+    '	<md-input-container class="tm0 flex">\n' +
+    '		<md-select class="pip-date-year tm0 flex" ng-disabled="disableControls"\n' +
+    '				   ng-model="year" placeholder="{{yearLabel}}" ng-change="onYearChanged()">\n' +
+    '			<md-option ng-value="opt" ng-repeat="opt in years track by opt">{{:: opt }}</md-option>\n' +
+    '		</md-select>\n' +
+    '	</md-input-container>\n' +
+    '</div>\n' +
+    '					');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipBasicControls.Templates');
+} catch (e) {
+  module = angular.module('pipBasicControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('date_range/date_range.html',
+    '<!--\n' +
+    '@file Date range control content\n' +
+    '@copyright Digital Living Software Corp. 2014-2016\n' +
+    '-->\n' +
+    '\n' +
+    '<div class="pip-date-range layout-row flex" tabindex="-1">\n' +
+    '    <md-input-container ng-show="isDay()" class="tm0 pip-day flex"\n' +
+    '            ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
+    '        <md-select class="select-day w-stretch"\n' +
+    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
+    '                   ng-disable="{{disableControls}}"\n' +
+    '                   md-on-open="onDayClick()"\n' +
+    '                   ng-model="day"\n' +
+    '                   ng-change="onDayChanged()"\n' +
+    '                   placeholder="{{dayLabel}}"\n' +
+    '                   aria-label="DAY">\n' +
+    '\n' +
+    '            <md-option ng-value="opt" ng-repeat="opt in days track by opt ">\n' +
+    '               {{nameDays[$index]}} {{ opt }}\n' +
+    '            </md-option>\n' +
+    '        </md-select>\n' +
+    '    </md-input-container>\n' +
+    '    <md-input-container ng-show="isWeek()" class="tm0 flex"\n' +
+    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
+    '        <md-select class="select-week w-stretch"\n' +
+    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
+    '                   ng-disable="{{disableControls}}"\n' +
+    '                   ng-model="week"\n' +
+    '                   ng-change="onWeekChange()"\n' +
+    '                   placeholder="{{weekLabel}}"\n' +
+    '                   aria-label="WEEK">\n' +
+    '\n' +
+    '            <md-option ng-value="opt.id" ng-repeat="opt in weeks track by opt.id">\n' +
+    '                {{ opt.name }}\n' +
+    '            </md-option>\n' +
+    '        </md-select>\n' +
+    '    </md-input-container >\n' +
+    '    <div class="flex-fixed"\n' +
+    '         ng-class="{\'w16\': $mdMedia(\'gt-xs\'), \'w8\':  $mdMedia(\'xs\')}"\n' +
+    '         ng-show="isDay() || isWeek()">\n' +
+    '    </div>\n' +
+    '    <md-input-container ng-show="isMonth() && !monthFormatShort " class="tm0 flex min-w72"\n' +
+    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
+    '        <md-select class="select-month w-stretch"\n' +
+    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
+    '                   ng-disable="{{disableControls}}"\n' +
+    '                   md-on-open="onMonthClick()"\n' +
+    '                   ng-model="month"\n' +
+    '                   ng-change="onMonthChanged()"\n' +
+    '                   placeholder="{{monthLabel}}"\n' +
+    '                   aria-label="MONTH">\n' +
+    '\n' +
+    '            <md-option ng-value="opt.id" ng-repeat="opt in months track by opt.id">\n' +
+    '                {{ opt.name }}\n' +
+    '            </md-option>\n' +
+    '        </md-select>\n' +
+    '    </md-input-container>\n' +
+    '    <md-input-container ng-show="isMonth() && monthFormatShort" class="flex tm0"\n' +
+    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
+    '        <md-select class="select-month w-stretch"\n' +
+    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
+    '                   ng-disable="{{disableControls}}"\n' +
+    '                   md-on-open="onMonthClick()"\n' +
+    '                   ng-model="month"\n' +
+    '                   ng-change="onMonthChanged()"\n' +
+    '                   placeholder="{{monthLabel}}"\n' +
+    '                   aria-label="MONTH">\n' +
+    '\n' +
+    '            <md-option ng-value="opt.id" ng-repeat="opt in shortMonths track by opt.id">\n' +
+    '                {{ opt.name }}\n' +
+    '            </md-option>\n' +
+    '        </md-select>\n' +
+    '    </md-input-container>\n' +
+    '    <div class="flex-fixed"\n' +
+    '         ng-class="{\'w16\': $mdMedia(\'gt-xs\'), \'w8\':  $mdMedia(\'xs\')}"\n' +
+    '         ng-show="isMonth()">\n' +
+    '    </div>\n' +
+    '    <md-input-container class="tm0 flex"\n' +
+    '                        ng-class="{\'flex-fixed\' : $mdMedia(\'gt-xs\')}">\n' +
+    '        <md-select class="select-year w-stretch"\n' +
+    '                   ng-class="{\'pip-no-line\' : pipNoLine}"\n' +
+    '                   ng-disable="{{disableControls}}"\n' +
+    '                   md-on-open="onYearClick()"\n' +
+    '                   ng-model="year"\n' +
+    '                   ng-change="onYearChanged()"\n' +
+    '                   placeholder="{{yearLabel}}"\n' +
+    '                   aria-label="YEAR">\n' +
+    '\n' +
+    '            <md-option ng-value="opt" ng-repeat="opt in years track by opt">\n' +
+    '                {{ opt }}\n' +
+    '            </md-option>\n' +
+    '        </md-select>\n' +
+    '    </md-input-container>\n' +
+    '</div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipBasicControls.Templates');
+} catch (e) {
+  module = angular.module('pipBasicControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+>>>>>>> 21e8e94ee313a3c9049278037621b8c5d538493b
   $templateCache.put('error_details_dialog/error_details_dialog.html',
     '<!--\n' +
     '@file Confirmation dialog template\n' +
@@ -468,6 +615,7 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 /**
+<<<<<<< HEAD
  * @file Confirmation dialog
  * @copyright Digital Living Software Corp. 2014-2016
  */
@@ -535,6 +683,8 @@ module.run(['$templateCache', function($templateCache) {
 })(window.angular);
 
 /**
+=======
+>>>>>>> 21e8e94ee313a3c9049278037621b8c5d538493b
  * @file Color picker control
  * @copyright Digital Living Software Corp. 2014-2016
  */
@@ -686,6 +836,667 @@ module.run(['$templateCache', function($templateCache) {
 })(window.angular);
 
 /**
+<<<<<<< HEAD
+ * @file Image slider control
+=======
+ * @file Date control
+ * @copyright Digital Living Software Corp. 2014-2016
+ * @todo
+ * - Improve samples int sampler app
+ * - Optimize. It is way to slow on samples
+ */
+
+(function (angular, _) {
+    'use strict';
+
+    var thisModule = angular.module('pipDate', ['pipBasicControls.Templates']);
+
+    thisModule.directive('pipDate',
+        function () {
+            return {
+                restrict: 'EA',
+                require: 'ngModel',
+                scope: {
+                    timeMode: '@pipTimeMode',
+                    disabled: '&ngDisabled',
+                    model: '=ngModel',
+                    ngChange: '&'
+                },
+                templateUrl: 'date/date.html',
+                controller: 'pipDateController'
+            };
+        }
+    );
+
+    thisModule.controller('pipDateController',
+        ['$scope', '$element', 'pipTranslate', function ($scope, $element, pipTranslate) {
+            var value;
+
+            function dayList(month, year) {
+                var count = 31, days = [], i;
+
+                if (month === 4 || month === 6 || month === 9 || month === 11) {
+                    count = 30;
+                } else if (month === 2) {
+                    if (year) {
+                        // Calculate leap year (primitive)
+                        count = year % 4 === 0 ? 29 : 28;
+                    } else {
+                        count = 28;
+                    }
+                }
+
+                for (i = 1; i <= count; i++) {
+                    days.push(i);
+                }
+
+                return days;
+            }
+
+            function monthList() {
+                var months = [], i;
+
+                for (i = 1; i <= 12; i++) {
+                    months.push({
+                        id: i,
+                        name: pipTranslate.translate('MONTH_' + i)
+                    });
+                }
+
+                return months;
+            }
+
+            function yearList() {
+                var i,
+                    currentYear = new Date().getFullYear(),
+                    startYear = $scope.timeMode === 'future' ? currentYear : currentYear - 100,
+                    endYear = $scope.timeMode === 'past' ? currentYear : currentYear + 100,
+                    years = [];
+
+                if ($scope.timeMode === 'past') {
+                    for (i = endYear; i >= startYear; i--) {
+                        years.push(i);
+                    }
+                } else {
+                    for (i = startYear; i <= endYear; i++) {
+                        years.push(i);
+                    }
+                }
+
+                return years;
+            }
+
+            function adjustDay() {
+                var days = dayList($scope.month, $scope.year);
+
+                if ($scope.days.length !== days.length) {
+                    if ($scope.day > days.length) {
+                        $scope.day = days.length;
+                    }
+
+                    $scope.days = days;
+                }
+            }
+
+            function getValue(v) {
+                var value = v ? _.isDate(v) ? v : new Date(v) : null,
+                    day = value ? value.getDate() : null,
+                    month = value ? value.getMonth() + 1 : null,
+                    year = value ? value.getFullYear() : null;
+
+                // Update day list if month and year were changed
+                if ($scope.month !== month && $scope.year !== year) {
+                    $scope.days = dayList($scope.month, $scope.year);
+                }
+
+                // Assign values to scope
+                $scope.day = day;
+                $scope.month = month;
+                $scope.year = year;
+            }
+
+            function setValue() {
+                var value;
+
+                if ($scope.day && $scope.month && $scope.year) {
+                    value = new Date($scope.year, $scope.month - 1, $scope.day, 0, 0, 0, 0);
+                    $scope.model = value;
+                    $scope.ngChange();
+                }
+            }
+
+            $scope.onDayChanged = function () {
+                setValue();
+            };
+
+            $scope.onMonthChanged = function () {
+                adjustDay();
+                setValue();
+            };
+
+            $scope.onYearChanged = function () {
+                adjustDay();
+                setValue();
+            };
+
+            // Set initial values
+            value = $scope.model ? _.isDate($scope.model) ? $scope.model : new Date($scope.model) : null;
+            $scope.day = value ? value.getDate() : null;
+            $scope.month = value ? value.getMonth() + 1 : null;
+            $scope.year = value ? value.getFullYear() : null;
+
+            $scope.dayLabel = pipTranslate.translate('DAY');
+            $scope.monthLabel = pipTranslate.translate('MONTH');
+            $scope.yearLabel = pipTranslate.translate('YEAR');
+
+            $scope.days = dayList($scope.month, $scope.year);
+            $scope.months = monthList();
+            $scope.years = yearList();
+
+            $scope.disableControls = $scope.disabled ? $scope.disabled() : false;
+
+            // React on changes
+            $scope.$watch('model', function (newValue) {
+                getValue(newValue);
+            });
+
+            $scope.$watch($scope.disabled, function (newValue) {
+                $scope.disableControls = newValue;
+            });
+        }]
+    );
+
+})(window.angular, window._);
+
+
+/**
+ * @file Date range control
+>>>>>>> 21e8e94ee313a3c9049278037621b8c5d538493b
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+(function (angular, _, $) {
+    'use strict';
+
+<<<<<<< HEAD
+=======
+    thisModule.directive('pipDateRange',
+        function () {
+            return {
+                restrict: 'EA',
+                require: 'ngModel',
+                scope: {
+                    timeMode: '@pipTimeMode',
+                    disabled: '&ngDisabled',
+                    model: '=ngModel',
+                    pipChanged: '&',
+                    pipDateRangeType: '@',
+                    pipDateFormat: '@',
+                    pipNoLine: '@'
+                },
+                templateUrl: 'date_range/date_range.html',
+                controller: 'pipDateRangeController'
+            };
+        });
+
+    thisModule.controller('pipDateRangeController',
+        ['$scope', '$element', 'pipTranslate', '$mdMedia', '$rootScope', function ($scope, $element, pipTranslate, $mdMedia, $rootScope) {
+            var currentDate,
+                currentYear,
+                currentMonth,
+                currentDay,
+                prevState = {}, currentState = {};
+
+            currentDate = new Date();
+            currentYear = currentDate.getUTCFullYear();
+            currentMonth = currentDate.getUTCMonth() + 1;
+            currentDay = currentDate.getUTCDate();
+            $scope.daysWeek = {
+                en: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                ru: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
+            };
+
+            $scope.onDayChanged = function () {
+                setValue();
+            };
+
+            $scope.onMonthChanged = function () {
+                if ($scope.pipDateRangeType === 'weekly') {
+                    var date, dayOfWeek;
+
+                    date = new Date(Date.UTC($scope.year, $scope.month - 1, 1));
+                    dayOfWeek = date.getUTCDay() ? date.getUTCDay() : 7;
+                    $scope.week = getWeekByDate(dayOfWeek, $scope.month - 1, $scope.year);
+                    correctWeek();
+                    adjustWeek();
+                } else {
+                    adjustDay();
+                }
+                setValue();
+            };
+
+            $scope.onYearChanged = function () {
+                var date, dayOfWeek;
+
+                date = new Date(Date.UTC($scope.year, $scope.month - 1, 1));
+                dayOfWeek = date.getUTCDay() ? date.getUTCDay() : 7;
+                if ($scope.pipDateRangeType === 'weekly') {
+                    $scope.week = getWeekByDate(dayOfWeek, $scope.month - 1, $scope.year);
+                    adjustWeek();
+                    correctWeek();
+                } else {
+                    adjustDay();
+                }
+                setValue();
+            };
+
+            $scope.onWeekChange = function () {
+                if ($scope.pipDateRangeType === 'weekly') {
+                    adjustWeek();
+                    correctWeek();
+                } else {
+                    adjustDay();
+                }
+                setValue();
+            };
+
+            // visibility
+            $scope.isDay = function () {
+                return $scope.pipDateRangeType === 'daily';
+            };
+
+            $scope.isWeek = function () {
+                return $scope.pipDateRangeType === 'weekly';
+            };
+
+            $scope.isMonth = function () {
+                return $scope.pipDateRangeType === 'daily' ||
+                    $scope.pipDateRangeType === 'weekly' ||
+                    $scope.pipDateRangeType === 'monthly';
+            };
+
+            $scope.onChange = function () {
+                if ($scope.pipChanged) {
+                    $scope.pipChanged();
+                }
+            };
+
+            function setCurrent() {
+                currentState.day = $scope.day;
+                currentState.month = $scope.month;
+                currentState.year = $scope.year;
+                currentState.week = $scope.week;
+                currentState.dateRangeType = $scope.pipDateRangeType;
+                currentState.model = $scope.model;
+            }
+
+            function fillLists() {
+                $scope.days = dayList($scope.month, $scope.year);
+                $scope.weeks = weekList($scope.month, $scope.year);
+                $scope.months = monthList();
+                $scope.shortMonths = monthList(true);
+                $scope.years = yearList();
+
+            }
+
+            function correctWeek() {
+                if (!prevState.model || prevState.model && prevState.model.getTime() >= $scope.model.getTime()) {
+                    // if shift week -> increase month
+                    if ($scope.weeks && $scope.weeks[$scope.week] && $scope.weeks[$scope.week].id <= 0) {
+                        if ($scope.month < 12) {
+                            $scope.month += 1;
+                        } else {
+                            $scope.month = 1;
+                            $scope.year += 1;
+                        }
+                        fillLists();
+                    }
+                }
+            }
+
+            function init() {
+                var value;
+
+                value = $scope.model ? new Date($scope.model) : null;
+                $scope.day = value ? value.getUTCDate() : null;
+                $scope.month = value ? value.getUTCMonth() + 1 : null;
+                $scope.year = value ? value.getUTCFullYear() : null;
+                $scope.week = value ? getWeekByDate($scope.day, $scope.month - 1, $scope.year) : null;
+
+                fillLists();
+
+                if ($scope.pipDateRangeType === 'weekly') {
+                    correctWeek();
+                    adjustWeek();
+                } else {
+                    adjustDay();
+                }
+                setValue();
+            }
+
+            // Set initial values
+            $scope.$mdMedia = $mdMedia;
+
+            init();
+
+            $scope.disableControls = $scope.disabled ? $scope.disabled() : false;
+
+            // React on changes
+            $scope.$watch('model', function (newValue, oldValue) {
+                if (newValue !== oldValue) {
+                    getValue(newValue);
+                }
+            });
+
+            $scope.$watch($scope.disabled, function (newValue) {
+                $scope.disableControls = newValue;
+            });
+
+            $scope.$watch('pipDateRangeType', function (newValue, oldValue) {
+                if (newValue !== oldValue && oldValue) {
+                    init();
+                }
+            });
+
+            $scope.onYearClick = function () {
+                if (!$scope.year) {
+                    $scope.year = currentYear;
+                }
+            };
+
+            $scope.onMonthClick = function () {
+                if (!$scope.month) {
+                    $scope.month = currentMonth;
+                }
+            };
+
+            $scope.onDayClick = function () {
+                if (!$scope.year) {
+                    $scope.day = currentDay;
+                }
+            };
+            // ---------------------------------------------------------------------------------------
+
+            function getCountDay(month, year) {
+                var count = 31;
+
+                if (month === 4 || month === 6 || month === 9 || month === 11) {
+                    count = 30;
+                } else if (month === 2) {
+                    if (year) {
+                        // Calculate leap year (primitive)
+                        count = year % 4 === 0 ? 29 : 28;
+                    } else {
+                        count = 28;
+                    }
+                }
+
+                return count;
+            }
+
+            function dayList(month, year) {
+                var count, days, i, ln;
+
+                ln = $rootScope.$language || 'en';
+                count = getCountDay(month, year);
+                $scope.nameDays = [];
+                days = [];
+                for (i = 1; i <= count; i++) {
+                    days.push(i);
+                    $scope.nameDays.push($scope.daysWeek[ln][new Date(year, month - 1, i).getDay()]);
+                }
+
+                return days;
+            }
+
+            function getWeekByDate(day, month, year) {
+                var date, dayOfWeek, startWeek;
+
+                date = new Date(Date.UTC(year, month, day));
+                dayOfWeek = date.getUTCDay() ? date.getUTCDay() : 7;
+
+                if (dayOfWeek === 1) {
+                    startWeek = day;
+                } else {
+                    startWeek = day + 1 - dayOfWeek;
+                }
+
+                return startWeek;
+            }
+
+            function getWeek(day, countDay, countPrevMonthDay) {
+                var endDay, startDay;
+
+                endDay = day + 6 > countDay ? countDay - day - 6 : day + 6;
+                startDay = day > 0 ? day : countPrevMonthDay + day;
+
+                return startDay.toString() + ' - ' + (Math.abs(endDay)).toString();
+            }
+
+            function weekList(month, year) { // возвращает список начала надели
+                var weeks, countDay, countPrevMonthDay, startWeek;
+
+                weeks = [];  // в массиве первые дни недели в текущем месяце
+                countDay = getCountDay(month, year);
+                startWeek = getWeekByDate(1, month - 1, year);
+
+                countPrevMonthDay = month - 1 ? getCountDay(month - 1, year) : getCountDay(12, year - 1);
+                while (startWeek < countDay + 1) {
+                    weeks.push({
+                        id: startWeek,
+                        name: getWeek(startWeek, countDay, countPrevMonthDay)
+                    });
+                    startWeek = startWeek + 7;
+                }
+
+                return weeks;
+            }
+
+            function monthList() {
+                var months, i;
+
+                months = [];
+                for (i = 1; i <= 12; i++) {
+                    months.push({
+                        id: i,
+                        name: pipTranslate.translate('MONTH_' + i)
+                    });
+                }
+
+                return months;
+            }
+
+            function yearList() {
+                var startYear, i,
+                    endYear,
+                    years = [];
+
+                switch ($scope.timeMode) {
+                    case 'future':
+                        startYear = currentYear;
+                        endYear = currentYear + 100;
+                        break;
+                    case 'past':
+                        startYear = currentYear - 100;
+                        endYear = currentYear;
+                        break;
+                    case 'now':
+                        startYear = currentYear - 50;
+                        endYear = currentYear + 100;
+                        break;
+                    default:
+                        startYear = currentYear - 50;
+                        endYear = currentYear + 50;
+                        break;
+                }
+                if ($scope.timeMode === 'future') {
+                    for (i = startYear; i <= endYear; i++) {
+                        years.push(i);
+                    }
+                } else {
+                    for (i = endYear; i >= startYear; i--) {
+                        years.push(i);
+                    }
+                }
+
+                return years;
+            }
+
+            function adjustDay() {
+                var days = dayList($scope.month, $scope.year);
+
+                switch ($scope.pipDateRangeType) {
+                    case 'monthly':
+                        $scope.day = 1;
+                        break;
+                    case 'yearly':
+                        $scope.month = 1;
+                        $scope.day = 1;
+                        break;
+                    default:
+                        if ($scope.days.length !== days.length) {
+                            if ($scope.day > days.length) {
+                                $scope.day = days.length;
+                            }
+                        }
+                        break;
+                }
+                $scope.days = days;
+            }
+
+            function adjustWeek() {
+                var weeks;
+
+                weeks = weekList($scope.month, $scope.year);
+                $scope.week = getWeekByDate($scope.week, $scope.month - 1, $scope.year);
+                $scope.weeks = weeks;
+            }
+
+            function getValue(v) {
+                var value, day, month, year, week;
+
+                value = v ? new Date(v) : null;
+                // Define values
+                day = value ? value.getUTCDate() : null;
+                month = value ? value.getUTCMonth() + 1 : null;
+                year = value ? value.getUTCFullYear() : null;
+                week = value ? getWeekByDate(day, month - 1, year) : null;
+                // Exit if nothing to update
+                if ($scope.day === day && $scope.month === month && $scope.year === year && $scope.week === week) {
+                    return;
+                }
+                // Assign values to scope
+                $scope.day = day;
+                $scope.month = month;
+                $scope.year = year;
+                $scope.week = week;
+
+                // Define data sources
+                $scope.days = dayList($scope.month, $scope.year);
+                $scope.weeks = weekList($scope.month, $scope.year);
+            }
+
+            function setValue() {
+                var value;
+
+                if ($scope.pipDateRangeType === 'weekly') {
+                    value = new Date($scope.year, $scope.month - 1, $scope.week, 0, 0, 0, 0);
+                    value = new Date(value.getTime() - value.getTimezoneOffset() * 60000);
+                    $scope.model = value;
+                } else {
+                    value = new Date($scope.year, $scope.month - 1, $scope.day, 0, 0, 0, 0);
+                    value = new Date(value.getTime() - value.getTimezoneOffset() * 60000);
+                    $scope.model = value;
+                }
+
+                prevState = _.cloneDeep(currentState);
+                setCurrent();
+                $scope.onChange();
+            }
+        }]
+    );
+
+})(window.angular, window._);
+
+/**
+ * @file Confirmation dialog
+ * @copyright Digital Living Software Corp. 2014-2016
+ * @todo
+ * - Improve sample in sampler app
+ */
+
+(function (angular) {
+    'use strict';
+
+    var thisModule = angular.module('pipErrorDetailsDialog',
+        ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
+
+    /* eslint-disable quote-props */
+    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            'ERROR_DETAILS': 'Error details',
+            'CODE': 'Code',
+            'PATH': 'Path',
+            'ERROR': 'Error code',
+            'METHOD': 'Method',
+            'MESSAGE': 'Message'
+
+        });
+        pipTranslateProvider.translations('ru', {
+            'ERROR_DETAILS': 'Детали ошибки',
+            'CODE': 'Код',
+            'PATH': 'Путь',
+            'ERROR': 'Код ошибки',
+            'METHOD': 'Метод',
+            'MESSAGE': 'Сообщение'
+        });
+    }]);
+    /* eslint-enable quote-props */
+
+    thisModule.factory('pipErrorDetailsDialog',
+        ['$mdDialog', function ($mdDialog) {
+            return {
+                show: function (params, successCallback, cancelCallback) {
+                    $mdDialog.show({
+                        targetEvent: params.event,
+                        templateUrl: 'error_details_dialog/error_details_dialog.html',
+                        controller: 'pipErrorDetailsDialogController',
+                        locals: {params: params},
+                        clickOutsideToClose: true
+                    })
+                        .then(function () {
+                            if (successCallback) {
+                                successCallback();
+                            }
+                        }, function () {
+                            if (cancelCallback) {
+                                cancelCallback();
+                            }
+                        });
+                }
+            };
+        }]
+    );
+
+    thisModule.controller('pipErrorDetailsDialogController',
+        ['$scope', '$rootScope', '$mdDialog', 'pipTranslate', 'params', function ($scope, $rootScope, $mdDialog, pipTranslate, params) {
+            $scope.error = params.error;
+            $scope.ok = params.ok || 'OK';
+            $scope.cancel = params.cancel || 'CANCEL';
+
+            $scope.onCancel = function () {
+                $mdDialog.cancel();
+            };
+
+            $scope.onOk = function () {
+                $mdDialog.hide();
+            };
+        }]
+    );
+
+})(window.angular);
+
+/**
  * @file Image slider control
  * @copyright Digital Living Software Corp. 2014-2016
  */
@@ -693,6 +1504,7 @@ module.run(['$templateCache', function($templateCache) {
 (function (angular, _, $) {
     'use strict';
 
+>>>>>>> 21e8e94ee313a3c9049278037621b8c5d538493b
     var thisModule = angular.module('pipImageSlider', []);
 
     thisModule.directive('pipImageSlider',
