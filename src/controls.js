@@ -17,16 +17,8 @@
         'pipPopover',
         'pipImageSlider',
         'pipToasts',
-        'pipTagList',
-
-        'pipInformationDialog',
-        'pipConfirmationDialog',
-        'pipOptionsDialog',
-        'pipOptionsBigDialog',
-        'pipErrorDetailsDialog'
+        'pipTagList'
     ]);
-
-    angular.module('pipBasicControls', ['pipControls']);
 
 })(window.angular);
 

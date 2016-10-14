@@ -12,37 +12,6 @@ Pip.WebUI.Controls modules provides additional controls, that are "missing" in a
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/color_picker)
 
-**Date** control allows to set a date using 3 comboboxes for day, month and year.
-
-<a href="https://github.com/pip-webui/pip-webui-controls/raw/master/doc/images/img-date.png" style="border: 3px ridge #c8d2df; display: inline-block">
-    <img src="https://github.com/pip-webui/pip-webui-controls/raw/master/doc/images/img-date.png"/>
-</a>
-
-**Date range** control allows to pick a specific date range on daily, weekly, monthly or yearly time interval. 
-This control can be helpful in various calendars and planning tools.
-
-<a href="https://github.com/pip-webui/pip-webui-controls/raw/master/doc/images/img-date-range.png" style="border: 3px ridge #c8d2df; display: inline-block">
-    <img src="https://github.com/pip-webui/pip-webui-controls/raw/master/doc/images/img-date-range.png"/>
-</a>
-
-See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/date)
-
-**Time range** control visualizes specific time interval
-
-<a href="https://github.com/pip-webui/pip-webui-controls/raw/master/doc/images/img-time-range.png" style="border: 3px ridge #c8d2df; display: inline-block">
-    <img src="https://github.com/pip-webui/pip-webui-controls/raw/master/doc/images/img-time-range.png"/>
-</a>
-
-See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/time_range)
-
-**Time range** control allows to specify time interval rounded to days or half-hour chunks
-
-<a href="https://github.com/pip-webui/pip-webui-controls/raw/master/doc/images/img-time-range-edit.png" style="border: 3px ridge #c8d2df; display: inline-block">
-    <img src="https://github.com/pip-webui/pip-webui-controls/raw/master/doc/images/img-time-range-edit.png"/>
-</a>
-
-See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/time_range_edit)
-
 **Image slider** creates an interactive image carusel with smooth animations. This control is usually used on landing or guidance screens.
 
 <a href="https://github.com/pip-webui/pip-webui-controls/raw/master/doc/images/img-slider.png" style="border: 3px ridge #c8d2df; display: inline-block">
