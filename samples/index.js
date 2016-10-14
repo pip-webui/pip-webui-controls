@@ -5,8 +5,8 @@
         [
             'ngMaterial',
             'pipCore', 'pipBasicControls', 'appCoreServices.Toasts', 
-            // 'pipTheme', 
             'pipLayout', 'pipNav', 'pipDateTimes',
+            'pipTheme.Default', 'pipTheme.Bootbarn', 'pipTheme',
 
             'appBasicControls.ColorPicker',
             'appBasicControls.Markdown', 'appBasicControls.Refresh', 'appBasicControls.ToggleButtons',
@@ -95,9 +95,11 @@
     );
 
     thisModule.controller('pipSampleController',
-        function ($scope, $rootScope, $state, $mdSidenav, $timeout, pipTranslate, $mdTheming, //pipTheme, 
+        function ($scope, $rootScope, $state, $mdSidenav, $timeout, pipTranslate, $mdTheming, pipTheme, 
                   $mdMedia) {
 
+            pipTheme.setCurrentTheme('bootbarn-warm');
+            
             $scope.pages = [
                 { title: 'Progress', state: 'progress', url: '/progress',
                     controller: 'ProgressController', templateUrl: '../samples/progress/progress.html' },

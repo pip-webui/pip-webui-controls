@@ -686,6 +686,73 @@ module.run(['$templateCache', function($templateCache) {
 })(window.angular);
 
 /**
+ * @file Information dialog
+ * @copyright Digital Living Software Corp. 2014-2016
+ * @todo
+ * - Improve sample in sampler app
+ */
+
+(function (angular, _) {
+    'use strict';
+
+    var thisModule = angular.module('pipInformationDialog',
+        ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
+
+    /* eslint-disable quote-props */
+    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            'INFORMATION_TITLE': 'Information'
+        });
+        pipTranslateProvider.translations('ru', {
+            'INFORMATION_TITLE': 'Информация'
+        });
+    }]);
+    /* eslint-enable quote-props */
+
+    thisModule.factory('pipInformationDialog',
+        ['$mdDialog', function ($mdDialog) {
+            return {
+                show: function (params, callback) {
+                    $mdDialog.show({
+                        targetEvent: params.event,
+                        templateUrl: 'information_dialog/information_dialog.html',
+                        controller: 'pipInformationDialogController',
+                        locals: {params: params},
+                        clickOutsideToClose: true
+                    })
+                        .then(function () {
+                            if (callback) {
+                                callback();
+                            }
+                        });
+                }
+            };
+        }]
+    );
+
+    thisModule.controller('pipInformationDialogController',
+        ['$scope', '$rootScope', '$mdDialog', 'pipTranslate', 'params', 'pipUtils', function ($scope, $rootScope, $mdDialog, pipTranslate, params, pipUtils) {
+            var content, item;
+
+            $scope.theme = $rootScope.$theme;
+            $scope.title = params.title || 'INFORMATION_TITLE';
+            content = pipTranslate.translate(params.message);
+            if (params.item) {
+                item = _.truncate(params.item, 25);
+                content = pipUtils.sprintf(content, item);
+            }
+            $scope.content = content;
+            $scope.ok = params.ok || 'OK';
+
+            $scope.onOk = function () {
+                $mdDialog.hide();
+            };
+        }]
+    );
+
+})(window.angular, window._);
+
+/**
  * @file Image slider control
  * @copyright Digital Living Software Corp. 2014-2016
  */
@@ -907,73 +974,6 @@ module.run(['$templateCache', function($templateCache) {
     );
 
 })(window.angular, window._, window.jQuery);
-
-/**
- * @file Information dialog
- * @copyright Digital Living Software Corp. 2014-2016
- * @todo
- * - Improve sample in sampler app
- */
-
-(function (angular, _) {
-    'use strict';
-
-    var thisModule = angular.module('pipInformationDialog',
-        ['ngMaterial', 'pipUtils', 'pipTranslate', 'pipBasicControls.Templates']);
-
-    /* eslint-disable quote-props */
-    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            'INFORMATION_TITLE': 'Information'
-        });
-        pipTranslateProvider.translations('ru', {
-            'INFORMATION_TITLE': 'Информация'
-        });
-    }]);
-    /* eslint-enable quote-props */
-
-    thisModule.factory('pipInformationDialog',
-        ['$mdDialog', function ($mdDialog) {
-            return {
-                show: function (params, callback) {
-                    $mdDialog.show({
-                        targetEvent: params.event,
-                        templateUrl: 'information_dialog/information_dialog.html',
-                        controller: 'pipInformationDialogController',
-                        locals: {params: params},
-                        clickOutsideToClose: true
-                    })
-                        .then(function () {
-                            if (callback) {
-                                callback();
-                            }
-                        });
-                }
-            };
-        }]
-    );
-
-    thisModule.controller('pipInformationDialogController',
-        ['$scope', '$rootScope', '$mdDialog', 'pipTranslate', 'params', 'pipUtils', function ($scope, $rootScope, $mdDialog, pipTranslate, params, pipUtils) {
-            var content, item;
-
-            $scope.theme = $rootScope.$theme;
-            $scope.title = params.title || 'INFORMATION_TITLE';
-            content = pipTranslate.translate(params.message);
-            if (params.item) {
-                item = _.truncate(params.item, 25);
-                content = pipUtils.sprintf(content, item);
-            }
-            $scope.content = content;
-            $scope.ok = params.ok || 'OK';
-
-            $scope.onOk = function () {
-                $mdDialog.hide();
-            };
-        }]
-    );
-
-})(window.angular, window._);
 
 /**
  * @file Options dialog
@@ -1591,60 +1591,6 @@ module.run(['$templateCache', function($templateCache) {
 
 
 /**
- * @file Tag list control
- * @copyright Digital Living Software Corp. 2014-2015
- * @todo
- * - Improve samples in sampler app
- * - What's pipType and pipTypeLocal? Give better name
- * - Do not use ng-if, instead generate template statically
- */
-
-(function (angular) {
-    'use strict';
-
-    var thisModule = angular.module('pipTagList', ['pipCore']);
-
-    /**
-     * pipTags - set of tags
-     * pipType - additional type tag
-     * pipTypeLocal - additional translated type tag
-     */
-    thisModule.directive('pipTagList',
-        ['$parse', function ($parse) {
-            return {
-                restrict: 'EA',
-                scope: {
-                    pipTags: '=',
-                    pipType: '=',
-                    pipTypeLocal: '='
-                },
-                templateUrl: 'tags/tag_list.html',
-                controller: ['$scope', '$element', '$attrs', 'pipUtils', function ($scope, $element, $attrs, pipUtils) {
-                    var tagsGetter;
-
-                    tagsGetter = $parse($attrs.pipTags);
-                    $element.css('display', 'block');
-                    // Set tags
-                    $scope.tags = tagsGetter($scope);
-
-                    // Also optimization to avoid watch if it is unnecessary
-                    if (pipUtils.toBoolean($attrs.pipRebind)) {
-                        $scope.$watch(tagsGetter, function () {
-                            $scope.tags = tagsGetter($scope);
-                        });
-                    }
-
-                    // Add class
-                    $element.addClass('pip-tag-list');
-                }]
-            };
-        }]
-    );
-
-})(window.angular);
-
-
-/**
  * @file Toasts management service
  * @copyright Digital Living Software Corp. 2014-2016
  * @todo Replace ngAudio with alternative service
@@ -1905,6 +1851,60 @@ module.run(['$templateCache', function($templateCache) {
     );
 
 })(window.angular, window._);
+
+/**
+ * @file Tag list control
+ * @copyright Digital Living Software Corp. 2014-2015
+ * @todo
+ * - Improve samples in sampler app
+ * - What's pipType and pipTypeLocal? Give better name
+ * - Do not use ng-if, instead generate template statically
+ */
+
+(function (angular) {
+    'use strict';
+
+    var thisModule = angular.module('pipTagList', ['pipCore']);
+
+    /**
+     * pipTags - set of tags
+     * pipType - additional type tag
+     * pipTypeLocal - additional translated type tag
+     */
+    thisModule.directive('pipTagList',
+        ['$parse', function ($parse) {
+            return {
+                restrict: 'EA',
+                scope: {
+                    pipTags: '=',
+                    pipType: '=',
+                    pipTypeLocal: '='
+                },
+                templateUrl: 'tags/tag_list.html',
+                controller: ['$scope', '$element', '$attrs', 'pipUtils', function ($scope, $element, $attrs, pipUtils) {
+                    var tagsGetter;
+
+                    tagsGetter = $parse($attrs.pipTags);
+                    $element.css('display', 'block');
+                    // Set tags
+                    $scope.tags = tagsGetter($scope);
+
+                    // Also optimization to avoid watch if it is unnecessary
+                    if (pipUtils.toBoolean($attrs.pipRebind)) {
+                        $scope.$watch(tagsGetter, function () {
+                            $scope.tags = tagsGetter($scope);
+                        });
+                    }
+
+                    // Add class
+                    $element.addClass('pip-tag-list');
+                }]
+            };
+        }]
+    );
+
+})(window.angular);
+
 
 /**
  * @file Toggle buttons control
