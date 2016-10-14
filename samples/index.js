@@ -9,7 +9,8 @@
             // 3rd Party Modules
             'ui.router', 'ui.utils', 'ngResource', 'ngAria', 'ngCookies', 'ngSanitize', 'ngMessages',
             'ngMaterial', 'LocalStorageModule', 'angularFileUpload', 'ngAnimate',
-            'pipCore', 'pipBasicControls', 'appCoreServices.Toasts', 'pipData', 'pipTheme',
+            'pipCore', 'pipBasicControls', 'appCoreServices.Toasts', 'pipData', 'pipTheme.Default',
+            'pipTheme.Bootbarn', 'pipTheme',
 
             'appBasicControls.ColorPicker',
             'appBasicControls.Markdown', 'appBasicControls.Refresh', 'appBasicControls.ToggleButtons',
@@ -23,6 +24,8 @@
         function ($scope, $rootScope, $state, $mdSidenav, $timeout, pipTranslate, $mdTheming, pipTheme,
                   $mdMedia) {
 
+            pipTheme.setCurrentTheme('bootbarn-warm');
+            
             $scope.pages = [
                 { title: 'Progress', state: 'progress', url: '/progress',
                     controller: 'ProgressController', templateUrl: '../samples/progress/progress.html' },
