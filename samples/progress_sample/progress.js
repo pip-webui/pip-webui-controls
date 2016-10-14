@@ -5,10 +5,12 @@
 
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
-            SHOW_PROGRESS: 'Show progress ring'
+            SHOW_PROGRESS: 'Show progress ring',
+            HIDE_PROGRESS: 'Hide progress ring'
         });
         pipTranslateProvider.translations('ru', {
-            SHOW_PROGRESS: 'Показать progress ring'
+            SHOW_PROGRESS: 'Показать progress ring',
+            HIDE_PROGRESS: 'Спрятать progress ring'
         });
     });
 
@@ -27,10 +29,23 @@
             pipAppBar.showTitleText('CONTROLS');
             
             $scope.progressOpen = progressOpen;
+            $scope.progressClose = progressClose;
+            $scope.isShowProgress = isShowProgress;
+
+            return;
+
+            function isShowProgress() {
+                return $scope.$reset;
+            }
 
             function progressOpen() {
                 $scope.$reset = true;
             }
+
+            function progressClose() {
+                $scope.$reset = false;
+            }
+
         });
 
 })(window.angular);
