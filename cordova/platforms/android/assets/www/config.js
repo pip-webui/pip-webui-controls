@@ -6,13 +6,12 @@
 (function (angular) {
     'use strict';
 
-    var thisModule = angular.module('pipSampleConfig', ['pipRest.State', 'pipRest', 'pipEntry', 'pipSideNav',
-        'pipAppBar']);
+    var thisModule = angular.module('pipSampleConfig', ['pipState', 'pipSideNav', 'pipAppBar']);
 
     // Configure application services before start
     thisModule.config(
         function ($mdThemingProvider, $stateProvider, $urlRouterProvider, pipAuthStateProvider, pipTranslateProvider,
-                  pipRestProvider, pipSideNavProvider, pipAppBarProvider, pipEntryProvider, $mdIconProvider, 
+                  pipSideNavProvider, pipAppBarProvider, pipEntryProvider, $mdIconProvider, 
                   $compileProvider, $httpProvider) {
 
             $compileProvider.debugInfoEnabled(false);
@@ -76,9 +75,6 @@
             pipAuthStateProvider.authorizedState('progress');
 
             $urlRouterProvider.otherwise('/progress');
-
-            // Configure REST API
-            pipRestProvider.serverUrl('http://alpha.pipservices.net');
 
             // Configure navigation menu
             pipSideNavProvider.sections([
