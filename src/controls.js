@@ -17,7 +17,9 @@
         'pipPopover',
         'pipImageSlider',
         'pipToasts',
-        'pipTagList'
+        'pipTagList',
+        'pipUnsavedChanges',
+        'pipFabTooltipVisibility'
     ]);
 
 })(window.angular);
