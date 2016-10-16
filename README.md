@@ -121,7 +121,7 @@ See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.h
 
 * [pip-webui-lib](https://github.com/pip-webui/pip-webui-lib): angular, angular material and other 3rd party libraries
 * [pip-webui-css](https://github.com/pip-webui/pip-webui-css): CSS styles and web components
-* [pip-webui-core](https://github.com/pip-webui/pip-webui-core): localization and other core services
+* [pip-webui-services](https://github.com/pip-webui/pip-webui-services): localization and other core services
 
 ## <a name="license"></a>License
 

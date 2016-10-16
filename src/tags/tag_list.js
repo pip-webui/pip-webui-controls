@@ -10,7 +10,7 @@
 (function (angular) {
     'use strict';
 
-    var thisModule = angular.module('pipTagList', ['pipCore']);
+    var thisModule = angular.module('pipTagList', ['pipServices']);
 
     /**
      * pipTags - set of tags

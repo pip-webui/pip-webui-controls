@@ -4,7 +4,7 @@
     var thisModule = angular.module('appBasicControls',
         [
             'ngMaterial',
-            'pipCore', 'pipControls', 'appCoreServices.Toasts', 
+            'pipServices', 'pipControls', 'appCoreServices.Toasts', 
             'pipLayout', 'pipNav', 'pipDateTimes',
             'pipTheme.Default', 'pipTheme.Bootbarn', 'pipTheme',
 

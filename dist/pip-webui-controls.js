@@ -1,3 +1,30 @@
+/**
+ * @file Registration of basic WebUI controls
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+/* global angular */
+
+(function (angular) {
+    'use strict';
+
+    angular.module('pipControls', [
+        'pipMarkdown',
+        'pipToggleButtons',
+        'pipRefreshButton',
+        'pipColorPicker',
+        'pipRoutingProgress',
+        'pipPopover',
+        'pipImageSlider',
+        'pipToasts',
+        'pipTagList',
+        'pipUnsavedChanges',
+        'pipFabTooltipVisibility'
+    ]);
+
+})(window.angular);
+
+
 (function(module) {
 try {
   module = angular.module('pipBasicControls.Templates');
@@ -147,33 +174,6 @@ module.run(['$templateCache', function($templateCache) {
     '');
 }]);
 })();
-
-/**
- * @file Registration of basic WebUI controls
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-/* global angular */
-
-(function (angular) {
-    'use strict';
-
-    angular.module('pipControls', [
-        'pipMarkdown',
-        'pipToggleButtons',
-        'pipRefreshButton',
-        'pipColorPicker',
-        'pipRoutingProgress',
-        'pipPopover',
-        'pipImageSlider',
-        'pipToasts',
-        'pipTagList',
-        'pipUnsavedChanges',
-        'pipFabTooltipVisibility'
-    ]);
-
-})(window.angular);
-
 
 /**
  * @file Directive to show confirmation dialog when user tries to leave page with unsaved changes.
@@ -918,7 +918,7 @@ module.run(['$templateCache', function($templateCache) {
 (function (angular) {
     'use strict';
 
-    var thisModule = angular.module('pipTagList', ['pipCore']);
+    var thisModule = angular.module('pipTagList', ['pipServices']);
 
     /**
      * pipTags - set of tags
