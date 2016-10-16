@@ -76,35 +76,6 @@ See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.h
 
 See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/toggle_buttons)
 
-**Standard dialogs** simplify developer task to show various messages. It includes:
-- Information message dialog
-- Confirmation message dialog
-- Error message dialog
-- Option selection dialog
-
-<a href="https://github.com/pip-webui/pip-webui-controls/raw/master/doc/images/img-info-dialog.png" style="border: 3px ridge #c8d2df; display: inline-block">
-    <img src="https://github.com/pip-webui/pip-webui-controls/raw/master/doc/images/img-info-dialog.png"/>
-</a>
-
-Standard dialogs require only few lines of code from developers:
-```javascript
- pipInformationDialog.show(
-        {
-            event: event,
-            title: 'Good!',
-            message: 'Stuff %s was really good',
-            item: 'Loooooong naaaaaaaaaaaaaame',
-            ok: 'Take It'
-        },
-        function () {
-            console.log('Taken');
-        }
-    );
-```
-
-See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/color_picker)
-
-
 ## Learn more about the module
 
 - [User's guide](https://github.com/pip-webui/pip-webui-controls/blob/master/doc/UsersGuide.md)
