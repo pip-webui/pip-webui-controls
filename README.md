@@ -2,7 +2,7 @@
 
 ![](https://img.shields.io/badge/license-MIT-blue.svg)
 
-Pip.WebUI.Controls modules provides additional controls, that are "missing" in angular-material library.
+Pip.WebUI.Controls modules provides controls mix
 
 **Color picker** control allows to select a color from predefined pallette.
 
@@ -44,21 +44,17 @@ See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.ht
 
 See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/progress)
 
-**Refresh button** shows at the top of the screen when new data is available. By clicking on it, user triggers the update. It is used as a visual confirmation of he data arrival and helps to manager user expectations.
+**Reference expander** is a clickable elemement that looks similar to **Reference item** but also allows to expand/collapse details.
 
-<a href="https://github.com/pip-webui/pip-webui-controls/raw/master/doc/images/img-btn-refresh.png" style="border: 3px ridge #c8d2df; display: inline-block">
-    <img src="https://github.com/pip-webui/pip-webui-controls/raw/master/doc/images/img-btn-refresh.png"/>
+<a href="https://github.com/pip-webui/pip-webui-csscomponents/raw/master/doc/images/img-ref-expander.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
+    <img src="https://github.com/pip-webui/pip-webui-csscomponents/raw/master/doc/images/img-ref-expander.png"/>
 </a>
 
-See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/refresh)
+**Empty state** component shows a placeholder for pages without data. It gives an explanation and provides one or few actions to get started.
 
-**Tags** control visializes a list of read-only chips (tags)
-
-<a href="https://github.com/pip-webui/pip-webui-controls/raw/master/doc/images/img-tags.png" style="border: 3px ridge #c8d2df; display: inline-block">
-    <img src="https://github.com/pip-webui/pip-webui-controls/raw/master/doc/images/img-tags.png"/>
+<a href="https://github.com/pip-webui/pip-webui-csscomponents/raw/master/doc/images/img-empty.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
+    <img src="https://github.com/pip-webui/pip-webui-csscomponents/raw/master/doc/images/img-empty.png"/>
 </a>
-
-See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/tags)
 
 **Toast** services allows to show toast messages, formatted in different ways and presented in priority order. It ensures that one toast message will not hide another one, until timeout expires or users handles it.
 
@@ -68,13 +64,6 @@ See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.h
 
 See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/toasts)
 
-**Toggle buttons** control implement multiple radio buttons. Only one of them can be pressed at any time. On phones buttons are replaced with dropdown list.
-
-<a href="https://github.com/pip-webui/pip-webui-controls/raw/master/doc/images/img-toggle-btns.png" style="border: 3px ridge #c8d2df; display: inline-block">
-    <img src="https://github.com/pip-webui/pip-webui-controls/raw/master/doc/images/img-toggle-btns.png"/>
-</a>
-
-See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/toggle_buttons)
 
 ## Learn more about the module
 

@@ -10,16 +10,12 @@
 
     angular.module('pipControls', [
         'pipMarkdown',
-        'pipToggleButtons',
-        'pipRefreshButton',
         'pipColorPicker',
         'pipRoutingProgress',
         'pipPopover',
         'pipImageSlider',
         'pipToasts',
-        'pipTagList',
-        'pipUnsavedChanges',
-        'pipFabTooltipVisibility'
+        'pipUnsavedChanges'
     ]);
 
 })(window.angular);

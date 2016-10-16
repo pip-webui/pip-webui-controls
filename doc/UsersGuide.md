@@ -7,9 +7,8 @@
 - [pip-markdown directive](#markdown)
 - [pip-popover directive](#popover)
 - [pip-routing-progress directive](#routing_progress)
-- [pip-refresh-button directive](#refresh_button)
-- [pip-tag-list directive](#tag_list)
-- [pip-toggle-buttons directive](#toggle_buttons)
+- [pip-ref-expander component](#ref_expander)
+- [pip-empty component](#empty)
 - [pipToasts service](#toasts)
 - [Questions and bugs](#issues)
 
@@ -145,66 +144,78 @@ See online sample [here...](http://webui.pipdevs.com/pip-webui-controls/index.ht
 
 See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/progress)
 
-## <a name="refresh_button"></a> pip-refresh-button directive
 
-**pip-refresh-button** shows at the top of the screen when new data is available. By clicking on it, user triggers the update. It is used as a visual confirmation of he data arrival and helps to manager user expectations.
+## <a name="ref_expander"></a> pip-ref-expander component
 
-### Usage
-```html
-<pip-refresh-button pip-text="refreshText" pip-visible="showRefresh" pip-refresh="onRefresh()">
-</pip-refresh-button>
-```
-
-<img src="images/img-btn-refresh.png"/>
-
-See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/refresh)
-
-### Attributes
-* **pip-text** - string to display text in refresh toast 
-* **pip-refresh** - function for updating string
-
-## <a name="tag_list"></a> pip-tag-list directive
-
-**pip-tag-list** directive visializes a list of read-only chips (tags)
+**pip-ref-expander** is a clickable elemement that looks similar to **pip-ref-item** but also allows to expand/collapse details.
 
 ### Usage
 ```html
-<pip-tag-list pip-tags="tags"
-              pip-type="type"
-              pip-type-local="typeLocal"
-              pip-rebind="true">
-</pip-tag-list>
+<div class="pip-ref-expander layout-row layout-align-start-center">
+    <md-button class="flex">
+        <div class="layout-row layout-align-start-center">
+            <img src="images/ES_Goals.svg"
+                 class="pip-pic-sm" ng-click="showAlert($event)">
+            <div class="pip-content flex">
+                <p class="pip-title">
+                    <md-icon md-svg-icon="icons:forward-all"></md-icon>
+                    {{item.name}}
+                </p>
+                <p class="pip-subtitle">
+                    <md-icon md-svg-icon="icons:world"></md-icon>
+                    <span>{{item.status1}}</span>
+                </p>
+            </div>
+            <md-icon md-svg-icon="icons:triangle-down" class="pip-chevron"></md-icon>
+        </div>
+    </md-button>
+</div>
 ```
 
-<img src="images/img-tags.png"/>
+<img src="images/img-ref-expander.png"/>
 
-See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/tags)
+### CSS Classes
+* **pip-pic-sm** - class for small picture
+* **pip-pic** - class for pictures
+* **pip-content** - class for general div 
+* **pip-title** - class for title text
+* **pip-subtitle** - class for subtitle text
 
-### Attributes
-* **pip-tags** - array of tags
-* **pip-type** - string for type chips
-* **pip-type-local** - string to display type chips
-* **pip-rebind** - binding pip-tags array. By default equal false
+## <a name="empty"></a> pip-empty component
 
-## <a name="toggle_buttons"></a> pip-toggle-buttons directive
-
-**pip-toggle-buttons** directive implement multiple radio buttons. Only one of them can be pressed at any time. On phones buttons are replaced with dropdown list.
+**pip-empty** component shows a placeholder for pages without data. It gives an explanation and provides one or few actions to get started.
 
 ### Usage
 ```html
-<pip-toggle-buttons ng-model="activeButton"
-                    pip-rebind="true"
-                    pip-buttons="buttonsCollection">
-</pip-toggle-buttons>
+<div class="pip-empty" >
+        <div style="background-image: url('images/ES_Timeline.svg');" class="pip-pic" ></div>
+
+        <div class="pip-text">
+            Here you can plan the main events of the day and coordinate with your partners
+        </div>
+        <div class="pip-actions">
+            <md-button class="md-accent">
+                ADD EVENT
+            </md-button>
+            <md-button class="md-accent">
+                ADD EVENT FROM CURRENT WEEK
+            </md-button>
+            <md-button class="md-accent">
+                WORK ON GOALS
+            </md-button>
+        </div>
+
+    </div>
 ```
 
-<img src="images/img-toggle-btns.png"/>
+<img src="images/img-empty.png"/>
 
-See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.html#/toggle_buttons)
+### CSS Classes
+* **pip-empty** - general class for pip-empty component
+* **pip-text** - class for text 
+* **pip-pic** - class for picture
+* **pip-actions** - class for div with buttons
 
-### Attributes
-* **buttonsCollection** - array buttons 
-* **pip-rebind** - binding buttonsCollection array. By default equal false
 
 ## <a name="toasts_service"></a> pipToasts service
 
