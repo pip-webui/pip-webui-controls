@@ -9,31 +9,33 @@
 (function (angular, marked, _) {
     'use strict';
 
-    var thisModule = angular.module('pipMarkdown', ['ngSanitize', 'pipUtils', 'pipTranslate']);
+    var thisModule = angular.module('pipMarkdown', ['ngSanitize']);
 
-    /* eslint-disable quote-props */
-    thisModule.config(function (pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            'MARKDOWN_ATTACHMENTS': 'Attachments:',
-            'checklist': 'Checklist',
-            'documents': 'Documents',
-            'pictures': 'Pictures',
-            'location': 'Location',
-            'time': 'Time'
-        });
-        pipTranslateProvider.translations('ru', {
-            'MARKDOWN_ATTACHMENTS': 'Вложения:',
-            'checklist': 'Список',
-            'documents': 'Документы',
-            'pictures': 'Изображения',
-            'location': 'Местонахождение',
-            'time': 'Время'
-        });
-    });
-    /* eslint-enable quote-props */
+    // /* eslint-disable quote-props */
+    // thisModule.config(function (pipTranslateProvider) {
+    //     pipTranslateProvider.translations('en', {
+    //         'MARKDOWN_ATTACHMENTS': 'Attachments:',
+    //         'checklist': 'Checklist',
+    //         'documents': 'Documents',
+    //         'pictures': 'Pictures',
+    //         'location': 'Location',
+    //         'time': 'Time'
+    //     });
+    //     pipTranslateProvider.translations('ru', {
+    //         'MARKDOWN_ATTACHMENTS': 'Вложения:',
+    //         'checklist': 'Список',
+    //         'documents': 'Документы',
+    //         'pictures': 'Изображения',
+    //         'location': 'Местонахождение',
+    //         'time': 'Время'
+    //     });
+    // });
+    // /* eslint-enable quote-props */
 
     thisModule.directive('pipMarkdown',
-        function ($parse, pipUtils, pipTranslate) {
+        function ($parse, $injector) {
+            var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
+
             return {
                 restrict: 'EA',
                 scope: false,
@@ -49,19 +51,27 @@
 
                         _.each(array, function (attach) {
                             if (attach.type && attach.type !== 'text') {
-                                if (attachString.length === 0) {
+                                if (attachString.length === 0 && pipTranslate) {
                                     attachString = pipTranslate.translate('MARKDOWN_ATTACHMENTS');
                                 }
 
                                 if (attachTypes.indexOf(attach.type) < 0) {
                                     attachTypes.push(attach.type);
                                     attachString += attachTypes.length > 1 ? ', ' : ' ';
-                                    attachString += pipTranslate.translate(attach.type);
+                                    if (pipTranslate)
+                                        attachString += pipTranslate.translate(attach.type);
                                 }
                             }
                         });
 
                         return attachString;
+                    }
+
+                    function toBoolean(value) {
+                        if (value == null) return false;
+                        if (!value) return false;
+                        value = value.toString().toLowerCase();
+                        return value == '1' || value == 'true';
                     }
 
                     function bindText(value) {
@@ -107,7 +117,7 @@
                     bindText(textGetter($scope));
 
                     // Also optimization to avoid watch if it is unnecessary
-                    if (pipUtils.toBoolean($attrs.pipRebind)) {
+                    if (toBoolean($attrs.pipRebind)) {
                         $scope.$watch(textGetter, function (newValue) {
                             bindText(newValue);
                         });

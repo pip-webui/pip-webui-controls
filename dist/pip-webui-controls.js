@@ -27,9 +27,9 @@
 
 (function(module) {
 try {
-  module = angular.module('pipBasicControls.Templates');
+  module = angular.module('pipControls.Templates');
 } catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
+  module = angular.module('pipControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('color_picker/color_picker.html',
@@ -47,12 +47,12 @@ module.run(['$templateCache', function($templateCache) {
 
 (function(module) {
 try {
-  module = angular.module('pipBasicControls.Templates');
+  module = angular.module('pipControls.Templates');
 } catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
+  module = angular.module('pipControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('popover/popover.template.html',
+  $templateCache.put('popover/popover.html',
     '<div ng-if="params.templateUrl" class=\'pip-popover flex layout-column\'\n' +
     '     ng-click="onPopoverClick($event)" ng-include="params.templateUrl">\n' +
     '</div>\n' +
@@ -65,9 +65,9 @@ module.run(['$templateCache', function($templateCache) {
 
 (function(module) {
 try {
-  module = angular.module('pipBasicControls.Templates');
+  module = angular.module('pipControls.Templates');
 } catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
+  module = angular.module('pipControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('progress/routing_progress.html',
@@ -92,9 +92,9 @@ module.run(['$templateCache', function($templateCache) {
 
 (function(module) {
 try {
-  module = angular.module('pipBasicControls.Templates');
+  module = angular.module('pipControls.Templates');
 } catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
+  module = angular.module('pipControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('tags/tag_list.html',
@@ -116,9 +116,9 @@ module.run(['$templateCache', function($templateCache) {
 
 (function(module) {
 try {
-  module = angular.module('pipBasicControls.Templates');
+  module = angular.module('pipControls.Templates');
 } catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
+  module = angular.module('pipControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('toast/toast.html',
@@ -130,7 +130,7 @@ module.run(['$templateCache', function($templateCache) {
     '\n' +
     '    <span class="flex-var m0 pip-text" ng-bind-html="message"></span>\n' +
     '    <div class="layout-row layout-align-end-start" class="pip-actions" ng-if="actions.length > 0 || (toast.type==\'error\' && toast.error)">\n' +
-    '        <md-button class="flex-fixed m0 lm8" ng-if="toast.type==\'error\' && toast.error" ng-click="onDetails()">Details</md-button>\n' +
+    '        <md-button class="flex-fixed m0 lm8" ng-if="toast.type==\'error\' && toast.error && showDetails" ng-click="onDetails()">Details</md-button>\n' +
     '        <md-button class="flex-fixed m0 lm8"\n' +
     '                   ng-click="onAction(action)"\n' +
     '                   ng-repeat="action in actions"\n' +
@@ -145,9 +145,9 @@ module.run(['$templateCache', function($templateCache) {
 
 (function(module) {
 try {
-  module = angular.module('pipBasicControls.Templates');
+  module = angular.module('pipControls.Templates');
 } catch (e) {
-  module = angular.module('pipBasicControls.Templates', []);
+  module = angular.module('pipControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('toggle_buttons/toggle_buttons.html',
@@ -219,7 +219,7 @@ module.run(['$templateCache', function($templateCache) {
 (function (angular, _) {
     'use strict';
 
-    var thisModule = angular.module('pipColorPicker', ['pipUtils', 'pipFocused', 'pipBasicControls.Templates']);
+    var thisModule = angular.module('pipColorPicker', ['pipFocused', 'pipControls.Templates']);
 
     thisModule.directive('pipColorPicker',
         function () {
@@ -284,6 +284,29 @@ module.run(['$templateCache', function($templateCache) {
 })(window.angular, window._);
 
 /**
+ * @file Optional filter to translate string resources
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+ 
+/* global angular */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module('pipControls.Translate', []);
+
+    thisModule.filter('translate', ['$injector', function ($injector) {
+        var pipTranslate = $injector.has('pipTranslate') 
+            ? $injector.get('pipTranslate') : null;
+
+        return function (key) {
+            return pipTranslate  ? pipTranslate.translate(key) || key : key;
+        }
+    }]);
+
+})();
+
+/**
  * @file Image slider control
  * @copyright Digital Living Software Corp. 2014-2016
  */
@@ -291,7 +314,7 @@ module.run(['$templateCache', function($templateCache) {
 (function (angular, _, $) {
     'use strict';
 
-    var thisModule = angular.module('pipImageSlider', []);
+    var thisModule = angular.module('pipImageSlider', ['pipSliderButton', 'pipSliderIndicator', 'pipImageSlider.Service']);
 
     thisModule.directive('pipImageSlider',
         function () {
@@ -402,46 +425,17 @@ module.run(['$templateCache', function($templateCache) {
         }
     );
 
-    thisModule.directive('pipSliderButton',
-        function () {
-            return {
-                scope: {},
-                controller: ['$scope', '$element', '$parse', '$attrs', function ($scope, $element, $parse, $attrs) {
-                    var type = $parse($attrs.pipButtonType)($scope),
-                        sliderId = $parse($attrs.pipSliderId)($scope);
+})(window.angular, window._, window.jQuery);
 
-                    $element.on('click', function () {
-                        if (!sliderId || !type) {
-                            return;
-                        }
+/**
+ * @file Image slider service
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
 
-                        angular.element(document.getElementById(sliderId)).scope()[type + 'Block']();
-                    });
-                }]
-            };
-        }
-    );
+(function (angular, _, $) {
+    'use strict';
 
-    thisModule.directive('pipSliderIndicator',
-        function () {
-            return {
-                scope: false,
-                controller: ['$scope', '$element', '$parse', '$attrs', function ($scope, $element, $parse, $attrs) {
-                    var sliderId = $parse($attrs.pipSliderId)($scope),
-                        slideTo = $parse($attrs.pipSlideTo)($scope);
-
-                    $element.css('cursor', 'pointer');
-                    $element.on('click', function () {
-                        if (!sliderId || slideTo && slideTo < 0) {
-                            return;
-                        }
-
-                        angular.element(document.getElementById(sliderId)).scope().slideTo(slideTo);
-                    });
-                }]
-            };
-        }
-    );
+    var thisModule = angular.module('pipImageSlider.Service', []);
 
     thisModule.service('$pipImageSlider',
         ['$timeout', function ($timeout) {
@@ -507,6 +501,71 @@ module.run(['$templateCache', function($templateCache) {
 })(window.angular, window._, window.jQuery);
 
 /**
+ * @file Image slider button
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+(function (angular, _, $) {
+    'use strict';
+
+    var thisModule = angular.module('pipSliderButton', []);
+
+    thisModule.directive('pipSliderButton',
+        function () {
+            return {
+                scope: {},
+                controller: ['$scope', '$element', '$parse', '$attrs', function ($scope, $element, $parse, $attrs) {
+                    var type = $parse($attrs.pipButtonType)($scope),
+                        sliderId = $parse($attrs.pipSliderId)($scope);
+
+                    $element.on('click', function () {
+                        if (!sliderId || !type) {
+                            return;
+                        }
+
+                        angular.element(document.getElementById(sliderId)).scope()[type + 'Block']();
+                    });
+                }]
+            };
+        }
+    );
+
+})(window.angular, window._, window.jQuery);
+
+/**
+ * @file Slider indicator
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+(function (angular, _, $) {
+    'use strict';
+
+    var thisModule = angular.module('pipSliderIndicator', []);
+
+    thisModule.directive('pipSliderIndicator',
+        function () {
+            return {
+                scope: false,
+                controller: ['$scope', '$element', '$parse', '$attrs', function ($scope, $element, $parse, $attrs) {
+                    var sliderId = $parse($attrs.pipSliderId)($scope),
+                        slideTo = $parse($attrs.pipSlideTo)($scope);
+
+                    $element.css('cursor', 'pointer');
+                    $element.on('click', function () {
+                        if (!sliderId || slideTo && slideTo < 0) {
+                            return;
+                        }
+
+                        angular.element(document.getElementById(sliderId)).scope().slideTo(slideTo);
+                    });
+                }]
+            };
+        }
+    );
+
+})(window.angular, window._, window.jQuery);
+
+/**
  * @file Markdown control
  * @copyright Digital Living Software Corp. 2014-2016
  * @todo
@@ -517,31 +576,33 @@ module.run(['$templateCache', function($templateCache) {
 (function (angular, marked, _) {
     'use strict';
 
-    var thisModule = angular.module('pipMarkdown', ['ngSanitize', 'pipUtils', 'pipTranslate']);
+    var thisModule = angular.module('pipMarkdown', ['ngSanitize']);
 
-    /* eslint-disable quote-props */
-    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            'MARKDOWN_ATTACHMENTS': 'Attachments:',
-            'checklist': 'Checklist',
-            'documents': 'Documents',
-            'pictures': 'Pictures',
-            'location': 'Location',
-            'time': 'Time'
-        });
-        pipTranslateProvider.translations('ru', {
-            'MARKDOWN_ATTACHMENTS': 'Вложения:',
-            'checklist': 'Список',
-            'documents': 'Документы',
-            'pictures': 'Изображения',
-            'location': 'Местонахождение',
-            'time': 'Время'
-        });
-    }]);
-    /* eslint-enable quote-props */
+    // /* eslint-disable quote-props */
+    // thisModule.config(function (pipTranslateProvider) {
+    //     pipTranslateProvider.translations('en', {
+    //         'MARKDOWN_ATTACHMENTS': 'Attachments:',
+    //         'checklist': 'Checklist',
+    //         'documents': 'Documents',
+    //         'pictures': 'Pictures',
+    //         'location': 'Location',
+    //         'time': 'Time'
+    //     });
+    //     pipTranslateProvider.translations('ru', {
+    //         'MARKDOWN_ATTACHMENTS': 'Вложения:',
+    //         'checklist': 'Список',
+    //         'documents': 'Документы',
+    //         'pictures': 'Изображения',
+    //         'location': 'Местонахождение',
+    //         'time': 'Время'
+    //     });
+    // });
+    // /* eslint-enable quote-props */
 
     thisModule.directive('pipMarkdown',
-        ['$parse', 'pipUtils', 'pipTranslate', function ($parse, pipUtils, pipTranslate) {
+        ['$parse', '$injector', function ($parse, $injector) {
+            var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
+
             return {
                 restrict: 'EA',
                 scope: false,
@@ -557,19 +618,27 @@ module.run(['$templateCache', function($templateCache) {
 
                         _.each(array, function (attach) {
                             if (attach.type && attach.type !== 'text') {
-                                if (attachString.length === 0) {
+                                if (attachString.length === 0 && pipTranslate) {
                                     attachString = pipTranslate.translate('MARKDOWN_ATTACHMENTS');
                                 }
 
                                 if (attachTypes.indexOf(attach.type) < 0) {
                                     attachTypes.push(attach.type);
                                     attachString += attachTypes.length > 1 ? ', ' : ' ';
-                                    attachString += pipTranslate.translate(attach.type);
+                                    if (pipTranslate)
+                                        attachString += pipTranslate.translate(attach.type);
                                 }
                             }
                         });
 
                         return attachString;
+                    }
+
+                    function toBoolean(value) {
+                        if (value == null) return false;
+                        if (!value) return false;
+                        value = value.toString().toLowerCase();
+                        return value == '1' || value == 'true';
                     }
 
                     function bindText(value) {
@@ -615,7 +684,7 @@ module.run(['$templateCache', function($templateCache) {
                     bindText(textGetter($scope));
 
                     // Also optimization to avoid watch if it is unnecessary
-                    if (pipUtils.toBoolean($attrs.pipRebind)) {
+                    if (toBoolean($attrs.pipRebind)) {
                         $scope.$watch(textGetter, function (newValue) {
                             bindText(newValue);
                         });
@@ -643,13 +712,13 @@ module.run(['$templateCache', function($templateCache) {
 (function (angular, $, _) {
     'use strict';
 
-    var thisModule = angular.module('pipPopover', ['pipAssert']);
+    var thisModule = angular.module('pipPopover', ['pipPopover.Service']);
 
     thisModule.directive('pipPopover', function () {
         return {
             restrict: 'EA',
             scope: true,
-            templateUrl: 'popover/popover.template.html',
+            templateUrl: 'popover/popover.html',
             controller: ['$scope', '$rootScope', '$element', '$timeout', '$compile', function ($scope, $rootScope, $element, $timeout, $compile) {
                 var backdropElement, content;
 
@@ -747,7 +816,19 @@ module.run(['$templateCache', function($templateCache) {
         };
     });
 
-    thisModule.service('$pipPopover',
+})(window.angular, window.jQuery, window._);
+
+/**
+ * @file Popover service
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+(function (angular, $, _) {
+    'use strict';
+
+    var thisModule = angular.module('pipPopover.Service', []);
+
+    thisModule.service('pipPopover',
         ['$compile', '$rootScope', '$timeout', function ($compile, $rootScope, $timeout) {
             var popoverTemplate;
 
@@ -918,7 +999,7 @@ module.run(['$templateCache', function($templateCache) {
 (function (angular) {
     'use strict';
 
-    var thisModule = angular.module('pipTagList', ['pipServices']);
+    var thisModule = angular.module('pipTagList', []);
 
     /**
      * pipTags - set of tags
@@ -935,7 +1016,7 @@ module.run(['$templateCache', function($templateCache) {
                     pipTypeLocal: '='
                 },
                 templateUrl: 'tags/tag_list.html',
-                controller: ['$scope', '$element', '$attrs', 'pipUtils', function ($scope, $element, $attrs, pipUtils) {
+                controller: ['$scope', '$element', '$attrs', function ($scope, $element, $attrs) {
                     var tagsGetter;
 
                     tagsGetter = $parse($attrs.pipTags);
@@ -943,8 +1024,15 @@ module.run(['$templateCache', function($templateCache) {
                     // Set tags
                     $scope.tags = tagsGetter($scope);
 
+                    function toBoolean(value) {
+                        if (value == null) return false;
+                        if (!value) return false;
+                        value = value.toString().toLowerCase();
+                        return value == '1' || value == 'true';
+                    }
+
                     // Also optimization to avoid watch if it is unnecessary
-                    if (pipUtils.toBoolean($attrs.pipRebind)) {
+                    if (toBoolean($attrs.pipRebind)) {
                         $scope.$watch(tagsGetter, function () {
                             $scope.tags = tagsGetter($scope);
                         });
@@ -977,10 +1065,13 @@ module.run(['$templateCache', function($templateCache) {
 
 (function (angular, _) {
     'use strict';
-    var thisModule = angular.module('pipToasts', ['pipTranslate', 'ngMaterial', 'pipAssert']);
+    var thisModule = angular.module('pipToasts', ['ngMaterial', 'pipControls.Translate']);
 
     thisModule.controller('pipToastController',
-        ['$scope', '$mdToast', 'toast', 'pipErrorDetailsDialog', function ($scope, $mdToast, toast, pipErrorDetailsDialog) {
+        ['$scope', '$mdToast', 'toast', '$injector', function ($scope, $mdToast, toast, $injector) {
+            var pipErrorDetailsDialog = $injector.has('pipErrorDetailsDialog') 
+                ? $injector.get('pipErrorDetailsDialog') : null;
+
             // if (toast.type && sounds['toast_' + toast.type]) {
             //     sounds['toast_' + toast.type].play();
             // }
@@ -988,7 +1079,7 @@ module.run(['$templateCache', function($templateCache) {
             $scope.message = toast.message;
             $scope.actions = toast.actions;
             $scope.toast = toast;
-
+            
             if (toast.actions.length === 0) {
                 $scope.actionLenght = 0;
             } else if (toast.actions.length === 1) {
@@ -997,16 +1088,20 @@ module.run(['$templateCache', function($templateCache) {
                 $scope.actionLenght = null;
             }
 
+            $scope.showDetails = pipErrorDetailsDialog != null;
             $scope.onDetails = function () {
                 $mdToast.hide();
-                pipErrorDetailsDialog.show(
-                    {
-                        error: $scope.toast.error,
-                        ok: 'Ok'
-                    },
-                    angular.noop,
-                    angular.noop
-                );
+
+                if (pipErrorDetailsDialog) {
+                    pipErrorDetailsDialog.show(
+                        {
+                            error: $scope.toast.error,
+                            ok: 'Ok'
+                        },
+                        angular.noop,
+                        angular.noop
+                    );
+                }
             };
 
             $scope.onAction = function (action) {
@@ -1021,7 +1116,7 @@ module.run(['$templateCache', function($templateCache) {
     );
 
     thisModule.service('pipToasts',
-        ['$rootScope', '$mdToast', 'pipAssert', function ($rootScope, $mdToast, pipAssert) {
+        ['$rootScope', '$mdToast', function ($rootScope, $mdToast) {
             var
                 SHOW_TIMEOUT = 20000,
                 SHOW_TIMEOUT_NOTIFICATIONS = 20000,
@@ -1037,6 +1132,7 @@ module.run(['$templateCache', function($templateCache) {
                 // Remove error toasts when page is changed
             $rootScope.$on('$stateChangeSuccess', onStateChangeSuccess);
             $rootScope.$on('pipSessionClosed', onClearToasts);
+            $rootScope.$on('pipIdentityChanged', onClearToasts);
 
             return {
                 showNotification: showNotification,
@@ -1092,7 +1188,6 @@ module.run(['$templateCache', function($templateCache) {
             }
 
             function addToast(toast) {
-
                 if (currentToast && toast.type !== 'error') {
                     toasts.push(toast);
                 } else {
@@ -1136,15 +1231,15 @@ module.run(['$templateCache', function($templateCache) {
 
             // Show new notification toast at the top right
             function showNotification(message, actions, successCallback, cancelCallback, id) {
-                pipAssert.isDef(message, 'pipToasts.showNotification: message should be defined');
-                pipAssert.isString(message, 'pipToasts.showNotification: message should be a string');
-                pipAssert.isArray(actions || [], 'pipToasts.showNotification: actions should be an array');
-                if (successCallback) {
-                    pipAssert.isFunction(successCallback, 'showNotification: successCallback should be a function');
-                }
-                if (cancelCallback) {
-                    pipAssert.isFunction(cancelCallback, 'showNotification: cancelCallback should be a function');
-                }
+                // pipAssert.isDef(message, 'pipToasts.showNotification: message should be defined');
+                // pipAssert.isString(message, 'pipToasts.showNotification: message should be a string');
+                // pipAssert.isArray(actions || [], 'pipToasts.showNotification: actions should be an array');
+                // if (successCallback) {
+                //     pipAssert.isFunction(successCallback, 'showNotification: successCallback should be a function');
+                // }
+                // if (cancelCallback) {
+                //     pipAssert.isFunction(cancelCallback, 'showNotification: cancelCallback should be a function');
+                // }
 
                 addToast({
                     id: id || null,
@@ -1159,14 +1254,14 @@ module.run(['$templateCache', function($templateCache) {
 
             // Show new message toast at the top right
             function showMessage(message, successCallback, cancelCallback, id) {
-                pipAssert.isDef(message, 'pipToasts.showMessage: message should be defined');
-                pipAssert.isString(message, 'pipToasts.showMessage: message should be a string');
-                if (successCallback) {
-                    pipAssert.isFunction(successCallback, 'pipToasts.showMessage:successCallback should be a function');
-                }
-                if (cancelCallback) {
-                    pipAssert.isFunction(cancelCallback, 'pipToasts.showMessage: cancelCallback should be a function');
-                }
+                // pipAssert.isDef(message, 'pipToasts.showMessage: message should be defined');
+                // pipAssert.isString(message, 'pipToasts.showMessage: message should be a string');
+                // if (successCallback) {
+                //     pipAssert.isFunction(successCallback, 'pipToasts.showMessage:successCallback should be a function');
+                // }
+                // if (cancelCallback) {
+                //     pipAssert.isFunction(cancelCallback, 'pipToasts.showMessage: cancelCallback should be a function');
+                // }
 
                 addToast({
                     id: id || null,
@@ -1180,14 +1275,14 @@ module.run(['$templateCache', function($templateCache) {
 
             // Show error toast at the bottom right after error occured
             function showError(message, successCallback, cancelCallback, id, error) {
-                pipAssert.isDef(message, 'pipToasts.showError: message should be defined');
-                pipAssert.isString(message, 'pipToasts.showError: message should be a string');
-                if (successCallback) {
-                    pipAssert.isFunction(successCallback, 'pipToasts.showError: successCallback should be a function');
-                }
-                if (cancelCallback) {
-                    pipAssert.isFunction(cancelCallback, 'pipToasts.showError: cancelCallback should be a function');
-                }
+                // pipAssert.isDef(message, 'pipToasts.showError: message should be defined');
+                // pipAssert.isString(message, 'pipToasts.showError: message should be a string');
+                // if (successCallback) {
+                //     pipAssert.isFunction(successCallback, 'pipToasts.showError: successCallback should be a function');
+                // }
+                // if (cancelCallback) {
+                //     pipAssert.isFunction(cancelCallback, 'pipToasts.showError: cancelCallback should be a function');
+                // }
 
                 addToast({
                     id: id || null,
@@ -1209,8 +1304,7 @@ module.run(['$templateCache', function($templateCache) {
             // Clear toasts by type
             function clearToasts(type) {
                 if (type) {
-                    pipAssert.isString(type, 'pipToasts.clearToasts: type should be a string');
-
+                    // pipAssert.isString(type, 'pipToasts.clearToasts: type should be a string');
                     removeToasts(type);
                 } else {
                     $mdToast.cancel();
@@ -1230,7 +1324,7 @@ module.run(['$templateCache', function($templateCache) {
 (function (angular, _) {
     'use strict';
 
-    var thisModule = angular.module('pipToggleButtons', ['pipBasicControls.Templates']);
+    var thisModule = angular.module('pipToggleButtons', ['pipControls.Templates']);
 
     thisModule.directive('pipToggleButtons',
         function () {

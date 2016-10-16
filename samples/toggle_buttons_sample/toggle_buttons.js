@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict';
 
-    var thisModule = angular.module('appBasicControls.ToggleButtons', []);
+    var thisModule = angular.module('appControls.ToggleButtons', []);
 
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {

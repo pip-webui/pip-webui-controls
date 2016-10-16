@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict';
 
-    var thisModule = angular.module('appBasicControls.Progress', []);
+    var thisModule = angular.module('appControls.Progress', []);
 
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {

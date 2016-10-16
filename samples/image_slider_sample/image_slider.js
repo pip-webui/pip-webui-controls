@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict';
 
-    var thisModule = angular.module('appBasicControls.ImageSlider', []);
+    var thisModule = angular.module('appControls.ImageSlider', []);
 
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {

@@ -10,7 +10,7 @@
 (function (angular) {
     'use strict';
 
-    var thisModule = angular.module('pipTagList', ['pipServices']);
+    var thisModule = angular.module('pipTagList', []);
 
     /**
      * pipTags - set of tags
@@ -27,7 +27,7 @@
                     pipTypeLocal: '='
                 },
                 templateUrl: 'tags/tag_list.html',
-                controller: function ($scope, $element, $attrs, pipUtils) {
+                controller: function ($scope, $element, $attrs) {
                     var tagsGetter;
 
                     tagsGetter = $parse($attrs.pipTags);
@@ -35,8 +35,15 @@
                     // Set tags
                     $scope.tags = tagsGetter($scope);
 
+                    function toBoolean(value) {
+                        if (value == null) return false;
+                        if (!value) return false;
+                        value = value.toString().toLowerCase();
+                        return value == '1' || value == 'true';
+                    }
+
                     // Also optimization to avoid watch if it is unnecessary
-                    if (pipUtils.toBoolean($attrs.pipRebind)) {
+                    if (toBoolean($attrs.pipRebind)) {
                         $scope.$watch(tagsGetter, function () {
                             $scope.tags = tagsGetter($scope);
                         });

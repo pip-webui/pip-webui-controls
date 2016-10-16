@@ -3,7 +3,7 @@
 (function (angular, _) {
     'use strict';
 
-    var thisModule = angular.module('appBasicControls.Refresh', []);
+    var thisModule = angular.module('appControls.Refresh', []);
 
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {

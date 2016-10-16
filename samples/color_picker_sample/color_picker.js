@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict';
 
-    var thisModule = angular.module('appBasicControls.ColorPicker', []);
+    var thisModule = angular.module('appControls.ColorPicker', []);
 
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {

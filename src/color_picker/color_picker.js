@@ -6,7 +6,7 @@
 (function (angular, _) {
     'use strict';
 
-    var thisModule = angular.module('pipColorPicker', ['pipUtils', 'pipFocused', 'pipBasicControls.Templates']);
+    var thisModule = angular.module('pipColorPicker', ['pipFocused', 'pipControls.Templates']);
 
     thisModule.directive('pipColorPicker',
         function () {

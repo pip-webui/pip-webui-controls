@@ -15,10 +15,13 @@
 
 (function (angular, _) {
     'use strict';
-    var thisModule = angular.module('pipToasts', ['pipTranslate', 'ngMaterial', 'pipAssert']);
+    var thisModule = angular.module('pipToasts', ['ngMaterial', 'pipControls.Translate']);
 
     thisModule.controller('pipToastController',
-        function ($scope, $mdToast, toast, pipErrorDetailsDialog) {
+        function ($scope, $mdToast, toast, $injector) {
+            var pipErrorDetailsDialog = $injector.has('pipErrorDetailsDialog') 
+                ? $injector.get('pipErrorDetailsDialog') : null;
+
             // if (toast.type && sounds['toast_' + toast.type]) {
             //     sounds['toast_' + toast.type].play();
             // }
@@ -26,7 +29,7 @@
             $scope.message = toast.message;
             $scope.actions = toast.actions;
             $scope.toast = toast;
-
+            
             if (toast.actions.length === 0) {
                 $scope.actionLenght = 0;
             } else if (toast.actions.length === 1) {
@@ -35,16 +38,20 @@
                 $scope.actionLenght = null;
             }
 
+            $scope.showDetails = pipErrorDetailsDialog != null;
             $scope.onDetails = function () {
                 $mdToast.hide();
-                pipErrorDetailsDialog.show(
-                    {
-                        error: $scope.toast.error,
-                        ok: 'Ok'
-                    },
-                    angular.noop,
-                    angular.noop
-                );
+
+                if (pipErrorDetailsDialog) {
+                    pipErrorDetailsDialog.show(
+                        {
+                            error: $scope.toast.error,
+                            ok: 'Ok'
+                        },
+                        angular.noop,
+                        angular.noop
+                    );
+                }
             };
 
             $scope.onAction = function (action) {
@@ -59,7 +66,7 @@
     );
 
     thisModule.service('pipToasts',
-        function ($rootScope, $mdToast, pipAssert) {
+        function ($rootScope, $mdToast) {
             var
                 SHOW_TIMEOUT = 20000,
                 SHOW_TIMEOUT_NOTIFICATIONS = 20000,
@@ -75,6 +82,7 @@
                 // Remove error toasts when page is changed
             $rootScope.$on('$stateChangeSuccess', onStateChangeSuccess);
             $rootScope.$on('pipSessionClosed', onClearToasts);
+            $rootScope.$on('pipIdentityChanged', onClearToasts);
 
             return {
                 showNotification: showNotification,
@@ -130,7 +138,6 @@
             }
 
             function addToast(toast) {
-
                 if (currentToast && toast.type !== 'error') {
                     toasts.push(toast);
                 } else {
@@ -174,15 +181,15 @@
 
             // Show new notification toast at the top right
             function showNotification(message, actions, successCallback, cancelCallback, id) {
-                pipAssert.isDef(message, 'pipToasts.showNotification: message should be defined');
-                pipAssert.isString(message, 'pipToasts.showNotification: message should be a string');
-                pipAssert.isArray(actions || [], 'pipToasts.showNotification: actions should be an array');
-                if (successCallback) {
-                    pipAssert.isFunction(successCallback, 'showNotification: successCallback should be a function');
-                }
-                if (cancelCallback) {
-                    pipAssert.isFunction(cancelCallback, 'showNotification: cancelCallback should be a function');
-                }
+                // pipAssert.isDef(message, 'pipToasts.showNotification: message should be defined');
+                // pipAssert.isString(message, 'pipToasts.showNotification: message should be a string');
+                // pipAssert.isArray(actions || [], 'pipToasts.showNotification: actions should be an array');
+                // if (successCallback) {
+                //     pipAssert.isFunction(successCallback, 'showNotification: successCallback should be a function');
+                // }
+                // if (cancelCallback) {
+                //     pipAssert.isFunction(cancelCallback, 'showNotification: cancelCallback should be a function');
+                // }
 
                 addToast({
                     id: id || null,
@@ -197,14 +204,14 @@
 
             // Show new message toast at the top right
             function showMessage(message, successCallback, cancelCallback, id) {
-                pipAssert.isDef(message, 'pipToasts.showMessage: message should be defined');
-                pipAssert.isString(message, 'pipToasts.showMessage: message should be a string');
-                if (successCallback) {
-                    pipAssert.isFunction(successCallback, 'pipToasts.showMessage:successCallback should be a function');
-                }
-                if (cancelCallback) {
-                    pipAssert.isFunction(cancelCallback, 'pipToasts.showMessage: cancelCallback should be a function');
-                }
+                // pipAssert.isDef(message, 'pipToasts.showMessage: message should be defined');
+                // pipAssert.isString(message, 'pipToasts.showMessage: message should be a string');
+                // if (successCallback) {
+                //     pipAssert.isFunction(successCallback, 'pipToasts.showMessage:successCallback should be a function');
+                // }
+                // if (cancelCallback) {
+                //     pipAssert.isFunction(cancelCallback, 'pipToasts.showMessage: cancelCallback should be a function');
+                // }
 
                 addToast({
                     id: id || null,
@@ -218,14 +225,14 @@
 
             // Show error toast at the bottom right after error occured
             function showError(message, successCallback, cancelCallback, id, error) {
-                pipAssert.isDef(message, 'pipToasts.showError: message should be defined');
-                pipAssert.isString(message, 'pipToasts.showError: message should be a string');
-                if (successCallback) {
-                    pipAssert.isFunction(successCallback, 'pipToasts.showError: successCallback should be a function');
-                }
-                if (cancelCallback) {
-                    pipAssert.isFunction(cancelCallback, 'pipToasts.showError: cancelCallback should be a function');
-                }
+                // pipAssert.isDef(message, 'pipToasts.showError: message should be defined');
+                // pipAssert.isString(message, 'pipToasts.showError: message should be a string');
+                // if (successCallback) {
+                //     pipAssert.isFunction(successCallback, 'pipToasts.showError: successCallback should be a function');
+                // }
+                // if (cancelCallback) {
+                //     pipAssert.isFunction(cancelCallback, 'pipToasts.showError: cancelCallback should be a function');
+                // }
 
                 addToast({
                     id: id || null,
@@ -247,8 +254,7 @@
             // Clear toasts by type
             function clearToasts(type) {
                 if (type) {
-                    pipAssert.isString(type, 'pipToasts.clearToasts: type should be a string');
-
+                    // pipAssert.isString(type, 'pipToasts.clearToasts: type should be a string');
                     removeToasts(type);
                 } else {
                     $mdToast.cancel();

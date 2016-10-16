@@ -1,17 +1,17 @@
 ﻿(function (angular) {
     'use strict';
 
-    var thisModule = angular.module('appBasicControls',
+    var thisModule = angular.module('appControls',
         [
             'ngMaterial',
             'pipServices', 'pipControls', 'appCoreServices.Toasts', 
             'pipLayout', 'pipNav', 'pipDateTimes',
             'pipTheme.Default', 'pipTheme.Bootbarn', 'pipTheme',
 
-            'appBasicControls.ColorPicker',
-            'appBasicControls.Markdown', 'appBasicControls.Refresh', 'appBasicControls.ToggleButtons',
-            'appBasicControls.Popover', 'appBasicControls.ImageSlider', 'appBasicControls.Progress',
-            'appBasicControls.Tags'
+            'appControls.ColorPicker',
+            'appControls.Markdown', 'appControls.Refresh', 'appControls.ToggleButtons',
+            'appControls.Popover', 'appControls.ImageSlider', 'appControls.Progress',
+            'appControls.Tags'
         ]
     );
 

@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict';
 
-    var thisModule = angular.module('appBasicControls.Markdown', []);
+    var thisModule = angular.module('appControls.Markdown', []);
 
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {

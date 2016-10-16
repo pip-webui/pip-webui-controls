@@ -6,7 +6,7 @@
 (function (angular, _, $) {
     'use strict';
 
-    var thisModule = angular.module('pipImageSlider', []);
+    var thisModule = angular.module('pipImageSlider', ['pipSliderButton', 'pipSliderIndicator', 'pipImageSlider.Service']);
 
     thisModule.directive('pipImageSlider',
         function () {
@@ -114,108 +114,6 @@
                     }
                 }
             };
-        }
-    );
-
-    thisModule.directive('pipSliderButton',
-        function () {
-            return {
-                scope: {},
-                controller: function ($scope, $element, $parse, $attrs) {
-                    var type = $parse($attrs.pipButtonType)($scope),
-                        sliderId = $parse($attrs.pipSliderId)($scope);
-
-                    $element.on('click', function () {
-                        if (!sliderId || !type) {
-                            return;
-                        }
-
-                        angular.element(document.getElementById(sliderId)).scope()[type + 'Block']();
-                    });
-                }
-            };
-        }
-    );
-
-    thisModule.directive('pipSliderIndicator',
-        function () {
-            return {
-                scope: false,
-                controller: function ($scope, $element, $parse, $attrs) {
-                    var sliderId = $parse($attrs.pipSliderId)($scope),
-                        slideTo = $parse($attrs.pipSlideTo)($scope);
-
-                    $element.css('cursor', 'pointer');
-                    $element.on('click', function () {
-                        if (!sliderId || slideTo && slideTo < 0) {
-                            return;
-                        }
-
-                        angular.element(document.getElementById(sliderId)).scope().slideTo(slideTo);
-                    });
-                }
-            };
-        }
-    );
-
-    thisModule.service('$pipImageSlider',
-        function ($timeout) {
-
-            var ANIMATION_DURATION = 550;
-
-            return {
-                nextCarousel: nextCarousel,
-                prevCarousel: prevCarousel,
-                toBlock: toBlock
-            };
-
-            function nextCarousel(nextBlock, prevBlock) {
-                nextBlock.removeClass('animated').addClass('pip-next');
-
-                $timeout(function () {
-                    nextBlock.addClass('animated').addClass('pip-show').removeClass('pip-next');
-                    prevBlock.addClass('animated').removeClass('pip-show');
-                }, 100);
-            }
-
-            function prevCarousel(nextBlock, prevBlock) {
-                nextBlock.removeClass('animated');
-
-                $timeout(function () {
-                    nextBlock.addClass('animated').addClass('pip-show');
-                    prevBlock.addClass('animated').addClass('pip-next').removeClass('pip-show');
-
-                    $timeout(function () {
-                        prevBlock.removeClass('pip-next').removeClass('animated');
-                    }, ANIMATION_DURATION - 100);
-                }, 100);
-            }
-
-            function toBlock(type, blocks, oldIndex, nextIndex, direction) {
-                var prevBlock = $(blocks[oldIndex]),
-                    blockIndex = nextIndex,
-                    nextBlock = $(blocks[blockIndex]);
-
-                if (type === 'carousel') {
-                    $(blocks).removeClass('pip-next').removeClass('pip-prev');
-
-                    if (direction && direction === 'prev') {
-                        prevCarousel(nextBlock, prevBlock);
-                    }
-                    if (direction && direction === 'next') {
-                        nextCarousel(nextBlock, prevBlock);
-                    }
-                    if ((!direction || direction !== 'next' && direction !== 'prev') &&
-                        nextIndex && nextIndex < oldIndex) {
-                        prevCarousel(nextBlock, prevBlock);
-                    } else {
-                        nextCarousel(nextBlock, prevBlock);
-                    }
-                } else {
-                    prevBlock.addClass('animated').removeClass('pip-show');
-                    nextBlock.addClass('animated').addClass('pip-show');
-                }
-            }
         }
     );
 

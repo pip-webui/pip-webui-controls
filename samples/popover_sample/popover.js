@@ -4,7 +4,7 @@
 (function (angular, $) {
     'use strict';
 
-    var thisModule = angular.module('appBasicControls.Popover', []);
+    var thisModule = angular.module('appControls.Popover', []);
 
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {

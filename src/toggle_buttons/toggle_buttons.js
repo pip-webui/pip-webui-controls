@@ -6,7 +6,7 @@
 (function (angular, _) {
     'use strict';
 
-    var thisModule = angular.module('pipToggleButtons', ['pipBasicControls.Templates']);
+    var thisModule = angular.module('pipToggleButtons', ['pipControls.Templates']);
 
     thisModule.directive('pipToggleButtons',
         function () {

@@ -1,6 +1,6 @@
 module.exports = {
     module: {
-        name: 'pipBasicControls',
+        name: 'pipControls',
         styles: 'controls'
     },
     build: {
