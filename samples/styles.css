@@ -68,3 +68,15 @@ pre {
     height: 450px;
     max-width: 700px;
 }
+
+.p24-flex {
+    padding: 24px;
+}
+
+.w-stretch{
+    width: 100%;
+}
+
+.scroll{
+    overflow: auto;
+}

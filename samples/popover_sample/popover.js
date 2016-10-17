@@ -5,7 +5,7 @@
     'use strict';
 
     var thisModule = angular.module('appControls.Popover', []);
-
+/*
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             SHOW_POPOVER: 'Function to show popover ',
@@ -22,10 +22,10 @@
             'Synergistically позволяют методы B2B расширения возможностей визави как раз вовремя, мета-услуг. это ультрасовременные.',
             'CLICK_HELP': 'Нажмите кнопку помощи'
         });
-    });
+    });*/
 
     thisModule.controller('PopoverController',
-        function ($scope, $rootScope, $pipPopover, pipTranslate, pipAppBar, $timeout) {
+        function ($scope, $rootScope, $pipPopover,  $timeout) { // pipTranslate, pipAppBar,
 
             $timeout(function() {
                 $('pre code').each(function(i, block) {
@@ -33,13 +33,13 @@
                 });
             });
 
-            pipAppBar.hideShadow();
+            /*pipAppBar.hideShadow();
             pipAppBar.showMenuNavIcon();
             pipAppBar.showLanguage();
-            pipAppBar.showTitleText('CONTROLS');
+            pipAppBar.showTitleText('CONTROLS');*/
             
-            $scope.title = pipTranslate.translate('TITLE_POPOVER');
-            $scope.content = pipTranslate.translate('TEXT_POPOVER');
+            $scope.title = 'Title popover';//pipTranslate.translate('TITLE_POPOVER');
+            $scope.content = 'Text popover';//pipTranslate.translate('TEXT_POPOVER');
 
             $scope.showTip = function () {
                 $pipPopover.show({

@@ -15,7 +15,8 @@
         'pipPopover',
         'pipImageSlider',
         'pipToasts',
-        'pipUnsavedChanges'
+        'pipUnsavedChanges',
+        'pipControls.Translate',
     ]);
 
 })(window.angular);

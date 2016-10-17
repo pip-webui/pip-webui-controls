@@ -26,13 +26,13 @@
     });
 
     thisModule.controller('UnsavedChangesController',
-        function($scope, pipTranslate) {
+        function($scope) {
             $scope.onLeavePage = function () {
                 window.history.back();
             };
 
             $scope.available = true;
-            $scope.message = pipTranslate.translate('MESSAGE');
+            $scope.message = 'MESSAGE';
 
             $scope.isAvailable = function () {
                 return $scope.available;

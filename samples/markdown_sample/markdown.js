@@ -2,7 +2,7 @@
     'use strict';
 
     var thisModule = angular.module('appControls.Markdown', []);
-
+/*
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             COMMON: 'Common',
@@ -27,9 +27,9 @@
             SAMPLE_CAPITAL: 'Пример'
         });
     });
-
+*/
     thisModule.controller('MarkdownController',
-        function ($scope, pipAppBar, $timeout) {
+        function ($scope, $timeout) { //pipAppBar, 
             /* eslint-disable max-len*/
 
             $timeout(function() {
@@ -37,11 +37,6 @@
                     Prism.highlightElement(block);
                 });
             });
-            
-            pipAppBar.hideShadow();
-            pipAppBar.showMenuNavIcon();
-            pipAppBar.showLanguage();
-            pipAppBar.showTitleText('CONTROLS');
             
             $scope.data = {
                 text: '# h1 header \n## h2 header \n### h3 header\n#### h4 header \n**strong** \nColumn1 | Column2 | 3 | 6 | 7\n---|---\nValue1 | Value2 | Yes | 5 | Loooooooong Value\n' +

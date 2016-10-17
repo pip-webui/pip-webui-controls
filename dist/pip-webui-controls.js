@@ -123,9 +123,13 @@ module.run(['$templateCache', function($templateCache) {
 (function (angular, _) {
     'use strict';
 
+<<<<<<< HEAD
     var thisModule = angular.module('pipColorPicker', [
         // 'pipFocused', 
         'pipControls.Templates']);
+=======
+    var thisModule = angular.module('pipColorPicker', [ 'pipControls.Templates']); // 'pipFocused',
+>>>>>>> af8ef25e47f8b10e29897b8fde52a04b445a364e
 
     thisModule.directive('pipColorPicker',
         function () {
