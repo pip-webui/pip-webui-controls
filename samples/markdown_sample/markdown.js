@@ -38,11 +38,6 @@
                 });
             });
             
-            pipAppBar.hideShadow();
-            pipAppBar.showMenuNavIcon();
-            pipAppBar.showLanguage();
-            pipAppBar.showTitleText('CONTROLS');
-            
             $scope.data = {
                 text: '# h1 header \n## h2 header \n### h3 header\n#### h4 header \n**strong** \nColumn1 | Column2 | 3 | 6 | 7\n---|---\nValue1 | Value2 | Yes | 5 | Loooooooong Value\n' +
             '\n*Italic* \n_italic_\n__strong__ \n* no spaces before \n * one space before \n   * three spaces before \n * one space before \n* no spaces before' +
