@@ -20,7 +20,37 @@
     });*/
 
     thisModule.controller('ImageSliderController',
-        function ($scope,  $timeout) { //pipAppBar,
+        function ($scope,  $timeout, $injector) { //pipAppBar,
+
+            var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
+
+            if (pipTranslate) {
+                pipTranslateProvider.translations('en', {
+                    'FADING': 'Fading',
+                    'CAROUSEL': 'Carousel',
+                    'PREV_NEXT_BUTTONS': 'Previous and next slider buttons',
+                    'SLIDER_INDICATORS': 'Image slider indicators',
+                    'SAMPLE': 'Sample'
+                });
+                pipTranslateProvider.translations('ru', {
+                    'FADING': 'Затухание',
+                    'CAROUSEL': 'Карусель',
+                    'PREV_NEXT_BUTTONS': 'Кнопки для смены изображения вперед и назад',
+                    'SLIDER_INDICATORS': 'Индикаторы слайдера изображений',
+                    'SAMPLE': 'Пример'
+                });
+                $scope.fading = pipTranslate.translate('FADING');
+                $scope.carousel = pipTranslate.translate('CAROUSEL');
+                $scope.controlButton = pipTranslate.translate('PREV_NEXT_BUTTONS');
+                $scope.indicator = pipTranslate.translate('SLIDER_INDICATORS');
+                $scope.sample = pipTranslate.translate('SAMPLE');
+            } else {
+                $scope.fading = 'Fading';
+                $scope.carousel = 'Carousel';
+                $scope.controlButton = 'Previous and next slider buttons';
+                $scope.indicator = 'Image slider indicators';
+                $scope.sample = 'Sample';
+            }
 
             $timeout(function() {
                 $('pre code').each(function(i, block) {

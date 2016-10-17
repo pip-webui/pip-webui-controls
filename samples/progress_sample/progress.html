@@ -1,15 +1,15 @@
-<h2 class="text-title tm0 bm24">Progress {{:: 'SAMPLE' | translate }}:</h2>
+<h2 class="text-title tm0 bm24">Progress {{:: sample | translate }}:</h2>
 <md-button class="lm0 md-raised md-accent flat" ng-show="!$reset"
-           ng-click="progressOpen()">{{:: 'SHOW_PROGRESS' | translate }}
+           ng-click="progressOpen()">{{:: showProgress | translate }}
 </md-button>
 <md-button class="lm0 md-raised md-accent flat" ng-show="$reset"
-           ng-click="progressClose()">{{:: 'HIDE_PROGRESS' | translate }}
+           ng-click="progressClose()">{{:: hideProgress | translate }}
 </md-button>
 
 <pip-routing-progress logo-url="images/Logo_animation.svg" show-progress="isShowProgress()"></pip-routing-progress>
 
 <pre class="text-body1 color-window-bg p16">
-<h3 class="text-subhead2 m0">{{:: 'CODE' | translate}}</h3>
+<h3 class="text-subhead2 m0">{{:: code | translate}}</h3>
 <code class="language-markup">
     &lt;pip-routing-progress logo-url="images/Logo_animation.svg" 
                           show-progress="isShowProgress()"&gt;

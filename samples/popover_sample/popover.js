@@ -17,25 +17,32 @@
                     TITLE_POPOVER: 'Credibly create magnetic experiences through sustainable schemas',
                     TEXT_POPOVER: 'Credibly create magnetic experiences through sustainable schemas' + 
                     'Synergistically enable B2B methods of empowerment vis-a-vis just in time meta-services. it cutting-edge.',
-                    CLICK_HELP: 'Click help button'
-
+                    CLICK_HELP: 'Click help button',
+                    SAMPLE: 'Sample',                    
+                    CODE: 'Code'
                 });
                 pipTranslateProvider.translations('ru', {
                     SHOW_POPOVER: 'Функция для отображения popover',
                     TITLE_POPOVER: 'Заголовок для popovera с двумя строками возможно',
                     TEXT_POPOVER: 'Правдоподобно итерацию бесшовных электронных услуг без масштаба предприятия ниши markets.' +
                     'Synergistically позволяют методы B2B расширения возможностей визави как раз вовремя, мета-услуг. это ультрасовременные.',
-                    CLICK_HELP: 'Нажмите кнопку помощи'
+                    CLICK_HELP: 'Нажмите кнопку помощи',
+                    SAMPLE: 'Sample',  
+                    CODE: 'Code'                                      
                 });
                 $scope.title = pipTranslate.translate('TITLE_POPOVER');
                 $scope.content = pipTranslate.translate('TEXT_POPOVER');
                 $scope.clickHelp = pipTranslate.translate('CLICK_HELP');
-                $scope.showPopover = pipTranslate.translate('SHOW_POPOVER');;
+                $scope.showPopover = pipTranslate.translate('SHOW_POPOVER');
+                $scope.hideProgress = pipTranslate.translate('SAMPLE');
+                $scope.hideProgress = pipTranslate.translate('CODE');                
             } else {
                 $scope.title = 'Title popover';
                 $scope.showPopover = 'Show popover';
                 $scope.content = 'Text popover';
                 $scope.clickHelp = 'Click help';
+                $scope.showProgress = 'Sample';
+                $scope.showProgress = 'Code';                
             }
 
             $timeout(function() {

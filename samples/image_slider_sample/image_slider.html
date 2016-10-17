@@ -1,8 +1,8 @@
-<h2 class="text-title tm0 bm24">Image slider {{:: 'SAMPLE' | translate }}</h2>
+<h2 class="text-title tm0 bm24">Image slider {{:: sample | translate }}</h2>
 
 <div>
     <div class="w-stretch layout-column layout-align-center-center">
-        <h3 class="text-subhead2 w-stretch">{{:: 'FADING' | translate }}</h3>
+        <h3 class="text-subhead2 w-stretch">{{::fading | translate }}</h3>
 
         <div pip-image-slider pip-animation-type="'fading'" class="w-stretch" pip-animation-interval="5000">
             <div class="pip-animation-block w-stretch" ng-repeat="image in images">
@@ -25,7 +25,7 @@
     <md-divider class="tm8 pip-list-divider"></md-divider>
 
     <div class="w-stretch layout-column layout-align-center-center">
-        <h3 class="text-subhead2 w-stretch" >{{:: 'CAROUSEL' | translate }}</h3>
+        <h3 class="text-subhead2 w-stretch" >{{:: carousel | translate }}</h3>
 
         <div pip-image-slider pip-animation-type="'carousel'" id="pip-carousel" class="w-stretch"
              pip-image-slider-index="slider2Index"
@@ -34,7 +34,7 @@
                 <img src="{{ image.url }}" alt="{{ image.url }}" class="w-stretch"/>
             </div>
         </div>
-        <h3 class="text-subhead2">{{:: 'PREV_NEXT_BUTTONS' | translate }}</h3>
+        <h3 class="text-subhead2">{{:: controlButton | translate }}</h3>
 
         <div class="w-stretch layout-row layout-align-center-center">
             <md-button pip-slider-button pip-slider-id="'pip-carousel'" pip-button-type="'prev'">
@@ -46,7 +46,7 @@
         </div>
 
 
-        <h3 class="text-subhead2">{{:: 'SLIDER_INDICATORS' | translate }}</h3>
+        <h3 class="text-subhead2">{{:: indicator | translate }}</h3>
 
         <div class="w-stretch layout-row layout-align-center-center">
             <md-icon ng-repeat="image in images2"
