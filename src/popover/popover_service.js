@@ -8,7 +8,7 @@
 
     var thisModule = angular.module('pipPopover.Service', []);
 
-    thisModule.service('pipPopover',
+    thisModule.service('pipPopoverService',
         function ($compile, $rootScope, $timeout) {
             var popoverTemplate;
 

@@ -5,27 +5,34 @@
     'use strict';
 
     var thisModule = angular.module('appControls.Popover', []);
-/*
-    thisModule.config(function (pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            SHOW_POPOVER: 'Function to show popover ',
-            TITLE_POPOVER: 'Credibly create magnetic experiences through sustainable schemas',
-            TEXT_POPOVER: 'Credibly create magnetic experiences through sustainable schemas' +
-            'Synergistically enable B2B methods of empowerment vis-a-vis just in time meta-services. it cutting-edge.',
-            'CLICK_HELP': 'Click help button'
-
-        });
-        pipTranslateProvider.translations('ru', {
-            SHOW_POPOVER: 'Функция для отображения popover',
-            TITLE_POPOVER: 'Заголовок для popovera с двумя строками возможно',
-            TEXT_POPOVER: 'Правдоподобно итерацию бесшовных электронных услуг без масштаба предприятия ниши markets.' +
-            'Synergistically позволяют методы B2B расширения возможностей визави как раз вовремя, мета-услуг. это ультрасовременные.',
-            'CLICK_HELP': 'Нажмите кнопку помощи'
-        });
-    });*/
 
     thisModule.controller('PopoverController',
-        function ($scope, $rootScope, $pipPopover,  $timeout) { // pipTranslate, pipAppBar,
+        function ($scope, $rootScope, $injector, pipPopoverService,  $timeout) { // pipTranslate, pipAppBar,
+
+            var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
+
+            if (pipTranslate) {
+                pipTranslateProvider.translations('en', {
+                    SHOW_POPOVER: 'Function to show popover ',
+                    TITLE_POPOVER: 'Credibly create magnetic experiences through sustainable schemas',
+                    TEXT_POPOVER: 'Credibly create magnetic experiences through sustainable schemas' + 
+                    'Synergistically enable B2B methods of empowerment vis-a-vis just in time meta-services. it cutting-edge.',
+                    CLICK_HELP: 'Click help button'
+
+                });
+                pipTranslateProvider.translations('ru', {
+                    SHOW_POPOVER: 'Функция для отображения popover',
+                    TITLE_POPOVER: 'Заголовок для popovera с двумя строками возможно',
+                    TEXT_POPOVER: 'Правдоподобно итерацию бесшовных электронных услуг без масштаба предприятия ниши markets.' +
+                    'Synergistically позволяют методы B2B расширения возможностей визави как раз вовремя, мета-услуг. это ультрасовременные.',
+                    CLICK_HELP: 'Нажмите кнопку помощи'
+                });
+                $scope.title = pipTranslate.translate('TITLE_POPOVER');
+                $scope.content = pipTranslate.translate('TEXT_POPOVER');
+            } else {
+                $scope.title = 'Title popover';
+                $scope.content = 'Text popover';
+            }
 
             $timeout(function() {
                 $('pre code').each(function(i, block) {
@@ -33,16 +40,8 @@
                 });
             });
 
-            /*pipAppBar.hideShadow();
-            pipAppBar.showMenuNavIcon();
-            pipAppBar.showLanguage();
-            pipAppBar.showTitleText('CONTROLS');*/
-            
-            $scope.title = 'Title popover';//pipTranslate.translate('TITLE_POPOVER');
-            $scope.content = 'Text popover';//pipTranslate.translate('TEXT_POPOVER');
-
             $scope.showTip = function () {
-                $pipPopover.show({
+                pipPopoverService.show({
                     class: 'pip-tip',
                     locals: {
                         title: $scope.title,
@@ -58,7 +57,7 @@
 
                         $scope.onNextClick = function () {
                             console.log('on next click');
-                            $pipPopover.hide();
+                            pipPopoverService.hide();
                         };
 
                         $timeout(function () {
@@ -74,7 +73,7 @@
             };
 
             $scope.showQuote = function () {
-                $pipPopover.show({
+                pipPopoverService.show({
                     class: 'pip-quote',
                     locals: {
                         content: $scope.content
@@ -88,8 +87,8 @@
 
                         $scope.onNextClick = function () {
                             console.log('on next click');
-                            $pipPopover.resize();
-                            // $pipPopover.hide();
+                            pipPopoverService.resize();
+                            // pipPopoverService.hide();
                         };
                     },
                     template: '<div class="pip-content pip-popover-content text-subhead2 p24 bp0 bm64">' +
@@ -100,7 +99,7 @@
             };
 
             $scope.showHelp = function ($event, content) {
-                $pipPopover.show({
+                pipPopoverService.show({
                     responsive: false,
                     element: $event.currentTarget,
                     class: 'pip-help',
@@ -115,7 +114,7 @@
 
                         $scope.onNextClick = function () {
                             console.log('on next click');
-                            $pipPopover.hide();
+                            pipPopoverService.hide();
                         };
                     },
                     template: '<div class="pip-title h24"></div><div class="pip-content pip-popover-content lp24 rp24">' +

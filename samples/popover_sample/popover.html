@@ -24,7 +24,7 @@
 
            $scope.onNextClick = function () {
                console.log('on next click');
-               $pipPopover.hide();
+               pipPopoverService.hide();
            };
 
            $timeout(function() {
@@ -69,7 +69,7 @@
 
         $scope.onNextClick = function () {
             console.log('on next click');
-            $pipPopover.hide();
+            pipPopoverService.hide();
         };
     },
     template: '&lt;div class="pip-title h24"&gt;&lt;/div&gt;&lt;div class="pip-content pip-popover-content lp24 rp24"&gt;'
