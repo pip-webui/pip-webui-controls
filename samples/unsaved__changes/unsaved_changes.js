@@ -4,7 +4,7 @@
     'use strict';
 
     var thisModule = angular.module('appBasicBehaviors.UnsavedChanges', []);
-/*
+
     thisModule.config(function(pipTranslateProvider) {
 
         pipTranslateProvider.translations('en', {
@@ -23,7 +23,7 @@
             LEAVE: 'Покинуть страницу!',
             LINK: 'Внешняя ссылка'
         });
-    });*/
+    });
 
     thisModule.controller('UnsavedChangesController',
         function($scope) {

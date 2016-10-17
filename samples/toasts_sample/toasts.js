@@ -31,8 +31,8 @@
             SHOW_SMALL_NOTIFICATION: 'Показать маленькую нотифкацию',
             SHOW_NOTIFICATION_WITHOUT_ACTIONS: 'Показать нотификацию без действий'
         });
-    });
-*/
+    });*/
+
     thisModule.controller('ToastsController',
         function ($scope, pipToasts,  $timeout) { //pipTranslate,  pipAppBar,
 

@@ -1,4 +1,4 @@
-<ul class="pip-color-picker lp0 {{class}}" pip-selected="currentColorIndex" pip-enter-space-press="enterSpacePress($event)">
+<ul class="pip-color-picker {{class}}" pip-selected="currentColorIndex" pip-enter-space-press="enterSpacePress($event)">
     <li tabindex="-1" ng-repeat="color in colors track by color">
         <md-button  tabindex="-1" class="md-icon-button pip-selectable" ng-click="selectColor($index)" aria-label="color" ng-disabled="disabled()">
             <md-icon ng-style="{'color': color}" md-svg-icon="icons:{{ color == currentColor ? 'circle' : 'radio-off' }}">
