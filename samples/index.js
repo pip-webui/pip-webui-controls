@@ -12,7 +12,7 @@
             'appControls.ColorPicker',
             'appControls.Markdown', 'appControls.RefExpander',
             'appControls.Popover', 'appControls.ImageSlider', 'appControls.Progress',
-            'appControls.Empty'
+            'appControls.Empty', 'appControls.UnsavedChanges'
 
         ]
     );
@@ -49,6 +49,10 @@
         {
             title: 'Empty', state: 'empty', url: '/empty', auth: false,
             controller: 'EmptyController', templateUrl: 'empty/empty.html'
+        },
+        {
+            title: 'Unsaved Changes', state: 'unsaved_changes', url: '/unsaved_changes', auth: false,
+            controller: 'UnsavedChangesController', templateUrl: 'unsaved_changes/unsaved_changes.html'
         }
     ];
 

@@ -4,7 +4,7 @@
     var thisModule = angular.module('appControls.Progress', []);
 
     thisModule.controller('ProgressController',
-        function ($scope,  $timeout) {// pipAppBar,
+        function ($scope,  $timeout, $injector) {// pipAppBar,
 
             $timeout(function() {
                 $('pre code').each(function(i, block) {
