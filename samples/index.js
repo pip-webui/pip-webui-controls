@@ -7,7 +7,7 @@
             'ui.router', 'ui.utils', 'ngResource', 'ngAria', 'ngCookies', 'ngSanitize', 'ngMessages',
             'ngMaterial', 'wu.masonry', 'LocalStorageModule', 'angularFileUpload', 'ngAnimate',
 
-            'pipControls', 'appCoreServices.Toasts',
+            'pipControls', 'appControls.Toasts',
 
             'appControls.ColorPicker',
             'appControls.Markdown', 'appControls.RefExpander',
