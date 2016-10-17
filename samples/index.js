@@ -4,14 +4,14 @@
     var thisModule = angular.module('appControls',
         [
             'ngMaterial',
-            'pipServices', 'pipControls', 'appCoreServices.Toasts', 
-            'pipLayout', 'pipNav', 'pipDateTimes',
+            'pipServices', 'pipControls', 
+            'pipLayout', 'pipNav', 
+            // 'pipDateTimes',
             'pipTheme.Default', 'pipTheme.Bootbarn', 'pipTheme',
 
-            'appControls.ColorPicker',
-            'appControls.Markdown', 'appControls.Refresh', 'appControls.ToggleButtons',
-            'appControls.Popover', 'appControls.ImageSlider', 'appControls.Progress',
-            'appControls.Tags'
+            'appControls.ColorPicker', 'appControls.Empty', 'appControls.ImageSlider',
+            'appControls.Markdown', 'appControls.Popover', 'appControls.Progress',
+            'appControls.RefExpander',  'appControls.Toasts', 'appControls.UnsavedChanges'
         ]
     );
 
@@ -91,7 +91,7 @@
         function ($scope, $rootScope, $state, $mdSidenav, $timeout, pipTranslate, $mdTheming, pipTheme, 
                   $mdMedia) {
 
-            pipTheme.setCurrentTheme('bootbarn-warm');
+            // pipTheme.setCurrentTheme('bootbarn-warm');
             
             $scope.pages = [
                 { title: 'Progress', state: 'progress', url: '/progress',

@@ -3,7 +3,7 @@
 (function () {
     'use strict';
 
-    var thisModule = angular.module('appComponentsStyles.Empty', []);
+    var thisModule = angular.module('appControls.Empty', []);
 
     thisModule.controller('EmptyController',
         function($scope, $mdMedia) {

@@ -4,7 +4,7 @@
 (function (angular) {
     'use strict';
 
-    var thisModule = angular.module('appCoreServices.Toasts', []);
+    var thisModule = angular.module('appControls.Toasts', []);
 
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {

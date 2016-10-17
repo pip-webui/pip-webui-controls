@@ -3,7 +3,7 @@
 (function () {
     'use strict';
 
-    var thisModule = angular.module('appBasicBehaviors.UnsavedChanges', []);
+    var thisModule = angular.module('appControls.UnsavedChanges', []);
 
     thisModule.config(function(pipTranslateProvider) {
 
