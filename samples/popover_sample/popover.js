@@ -29,9 +29,13 @@
                 });
                 $scope.title = pipTranslate.translate('TITLE_POPOVER');
                 $scope.content = pipTranslate.translate('TEXT_POPOVER');
+                $scope.clickHelp = pipTranslate.translate('CLICK_HELP');
+                $scope.showPopover = pipTranslate.translate('SHOW_POPOVER');;
             } else {
                 $scope.title = 'Title popover';
+                $scope.showPopover = 'Show popover';
                 $scope.content = 'Text popover';
+                $scope.clickHelp = 'Click help';
             }
 
             $timeout(function() {

@@ -1,5 +1,5 @@
 <h2 class="text-title tm0 bm24">Popover {{:: 'SAMPLE' | translate }}:</h2>
-<h3 class="text-subhead2">{{:: 'SHOW_POPOVER' | translate }}</h3>
+<h3 class="text-subhead2">{{::showPopover | translate }}</h3>
 <md-button class="lm0 md-raised md-accent flat" ng-click="showTip()">Show Tip</md-button>
 <md-button class="md-raised md-accent flat" ng-click="showQuote()">Show Quote</md-button>
 <md-input-container class="w-stretch bm0">
@@ -43,7 +43,7 @@
         </pre>
 
 <md-input-container class="w50-stretch lp0" md-no-float="true">
-    <input type="text" placeholder="{{ ::'CLICK_HELP' | translate }}" ng-model="content1"/>
+    <input type="text" placeholder="{{ ::clickHelp | translate }}" ng-model="content1"/>
     <md-icon class="position-right" style="right: initial; left: initial;" md-svg-icon="icons:help" ng-click="showHelp($event, content1)"></md-icon>
 </md-input-container>
 
