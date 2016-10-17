@@ -951,6 +951,7 @@ md-list-item .pip-markdown h4 {
 .pip-color-picker {
   display: block;
   list-style: none;
+  padding-left: 0;
 }
 .pip-color-picker li {
   display: inline;
