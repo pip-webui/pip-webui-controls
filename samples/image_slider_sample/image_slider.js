@@ -9,14 +9,14 @@
             var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
 
             if (pipTranslate) {
-                pipTranslateProvider.translations('en', {
+                pipTranslate.translations('en', {
                     'FADING': 'Fading',
                     'CAROUSEL': 'Carousel',
                     'PREV_NEXT_BUTTONS': 'Previous and next slider buttons',
                     'SLIDER_INDICATORS': 'Image slider indicators',
                     'SAMPLE': 'Sample'
                 });
-                pipTranslateProvider.translations('ru', {
+                pipTranslate.translations('ru', {
                     'FADING': 'Затухание',
                     'CAROUSEL': 'Карусель',
                     'PREV_NEXT_BUTTONS': 'Кнопки для смены изображения вперед и назад',

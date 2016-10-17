@@ -49,8 +49,24 @@
             <div class="flex-var text-overflow">Controls</div>
         </div>
 
-        <md-menu md-position-mode="target-right target">
-            <div class="layout-row layout-align-start-center" style="  cursor: pointer;outline: none;"
+        <md-menu md-position-mode="target-right target" ng-if="isTheme">
+            <div class="layout-row layout-align-start-center" style="  cursor: pointer;outline: none; margin-right: 16px;"
+                      ng-click="$mdOpenMenu()"
+                      aria-label="theme selection">
+                <span >
+                    {{ $theme | translate}}</span>
+                    <md-icon md-svg-icon="icons:triangle-down"></md-icon>
+                </span>
+            </div>
+                <md-menu-content width="3">
+                    <md-menu-item ng-repeat="theme in themes">
+                        <md-button ng-click="onThemeClick(theme)">{{theme | translate}}</md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+
+        <md-menu md-position-mode="target-right target" ng-if="isTranslated">
+            <div class="layout-row layout-align-start-center" style="  cursor: pointer;outline: none; margin-right: 16px;"
                       ng-click="$mdOpenMenu()"
                       aria-label="language selection">
                 <span >

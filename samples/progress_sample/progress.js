@@ -14,13 +14,13 @@
             var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
 
             if (pipTranslate) {
-                pipTranslateProvider.translations('en', {
+                pipTranslate.translations('en', {
                     SHOW_PROGRESS: 'Show progress ring',
                     HIDE_PROGRESS: 'Hide progress ring',
                     SAMPLE: 'Sample',
                     CODE: 'Code'
                 });
-                pipTranslateProvider.translations('ru', {
+                pipTranslate.translations('ru', {
                     SHOW_PROGRESS: 'Показать progress ring',
                     HIDE_PROGRESS: 'Спрятать progress ring',
                     SAMPLE: 'Пример',
@@ -28,13 +28,13 @@
                 });
                 $scope.showProgress = pipTranslate.translate('SHOW_PROGRESS');
                 $scope.hideProgress = pipTranslate.translate('HIDE_PROGRESS');
-                $scope.hideProgress = pipTranslate.translate('SAMPLE');
-                $scope.hideProgress = pipTranslate.translate('CODE');
+                $scope.sample = pipTranslate.translate('SAMPLE');
+                $scope.code = pipTranslate.translate('CODE');
             } else {
                 $scope.showProgress = 'Show progress ring';
                 $scope.hideProgress = 'Hide progress ring';                
-                $scope.showProgress = 'Sample';
-                $scope.showProgress = 'Code';
+                $scope.sample = 'Sample';
+                $scope.code = 'Code';
 
             }
 

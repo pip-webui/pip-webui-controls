@@ -11,7 +11,7 @@
             var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
 
             if (pipTranslate) {
-                pipTranslateProvider.translations('en', {
+                pipTranslate.translations('en', {
                     MESSAGE: 'All changes will be lost!',
                     TRY: 'Try to leave page',
                     TEXT: 'Message content',
@@ -19,7 +19,7 @@
                     LEAVE: 'Leave page!',
                     LINK: 'External link'
                 });
-                pipTranslateProvider.translations('ru', {
+                pipTranslate.translations('ru', {
                     MESSAGE: 'Все изменения будут утеряны!',
                     TRY: 'Попробуйте покинуть страницу',
                     TEXT: 'Содержание сообщения',

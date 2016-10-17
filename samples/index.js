@@ -7,9 +7,10 @@
             'ui.router', 'ui.utils', 'ngResource', 'ngAria', 'ngCookies', 'ngSanitize', 'ngMessages',
             'ngMaterial', 'wu.masonry', 'LocalStorageModule', 'angularFileUpload', 'ngAnimate',
 
-            'pipControls', 'appControls.Toasts', 'pipServices',
+            'pipServices',
+            'pipTheme.Default', 'pipTheme.Bootbarn', 'pipTheme', 
 
-            'appControls.ColorPicker',
+            'pipControls', 'appControls.Toasts', 'appControls.ColorPicker',
             'appControls.Markdown', 'appControls.RefExpander',
             'appControls.Popover', 'appControls.ImageSlider', 'appControls.Progress',
             'appControls.Empty', 'appControls.UnsavedChanges'
@@ -79,10 +80,23 @@
 
     thisModule.controller('pipSampleController',
 
-        function ($scope, $rootScope, $injector, $state, $mdSidenav, $timeout, $mdTheming, $mdMedia) {
+        function ($scope, $rootScope, $injector, $state, $mdSidenav, $timeout, $mdTheming, $mdMedia, localStorageService) {
 
-            var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
+            var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null,
+                // appThemesDefault = $injector.has('appThemesDefault') ? $injector.get('appThemesDefault') : null,
+                pipTheme = $injector.has('pipTheme') ? $injector.get('pipTranslate') : null;
+
+            $scope.isTranslated = !!pipTranslate;
+            $scope.isTheme = !!pipTheme;
             $scope.$mdMedia = $mdMedia;
+
+            $rootScope.$theme = localStorageService.get('theme');
+            if ($scope.isTheme) {
+                $scope.themes = _.keys(_.omit($mdTheming.THEMES, 'default'));
+            } else {
+                $scope.themes = [];
+            }
+            
 
             $scope.languages = ['en', 'ru'];
             if (!$rootScope.$language) {
@@ -92,10 +106,26 @@
             $scope.content = content;
             $scope.menuOpened = false;
 
+            // Update page after language changed
+            $rootScope.$on('languageChanged', function(event) {
+                $state.reload();
+            });
+
+            // Update page after theme changed
+            $rootScope.$on('themeChanged', function(event) {
+                $state.reload();
+            });
 
             $scope.onSwitchPage = function (state) {
                 $mdSidenav('left').close();
                 $state.go(state);
+            };
+
+            $scope.onThemeClick = function(theme) {
+                if ($scope.isTheme) {
+                    $rootScope.$theme = theme;
+                    pipTheme.use(theme, false, false);
+                }
             };
 
             $scope.onToggleMenu = function () {
@@ -104,7 +134,6 @@
 
             $scope.onLanguageClick = function(language) {
                 if (pipTranslate) {
-                    console.log('use language');
                     pipTranslate.use(language);
                 } 
             };
