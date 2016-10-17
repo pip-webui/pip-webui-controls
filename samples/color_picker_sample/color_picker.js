@@ -2,33 +2,42 @@
     'use strict';
 
     var thisModule = angular.module('appControls.ColorPicker', []);
-/*
-    thisModule.config(function (pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            SAMPLE: 'sample',
-            CURRENT_COLOR: 'Current color',
-            CODE: 'Code example'
-        });
-        pipTranslateProvider.translations('ru', {
-            SAMPLE: 'пример',
-            CURRENT_COLOR: 'Текущий цвет',
-            CODE: 'Пример кода'
-        });
-    });*/
 
     thisModule.controller('ColorPickerController',
-        function ($scope, $timeout) {
+        function ($scope, $timeout, $injector) {
+
+            var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
+
+            if (pipTranslate) {
+                pipTranslate.translations('en', {
+                    SAMPLE: 'sample',
+                    CURRENT_COLOR: 'Current color',
+                    DISABLED: 'Disabled',
+                    CODE: 'Code example'
+                });
+                pipTranslate.translations('ru', {
+                    SAMPLE: 'пример',
+                    CURRENT_COLOR: 'Текущий цвет',
+                    DISABLED: 'Не активно',
+                    CODE: 'Пример кода'
+                });
+                $scope.currentColor = pipTranslate.translate('CURRENT_COLOR');
+                $scope.code = pipTranslate.translate('CODE');
+                $scope.sample = pipTranslate.translate('SAMPLE');
+                $scope.disabled = pipTranslate.translate('DISABLED');
+            } else {
+                $scope.code = 'Code example';
+                $scope.currentColor = 'Current color';
+                $scope.sample = 'Sample';
+                $scope.disabled = 'Disabled';
+            }
 
             $timeout(function() {
                 $('pre code').each(function(i, block) {
                     Prism.highlightElement(block);
                 });
             });
-            
-            /*
-            pipAppBar.showMenuNavIcon();
-            pipAppBar.showLanguage();
-            pipAppBar.showTitleText('CONTROLS');*/
+
             
             $scope.disabled = false;
             $scope.colors = ['purple', 'lightgreen', 'green', 'darkred', 'pink', 'yellow', 'cyan'];
