@@ -7,7 +7,7 @@
             'ui.router', 'ui.utils', 'ngResource', 'ngAria', 'ngCookies', 'ngSanitize', 'ngMessages',
             'ngMaterial', 'wu.masonry', 'LocalStorageModule', 'angularFileUpload', 'ngAnimate',
 
-            'pipControls', 'appControls.Toasts',
+            'pipControls', 'appControls.Toasts', 'pipServices',
 
             'appControls.ColorPicker',
             'appControls.Markdown', 'appControls.RefExpander',
@@ -79,9 +79,16 @@
 
     thisModule.controller('pipSampleController',
 
-        function ($scope, $rootScope, $state, $mdSidenav, $timeout, $mdTheming, localStorageService) {
+        function ($scope, $rootScope, $injector, $state, $mdSidenav, $timeout, $mdTheming, $mdMedia) {
+
+            var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
+            $scope.$mdMedia = $mdMedia;
 
             $scope.languages = ['en', 'ru'];
+            if (!$rootScope.$language) {
+                $rootScope.$language = 'en';
+            }
+
             $scope.content = content;
             $scope.menuOpened = false;
 
@@ -93,6 +100,13 @@
 
             $scope.onToggleMenu = function () {
                 $mdSidenav('left').toggle();
+            };
+
+            $scope.onLanguageClick = function(language) {
+                if (pipTranslate) {
+                    console.log('use language');
+                    pipTranslate.use(language);
+                } 
             };
 
             $scope.isActiveState = function (state) {
