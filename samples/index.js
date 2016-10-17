@@ -4,22 +4,20 @@
     var thisModule = angular.module('appControls',
         [
             'ngMaterial',
-            'pipServices', 'pipControls', 'appCoreServices.Toasts', 
-            'pipLayout', 'pipNav', 'pipDateTimes',
+             'pipControls', 'appCoreServices.Toasts',
             'pipTheme.Default', 'pipTheme.Bootbarn', 'pipTheme',
 
             'appControls.ColorPicker',
-            'appControls.Markdown', 'appControls.Refresh', 'appControls.ToggleButtons',
-            'appControls.Popover', 'appControls.ImageSlider', 'appControls.Progress',
-            'appControls.Tags'
+            'appControls.Markdown', 'appControls.RefExpander',
+            'appControls.Popover', 'appControls.ImageSlider', 'appControls.Progress'
+            //  'appControls.Refresh', 'pipServices', 'pipNav',  'pipDateTimes',  'pipLayout',
         ]
     );
 
     // Configure application services before start
     thisModule.config(
-        function ($stateProvider, $urlRouterProvider, pipTranslateProvider,
-                   pipSideNavProvider, pipAppBarProvider, $mdIconProvider,
-                  $compileProvider, $httpProvider) {
+        function ($stateProvider, $urlRouterProvider,  $mdIconProvider,
+                  $compileProvider, $httpProvider) { // pipTranslateProvider, pipSideNavProvider, pipAppBarProvider,
 
             $compileProvider.debugInfoEnabled(false);
             $httpProvider.useApplyAsync(true);
@@ -35,23 +33,21 @@
                     controller: 'ColorPickerController', templateUrl: 'color_picker_sample/color_picker.html' },
                 { title: 'Markdown', state: 'markdown', url: '/markdown', auth: false,
                     controller: 'MarkdownController', templateUrl: 'markdown_sample/markdown.html' },
-                { title: 'Refresh', state: 'refresh', url: '/refresh', auth: false,
-                    controller: 'RefreshController', templateUrl: 'refresh_sample/refresh.html' },
-                { title: 'Toggle Buttons', state: 'toggle_buttons', url: '/toggle_buttons', auth: false,
-                    controller: 'ToggleButtonsController', templateUrl: 'toggle_buttons_sample/toggle_buttons.html' },
-               { title: 'Toasts', state: 'toasts', url: '/toasts', auth: false,
+                { title: 'Toasts', state: 'toasts', url: '/toasts', auth: false,
                     controller: 'ToastsController', templateUrl: 'toasts_sample/toasts.html' },
-                { title: 'Tags', state: 'tags', url: '/tags', auth: false,
-                    controller: 'TagsController', templateUrl: 'tags_sample/tags.html' }
+                { title: 'Reference Expander', state: 'ref', url: '/ref', auth: false,
+                    controller: 'RefExpanderController', templateUrl: 'ref_expander/ref_expander.html' }
                 ],
                 contentItem, i;
 
             $mdIconProvider.iconSet('icons', 'images/icons.svg', 512);
 
-            pipAppBarProvider.globalSecondaryActions([
-                {name: 'global.signout', title: 'SIGNOUT', state: 'signout'}
-            ]);
 
+
+            /*
+             pipAppBarProvider.globalSecondaryActions([
+             {name: 'global.signout', title: 'SIGNOUT', state: 'signout'}
+             ]);
             // String translations
             pipTranslateProvider.translations('en', {
                 CONTROLS: 'Controls',
@@ -61,7 +57,7 @@
             pipTranslateProvider.translations('ru', {
                 CONTROLS: 'Контролы',
                 SIGNOUT: 'Выйти'
-            });
+            });*/
 
             for (i = 0; i < content.length; i++) {
                 contentItem = content[i];
@@ -69,26 +65,11 @@
             }
 
             $urlRouterProvider.otherwise('/progress');
-
-            // Configure navigation menu
-            pipSideNavProvider.sections([
-                {
-                    links: [{title: 'CONTROLS', url: '/progress'}]
-                }/*, Links only for publishing samples
-                {
-                    links: links
-                }
-
-                /*,
-                {
-                    links: [{title: 'SIGNOUT', url: '/signout'}]
-                }*/
-            ]);
         }
     );
 
     thisModule.controller('pipSampleController',
-        function ($scope, $rootScope, $state, $mdSidenav, $timeout, pipTranslate, $mdTheming, pipTheme, 
+        function ($scope, $rootScope, $state, $mdSidenav, $timeout, $mdTheming, pipTheme,
                   $mdMedia) {
 
             pipTheme.setCurrentTheme('bootbarn-warm');

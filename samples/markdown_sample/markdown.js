@@ -2,7 +2,7 @@
     'use strict';
 
     var thisModule = angular.module('appControls.Markdown', []);
-
+/*
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             COMMON: 'Common',
@@ -27,9 +27,9 @@
             SAMPLE_CAPITAL: 'Пример'
         });
     });
-
+*/
     thisModule.controller('MarkdownController',
-        function ($scope, pipAppBar, $timeout) {
+        function ($scope, $timeout) { //pipAppBar, 
             /* eslint-disable max-len*/
 
             $timeout(function() {

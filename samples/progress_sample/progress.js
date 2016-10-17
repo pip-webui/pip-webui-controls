@@ -3,7 +3,7 @@
 
     var thisModule = angular.module('appControls.Progress', []);
 
-    thisModule.config(function (pipTranslateProvider) {
+    /*thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             SHOW_PROGRESS: 'Show progress ring',
             HIDE_PROGRESS: 'Hide progress ring'
@@ -12,22 +12,22 @@
             SHOW_PROGRESS: 'Показать progress ring',
             HIDE_PROGRESS: 'Спрятать progress ring'
         });
-    });
+    });*/
 
     thisModule.controller('ProgressController',
-        function ($scope, pipAppBar, $timeout) {
+        function ($scope,  $timeout) {// pipAppBar,
 
             $timeout(function() {
                 $('pre code').each(function(i, block) {
                     Prism.highlightElement(block);
                 });
             });
-
+/*
             pipAppBar.hideShadow();
             pipAppBar.showMenuNavIcon();
             pipAppBar.showLanguage();
             pipAppBar.showTitleText('CONTROLS');
-            
+            */
             $scope.progressOpen = progressOpen;
             $scope.progressClose = progressClose;
             $scope.isShowProgress = isShowProgress;

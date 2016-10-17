@@ -2,7 +2,7 @@
     'use strict';
 
     var thisModule = angular.module('appControls.ColorPicker', []);
-
+/*
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             SAMPLE: 'sample',
@@ -14,10 +14,10 @@
             CURRENT_COLOR: 'Текущий цвет',
             CODE: 'Пример кода'
         });
-    });
+    });*/
 
     thisModule.controller('ColorPickerController',
-        function ($scope, pipAppBar, $timeout) {
+        function ($scope, $timeout) {
 
             $timeout(function() {
                 $('pre code').each(function(i, block) {
@@ -25,9 +25,10 @@
                 });
             });
             
+            /*
             pipAppBar.showMenuNavIcon();
             pipAppBar.showLanguage();
-            pipAppBar.showTitleText('CONTROLS');
+            pipAppBar.showTitleText('CONTROLS');*/
             
             $scope.disabled = false;
             $scope.colors = ['purple', 'lightgreen', 'green', 'darkred', 'pink', 'yellow', 'cyan'];

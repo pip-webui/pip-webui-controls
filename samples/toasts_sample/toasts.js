@@ -5,7 +5,7 @@
     'use strict';
 
     var thisModule = angular.module('appCoreServices.Toasts', []);
-
+/*
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             SHOW_NOTIFICATION: 'Show notification',
@@ -32,9 +32,9 @@
             SHOW_NOTIFICATION_WITHOUT_ACTIONS: 'Показать нотификацию без действий'
         });
     });
-
+*/
     thisModule.controller('ToastsController',
-        function ($scope, pipToasts, pipTranslate, pipAppBar, $timeout) {
+        function ($scope, pipToasts,  $timeout) { //pipTranslate,  pipAppBar,
 
             $timeout(function() {
                 $('pre code').each(function(i, block) {
@@ -45,26 +45,27 @@
             var
                 messageCount = 0,
                 errorCount = 0;
-            pipAppBar.hideShadow();
+            /*pipAppBar.hideShadow();
             pipAppBar.showMenuNavIcon();
             pipAppBar.showLanguage();
-            pipAppBar.showTitleText('CONTROLS');
+            pipAppBar.showTitleText('CONTROLS');*/
             
             $scope.onNotificationShow = function () {
                 messageCount++;
-                pipToasts.showNotification(pipTranslate.translate('NOTIFICATION') + messageCount, ['accept', 'reject']);
+                
+                pipToasts.showNotification("Notification" + messageCount, ['accept', 'reject']);
             };
 
             $scope.onNotificationHideActions = function () {
                 messageCount++;
                 // pipToasts.showNotification('Compellingly implement cross functional materials without transparent catalysts for change. Intrinsicly myocardinate client-based imperatives without premium.', []);
 
-                pipToasts.showNotification(pipTranslate.translate('NOTIFICATION') + messageCount, []);
+                pipToasts.showNotification("Notification"  + messageCount, []);
             };
 
             $scope.onNotificationSmallShow = function () {
                 messageCount++;
-                pipToasts.showNotification(pipTranslate.translate('NOTIFICATION') + 'Small' + messageCount);
+                pipToasts.showNotification("Notification"  + 'Small' + messageCount);
             };
 
             $scope.onErrorShow = function () {
@@ -79,7 +80,7 @@
                     message: 'Missing party information'
                 };
 
-                pipToasts.showError(pipTranslate.translate('ERROR') + errorCount, null, null, null, error);
+                pipToasts.showError("Error" + errorCount, null, null, null, error);
             };
         }
     );

@@ -3,6 +3,7 @@
 
     var thisModule = angular.module('appControls.ImageSlider', []);
 
+    /*
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             'FADING': 'Fading',
@@ -16,20 +17,20 @@
             'PREV_NEXT_BUTTONS': 'Кнопки для смены изображения вперед и назад',
             'SLIDER_INDICATORS': 'Индикаторы слайдера изображений'
         });
-    });
+    });*/
 
     thisModule.controller('ImageSliderController',
-        function ($scope, pipAppBar, $timeout) {
+        function ($scope,  $timeout) { //pipAppBar,
 
             $timeout(function() {
                 $('pre code').each(function(i, block) {
                     Prism.highlightElement(block);
                 });
             });
-            
+            /*
             pipAppBar.showMenuNavIcon();
             pipAppBar.showLanguage();
-            pipAppBar.showTitleText('CONTROLS');
+            pipAppBar.showTitleText('CONTROLS');*/
 
             $scope.images = [{url: 'https://i.ytimg.com/vi/mW3S0u8bj58/maxresdefault.jpg'},
                 {url: 'https://www.catboxkingdom.com/wp-content/uploads/2014/06/Cute-Cats-cats-33440930-1280-800.jpg'},

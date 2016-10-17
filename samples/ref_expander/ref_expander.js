@@ -3,7 +3,7 @@
 (function () {
     'use strict';
 
-    var thisModule = angular.module('appComponentsStyles.RefExpander', []);
+    var thisModule = angular.module('appControls.RefExpander', []);
 
     thisModule.controller('RefExpanderController',
         function($scope, $mdDialog) {
