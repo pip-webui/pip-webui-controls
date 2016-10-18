@@ -13,7 +13,8 @@
             'pipControls', 'appControls.Toasts', 'appControls.ColorPicker',
             'appControls.Markdown', 'appControls.RefExpander',
             'appControls.Popover', 'appControls.ImageSlider', 'appControls.Progress',
-            'appControls.Empty', 'appControls.UnsavedChanges'
+            'appControls.Empty', 'appControls.UnsavedChanges', 
+            'pipControls.Draggable', 'pipControls.DraggableInput'
 
         ]
     );
@@ -45,15 +46,23 @@
         },
         {
             title: 'Reference Expander', state: 'ref', url: '/ref', auth: false,
-            controller: 'RefExpanderController', templateUrl: 'ref_expander/ref_expander.html'
+            controller: 'RefExpanderController', templateUrl: 'ref_expander_sample/ref_expander.html'
         },
         {
             title: 'Empty', state: 'empty', url: '/empty', auth: false,
-            controller: 'EmptyController', templateUrl: 'empty/empty.html'
+            controller: 'EmptyController', templateUrl: 'empty_sample/empty.html'
         },
         {
             title: 'Unsaved Changes', state: 'unsaved_changes', url: '/unsaved_changes', auth: false,
-            controller: 'UnsavedChangesController', templateUrl: 'unsaved_changes/unsaved_changes.html'
+            controller: 'UnsavedChangesController', templateUrl: 'unsaved_changes_sample/unsaved_changes.html'
+        },
+        { 
+            title: 'Draggable', state: 'draggable', url: '/draggable', 
+            controller: 'DraggableController', templateUrl: 'draggable_sample/draggable.html' 
+        },
+        { 
+            title: 'Draggable Input', state: 'draggable_input', url: '/draggable_input', 
+            controller: 'DraggableInputController', templateUrl: 'draggable_sample/draggable_input.html' 
         }
     ];
 

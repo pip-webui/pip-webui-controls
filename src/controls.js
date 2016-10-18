@@ -17,6 +17,7 @@
         'pipToasts',
         'pipUnsavedChanges',
         'pipControls.Translate',
+        'pipDraggable'
     ]);
 
 })(window.angular);
