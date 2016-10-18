@@ -131,9 +131,14 @@
             };
 
             $scope.onThemeClick = function(theme) {
+                console.log('onThemeClick');
                 if ($scope.isTheme) {
-                    $rootScope.$theme = theme;
-                    pipTheme.use(theme, false, false);
+                    console.log('onThemeClick1');
+                    setTimeout(function () {
+                        pipTheme.use(theme, false, false);
+                        $rootScope.$theme = theme;
+                        $rootScope.$apply();
+                    }, 0);                      
                 }
             };
 
@@ -142,9 +147,15 @@
             };
 
             $scope.onLanguageClick = function(language) {
+                console.log('onLanguageClick');
                 if (pipTranslate) {
-                    pipTranslate.use(language);
+                    console.log('onLanguageClick1', language);
+                    setTimeout(function () {
+                        pipTranslate.use(language);
+                        $rootScope.$apply();
+                    }, 0);   
                 } 
+             
             };
 
             $scope.isActiveState = function (state) {

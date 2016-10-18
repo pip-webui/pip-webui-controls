@@ -41,7 +41,7 @@
 </head>
 
 <body ng-app="appControls" ng-if="!$reset" ng-controller="pipSampleController"
-     class="pip-main layout-column">
+     class="pip-main layout-column {{$theme}}" md-theme="{{$theme}}">
 <md-toolbar >
     <div class="layout-row layout-align-start-center">
         <md-button class="md-icon-button" aria-label="MENU" ng-if="!$mdMedia('gt-sm')" ng-click="onToggleMenu()">
