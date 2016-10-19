@@ -20,7 +20,6 @@
     <script src="../lib/pip-webui-lib.js"></script>
     <script src="../lib/pip-webui-services.js"></script>
     <script src="../lib/pip-webui-themes.js"></script>
-    <script src="../lib/pip-webui-services.js"></script>
     <script src="../dist/pip-webui-controls.js"></script>
 
     <script src="../../node_modules/prismjs/prism.js"></script>
@@ -55,10 +54,10 @@
             <div class="layout-row layout-align-start-center" style="  cursor: pointer;outline: none; margin-right: 16px;"
                       ng-click="$mdOpenMenu()"
                       aria-label="theme selection">
-                <span style="white-space:nowrap;">
-                    {{ $theme | translate}}</span>
+                    <span style="white-space:nowrap;">
+                        {{ $theme | translate}}
+                    </span>
                     <md-icon md-svg-icon="icons:triangle-down"></md-icon>
-                </span>
             </div>
                 <md-menu-content width="3">
                     <md-menu-item ng-repeat="theme in themes">
@@ -71,10 +70,10 @@
             <div class="layout-row layout-align-start-center" style="  cursor: pointer;outline: none; margin-right: 16px;"
                       ng-click="$mdOpenMenu()"
                       aria-label="language selection">
-                <span >
-                    {{ $language | translate}}</span>
+                    <span >
+                        {{ $language | translate}}
+                    </span>
                     <md-icon md-svg-icon="icons:triangle-down"></md-icon>
-                </span>
             </div>
                 <md-menu-content width="3">
                     <md-menu-item ng-repeat="lang in languages">

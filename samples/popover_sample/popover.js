@@ -34,15 +34,15 @@
                 $scope.content = pipTranslate.translate('TEXT_POPOVER');
                 $scope.clickHelp = pipTranslate.translate('CLICK_HELP');
                 $scope.showPopover = pipTranslate.translate('SHOW_POPOVER');
-                $scope.hideProgress = pipTranslate.translate('SAMPLE');
-                $scope.hideProgress = pipTranslate.translate('CODE');                
+                $scope.sample = pipTranslate.translate('SAMPLE');
+                $scope.code = pipTranslate.translate('CODE');                
             } else {
                 $scope.title = 'Title popover';
                 $scope.showPopover = 'Show popover';
                 $scope.content = 'Text popover';
                 $scope.clickHelp = 'Click help';
-                $scope.showProgress = 'Sample';
-                $scope.showProgress = 'Code';                
+                $scope.sample = 'Sample';
+                $scope.code = 'Code';                
             }
 
             $timeout(function() {

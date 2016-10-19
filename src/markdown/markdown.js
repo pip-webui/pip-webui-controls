@@ -11,26 +11,29 @@
 
     var thisModule = angular.module('pipMarkdown', ['ngSanitize']);
 
-    // /* eslint-disable quote-props */
-    // thisModule.config(function (pipTranslateProvider) {
-    //     pipTranslateProvider.translations('en', {
-    //         'MARKDOWN_ATTACHMENTS': 'Attachments:',
-    //         'checklist': 'Checklist',
-    //         'documents': 'Documents',
-    //         'pictures': 'Pictures',
-    //         'location': 'Location',
-    //         'time': 'Time'
-    //     });
-    //     pipTranslateProvider.translations('ru', {
-    //         'MARKDOWN_ATTACHMENTS': 'Вложения:',
-    //         'checklist': 'Список',
-    //         'documents': 'Документы',
-    //         'pictures': 'Изображения',
-    //         'location': 'Местонахождение',
-    //         'time': 'Время'
-    //     });
-    // });
-    // /* eslint-enable quote-props */
+    thisModule.run(function ($injector) {
+        var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
+
+        if (pipTranslate) {
+            pipTranslate.translations('en', {
+                'MARKDOWN_ATTACHMENTS': 'Attachments:',
+                'checklist': 'Checklist',
+                'documents': 'Documents',
+                'pictures': 'Pictures',
+                'location': 'Location',
+                'time': 'Time'
+            });
+            pipTranslate.translations('ru', {
+                'MARKDOWN_ATTACHMENTS': 'Вложения:',
+                'checklist': 'Список',
+                'documents': 'Документы',
+                'pictures': 'Изображения',
+                'location': 'Местонахождение',
+                'time': 'Время'
+            });
+        }
+
+    });
 
     thisModule.directive('pipMarkdown',
         function ($parse, $injector) {
