@@ -99,7 +99,7 @@
             $scope.isTheme = !!pipTheme;
             $scope.$mdMedia = $mdMedia;
 
-            $rootScope.$theme = localStorageService.get('theme');
+            $rootScope.$theme = localStorageService.get('theme') || 'blue';
             if ($scope.isTheme) {
                 $scope.themes = _.keys(_.omit($mdTheming.THEMES, 'default'));
             } else {
