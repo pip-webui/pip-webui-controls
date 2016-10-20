@@ -1,3 +1,28 @@
+/**
+ * @file Registration of basic WebUI controls
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+/* global angular */
+
+(function (angular) {
+    'use strict';
+
+    angular.module('pipControls', [
+        'pipMarkdown',
+        'pipColorPicker',
+        'pipRoutingProgress',
+        'pipPopover',
+        'pipImageSlider',
+        'pipToasts',
+        'pipUnsavedChanges',
+        'pipControls.Translate',
+        'pipDraggable'
+    ]);
+
+})(window.angular);
+
+
 (function(module) {
 try {
   module = angular.module('pipControls.Templates');
@@ -91,31 +116,6 @@ module.run(['$templateCache', function($templateCache) {
     '</md-toast>');
 }]);
 })();
-
-/**
- * @file Registration of basic WebUI controls
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-/* global angular */
-
-(function (angular) {
-    'use strict';
-
-    angular.module('pipControls', [
-        'pipMarkdown',
-        'pipColorPicker',
-        'pipRoutingProgress',
-        'pipPopover',
-        'pipImageSlider',
-        'pipToasts',
-        'pipUnsavedChanges',
-        'pipControls.Translate',
-        'pipDraggable'
-    ]);
-
-})(window.angular);
-
 
 /**
  * @file Color picker control
@@ -224,7 +224,7 @@ module.run(['$templateCache', function($templateCache) {
 (function () {
     'use strict';
 
-    var thisModule = angular.module("pipDraggable", ['pipUtils']);
+    var thisModule = angular.module("pipDraggable", []);
 
     thisModule.service('pipDraggable', function () {
 
@@ -242,7 +242,8 @@ module.run(['$templateCache', function($templateCache) {
 
     });
 
-    thisModule.directive('pipDrag', ['$rootScope', '$parse', '$document', '$window', 'pipDraggable', 'pipUtils', function ($rootScope, $parse, $document, $window, pipDraggable, pipUtils) {
+    thisModule.directive('pipDrag',
+        ['$rootScope', '$parse', '$document', '$window', 'pipDraggable', function ($rootScope, $parse, $document, $window, pipDraggable) {
             return {
 
                 restrict: 'A',
@@ -275,8 +276,8 @@ module.run(['$templateCache', function($templateCache) {
 
                     var getDragData = $parse(attrs.pipDragData);
                     var
-                        verticalScroll = pipUtils.toBoolean(attrs.pipVerticalScroll) || true,
-                        horizontalScroll = pipUtils.toBoolean(attrs.pipHorizontalScroll) || true,
+                        verticalScroll = toBoolean(attrs.pipVerticalScroll) || true,
+                        horizontalScroll = toBoolean(attrs.pipHorizontalScroll) || true,
                         activationDistance = parseFloat(attrs.pipActivationDistance) || 75,
                         scrollDistance = parseFloat(attrs.pipScrollDistance) || 50,
                         scrollParent = false,
@@ -287,7 +288,13 @@ module.run(['$templateCache', function($templateCache) {
                     // deregistration function for mouse move events in $rootScope triggered by jqLite trigger handler
                     var _deregisterRootMoveListener = angular.noop;
 
-                    var initialize = function () {
+                    initialize();
+
+                    return;
+
+                    //-----------------------------------
+
+                    function initialize() {
                         element.attr('pip-draggable', 'false'); // prevent native drag
                         // check to see if drag handle(s) was specified
                         // if querySelectorAll is available, we use this instead of find
@@ -310,9 +317,16 @@ module.run(['$templateCache', function($templateCache) {
                         } else {
                             scrollContainer = angular.element(window);
                         }
-                    };
+                    }
 
-                    var toggleListeners = function (enable) {
+                    function toBoolean(value) {
+                        if (value == null) return false;
+                        if (!value) return false;
+                        value = value.toString().toLowerCase();
+                        return value == '1' || value == 'true';
+                    }
+
+                    function toggleListeners(enable) {
                         if (!enable)return;
                         // add listeners.
 
@@ -332,28 +346,32 @@ module.run(['$templateCache', function($templateCache) {
                                 return false;
                             }); // prevent native drag for images
                         }
-                    };
-                    var onDestroy = function (enable) {
+                    }
+                    
+                    function onDestroy(enable) {
                         toggleListeners(false);
-                    };
-                    var onEnableChange = function (newVal, oldVal) {
+                    }
+
+                    function onEnableChange(newVal, oldVal) {
                         _dragEnabled = (newVal);
-                    };
-                    var onCenterAnchor = function (newVal, oldVal) {
+                    }
+
+                    function onCenterAnchor(newVal, oldVal) {
                         if (angular.isDefined(newVal))
                             _centerAnchor = (newVal || 'true');
-                    };
+                    }
 
-                    var isClickableElement = function (evt) {
+                    function isClickableElement(evt) {
                         return (
                             angular.isDefined(angular.element(evt.target).attr("pip-cancel-drag"))
                         );
-                    };
+                    }
+
                     /*
                      * When the element is clicked start the drag behaviour
                      * On touch devices as a small delay so as not to prevent native window scrolling
                      */
-                    var onpress = function (evt) {
+                    function onpress(evt) {
                         if (!_dragEnabled)return;
 
                         if (isClickableElement(evt)) {
@@ -379,7 +397,7 @@ module.run(['$templateCache', function($templateCache) {
                             onlongpress(evt);
                         }
 
-                    };
+                    }
 
                     function saveElementStyles() {
                         _elementStyle.left = element.css('css') || 0;
@@ -388,13 +406,13 @@ module.run(['$templateCache', function($templateCache) {
                         _elementStyle.width = element.css('width');    
                     }
 
-                    var cancelPress = function () {
+                    function cancelPress() {
                         clearTimeout(_pressTimer);
                         $document.off(_moveEvents, cancelPress);
                         $document.off(_releaseEvents, cancelPress);
-                    };
+                    }
 
-                    var onlongpress = function (evt) {
+                    function onlongpress(evt) {
                         if (!_dragEnabled)return;
                         evt.preventDefault();
 
@@ -430,9 +448,9 @@ module.run(['$templateCache', function($templateCache) {
                         _deregisterRootMoveListener = $rootScope.$on('draggable:_triggerHandlerMove', function (event, origEvent) {
                             onmove(origEvent);
                         });
-                    };
+                    }
 
-                    var onmove = function (evt) {
+                    function onmove(evt) {
                         if (!_dragEnabled)return;
                         evt.preventDefault();
 
@@ -484,9 +502,9 @@ module.run(['$templateCache', function($templateCache) {
                             uid: _myid,
                             dragOffset: _dragOffset
                         });
-                    };
+                    }
 
-                    var onrelease = function (evt) {
+                    function onrelease(evt) {
                         if (!_dragEnabled)
                             return;
                         evt.preventDefault();
@@ -514,27 +532,25 @@ module.run(['$templateCache', function($templateCache) {
                         }
 
                         _deregisterRootMoveListener();
-                    };
+                    }
 
-                    var onDragComplete = function (evt) {
-
-
+                    function onDragComplete(evt) {
                         if (!onDragSuccessCallback)return;
 
                         scope.$apply(function () {
                             onDragSuccessCallback(scope, {$data: _data, $event: evt});
                         });
-                    };
+                    }
 
-                    var reset = function () {
+                    function reset() {
                         if (allowTransform)
                             element.css({transform: '', 'z-index': '', '-webkit-transform': '', '-ms-transform': ''});
                         else {
                             element.css({'position': _elementStyle.position, top: _elementStyle.top, left: _elementStyle.left, 'z-index': '', width: _elementStyle.width});
                         }
-                    };
+                    }
 
-                    var moveElement = function (x, y) {
+                    function moveElement(x, y) {
                         var eWidth = element.css('width');
                         if (allowTransform) {
                             element.css({
@@ -552,9 +568,9 @@ module.run(['$templateCache', function($templateCache) {
                                 width: eWidth
                             });
                         }
-                    };
+                    }
 
-                    var dragToScroll = function () {
+                    function dragToScroll() {
                         var scrollX = 0, scrollY = 0,
                             offset = function (element) {
                                 return element.offset() || {left: 0, top: 0};
@@ -596,14 +612,13 @@ module.run(['$templateCache', function($templateCache) {
                             scrollContainer.scrollTop(containerScrollTop + scrollY);
                         }
 
-                    };
-
-                    initialize();
+                    }
                 }
-            };
+            }
         }]);
 
-    thisModule.directive('pipDrop', ['$parse', '$timeout', '$window', '$document', 'pipDraggable', function ($parse, $timeout, $window, $document, pipDraggable) {
+    thisModule.directive('pipDrop', 
+        ['$parse', '$timeout', '$window', '$document', 'pipDraggable', function ($parse, $timeout, $window, $document, pipDraggable) {
         return {
             restrict: 'A',
             link: function (scope, element, attrs) {
@@ -611,24 +626,26 @@ module.run(['$templateCache', function($templateCache) {
                 scope.isTouching = false;
 
                 var _lastDropTouch = null;
-
                 var _myid = scope.$id;
-
                 var _dropEnabled = false;
 
                 var onDropCallback = $parse(attrs.pipDropSuccess);// || function(){};
-
                 var onDragStartCallback = $parse(attrs.pipDragStart);
                 var onDragStopCallback = $parse(attrs.pipDragStop);
                 var onDragMoveCallback = $parse(attrs.pipDragMove);
 
-                var initialize = function () {
+                initialize();
+
+                return;
+
+                //----------------------
+
+                function initialize() {
                     toggleListeners(true);
-                };
+                }
 
-                var toggleListeners = function (enable) {
+                function toggleListeners(enable) {
                     // remove listeners
-
                     if (!enable)return;
                     // add listeners.
                     scope.$watch(attrs.pipDrop, onEnableChange);
@@ -636,15 +653,17 @@ module.run(['$templateCache', function($templateCache) {
                     scope.$on('draggable:start', onDragStart);
                     scope.$on('draggable:move', onDragMove);
                     scope.$on('draggable:end', onDragEnd);
-                };
+                }
 
-                var onDestroy = function (enable) {
+                function onDestroy(enable) {
                     toggleListeners(false);
-                };
-                var onEnableChange = function (newVal, oldVal) {
+                }
+
+                function onEnableChange(newVal, oldVal) {
                     _dropEnabled = newVal;
-                };
-                var onDragStart = function (evt, obj) {
+                }
+
+                function onDragStart(evt, obj) {
                     if (!_dropEnabled)return;
                     isTouching(obj.x, obj.y, obj.element);
 
@@ -653,8 +672,9 @@ module.run(['$templateCache', function($templateCache) {
                             onDragStartCallback(scope, {$data: obj.data, $event: obj});
                         });
                     }
-                };
-                var onDragMove = function (evt, obj) {
+                }
+
+                function onDragMove(evt, obj) {
                     if (!_dropEnabled)return;
                     isTouching(obj.x, obj.y, obj.element);
 
@@ -663,16 +683,16 @@ module.run(['$templateCache', function($templateCache) {
                             onDragMoveCallback(scope, {$data: obj.data, $event: obj});
                         });
                     }
-                };
+                }
 
-                var onDragEnd = function (evt, obj) {
-
+                function onDragEnd(evt, obj) {
                     // don't listen to drop events if this is the element being dragged
                     // only update the styles and return
                     if (!_dropEnabled || _myid === obj.uid) {
                         updateDragStyles(false, obj.element);
                         return;
                     }
+
                     if (isTouching(obj.x, obj.y, obj.element)) {
                         // call the pipDraggable pipDragSuccess element callback
                         if (obj.callback) {
@@ -697,9 +717,9 @@ module.run(['$templateCache', function($templateCache) {
                     }
 
                     updateDragStyles(false, obj.element);
-                };
+                }
 
-                var isTouching = function (mouseX, mouseY, dragElement) {
+                function isTouching(mouseX, mouseY, dragElement) {
                     var touching = hitTest(mouseX, mouseY);
                     scope.isTouching = touching;
                     if (touching) {
@@ -707,9 +727,9 @@ module.run(['$templateCache', function($templateCache) {
                     }
                     updateDragStyles(touching, dragElement);
                     return touching;
-                };
+                }
 
-                var updateDragStyles = function (touching, dragElement) {
+                function updateDragStyles(touching, dragElement) {
                     if (touching) {
                         element.addClass('pip-drag-enter');
                         dragElement.addClass('pip-drag-over');
@@ -720,7 +740,7 @@ module.run(['$templateCache', function($templateCache) {
                     }
                 };
 
-                var hitTest = function (x, y) {
+                function hitTest(x, y) {
                     var bounds = element[0].getBoundingClientRect();
                     x -= $document[0].body.scrollLeft + $document[0].documentElement.scrollLeft;
                     y -= $document[0].body.scrollTop + $document[0].documentElement.scrollTop;
@@ -728,31 +748,32 @@ module.run(['$templateCache', function($templateCache) {
                         && x <= bounds.right
                         && y <= bounds.bottom
                         && y >= bounds.top;
-                };
-
-                initialize();
+                }
             }
         };
     }]);
 
-    //thisModule.directive('pipDragClone', ['$parse', '$timeout', 'pipDraggable', function ($parse, $timeout, pipDraggable) {
+    //thisModule.directive('pipDragClone', function ($parse, $timeout, pipDraggable) {
     //    return {
     //        restrict: 'A',
     //        link: function (scope, element, attrs) {
     //            var img, _allowClone = true;
     //            var _dragOffset = null;
     //            scope.clonedData = {};
-    //            var initialize = function () {
+    //            initialize();
+    //            return;
+
+    //            function initialize() {
 //
     //                img = element.find('img');
     //                element.attr('pip-draggable', 'false');
     //                img.attr('draggable', 'false');
     //                reset();
     //                toggleListeners(true);
-    //            };
+    //            }
 //
 //
-    //            var toggleListeners = function (enable) {
+    //            function toggleListeners(enable) {
     //                // remove listeners
 //
     //                if (!enable)return;
@@ -762,14 +783,16 @@ module.run(['$templateCache', function($templateCache) {
     //                scope.$on('draggable:end', onDragEnd);
     //                preventContextMenu();
 //
-    //            };
-    //            var preventContextMenu = function () {
+    //            }
+
+    //            function preventContextMenu() {
     //                //  element.off('mousedown touchstart touchmove touchend touchcancel', absorbEvent_);
     //                img.off('mousedown touchstart touchmove touchend touchcancel', absorbEvent_);
     //                //  element.on('mousedown touchstart touchmove touchend touchcancel', absorbEvent_);
     //                img.on('mousedown touchstart touchmove touchend touchcancel', absorbEvent_);
-    //            };
-    //            var onDragStart = function (evt, obj, elm) {
+    //            }
+
+    //            function onDragStart(evt, obj, elm) {
     //                _allowClone = true;
     //                if (angular.isDefined(obj.data.allowClone)) {
     //                    _allowClone = obj.data.allowClone;
@@ -784,8 +807,9 @@ module.run(['$templateCache', function($templateCache) {
     //                    moveElement(obj.tx, obj.ty);
     //                }
 //
-    //            };
-    //            var onDragMove = function (evt, obj) {
+    //            }
+
+    //            function onDragMove(evt, obj) {
     //                if (_allowClone) {
 //
     //                    _tx = obj.tx + obj.dragOffset.left;
@@ -793,18 +817,20 @@ module.run(['$templateCache', function($templateCache) {
 //
     //                    moveElement(_tx, _ty);
     //                }
-    //            };
-    //            var onDragEnd = function (evt, obj) {
+    //            }
+
+    //            function onDragEnd(evt, obj) {
     //                //moveElement(obj.tx,obj.ty);
     //                if (_allowClone) {
     //                    reset();
     //                }
-    //            };
+    //            }
 //
-    //            var reset = function () {
+    //            function reset() {
     //                element.css({left: 0, top: 0, position: 'fixed', 'z-index': -1, visibility: 'hidden'});
-    //            };
-    //            var moveElement = function (x, y) {
+    //            }
+
+    //            function moveElement(x, y) {
     //                element.css({
     //                    transform: 'matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, ' + x + ', ' + y + ', 0, 1)',
     //                    'z-index': 99999,
@@ -813,52 +839,50 @@ module.run(['$templateCache', function($templateCache) {
     //                    '-ms-transform': 'matrix(1, 0, 0, 1, ' + x + ', ' + y + ')'
     //                    //,margin: '0'  don't monkey with the margin,
     //                });
-    //            };
+    //            }
 //
-    //            var absorbEvent_ = function (event) {
+    //            function absorbEvent_(event) {
     //                var e = event;//.originalEvent;
     //                e.preventDefault && e.preventDefault();
     //                e.stopPropagation && e.stopPropagation();
     //                e.cancelBubble = true;
     //                e.returnValue = false;
     //                return false;
-    //            };
+    //            }
 //
-    //            initialize();
     //        }
     //    };
-    //}]);
+    //});
 
     thisModule.directive('pipPreventDrag', ['$parse', '$timeout', function ($parse, $timeout) {
         return {
             restrict: 'A',
             link: function (scope, element, attrs) {
-                var initialize = function () {
+                initialize();
 
+                return;
+                //---------------------
+
+                function initialize() {
                     element.attr('pip-draggable', 'false');
                     toggleListeners(true);
-                };
+                }
 
-
-                var toggleListeners = function (enable) {
+                function toggleListeners(enable) {
                     // remove listeners
-
                     if (!enable)return;
                     // add listeners.
                     element.on('mousedown touchstart touchmove touchend touchcancel', absorbEvent_);
-                };
+                }
 
-
-                var absorbEvent_ = function (event) {
+                function absorbEvent_(event) {
                     var e = event.originalEvent;
                     e.preventDefault && e.preventDefault();
                     e.stopPropagation && e.stopPropagation();
                     e.cancelBubble = true;
                     e.returnValue = false;
                     return false;
-                };
-
-                initialize();
+                }
             }
         };
     }]);
