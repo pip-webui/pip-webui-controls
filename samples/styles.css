@@ -52,6 +52,10 @@
 	padding: 16px;
 }
 
+.sample-container .text-input {
+	margin-bottom: 24px!important;
+}
+
 .sample-container .code-block .text-subhead2 {
 	margin: 0px;	
 }
@@ -67,6 +71,9 @@
 .markdown-sample-list.pip-menu {
     width: auto !important;
     position: relative;
+}
+.markdown-sample-list .pip-ref-list-item {
+	margin-left: 16px!important;
 }
 
 /* Styles for tips, quotes, help */

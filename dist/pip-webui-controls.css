@@ -339,6 +339,9 @@ md-list-item .pip-markdown h4 {
 .pip-image-slider {
   position: relative !important;
 }
+.pip-image-slider .pip-animation-block {
+  wifth: 100%!important;
+}
 .pip-image-slider.pip-animation-fading .pip-animation-block {
   position: absolute !important;
   left: 0 !important;
@@ -396,8 +399,11 @@ md-list-item .pip-markdown h4 {
 .pip-toast .pip-text {
   overflow: hidden;
   max-height: 32px;
-  margin-right: 8px;
+  margin-right: 0px;
   vertical-align: middle;
+}
+.pip-toast .pip-toast-button {
+  margin: 0px 0px 0px 8px;
 }
 @media (min-width: 1200px) {
   .pip-toast {

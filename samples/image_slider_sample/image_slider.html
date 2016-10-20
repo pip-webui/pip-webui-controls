@@ -1,28 +1,28 @@
-<h2 class="text-title tm0 bm24">Image slider {{:: sample | translate }}</h2>
+<h2 class="text-title">Image slider {{:: sample | translate }}</h2>
 
 <div>
     <div class="w-stretch layout-column layout-align-center-center">
         <h3 class="text-subhead2 w-stretch">{{::fading | translate }}</h3>
 
         <div pip-image-slider pip-animation-type="'fading'" class="w-stretch" pip-animation-interval="5000">
-            <div class="pip-animation-block w-stretch" ng-repeat="image in images">
+            <div class="pip-animation-block" ng-repeat="image in images">
                 <img src="{{ image.url }}" alt="{{ image.url }}" class="w-stretch"/>
             </div>
         </div>
     </div>
 
     <h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
-    <pre class="text-body1 color-window-bg p16" ng-init="src = '{{ image.url }}'">
-<h3 class="text-subhead2 m0">{{:: 'CODE' | translate}}</h3>
-<code class="language-markup">&lt;div pip-image-slider pip-animation-type="'fading'" class="w-stretch"
-        pip-animation-interval="5000"&gt;
-        &lt;div class="pip-animation-block w-stretch" ng-repeat="image in images"&gt;
-            &lt;img src="{{ src }}" alt="{{ src }}" class="w-stretch"/&gt;
+    <pre class="text-body1 color-window-bg code-block" ng-init="src = '{{ image.url }}'">
+        <h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
+        <code class="language-markup">&lt;div pip-image-slider pip-animation-type="'fading'" class="w-stretch"
+                pip-animation-interval="5000"&gt;
+                &lt;div class="pip-animation-block" ng-repeat="image in images"&gt;
+                    &lt;img src="{{ src }}" alt="{{ src }}" class="w-stretch"/&gt;
+                &lt;/div&gt;
         &lt;/div&gt;
-&lt;/div&gt;
-</code>
+        </code>
     </pre>
-    <md-divider class="tm8 pip-list-divider"></md-divider>
+    <md-divider class="content-divider"></md-divider>
 
     <div class="w-stretch layout-column layout-align-center-center">
         <h3 class="text-subhead2 w-stretch" >{{:: carousel | translate }}</h3>
@@ -30,7 +30,7 @@
         <div pip-image-slider pip-animation-type="'carousel'" id="pip-carousel" class="w-stretch"
              pip-image-slider-index="slider2Index"
              pip-animation-interval="3000">
-            <div class="pip-animation-block w-stretch" ng-repeat="image in images2">
+            <div class="pip-animation-block" ng-repeat="image in images2">
                 <img src="{{ image.url }}" alt="{{ image.url }}" class="w-stretch"/>
             </div>
         </div>
@@ -52,19 +52,20 @@
             <md-icon ng-repeat="image in images2"
                      style="margin: 0px 20px"
                      pip-slider-indicator pip-slider-id="'pip-carousel'"
-                     ng-class="{'color-accent': $index == slider2Index}" ng-attr-pip-slide-to="$index"
+                     ng-class="{'color-accent': $index == slider2Index}" 
+                     ng-attr-pip-slide-to="$index"
                      md-svg-icon="{{ $index == slider2Index ? 'icons:radio-on' :'icons:radio-off' }}">
             </md-icon>
         </div>
     </div>
     <h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
-    <pre class="text-body1 color-window-bg p16"
+    <pre class="text-body1 color-window-bg code-block"
          ng-init="src = '{{ image.url }}'">
-<h3 class="text-subhead2 m0">{{:: 'CODE' | translate}}</h3>
+<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
 <code class="language-markup">&lt;div pip-image-slider pip-animation-type="'carousel'" id="pip-carousel" class="w-stretch"
      pip-image-slider-index="slider2Index"
      pip-animation-interval="3000"&gt;
-    &lt;div class="pip-animation-block w-stretch" ng-repeat="image in images2"&gt;
+    &lt;div class="pip-animation-block" ng-repeat="image in images2"&gt;
         &lt;img src="{{ src }}" alt="{{ src }}" class="w-stretch"/&gt;
     &lt;/div&gt;
 &lt;/div&gt;

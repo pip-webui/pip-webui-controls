@@ -1,24 +1,24 @@
 <div>
-    <h2 class="text-title tm0 bm24">Markdown sample:</h2>
+    <h2 class="text-title">Markdown sample:</h2>
     <h3 class="text-subhead2">Common sample: </h3>
 
-    <textarea class="w-stretch bm24" placeholder="Enter text..." ng-model="data.text" rows="22">
+    <textarea class="w-stretch text-input" placeholder="Enter text..." ng-model="data.text" rows="22">
     </textarea>
 
     <pip-markdown pip-text="data.text" pip-rebind="true">
     </pip-markdown>
 
-    <pre class="color-window-bg p16">
-<h3 class="text-subhead2 m0">Code</h3>
+    <pre class="color-window-bg code-block">
+<h3 class="text-subhead2">Code</h3>
 <code class="language-markup">&lt;pip-markdown pip-text="data.text" pip-rebind="true"&gt;
 &lt;/pip-markdown&gt;</code>
     </pre>
 
-    <md-divider class="tm8 pip-list-divider"></md-divider>
+    <md-divider class="content-divider"></md-divider>
 
     <h3 class="text-subhead2">Examples limited lines:</h3>
 
-    <textarea class="w-stretch bm24" placeholder="Enter text..." ng-model="data.text2" rows="8">
+    <textarea class="w-stretch text-input" placeholder="Enter text..." ng-model="data.text2" rows="8">
     </textarea>
     <div class="flex layout-row">
         <div class="flex">
@@ -37,8 +37,8 @@
             </pip-markdown>
         </div>
     </div>
-    <pre class="text-body1 color-window-bg p16">
-<h3 class="text-subhead2 m0">Code</h3>
+    <pre class="text-body1 color-window-bg code-block">
+<h3 class="text-subhead2">Code</h3>
 <code class="language-markup">&lt;div class="flex layout-row"&gt;
     &lt;div class="flex"&gt;
         &lt;h3 class="text-subhead2"&gt;5 lines:&lt;/h3&gt;
@@ -57,13 +57,13 @@
     &lt;/div&gt;
 &lt;/div&gt;</code>
     </pre>
-    <md-divider class="tm8 pip-list-divider"></md-divider>
+    <md-divider class="content-divider"></md-divider>
 
     <h3 class="text-subhead2">Sample capital in md-list:</h3>
 
     <md-list class="pip-menu markdown-sample-list pip-ref-list">
 
-        <md-list-item class="pip-ref-list-item lp16 layout-row layout-align-start-start" md-ink-ripple>
+        <md-list-item class="pip-ref-list-item  layout-row layout-align-start-start" md-ink-ripple>
 
             <img src="https://static.pexels.com/photos/204262/pexels-photo-204262-large.jpeg"
                  class="pip-pic">
@@ -78,7 +78,7 @@
                     </span>
                     </div>
 
-                    <md-chip class="pip-type-chip pip-type-chip-right md-chip">
+                    <md-chip class="xxxpip-type-chip xxxpip-type-chip-right md-chip">
                         <div class="pip-text">INFO</div>
                     </md-chip>
                 </div>
@@ -90,7 +90,7 @@
             </div>
         </md-list-item>
 
-        <md-list-item class="pip-ref-list-item lp16 layout-row layout-align-start-start" md-ink-ripple>
+        <md-list-item class="pip-ref-list-item layout-row layout-align-start-start" md-ink-ripple>
 
             <img src="https://static.pexels.com/photos/204262/pexels-photo-204262-large.jpeg"
                  class="pip-pic">
@@ -115,7 +115,7 @@
             </div>
         </md-list-item>
 
-        <md-list-item class="pip-ref-list-item lp16 layout-row layout-align-start-start"
+        <md-list-item class="pip-ref-list-item layout-row layout-align-start-start"
                       md-ink-ripple>
 
             <img src="https://static.pexels.com/photos/160225/pexels-photo-160225-large.jpeg"
@@ -133,10 +133,10 @@
 
     </md-list>
 
-    <pre class="text-body1 color-window-bg p16">
-<h3 class="text-subhead2 m0">Code</h3>
+    <pre class="text-body1 color-window-bg code-block">
+<h3 class="text-subhead2">Code</h3>
 <code class="language-markup">&lt;md-list&gt;
-    &lt;md-list-item class="pip-ref-list-item lp16 layout-row layout-align-start-start" md-ink-ripple&gt;
+    &lt;md-list-item class="pip-ref-list-item layout-row layout-align-start-start" md-ink-ripple&gt;
         &lt;img src="http://any_source.jpg"
              class="pip-pic"&gt;
         &lt;div class="pip-content"&gt;
@@ -149,14 +149,14 @@
 &lt;/md-list&gt;</code>
     </pre>
 
-    <md-divider class="tm8 pip-list-divider"></md-divider>
+    <md-divider class="content-divider"></md-divider>
 
     <h3 class="text-subhead2">Interactive sample md-list:</h3>
     <p>Change text: </p>
-    <textarea class="w-stretch bm24" placeholder="Enter text..." ng-model="item3.text" rows="6">
+    <textarea class="w-stretch text-input" placeholder="Enter text..." ng-model="item3.text" rows="6">
     </textarea>
     <md-list class="pip-menu markdown-sample-list pip-ref-list">
-        <md-list-item class="pip-ref-list-item lp16 layout-row layout-align-start-start" md-ink-ripple>
+        <md-list-item class="pip-ref-list-item layout-row layout-align-start-start" md-ink-ripple>
 
             <img src="https://static.pexels.com/photos/65228/landscape-quairaing-scotland-isle-of-skye-65228-large.jpeg"
                  class="pip-pic">
@@ -172,11 +172,11 @@
         </md-list-item>
     </md-list>
 
-    <md-divider class="tm8 pip-list-divider"></md-divider>
+    <md-divider class="content-divider"></md-divider>
 
     <h3 class="text-subhead2"> SAMPLE_WITH_ATTACHMENTS </h3>
     <md-list class="pip-menu markdown-sample-list pip-ref-list">
-        <md-list-item class="pip-ref-list-item lp16 layout-row layout-align-start-start" md-ink-ripple>
+        <md-list-item class="pip-ref-list-item layout-row layout-align-start-start" md-ink-ripple>
 
             <div class="pip-content">
                 <p class="pip-title"></p>
