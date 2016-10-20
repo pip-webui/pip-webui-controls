@@ -11,13 +11,29 @@
     thisModule.service('$pipImageSlider',
         function ($timeout) {
 
-            var ANIMATION_DURATION = 550;
+            var ANIMATION_DURATION = 550,
+                sliders = {};
 
             return {
                 nextCarousel: nextCarousel,
                 prevCarousel: prevCarousel,
-                toBlock: toBlock
+                toBlock: toBlock,
+                registerSlider: register,
+                removeSlider: remove,
+                getSliderScope: getSlider
             };
+
+            function register(sliderId, sliderScope) {
+                sliders[sliderId] = sliderScope;
+            }
+            
+            function remove(sliderId) {
+                delete sliders[sliderId];
+            }
+
+            function getSlider(sliderId) {
+                return sliders[sliderId];
+            }
 
             function nextCarousel(nextBlock, prevBlock) {
                 nextBlock.removeClass('animated').addClass('pip-next');

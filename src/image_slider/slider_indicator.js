@@ -12,7 +12,7 @@
         function () {
             return {
                 scope: false,
-                controller: function ($scope, $element, $parse, $attrs) {
+                controller: function ($scope, $element, $parse, $attrs, $pipImageSlider) {
                     var sliderId = $parse($attrs.pipSliderId)($scope),
                         slideTo = $parse($attrs.pipSlideTo)($scope);
 
@@ -22,7 +22,7 @@
                             return;
                         }
 
-                        angular.element(document.getElementById(sliderId)).scope().slideTo(slideTo);
+                        $pipImageSlider.getSliderScope(sliderId).slideTo(slideTo);
                     });
                 }
             };

@@ -11,10 +11,11 @@
     thisModule.directive('pipImageSlider',
         function () {
             return {
-                scope: false,
+                scope: {
+                    sliderIndex: '=pipImageIndex'
+                },
                 controller: function ($scope, $element, $attrs, $parse, $timeout, $interval, $pipImageSlider) {
                     var blocks,
-                        indexSetter = $parse($attrs.pipImageSliderIndex).assign,
                         index = 0, newIndex,
                         direction,
                         type = $parse($attrs.pipAnimationType)($scope),
@@ -85,11 +86,11 @@
                         direction = nextIndex > index ? 'next' : 'prev';
                         throttled();
                     };
+                    
+                    if ($attrs.id) $pipImageSlider.registerSlider($attrs.id, $scope);
 
                     function setIndex() {
-                        if (indexSetter) {
-                            indexSetter($scope, index);
-                        }
+                        if ($attrs.pipImageIndex) $scope.sliderIndex = index;
                     }
 
                     function startInterval() {
@@ -106,6 +107,7 @@
 
                     $element.on('$destroy', function () {
                         stopInterval();
+                        $pipImageSlider.removeSlider($attrs.id);
                     });
 
                     function restartInterval() {
