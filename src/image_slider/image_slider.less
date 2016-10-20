@@ -2,7 +2,7 @@
   position: relative !important;
 
  .pip-animation-block {
-   wifth: 100%!important;
+   width: 100%!important;
  }
 
   &.pip-animation-fading {
@@ -33,21 +33,18 @@
 
     .pip-animation-block {
       position: absolute !important;
-      left: -100%;
+      transform: translate(-100%, 0);
 
       &.pip-prev {
-        left: -100% !important;
+        transform: translate(-100%, 0);
       }
 
       &.pip-next {
-        left: 100% !important;
+        transform: translate(100%, 0);
       }
 
       &.pip-show {
-        left: 0 !important;
-        top: 0 !important;
-        right: 0 !important;
-        bottom: 0 !important;
+        transform: translate(0, 0) !important;
       }
 
       &.animated {

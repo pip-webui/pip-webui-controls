@@ -36,8 +36,8 @@
             }
 
             function nextCarousel(nextBlock, prevBlock) {
-                nextBlock.removeClass('animated').addClass('pip-next');
-
+                nextBlock.addClass('pip-next');
+                
                 $timeout(function () {
                     nextBlock.addClass('animated').addClass('pip-show').removeClass('pip-next');
                     prevBlock.addClass('animated').removeClass('pip-show');
@@ -45,15 +45,9 @@
             }
 
             function prevCarousel(nextBlock, prevBlock) {
-                nextBlock.removeClass('animated');
-
                 $timeout(function () {
                     nextBlock.addClass('animated').addClass('pip-show');
                     prevBlock.addClass('animated').addClass('pip-next').removeClass('pip-show');
-
-                    $timeout(function () {
-                        prevBlock.removeClass('pip-next').removeClass('animated');
-                    }, ANIMATION_DURATION - 100);
                 }, 100);
             }
 
@@ -63,19 +57,20 @@
                     nextBlock = $(blocks[blockIndex]);
 
                 if (type === 'carousel') {
-                    $(blocks).removeClass('pip-next').removeClass('pip-prev');
+                    $(blocks).removeClass('pip-next').removeClass('pip-prev').removeClass('animated');
 
-                    if (direction && direction === 'prev') {
-                        prevCarousel(nextBlock, prevBlock);
-                    }
-                    if (direction && direction === 'next') {
-                        nextCarousel(nextBlock, prevBlock);
-                    }
-                    if ((!direction || direction !== 'next' && direction !== 'prev') &&
-                        nextIndex && nextIndex < oldIndex) {
-                        prevCarousel(nextBlock, prevBlock);
+                    if (direction && (direction === 'prev' || direction === 'next')) {
+                        if (direction === 'prev') {
+                            prevCarousel(nextBlock, prevBlock);
+                        } else {
+                            nextCarousel(nextBlock, prevBlock);
+                        }
                     } else {
-                        nextCarousel(nextBlock, prevBlock);
+                        if (nextIndex && nextIndex < oldIndex) {
+                            prevCarousel(nextBlock, prevBlock);
+                        } else {
+                            nextCarousel(nextBlock, prevBlock);
+                        }
                     }
                 } else {
                     prevBlock.addClass('animated').removeClass('pip-show');

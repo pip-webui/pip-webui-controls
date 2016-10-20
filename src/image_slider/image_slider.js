@@ -60,7 +60,7 @@
                         $pipImageSlider.toBlock(type, blocks, index, newIndex, direction);
                         index = newIndex;
                         setIndex();
-                    }, 600);
+                    }, 700);
 
                     $scope.nextBlock = function () {
                         restartInterval();
