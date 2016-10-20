@@ -1,36 +1,36 @@
-<h2 class="text-title tm0 bm24">Toasts {{:: 'SAMPLE' | translate }}</h2>
-<h3 class="text-subhead2">{{:: 'SIMPLE' | translate }}</h3>
+<h2 class="text-title tm0 bm24">Toasts {{:: sample | translate }}</h2>
+<h3 class="text-subhead2">{{:: simple | translate }}</h3>
 <md-button class="lm0 md-raised md-accent flat"
-           ng-click="onNotificationShow($event)">{{::'SHOW_NOTIFICATION' | translate}}
+           ng-click="onNotificationShow($event)">{{::showNotification | translate}}
 </md-button>
 
 <pre class="text-body1 color-window-bg code-block">
-<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
+<h3 class="text-subhead2">{{:: code | translate}}</h3>
 <code class="language-js">pipToasts.showNotification(pipTranslate.translate('NOTIFICATION') + messageCount, ['accept', 'reject'])</code>
 </pre>
 
 <md-divider class="content-divider"></md-divider>
-<h3 class="text-subhead2">{{:: 'SMALL' | translate }}</h3>
+<h3 class="text-subhead2">{{:: textSmall | translate }}</h3>
 <md-button class="lm0 md-raised md-accent flat"
-           ng-click="onNotificationSmallShow($event)">{{::'SHOW_SMALL_NOTIFICATION' | translate}}
+           ng-click="onNotificationSmallShow($event)">{{::smallNotification | translate}}
 </md-button>
 
-<pre class="text-body1 color-window-bg code-block"><h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
+<pre class="text-body1 color-window-bg code-block"><h3 class="text-subhead2">{{:: code | translate}}</h3>
 <code class="language-js">pipToasts.showNotification(pipTranslate.translate('NOTIFICATION') + 'Small' + messageCount);</code>
 </pre>
 
 <md-divider class="content-divider"></md-divider>
-<h3 class="text-subhead2">{{:: 'NOTIFICATIONS_ERROR' | translate }}</h3>
+<h3 class="text-subhead2">{{:: notificationError| translate }}</h3>
 <md-button class="lm0 md-raised md-accent flat" ng-click="onErrorShow($event)">
-    {{::'SHOW_ERROR' | translate}}
+    {{::showError | translate}}
 </md-button>
 
 <pre class="text-body1 color-window-bg code-block">
-<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
+<h3 class="text-subhead2">{{:: code | translate}}</h3>
 <code class="language-js">var error = {
     'path': '/api/1.0/parties/:id/followers',
     'method': 'POST',
-    'code': 400,
+    code: 400,
     'name': 'Bad Request',
     'error': 1402,
     'message': 'Missing party information'
@@ -40,12 +40,23 @@ pipToasts.showError(pipTranslate.translate('ERROR') + errorCount, null, null, nu
         </pre>
 
 <md-divider class="content-divider"></md-divider>
-<h3 class="text-subhead2">{{:: 'WITHOUT_ACTIONS' | translate }}</h3>
+<h3 class="text-subhead2">{{:: withoutActions | translate }}</h3>
 <md-button class="lm0 md-raised md-accent flat"
-           ng-click="onNotificationHideActions($event)">{{::'SHOW_NOTIFICATION_WITHOUT_ACTIONS' | translate}}
+           ng-click="onNotificationHideActions($event)">{{::showNotificationWithoutAction | translate}}
 </md-button>
 
 <pre class="text-body1 color-window-bg code-block">
-<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
+<h3 class="text-subhead2">{{:: code | translate}}</h3>
 <code class="language-js">pipToasts.showNotification(pipTranslate.translate('NOTIFICATION') + messageCount, [])</code>
 </pre>
+                $scope.showNotification = 'Show notification';
+                $scope.showError = 'Show error';
+                $scope.errorText = 'New error ';
+                $scope.notificationText  = 'New notification ';
+                $scope.simple = 'Simple';
+                $scope.textSmall = 'Small';
+                $scope.notificationError = 'Error';
+                $scope.withoutActions = 'Without actions';
+                $scope.smallNotification = 'Show small notification';
+                $scope.showNotificationWithoutAction = 'Show notification without actions';
+                $scope.sample = 'Sample';

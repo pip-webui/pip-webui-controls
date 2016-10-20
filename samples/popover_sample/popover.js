@@ -27,8 +27,8 @@
                     TEXT_POPOVER: 'Правдоподобно итерацию бесшовных электронных услуг без масштаба предприятия ниши markets.' +
                     'Synergistically позволяют методы B2B расширения возможностей визави как раз вовремя, мета-услуг. это ультрасовременные.',
                     CLICK_HELP: 'Нажмите кнопку помощи',
-                    SAMPLE: 'Sample',  
-                    CODE: 'Code'                                      
+                    SAMPLE: 'Пример',  
+                    CODE: 'Пример кода'                                      
                 });
                 $scope.title = pipTranslate.translate('TITLE_POPOVER');
                 $scope.content = pipTranslate.translate('TEXT_POPOVER');
@@ -78,7 +78,7 @@
                     template: '<div class="pip-title text-subhead2" style="margin: 24px 24px 16px 24px;">{{ title }}</div>' +
                         '<div class="pip-content pip-popover-content" style="padding: 0px 24px; margin-bottom: 64px;">' +
                         '<div class="pip-pic" style="margin-bottom: 16px;"></div>{{ content }}</div>' +
-                        '<div class="pip-popover-footer"  style="padding: 8px 16px 8px 24px; " layout="row" layout-align="start center">' +
+                        '<div class="pip-popover-footer layout-row layout-align-start-center"  style="padding: 8px 16px 8px 24px; ">' +
                         '<div class="flex"></div><md-button ng-click="onNextClick()">NEXT</md-button></div>'
                 });
             };
@@ -104,7 +104,7 @@
                     },
                     template: '<div class="pip-content pip-popover-content text-subhead2" style="margin: 24px 24px 16px 24px;">' +
                         '{{ content }}</div>' +
-                        '<div class="pip-popover-footer" layout="row" layout-align="start center">' +
+                        '<div class="pip-popover-footer layout-row layout-align-start-center">' +
                         '<div class="text-body1">{{ author }}</div><div class="flex"></div><md-button ng-click="onNextClick()">NEXT</md-button></div>'
                 });
             };

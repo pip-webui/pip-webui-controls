@@ -55,6 +55,11 @@
 .sample-container .text-input {
 	margin-bottom: 24px!important;
 }
+.sample-container .popover-text-container {
+	width: 50%!important;
+	padding-left: 0px;
+	margin-bottom: 24px!important;
+}
 
 .sample-container .code-block .text-subhead2 {
 	margin: 0px;	

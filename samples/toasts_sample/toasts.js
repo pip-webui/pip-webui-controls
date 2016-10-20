@@ -36,7 +36,67 @@
     });*/
 
     thisModule.controller('ToastsController',
-        function ($scope, pipToasts,  $timeout) { //pipTranslate,  pipAppBar,
+        function ($scope, pipToasts,  $timeout, $injector) { //pipTranslate,  pipAppBar,
+
+            var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
+
+            if (pipTranslate) {
+                pipTranslate.translations('en', {
+                    SHOW_NOTIFICATION: 'Show notification',
+                    SHOW_ERROR: 'Show error',
+                    ERROR: 'New error ',
+                    NOTIFICATION: 'New notification ',
+                    SIMPLE: 'Simple',
+                    SMALL: 'Small',
+                    NOTIFICATIONS_ERROR: 'Error',
+                    WITHOUT_ACTIONS: 'Without actions',
+                    SHOW_SMALL_NOTIFICATION: 'Show small notification',
+                    SHOW_NOTIFICATION_WITHOUT_ACTIONS: 'Show notification without actions',
+                    SAMPLE: 'Sample',
+                    CODE: 'Code'                    
+                });
+                pipTranslate.translations('ru', {
+                    SHOW_NOTIFICATION: 'Показать оповещение',
+                    SHOW_ERROR: 'Показать ошибку',
+                    ERROR: 'Новая ошибка ',
+                    NOTIFICATION: 'Новое оповещение',
+                    SIMPLE: 'Простая',
+                    SMALL: 'Маленькая',
+                    NOTIFICATIONS_ERROR: 'Ошибка',
+                    WITHOUT_ACTIONS: 'Без действий',
+                    SHOW_SMALL_NOTIFICATION: 'Показать маленькую нотифкацию',
+                    SHOW_NOTIFICATION_WITHOUT_ACTIONS: 'Показать нотификацию без действий',
+                    SAMPLE: 'Пример',  
+                    CODE: 'Пример кода'  
+                    
+                });
+                $scope.showNotification = pipTranslate.translate('SHOW_NOTIFICATION');
+                $scope.showError = pipTranslate.translate('SHOW_ERROR');
+                $scope.errorText = pipTranslate.translate('ERROR');
+                $scope.notificationText  = pipTranslate.translate('NOTIFICATION');
+                $scope.simple = pipTranslate.translate('SIMPLE');
+                $scope.textSmall = pipTranslate.translate('SMALL');
+                $scope.notificationError = pipTranslate.translate('NOTIFICATIONS_ERROR');
+                $scope.withoutActions = pipTranslate.translate('WITHOUT_ACTIONS');
+                $scope.smallNotification = pipTranslate.translate('SHOW_SMALL_NOTIFICATION');
+                $scope.showNotificationWithoutAction = pipTranslate.translate('SHOW_NOTIFICATION_WITHOUT_ACTIONS');
+                $scope.sample = pipTranslate.translate('SAMPLE');
+                $scope.code = pipTranslate.translate('CODE');
+            } else {
+                $scope.showNotification = 'Show notification';
+                $scope.showError = 'Show error';
+                $scope.errorText = 'New error ';
+                $scope.notificationText  = 'New notification ';
+                $scope.simple = 'Simple';
+                $scope.textSmall = 'Small';
+                $scope.notificationError = 'Error';
+                $scope.withoutActions = 'Without actions';
+                $scope.smallNotification = 'Show small notification';
+                $scope.showNotificationWithoutAction = 'Show notification without actions';
+                $scope.sample = 'Sample';
+                $scope.code = 'Code';                 
+            }
+
 
             $timeout(function() {
                 $('pre code').each(function(i, block) {
@@ -47,10 +107,6 @@
             var
                 messageCount = 0,
                 errorCount = 0;
-            /*pipAppBar.hideShadow();
-            pipAppBar.showMenuNavIcon();
-            pipAppBar.showLanguage();
-            pipAppBar.showTitleText('CONTROLS');*/
             
             $scope.onNotificationShow = function () {
                 messageCount++;

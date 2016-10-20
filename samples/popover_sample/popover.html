@@ -1,79 +1,82 @@
-<h2 class="text-title tm0 bm24">Popover {{::sample }}:</h2>
+<h2 class="text-title">Popover {{::sample }}:</h2>
 <h3 class="text-subhead2">{{::showPopover}}</h3>
-<md-button class="lm0 md-raised md-accent flat" ng-click="showTip()">Show Tip</md-button>
+
+<md-button class="md-raised md-accent flat" ng-click="showTip()">Show Tip</md-button>
 <md-button class="md-raised md-accent flat" ng-click="showQuote()">Show Quote</md-button>
-<md-input-container class="w-stretch bm0">
+
+<md-input-container class="w-stretch">
     <textarea name="" ng-model="content" id="" cols="30" rows="10"></textarea>
 </md-input-container>
 
 <pre class="text-body1 color-window-bg code-block" ng-init="titleSample = '{{ title }}'; contentSample = '{{ content }}'">
-<h3 class="text-subhead2">{{::code}}</h3>
-<code class="language-js">pipPopover.show({
-       class: 'pip-tip',
-       locals: {
-           title: $scope.title,
-           content: $scope.content
-       },
-       cancelCallback: function () {
-           console.log('backdrop clicked');
-       },
-       controller: function($scope, $timeout) {
-           $scope.title = $scope.locals.title;
-           $scope.content = $scope.locals.content;
-           $scope.image = 'https://static.pexels.com/photos/204262/pexels-photo-204262-large.jpeg';
+    <h3 class="text-subhead2">{{::code}}</h3>
+    <code class="language-js">pipPopover.show({
+        class: 'pip-tip',
+        locals: {
+            title: $scope.title,
+            content: $scope.content
+        },
+        cancelCallback: function () {
+            console.log('backdrop clicked');
+        },
+        controller: function($scope, $timeout) {
+            $scope.title = $scope.locals.title;
+            $scope.content = $scope.locals.content;
+            $scope.image = 'https://static.pexels.com/photos/204262/pexels-photo-204262-large.jpeg';
 
-           $scope.onNextClick = function () {
-               console.log('on next click');
-               pipPopoverService.hide();
-           };
+            $scope.onNextClick = function () {
+                console.log('on next click');
+                pipPopoverService.hide();
+            };
 
-           $timeout(function() {
-               $('.pip-popover').find('.pip-pic').css('background-image', 'url(' + $scope.image + ')');
-           }, 200);
-       },
-       template: '&lt;div class="pip-title m24 bm16 text-subhead2"&gt;
-           + {{ titleSample }}&lt;/div&gt;'
-           + '&lt;div class="pip-content pip-popover-content p24 tp0 bp0 bm64"&gt;'
-           + '&lt;div class="pip-pic bm16"&gt;&lt;/div&gt;
-           + {{ contentSample }}&lt;/div&gt;'
-           + '&lt;div class="pip-footer p24 tp8 bp8 rp16 position-bottom layout-row layout-align-start-center"&gt;'
-           + '&lt;div class="flex"&gt;&lt;/div&gt;&lt;md-button ng-click="onNextClick()"&gt;NEXT&lt;/md-button&gt;&lt;/div&gt;'
-   });
-</code>
-        </pre>
+            $timeout(function() {
+                $('.pip-popover').find('.pip-pic').css('background-image', 'url(' + $scope.image + ')');
+            }, 200);
+        },
+        template: '&lt;div class="pip-title text-subhead2" style="margin: 24px 24px 16px 24px;"&gt;
+            + {{ titleSample }}&lt;/div&gt;'
+            + '&lt;div class="pip-content pip-popover-content" style="padding: 0px 24px; margin-bottom: 64px;"&gt;'
+            + '&lt;div class="pip-pic" style="margin-bottom: 16px;"&gt;&lt;/div&gt;
+            + {{ contentSample }}&lt;/div&gt;'
+            + '&lt;div class="pip-popover-footer layout-row layout-align-start-center" style="padding: 8px 16px 8px 24px; "&gt;'
+            + '&lt;div class="flex"&gt;&lt;/div&gt;&lt;md-button ng-click="onNextClick()"&gt;NEXT&lt;/md-button&gt;&lt;/div&gt;'
+    });
+    </code>
+</pre>
 
-<md-input-container class="w50-stretch lp0" md-no-float="true">
+<md-input-container class="popover-text-container" md-no-float="true">
     <input type="text" placeholder="{{ ::clickHelp | translate }}" ng-model="content1"/>
     <md-icon class="position-right" style="right: initial; left: initial;" md-svg-icon="icons:help" ng-click="showHelp($event, content1)"></md-icon>
 </md-input-container>
 
-<md-input-container class="w50-stretch lp0 bm0" md-no-float="true">
+<md-input-container class="popover-text-container" md-no-float="true">
     <input type="text" placeholder="{{ ::'CLICK_HELP' | translate }}" ng-model="content2"/>
     <md-icon class="position-right" style="right: initial; left: initial;" md-svg-icon="icons:help" ng-click="showHelp($event, content2)"></md-icon>
 </md-input-container>
-<h3 class="text-subhead2 tm0">{{::code}}</h3>
-<pre class="text-body1 color-window-bg code-block">
-<h3 class="text-subhead2">{{::code}}</h3>
-<code class="language-js">pipPopover.show({
-    responsive: false,
-    element: $event.currentTarget,
-    class: 'pip-help',
-    locals: {
-      content: content || $scope.content
-    },
-    cancelCallback: function () {
-        console.log('backdrop clicked');
-    },
-    controller: function($scope) {
-        $scope.content = $scope.locals.content;
 
-        $scope.onNextClick = function () {
-            console.log('on next click');
-            pipPopoverService.hide();
-        };
-    },
-    template: '&lt;div class="pip-title h24"&gt;&lt;/div&gt;&lt;div class="pip-content pip-popover-content lp24 rp24"&gt;'
-    + '{{ contentSample }}&lt;/div&gt;&lt;div class="h24 pip-footer"&gt;&lt;/div&gt;'
-});
-</code>
-        </pre>
+<h3 class="text-subhead2">
+    {{::code}}</h3>
+<pre class="text-body1 color-window-bg code-block">
+    <code class="language-js">pipPopover.show({
+        responsive: false,
+        element: $event.currentTarget,
+        class: 'pip-help',
+        locals: {
+        content: content || $scope.content
+        },
+        cancelCallback: function () {
+            console.log('backdrop clicked');
+        },
+        controller: function($scope) {
+            $scope.content = $scope.locals.content;
+
+            $scope.onNextClick = function () {
+                console.log('on next click');
+                pipPopoverService.hide();
+            };
+        },
+        template: '&lt;div class="pip-title" style="height: 24px;"&gt;&lt;/div&gt;&lt;div class="pip-content pip-popover-content" style="padding: 0px 24px;"&gt;'
+        + '{{ contentSample }}&lt;/div&gt;&lt;div style="height: 24px;"&gt;&lt;/div&gt;'
+    });
+    </code>
+</pre>
