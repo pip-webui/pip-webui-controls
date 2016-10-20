@@ -28,7 +28,7 @@
         <h3 class="text-subhead2 w-stretch" >{{:: carousel | translate }}</h3>
 
         <div pip-image-slider pip-animation-type="'carousel'" id="pip-carousel" class="w-stretch"
-             pip-image-slider-index="slider2Index"
+             pip-image-index="slider2Index"
              pip-animation-interval="3000">
             <div class="pip-animation-block" ng-repeat="image in images2">
                 <img src="{{ image.url }}" alt="{{ image.url }}" class="w-stretch"/>
@@ -45,9 +45,7 @@
             </md-button>
         </div>
 
-
         <h3 class="text-subhead2">{{:: indicator | translate }}</h3>
-
         <div class="w-stretch layout-row layout-align-center-center">
             <md-icon ng-repeat="image in images2"
                      style="margin: 0px 20px"

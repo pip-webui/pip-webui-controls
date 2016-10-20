@@ -12,7 +12,7 @@
         function () {
             return {
                 scope: {},
-                controller: function ($scope, $element, $parse, $attrs) {
+                controller: function ($scope, $element, $parse, $attrs, $pipImageSlider) {
                     var type = $parse($attrs.pipButtonType)($scope),
                         sliderId = $parse($attrs.pipSliderId)($scope);
 
@@ -21,7 +21,7 @@
                             return;
                         }
 
-                        angular.element(document.getElementById(sliderId)).scope()[type + 'Block']();
+                        $pipImageSlider.getSliderScope(sliderId)[type + 'Block']();
                     });
                 }
             };
