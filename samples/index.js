@@ -14,7 +14,7 @@
             'appControls.Markdown', 'appControls.RefExpander',
             'appControls.Popover', 'appControls.ImageSlider', 'appControls.Progress',
             'appControls.Empty', 'appControls.UnsavedChanges', 
-            'pipControls.Draggable', 'pipControls.DraggableInput'
+            'pipControls.Draggable', 'pipControls.DraggableInput', 'appControls.Hint'
 
         ]
     );
@@ -63,7 +63,11 @@
         { 
             title: 'Draggable Input', state: 'draggable_input', url: '/draggable_input', 
             controller: 'DraggableInputController', templateUrl: 'draggable_sample/draggable_input.html' 
-        }
+        }, 
+        { 
+            title: 'Hint', state: 'hint', url: '/hint', 
+            controller: 'HintController', templateUrl: 'hint_sample/hint.html' 
+        }        
     ];
 
     // Configure application services before start
