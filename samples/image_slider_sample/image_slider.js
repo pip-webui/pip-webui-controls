@@ -14,26 +14,30 @@
                     'CAROUSEL': 'Carousel',
                     'PREV_NEXT_BUTTONS': 'Previous and next slider buttons',
                     'SLIDER_INDICATORS': 'Image slider indicators',
-                    'SAMPLE': 'Sample'
+                    'SAMPLE': 'Sample',
+                    CODE: 'Code'                    
                 });
                 pipTranslate.translations('ru', {
                     'FADING': 'Затухание',
                     'CAROUSEL': 'Карусель',
                     'PREV_NEXT_BUTTONS': 'Кнопки для смены изображения вперед и назад',
                     'SLIDER_INDICATORS': 'Индикаторы слайдера изображений',
-                    'SAMPLE': 'Пример'
+                    'SAMPLE': 'Пример',
+                    CODE: 'Пример кода'                    
                 });
                 $scope.fading = pipTranslate.translate('FADING');
                 $scope.carousel = pipTranslate.translate('CAROUSEL');
                 $scope.controlButton = pipTranslate.translate('PREV_NEXT_BUTTONS');
                 $scope.indicator = pipTranslate.translate('SLIDER_INDICATORS');
                 $scope.sample = pipTranslate.translate('SAMPLE');
+                $scope.code = pipTranslate.translate('CODE');
             } else {
                 $scope.fading = 'Fading';
                 $scope.carousel = 'Carousel';
                 $scope.controlButton = 'Previous and next slider buttons';
                 $scope.indicator = 'Image slider indicators';
                 $scope.sample = 'Sample';
+                $scope.code = 'Code';
             }
 
             $timeout(function() {

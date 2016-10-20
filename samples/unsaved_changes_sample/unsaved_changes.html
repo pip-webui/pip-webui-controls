@@ -1,6 +1,8 @@
-<p>{{ ::try | translate }}</p>
+<p>
+    {{ ::try | translate }}
+</p>
 <pip-unsaved-changes pip-unsaved-changes-available="isAvailable()" pip-unsaved-changes-message="{{ message }}"></pip-unsaved-changes>
-<md-input-container class="w50-stretch bm0">
+<md-input-container class="popover-text-container">
     <label >{{ ::text | translate }}</label>
     <input  ng-model="message" required/>
 </md-input-container>

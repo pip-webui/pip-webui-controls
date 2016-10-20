@@ -24,7 +24,7 @@
                     SHOW_PROGRESS: 'Показать progress ring',
                     HIDE_PROGRESS: 'Спрятать progress ring',
                     SAMPLE: 'Пример',
-                    CODE: 'Код'                    
+                    CODE: 'Пример кода'                    
                 });
                 $scope.showProgress = pipTranslate.translate('SHOW_PROGRESS');
                 $scope.hideProgress = pipTranslate.translate('HIDE_PROGRESS');
