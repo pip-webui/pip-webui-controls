@@ -169,10 +169,10 @@
                     };
 
                     function saveElementStyles() {
-                        _elementStyle.left = element.css('css');
-                        _elementStyle.top = element.css('top');
+                        _elementStyle.left = element.css('css') || 0;
+                        _elementStyle.top = element.css('top') || 0;
                         _elementStyle.position = element.css('position');
-                        _elementStyle.width = element.css('width');                        
+                        _elementStyle.width = element.css('width');    
                     }
 
                     var cancelPress = function () {
