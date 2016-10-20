@@ -11,7 +11,9 @@
             $scope.item = {
                 name: 'Name parent goal or vision',
                 status1: 'Status1',
-                status2: 'Status2'
+                status2: 'Status2',
+                text: 'Intrinsicly transform virtual methodologies after granular niche markets. Assertively customize team building total linkage after inexpensive core competencies. Holisticly redefine 2.0 supply chains whereas best-of-breed "outside the box" thinking.' + 
+                    'Authoritatively expedite real-time methodologies after alternative synergy. Appropriately predominate backend Authoritatively expedite real-time methodologies after alternative synergy. Appropriately predominate backend'
             };
 
             $scope.item1 = {

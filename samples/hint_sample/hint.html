@@ -1,7 +1,24 @@
 <p class="text-title layout-row layout-align-start-center">
-    Hint control.
+    Hints
 </p>
 
 <p class="text-subhead2 layout-row layout-align-start-center">
     Example
 </p>
+
+<form name="form" novalidate>
+    <md-input-container >
+        <label>Email</label>
+        <input name="email" type="email" ng-model="data.email" step="any"
+               tabindex="1"/>
+        <div class="hint" ng-show="!data.email">Please, enter email</div>
+
+    </md-input-container>
+    <md-input-container >
+        <label>Password</label>
+        <input name="password" ng-disabled="transaction.busy()"
+               type="password" tabindex="2" ng-model="data.password"
+               minlength="6"/>
+        <div class="hint" ng-show="!data.password">Minimum 6 symbols</div>
+    </md-input-container>
+</form>

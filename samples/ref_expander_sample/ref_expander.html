@@ -9,7 +9,7 @@
 <img src="http://i.imgur.com/uy5OKDg.png" style="margin-bottom: 24px;">
 
 <div class="pip-ref-expander layout-row layout-align-start-center">
-    <md-button class="flex">
+    <md-button class="flex" ng-click="open = !open">
         <div class="layout-row layout-align-start-center">
             <img src="images/ES_Goals.svg" class="pip-pic" ng-click="showAlert($event)">
             <div class="pip-content flex">
@@ -17,13 +17,16 @@
 
                 <p class="pip-subtitle">{{item.status1}} {{item.status2}}</p>
             </div>
-            <md-icon md-svg-icon="icons:triangle-down" class="pip-chevron"></md-icon>
+            <md-icon md-svg-icon="{{ open ? 'icons:triangle-up': 'icons:triangle-down' }}" class="pip-chevron"></md-icon>
         </div>
     </md-button>
 </div>
+<div ng-show="open" style="margin-top: 12px; margin-bottom: 12px; padding-left: 24px; padding-right: 16px">
+    {{ item.text }}
+</div>
 
 <div class="pip-ref-expander layout-row layout-align-start-center">
-    <md-button class="flex">
+    <md-button class="flex" ng-click="open2 = !open2">
         <div class="layout-row layout-align-start-center">
             <img src="images/ES_Goals.svg" class="pip-pic" ng-click="showAlert($event)">
             <div class="pip-content flex">
@@ -36,13 +39,16 @@
                     <span>{{item.status1}}</span>
                     <span>{{item.status2}}</span></p>
             </div>
-            <md-icon md-svg-icon="icons:triangle-down" class="pip-chevron"></md-icon>
+            <md-icon md-svg-icon="{{ open2 ? 'icons:triangle-up': 'icons:triangle-down' }}" class="pip-chevron"></md-icon>
         </div>
     </md-button>
 </div>
+<div ng-show="open2" style="margin-top: 12px; margin-bottom: 12px; padding-left: 24px; padding-right: 16px">
+    {{ item.text }}
+</div>
 
 <div class="pip-ref-expander layout-row layout-align-start-center">
-    <md-button class="flex">
+    <md-button class="flex" ng-click="open3 = !open3">
         <div class="layout-row layout-align-start-center">
             <img src="images/ES_Goals.svg"
                  class="pip-pic-sm" ng-click="showAlert($event)">
@@ -56,13 +62,16 @@
                     <span>{{item.status1}}</span>
                 </p>
             </div>
-            <md-icon md-svg-icon="icons:triangle-down" class="pip-chevron"></md-icon>
+            <md-icon md-svg-icon="{{ open3 ? 'icons:triangle-up': 'icons:triangle-down' }}" class="pip-chevron"></md-icon>
         </div>
     </md-button>
 </div>
+<div ng-show="open3" style="margin-top: 12px; margin-bottom: 12px; padding-left: 24px; padding-right: 16px">
+    {{ item.text }}
+</div>
 
 <div class="pip-ref-expander layout-row layout-align-start-center">
-    <md-button class="flex">
+    <md-button class="flex" ng-click="open4 = !open4">
         <div class="layout-row layout-align-start-center">
             <img src="images/ES_Goals.svg" class="pip-pic-sm" ng-click="showAlert($event)">
             <div class="pip-content flex">
@@ -75,13 +84,16 @@
                     <span>{{item1.status1}}</span>
                 </p>
             </div>
-            <md-icon md-svg-icon="icons:triangle-down" class="pip-chevron"></md-icon>
+            <md-icon md-svg-icon="{{ open4 ? 'icons:triangle-up': 'icons:triangle-down' }}" class="pip-chevron"></md-icon>
         </div>
     </md-button>
 </div>
+<div ng-show="open4" style="margin-top: 12px; margin-bottom: 12px; padding-left: 24px; padding-right: 16px">
+    {{ item.text }}
+</div>
 
 <div class="pip-ref-expander layout-row layout-align-start-center">
-    <md-button class="flex">
+    <md-button class="flex" ng-click="open5 = !open5">
         <div class="layout-row layout-align-start-center">
             <div class="pip-content flex">
                 <p class="pip-title">
@@ -93,7 +105,10 @@
                     <span>{{item.status1}}</span>
                 </p>
             </div>
-            <md-icon md-svg-icon="icons:triangle-down" class="pip-chevron"></md-icon>
+            <md-icon md-svg-icon="{{ open5 ? 'icons:triangle-up': 'icons:triangle-down' }}" class="pip-chevron"></md-icon>
         </div>
     </md-button>
+</div>
+<div ng-show="open5" style="margin-top: 12px; margin-bottom: 12px; padding-left: 24px; padding-right: 16px">
+    {{ item.text }}
 </div>

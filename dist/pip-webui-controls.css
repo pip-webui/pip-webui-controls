@@ -383,7 +383,7 @@ md-list-item .pip-markdown h4 {
   position: relative !important;
 }
 .pip-image-slider .pip-animation-block {
-  wifth: 100%!important;
+  width: 100%!important;
 }
 .pip-image-slider.pip-animation-fading .pip-animation-block {
   position: absolute !important;
@@ -408,19 +408,16 @@ md-list-item .pip-markdown h4 {
 }
 .pip-image-slider.pip-animation-carousel .pip-animation-block {
   position: absolute !important;
-  left: -100%;
+  transform: translate(-100%, 0);
 }
 .pip-image-slider.pip-animation-carousel .pip-animation-block.pip-prev {
-  left: -100% !important;
+  transform: translate(-100%, 0);
 }
 .pip-image-slider.pip-animation-carousel .pip-animation-block.pip-next {
-  left: 100% !important;
+  transform: translate(100%, 0);
 }
 .pip-image-slider.pip-animation-carousel .pip-animation-block.pip-show {
-  left: 0 !important;
-  top: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
+  transform: translate(0, 0) !important;
 }
 .pip-image-slider.pip-animation-carousel .pip-animation-block.animated {
   -webkit-transition: all .55s ease;

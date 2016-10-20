@@ -102,7 +102,7 @@
                             // pipPopoverService.hide();
                         };
                     },
-                    template: '<div class="pip-content pip-popover-content text-subhead2" style="margin: 24px 24px 16px 24px;">' +
+                    template: '<div class="pip-content pip-popover-content text-subhead2" style="margin: 24px 24px 64px 24px;">' +
                         '{{ content }}</div>' +
                         '<div class="pip-popover-footer layout-row layout-align-start-center">' +
                         '<div class="text-body1">{{ author }}</div><div class="flex"></div><md-button ng-click="onNextClick()">NEXT</md-button></div>'

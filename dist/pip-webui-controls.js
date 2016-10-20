@@ -50,6 +50,24 @@ try {
   module = angular.module('pipControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('popover/popover.html',
+    '<div ng-if="params.templateUrl" class=\'pip-popover flex layout-column\'\n' +
+    '     ng-click="onPopoverClick($event)" ng-include="params.templateUrl">\n' +
+    '</div>\n' +
+    '\n' +
+    '<div ng-if="params.template" class=\'pip-popover\' ng-click="onPopoverClick($event)">\n' +
+    '</div>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipControls.Templates');
+} catch (e) {
+  module = angular.module('pipControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('progress/routing_progress.html',
     '<div class="pip-routing-progress layout-column layout-align-center-center"\n' +
     '        ng-show="showProgress()">\n' +
@@ -65,24 +83,6 @@ module.run(['$templateCache', function($templateCache) {
     '    <md-progress-circular md-diameter="96"\n' +
     '                          class="fix-ie"></md-progress-circular>\n' +
     '\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipControls.Templates');
-} catch (e) {
-  module = angular.module('pipControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('popover/popover.html',
-    '<div ng-if="params.templateUrl" class=\'pip-popover flex layout-column\'\n' +
-    '     ng-click="onPopoverClick($event)" ng-include="params.templateUrl">\n' +
-    '</div>\n' +
-    '\n' +
-    '<div ng-if="params.template" class=\'pip-popover\' ng-click="onPopoverClick($event)">\n' +
     '</div>\n' +
     '');
 }]);
@@ -887,10 +887,11 @@ module.run(['$templateCache', function($templateCache) {
     thisModule.directive('pipImageSlider',
         function () {
             return {
-                scope: false,
+                scope: {
+                    sliderIndex: '=pipImageIndex'
+                },
                 controller: ['$scope', '$element', '$attrs', '$parse', '$timeout', '$interval', '$pipImageSlider', function ($scope, $element, $attrs, $parse, $timeout, $interval, $pipImageSlider) {
                     var blocks,
-                        indexSetter = $parse($attrs.pipImageSliderIndex).assign,
                         index = 0, newIndex,
                         direction,
                         type = $parse($attrs.pipAnimationType)($scope),
@@ -935,7 +936,7 @@ module.run(['$templateCache', function($templateCache) {
                         $pipImageSlider.toBlock(type, blocks, index, newIndex, direction);
                         index = newIndex;
                         setIndex();
-                    }, 600);
+                    }, 700);
 
                     $scope.nextBlock = function () {
                         restartInterval();
@@ -961,11 +962,11 @@ module.run(['$templateCache', function($templateCache) {
                         direction = nextIndex > index ? 'next' : 'prev';
                         throttled();
                     };
+                    
+                    if ($attrs.id) $pipImageSlider.registerSlider($attrs.id, $scope);
 
                     function setIndex() {
-                        if (indexSetter) {
-                            indexSetter($scope, index);
-                        }
+                        if ($attrs.pipImageIndex) $scope.sliderIndex = index;
                     }
 
                     function startInterval() {
@@ -982,6 +983,7 @@ module.run(['$templateCache', function($templateCache) {
 
                     $element.on('$destroy', function () {
                         stopInterval();
+                        $pipImageSlider.removeSlider($attrs.id);
                     });
 
                     function restartInterval() {
@@ -1008,17 +1010,33 @@ module.run(['$templateCache', function($templateCache) {
     thisModule.service('$pipImageSlider',
         ['$timeout', function ($timeout) {
 
-            var ANIMATION_DURATION = 550;
+            var ANIMATION_DURATION = 550,
+                sliders = {};
 
             return {
                 nextCarousel: nextCarousel,
                 prevCarousel: prevCarousel,
-                toBlock: toBlock
+                toBlock: toBlock,
+                registerSlider: register,
+                removeSlider: remove,
+                getSliderScope: getSlider
             };
 
-            function nextCarousel(nextBlock, prevBlock) {
-                nextBlock.removeClass('animated').addClass('pip-next');
+            function register(sliderId, sliderScope) {
+                sliders[sliderId] = sliderScope;
+            }
+            
+            function remove(sliderId) {
+                delete sliders[sliderId];
+            }
 
+            function getSlider(sliderId) {
+                return sliders[sliderId];
+            }
+
+            function nextCarousel(nextBlock, prevBlock) {
+                nextBlock.addClass('pip-next');
+                
                 $timeout(function () {
                     nextBlock.addClass('animated').addClass('pip-show').removeClass('pip-next');
                     prevBlock.addClass('animated').removeClass('pip-show');
@@ -1026,15 +1044,9 @@ module.run(['$templateCache', function($templateCache) {
             }
 
             function prevCarousel(nextBlock, prevBlock) {
-                nextBlock.removeClass('animated');
-
                 $timeout(function () {
                     nextBlock.addClass('animated').addClass('pip-show');
                     prevBlock.addClass('animated').addClass('pip-next').removeClass('pip-show');
-
-                    $timeout(function () {
-                        prevBlock.removeClass('pip-next').removeClass('animated');
-                    }, ANIMATION_DURATION - 100);
                 }, 100);
             }
 
@@ -1044,19 +1056,20 @@ module.run(['$templateCache', function($templateCache) {
                     nextBlock = $(blocks[blockIndex]);
 
                 if (type === 'carousel') {
-                    $(blocks).removeClass('pip-next').removeClass('pip-prev');
+                    $(blocks).removeClass('pip-next').removeClass('pip-prev').removeClass('animated');
 
-                    if (direction && direction === 'prev') {
-                        prevCarousel(nextBlock, prevBlock);
-                    }
-                    if (direction && direction === 'next') {
-                        nextCarousel(nextBlock, prevBlock);
-                    }
-                    if ((!direction || direction !== 'next' && direction !== 'prev') &&
-                        nextIndex && nextIndex < oldIndex) {
-                        prevCarousel(nextBlock, prevBlock);
+                    if (direction && (direction === 'prev' || direction === 'next')) {
+                        if (direction === 'prev') {
+                            prevCarousel(nextBlock, prevBlock);
+                        } else {
+                            nextCarousel(nextBlock, prevBlock);
+                        }
                     } else {
-                        nextCarousel(nextBlock, prevBlock);
+                        if (nextIndex && nextIndex < oldIndex) {
+                            prevCarousel(nextBlock, prevBlock);
+                        } else {
+                            nextCarousel(nextBlock, prevBlock);
+                        }
                     }
                 } else {
                     prevBlock.addClass('animated').removeClass('pip-show');
@@ -1082,7 +1095,7 @@ module.run(['$templateCache', function($templateCache) {
         function () {
             return {
                 scope: {},
-                controller: ['$scope', '$element', '$parse', '$attrs', function ($scope, $element, $parse, $attrs) {
+                controller: ['$scope', '$element', '$parse', '$attrs', '$pipImageSlider', function ($scope, $element, $parse, $attrs, $pipImageSlider) {
                     var type = $parse($attrs.pipButtonType)($scope),
                         sliderId = $parse($attrs.pipSliderId)($scope);
 
@@ -1091,7 +1104,7 @@ module.run(['$templateCache', function($templateCache) {
                             return;
                         }
 
-                        angular.element(document.getElementById(sliderId)).scope()[type + 'Block']();
+                        $pipImageSlider.getSliderScope(sliderId)[type + 'Block']();
                     });
                 }]
             };
@@ -1114,7 +1127,7 @@ module.run(['$templateCache', function($templateCache) {
         function () {
             return {
                 scope: false,
-                controller: ['$scope', '$element', '$parse', '$attrs', function ($scope, $element, $parse, $attrs) {
+                controller: ['$scope', '$element', '$parse', '$attrs', '$pipImageSlider', function ($scope, $element, $parse, $attrs, $pipImageSlider) {
                     var sliderId = $parse($attrs.pipSliderId)($scope),
                         slideTo = $parse($attrs.pipSlideTo)($scope);
 
@@ -1124,7 +1137,7 @@ module.run(['$templateCache', function($templateCache) {
                             return;
                         }
 
-                        angular.element(document.getElementById(sliderId)).scope().slideTo(slideTo);
+                        $pipImageSlider.getSliderScope(sliderId).slideTo(slideTo);
                     });
                 }]
             };
@@ -1132,6 +1145,148 @@ module.run(['$templateCache', function($templateCache) {
     );
 
 })(window.angular, window._, window.jQuery);
+
+/**
+ * @file Markdown control
+ * @copyright Digital Living Software Corp. 2014-2016
+ * @todo
+ * - Move css styles under control
+ * - Improve samples in sampler app
+ */
+
+(function (angular, marked, _) {
+    'use strict';
+
+    var thisModule = angular.module('pipMarkdown', ['ngSanitize']);
+
+    thisModule.run(['$injector', function ($injector) {
+        var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
+
+        if (pipTranslate) {
+            pipTranslate.translations('en', {
+                'MARKDOWN_ATTACHMENTS': 'Attachments:',
+                'checklist': 'Checklist',
+                'documents': 'Documents',
+                'pictures': 'Pictures',
+                'location': 'Location',
+                'time': 'Time'
+            });
+            pipTranslate.translations('ru', {
+                'MARKDOWN_ATTACHMENTS': 'Вложения:',
+                'checklist': 'Список',
+                'documents': 'Документы',
+                'pictures': 'Изображения',
+                'location': 'Местонахождение',
+                'time': 'Время'
+            });
+        }
+
+    }]);
+
+    thisModule.directive('pipMarkdown',
+        ['$parse', '$injector', function ($parse, $injector) {
+            var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
+
+            return {
+                restrict: 'EA',
+                scope: false,
+                link: function ($scope, $element, $attrs) {
+                    var
+                        textGetter = $parse($attrs.pipText),
+                        listGetter = $parse($attrs.pipList),
+                        clampGetter = $parse($attrs.pipLineCount);
+
+                    function describeAttachments(array) {
+                        var attachString = '',
+                            attachTypes = [];
+
+                        _.each(array, function (attach) {
+                            if (attach.type && attach.type !== 'text') {
+                                if (attachString.length === 0 && pipTranslate) {
+                                    attachString = pipTranslate.translate('MARKDOWN_ATTACHMENTS');
+                                }
+
+                                if (attachTypes.indexOf(attach.type) < 0) {
+                                    attachTypes.push(attach.type);
+                                    attachString += attachTypes.length > 1 ? ', ' : ' ';
+                                    if (pipTranslate)
+                                        attachString += pipTranslate.translate(attach.type);
+                                }
+                            }
+                        });
+
+                        return attachString;
+                    }
+
+                    function toBoolean(value) {
+                        if (value == null) return false;
+                        if (!value) return false;
+                        value = value.toString().toLowerCase();
+                        return value == '1' || value == 'true';
+                    }
+
+                    function bindText(value) {
+                        var textString, isClamped, height, options, obj;
+
+                        if (_.isArray(value)) {
+                            obj = _.find(value, function (item) {
+                                return item.type === 'text' && item.text;
+                            });
+
+                            textString = obj ? obj.text : describeAttachments(value);
+                        } else {
+                            textString = value;
+                        }
+
+                        isClamped = $attrs.pipLineCount && _.isNumber(clampGetter());
+                        isClamped = isClamped && textString && textString.length > 0;
+                        options = {
+                            gfm: true,
+                            tables: true,
+                            breaks: true,
+                            sanitize: true,
+                            pedantic: true,
+                            smartLists: true,
+                            smartypents: false
+                        };
+                        textString = marked(textString || '', options);
+                        if (isClamped) {
+                            height = 1.5 * clampGetter();
+                        }
+                        // Assign value as HTML
+                        $element.html('<div' + (isClamped ? listGetter() ? 'class="pip-markdown-content ' +
+                            'pip-markdown-list" style="max-height: ' + height + 'em">'
+                                : ' class="pip-markdown-content" style="max-height: ' + height + 'em">' : listGetter()
+                                ? ' class="pip-markdown-list">' : '>') + textString + '</div>');
+                        $element.find('a').attr('target', 'blank');
+                        if (!listGetter() && isClamped) {
+                            $element.append('<div class="pip-gradient-block"></div>');
+                        }
+                    }
+
+                    // Fill the text
+                    bindText(textGetter($scope));
+
+                    // Also optimization to avoid watch if it is unnecessary
+                    if (toBoolean($attrs.pipRebind)) {
+                        $scope.$watch(textGetter, function (newValue) {
+                            bindText(newValue);
+                        });
+                    }
+
+                    $scope.$on('pipWindowResized', function () {
+                        bindText(textGetter($scope));
+                    });
+
+                    // Add class
+                    $element.addClass('pip-markdown');
+                }
+            };
+        }]
+    );
+
+})(window.angular, window.marked, window._);
+
 
 /**
  * @file Popover control
@@ -1301,148 +1456,6 @@ module.run(['$templateCache', function($templateCache) {
     );
 
 })(window.angular, window.jQuery, window._);
-
-/**
- * @file Markdown control
- * @copyright Digital Living Software Corp. 2014-2016
- * @todo
- * - Move css styles under control
- * - Improve samples in sampler app
- */
-
-(function (angular, marked, _) {
-    'use strict';
-
-    var thisModule = angular.module('pipMarkdown', ['ngSanitize']);
-
-    thisModule.run(['$injector', function ($injector) {
-        var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
-
-        if (pipTranslate) {
-            pipTranslate.translations('en', {
-                'MARKDOWN_ATTACHMENTS': 'Attachments:',
-                'checklist': 'Checklist',
-                'documents': 'Documents',
-                'pictures': 'Pictures',
-                'location': 'Location',
-                'time': 'Time'
-            });
-            pipTranslate.translations('ru', {
-                'MARKDOWN_ATTACHMENTS': 'Вложения:',
-                'checklist': 'Список',
-                'documents': 'Документы',
-                'pictures': 'Изображения',
-                'location': 'Местонахождение',
-                'time': 'Время'
-            });
-        }
-
-    }]);
-
-    thisModule.directive('pipMarkdown',
-        ['$parse', '$injector', function ($parse, $injector) {
-            var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
-
-            return {
-                restrict: 'EA',
-                scope: false,
-                link: function ($scope, $element, $attrs) {
-                    var
-                        textGetter = $parse($attrs.pipText),
-                        listGetter = $parse($attrs.pipList),
-                        clampGetter = $parse($attrs.pipLineCount);
-
-                    function describeAttachments(array) {
-                        var attachString = '',
-                            attachTypes = [];
-
-                        _.each(array, function (attach) {
-                            if (attach.type && attach.type !== 'text') {
-                                if (attachString.length === 0 && pipTranslate) {
-                                    attachString = pipTranslate.translate('MARKDOWN_ATTACHMENTS');
-                                }
-
-                                if (attachTypes.indexOf(attach.type) < 0) {
-                                    attachTypes.push(attach.type);
-                                    attachString += attachTypes.length > 1 ? ', ' : ' ';
-                                    if (pipTranslate)
-                                        attachString += pipTranslate.translate(attach.type);
-                                }
-                            }
-                        });
-
-                        return attachString;
-                    }
-
-                    function toBoolean(value) {
-                        if (value == null) return false;
-                        if (!value) return false;
-                        value = value.toString().toLowerCase();
-                        return value == '1' || value == 'true';
-                    }
-
-                    function bindText(value) {
-                        var textString, isClamped, height, options, obj;
-
-                        if (_.isArray(value)) {
-                            obj = _.find(value, function (item) {
-                                return item.type === 'text' && item.text;
-                            });
-
-                            textString = obj ? obj.text : describeAttachments(value);
-                        } else {
-                            textString = value;
-                        }
-
-                        isClamped = $attrs.pipLineCount && _.isNumber(clampGetter());
-                        isClamped = isClamped && textString && textString.length > 0;
-                        options = {
-                            gfm: true,
-                            tables: true,
-                            breaks: true,
-                            sanitize: true,
-                            pedantic: true,
-                            smartLists: true,
-                            smartypents: false
-                        };
-                        textString = marked(textString || '', options);
-                        if (isClamped) {
-                            height = 1.5 * clampGetter();
-                        }
-                        // Assign value as HTML
-                        $element.html('<div' + (isClamped ? listGetter() ? 'class="pip-markdown-content ' +
-                            'pip-markdown-list" style="max-height: ' + height + 'em">'
-                                : ' class="pip-markdown-content" style="max-height: ' + height + 'em">' : listGetter()
-                                ? ' class="pip-markdown-list">' : '>') + textString + '</div>');
-                        $element.find('a').attr('target', 'blank');
-                        if (!listGetter() && isClamped) {
-                            $element.append('<div class="pip-gradient-block"></div>');
-                        }
-                    }
-
-                    // Fill the text
-                    bindText(textGetter($scope));
-
-                    // Also optimization to avoid watch if it is unnecessary
-                    if (toBoolean($attrs.pipRebind)) {
-                        $scope.$watch(textGetter, function (newValue) {
-                            bindText(newValue);
-                        });
-                    }
-
-                    $scope.$on('pipWindowResized', function () {
-                        bindText(textGetter($scope));
-                    });
-
-                    // Add class
-                    $element.addClass('pip-markdown');
-                }
-            };
-        }]
-    );
-
-})(window.angular, window.marked, window._);
-
 
 /**
  * @file Routing progress control
