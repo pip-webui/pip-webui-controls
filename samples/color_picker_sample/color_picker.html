@@ -1,17 +1,34 @@
-<h2 class="text-title tm0 bm24">Color picker {{sample }}</h2>
+<h2 class="text-title">
+    Color picker {{sample }}
+</h2>
+
 <pip-color-picker ng-model="color" ng-disabled="disabled" pip-colors="colors">
 </pip-color-picker>
-<p class="text-body1 tm16 bm16">Current color <strong>{{ color }}</strong></p>
-<md-switch ng-model="disabled">{{disabled}}</md-switch>
-<pre class="p16 color-window-bg">
-<h3 class="text-subhead2 m0">{{ code }}</h3>
-<strong>HTML:</strong>
-<code class="language-markup">
-&lt;pip-color-picker ng-model="color" ng-disabled="disabled" pip-colors="colors"&gt;
-&lt;/pip-color-picker&gt
-</code>
-<strong>JS:</strong>
-<code class="language-js">
-$scope.colors = ['purple', 'lightgreen', 'green', 'darkred', 'pink', 'yellow', 'cyan'];
-</code>
+
+<p class="text-body1">
+    {{currentColor}} <strong>{{ color }}</strong>
+</p>
+<md-switch ng-model="disabled">
+    {{disabled}}
+</md-switch>
+
+<pre class="color-window-bg code-block">
+
+    <h3 class="text-subhead2">
+        {{ code }}
+
+    </h3>
+
+    <strong>HTML:</strong>
+    
+    <code class="language-markup">
+        &lt;pip-color-picker ng-model="color" ng-disabled="disabled" pip-colors="colors"&gt;
+        &lt;/pip-color-picker&gt
+    </code>
+
+    <strong>JS:</strong>
+
+    <code class="language-js">
+        $scope.colors = ['purple', 'lightgreen', 'green', 'darkred', 'pink', 'yellow', 'cyan'];
+    </code>
 </pre>

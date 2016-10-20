@@ -64,7 +64,7 @@
                     controller: function ($scope, $timeout) {
                         $scope.title = $scope.locals.title;
                         $scope.content = $scope.locals.content;
-                        $scope.image = 'http://www.izuminki.com/images/kolibri-vo-vsej-krase/11.jpg';
+                        $scope.image = 'https://static.pexels.com/photos/136211/pexels-photo-136211-large.jpeg';
 
                         $scope.onNextClick = function () {
                             console.log('on next click');

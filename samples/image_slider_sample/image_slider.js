@@ -41,18 +41,14 @@
                     Prism.highlightElement(block);
                 });
             });
-            /*
-            pipAppBar.showMenuNavIcon();
-            pipAppBar.showLanguage();
-            pipAppBar.showTitleText('CONTROLS');*/
 
-            $scope.images = [{url: 'https://i.ytimg.com/vi/mW3S0u8bj58/maxresdefault.jpg'},
-                {url: 'https://www.catboxkingdom.com/wp-content/uploads/2014/06/Cute-Cats-cats-33440930-1280-800.jpg'},
-                {url: 'http://purrfectcatbreeds.com/wp-content/uploads/2014/06/bengal1.jpg'}];
+            $scope.images = [{url: 'https://static.pexels.com/photos/46082/pexels-photo-46082-large.jpeg'},
+                {url: 'https://static.pexels.com/photos/65125/pexels-photo-65125-large.jpeg'},
+                {url: 'https://static.pexels.com/photos/58951/pexels-photo-58951-large.jpeg'}];
 
-            $scope.images2 = [{url: 'http://goldenstateservicedogs.com/wp-content/uploads/2015/04/c50bdb2e-95bc-4423-862f-83e949001fbf.jpg'}, // eslint-disable-line
-                {url: 'https://www.catboxkingdom.com/wp-content/uploads/2014/06/Cute-Cats-cats-33440930-1280-800.jpg'},
-                {url: 'https://s.graphiq.com/sites/default/files/stories/t4/15_Tiniest_Dog_Breeds_1718_3083.jpg'}];
+            $scope.images2 = [{url: 'https://static.pexels.com/photos/160223/pexels-photo-160223-large.jpeg'}, // eslint-disable-line
+                {url: 'https://static.pexels.com/photos/109016/pexels-photo-109016-large.jpeg'},
+                {url: 'https://static.pexels.com/photos/110575/pexels-photo-110575-large.jpeg'}];
         }
     );
 
