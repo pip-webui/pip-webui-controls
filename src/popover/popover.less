@@ -58,6 +58,36 @@
   }
 }
 
+  .pip-popover-footer {
+      position: absolute;
+      bottom: 0;
+      left:  0;
+      right:  0;        
+
+      -webkit-box-ordinal-group: 4;
+      -moz-box-ordinal-group:    4;
+      -webkit-order:             4;
+      -ms-flex-order:            4;
+      order:                     4;
+
+        .flex-fixed;
+
+        .flex();
+        .flex-vertical-content(center);
+        .flex-justify-content(end, flex-end);
+        .flex-direction(row);
+
+        //background-color: @color-content;
+        border-top: 1px solid @color-divider;
+        min-height: 56px; // от куда вообще эти цифры :  Леша, сказал поставить так.
+        padding:  0px 24px 0px 24px;
+
+        .md-button {
+            min-width: 48px;
+            margin: 4px;
+        }
+  }
+  
 @media (max-width: 1200px) {
   .pip-popover-backdrop.pip-responsive {
     .pip-popover {
