@@ -13,8 +13,7 @@
             'pipControls', 'appControls.Toasts', 'appControls.ColorPicker',
             'appControls.Markdown', 'appControls.RefExpander',
             'appControls.Popover', 'appControls.ImageSlider', 'appControls.Progress',
-            'appControls.Empty', 'appControls.UnsavedChanges', 
-            'pipControls.Draggable', 'pipControls.DraggableInput', 'appControls.Hint'
+            'appControls.Empty', 'appControls.Hint'
 
         ]
     );
@@ -52,18 +51,6 @@
             title: 'Empty', state: 'empty', url: '/empty', auth: false,
             controller: 'EmptyController', templateUrl: 'empty_sample/empty.html'
         },
-        {
-            title: 'Unsaved Changes', state: 'unsaved_changes', url: '/unsaved_changes', auth: false,
-            controller: 'UnsavedChangesController', templateUrl: 'unsaved_changes_sample/unsaved_changes.html'
-        },
-        { 
-            title: 'Draggable', state: 'draggable', url: '/draggable', 
-            controller: 'DraggableController', templateUrl: 'draggable_sample/draggable.html' 
-        },
-        { 
-            title: 'Draggable Input', state: 'draggable_input', url: '/draggable_input', 
-            controller: 'DraggableInputController', templateUrl: 'draggable_sample/draggable_input.html' 
-        }, 
         { 
             title: 'Hint', state: 'hint', url: '/hint', 
             controller: 'HintController', templateUrl: 'hint_sample/hint.html' 

@@ -10,9 +10,7 @@
         'pipPopover',
         'pipImageSlider',
         'pipToasts',
-        'pipUnsavedChanges',
-        'pipControls.Translate',
-        'pipDraggable'
+        'pipControls.Translate'
     ]);
 
 })();
