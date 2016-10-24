@@ -1,11 +1,4 @@
-/**
- * @file Drag & drop attachable behavior
- * @description
- * Based on https://github.com/fatlinesofcode/pipDraggable
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-/* global angular */
+/// <reference path="../../typings/tsd.d.ts" />
 
 (function () {
     'use strict';
@@ -33,11 +26,11 @@
             return {
 
                 restrict: 'A',
-                link: function (scope, element, attrs) {
+                link: function (scope: any, element, attrs: any) {
                     scope.value = attrs.ngDrag;
                     var LONG_PRESS = 50; // 50ms for longpress
                     var offset, _centerAnchor = false, _mx, _my, _tx, _ty, _mrx, _mry;
-                    var _hasTouch = ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch;
+                    var _hasTouch = ('ontouchstart' in window) || (<any>window).DocumentTouch; // && document instanceof DocumentTouch; // DocumentTouch is not defined!
                     var _pressEvents = 'touchstart mousedown';
                     var _moveEvents = 'touchmove mousemove';
                     var _releaseEvents = 'touchend mouseup';
@@ -53,7 +46,7 @@
 
                     var _pressTimer = null;
 
-                    var _elementStyle = {};
+                    var _elementStyle: any = {};
 
                     var onDragStartCallback = $parse(attrs.pipDragStart) || null;
                     var onDragStopCallback = $parse(attrs.pipDragStop) || null;
@@ -85,10 +78,11 @@
                         // check to see if drag handle(s) was specified
                         // if querySelectorAll is available, we use this instead of find
                         // as JQLite find is limited to tagnames
+                        let dragHandles: any;
                         if (element[0].querySelectorAll) {
-                            var dragHandles = angular.element(element[0].querySelectorAll('[pip-drag-handle]'));
+                            dragHandles = angular.element(element[0].querySelectorAll('[pip-drag-handle]'));
                         } else {
-                            var dragHandles = element.find('[pip-drag-handle]');
+                            dragHandles = element.find('[pip-drag-handle]');
                         }
                         if (dragHandles.length) {
                             _dragHandle = dragHandles;
@@ -97,7 +91,7 @@
 
                         // Initialize scroll container
                         if (scrollParent) {
-                            scrollContainer = angular.element($element.parent());
+                            scrollContainer = angular.element(element.parent());
                         } else if (attrs.pipScrollContainer) {
                             scrollContainer = angular.element(scrollContainerGetter(scope));
                         } else {
@@ -407,7 +401,7 @@
         function ($parse, $timeout, $window, $document, pipDraggable) {
         return {
             restrict: 'A',
-            link: function (scope, element, attrs) {
+            link: function (scope: any, element, attrs: any) {
                 scope.value = attrs.pipDrop;
                 scope.isTouching = false;
 
@@ -643,7 +637,7 @@
     thisModule.directive('pipPreventDrag', function ($parse, $timeout) {
         return {
             restrict: 'A',
-            link: function (scope, element, attrs) {
+            link: function (scope: any, element, attrs: any) {
                 initialize();
 
                 return;

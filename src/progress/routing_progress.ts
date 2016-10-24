@@ -1,12 +1,6 @@
-/**
- * @file Routing progress control
- * @description
- * This progress control is enabled by ui router
- * while switching between pages
- * @copyright Digital Living Software Corp. 2014-2016
- */
+/// <reference path="../../typings/tsd.d.ts" />
 
-(function (angular) {
+(function () {
     'use strict';
 
     var thisModule = angular.module('pipRoutingProgress', ['ngMaterial']);
@@ -41,4 +35,4 @@
         }
     );
 
-})(window.angular);
+})();

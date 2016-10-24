@@ -1,11 +1,6 @@
-﻿/**
- * @file Registration of basic WebUI controls
- * @copyright Digital Living Software Corp. 2014-2016
- */
+﻿/// <reference path="../typings/tsd.d.ts" />
 
-/* global angular */
-
-(function (angular) {
+(function () {
     'use strict';
 
     angular.module('pipControls', [
@@ -20,5 +15,5 @@
         'pipDraggable'
     ]);
 
-})(window.angular);
+})();
 

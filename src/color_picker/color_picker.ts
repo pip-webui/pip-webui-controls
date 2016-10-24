@@ -1,9 +1,6 @@
-/**
- * @file Color picker control
- * @copyright Digital Living Software Corp. 2014-2016
- */
+/// <reference path="../../typings/tsd.d.ts" />
 
-(function (angular, _) {
+(function () {
     'use strict';
 
     var thisModule = angular.module('pipColorPicker', [ 'pipControls.Templates']); // 'pipFocused',
@@ -68,4 +65,4 @@
         }
     );
 
-})(window.angular, window._);
+})();

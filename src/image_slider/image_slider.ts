@@ -1,9 +1,6 @@
-/**
- * @file Image slider control
- * @copyright Digital Living Software Corp. 2014-2016
- */
+/// <reference path="../../typings/tsd.d.ts" />
 
-(function (angular, _, $) {
+(function () {
     'use strict';
 
     var thisModule = angular.module('pipImageSlider', ['pipSliderButton', 'pipSliderIndicator', 'pipImageSlider.Service']);
@@ -119,4 +116,4 @@
         }
     );
 
-})(window.angular, window._, window.jQuery);
+})();

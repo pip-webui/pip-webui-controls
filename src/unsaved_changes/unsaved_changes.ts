@@ -1,9 +1,4 @@
-/**
- * @file Directive to show confirmation dialog when user tries to leave page with unsaved changes.
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-/* global angular */
+/// <reference path="../../typings/tsd.d.ts" />
 
 (function(){
     'use strict';
@@ -18,7 +13,7 @@
                 unsavedChangesMessage: '@pipUnsavedChangesMessage',
                 afterLeave: '&pipUnsavedChangesAfterLeave'
             },
-            link: function($scope) {
+            link: function($scope: any) {
 
                 $window.onbeforeunload = function() {
                     if ($scope.unsavedChangesAvailable()) {

@@ -1,19 +1,6 @@
-/**
- * @file Toasts management service
- * @copyright Digital Living Software Corp. 2014-2016
- * @todo Replace ngAudio with alternative service
- * 
- * toast.error structure:
- * data: {
- *  code: error code,
- *  path: 
- *  error: 
- *  method:
- *  message: 
- * }
- */
+/// <reference path="../../typings/tsd.d.ts" />
 
-(function (angular, _) {
+(function () {
     'use strict';
     var thisModule = angular.module('pipToasts', ['ngMaterial', 'pipControls.Translate']);
 
@@ -252,7 +239,7 @@
             }
 
             // Clear toasts by type
-            function clearToasts(type) {
+            function clearToasts(type?: any) {
                 if (type) {
                     // pipAssert.isString(type, 'pipToasts.clearToasts: type should be a string');
                     removeToasts(type);
@@ -264,4 +251,4 @@
         }
     );
 
-})(window.angular, window._);
+})();

@@ -1,12 +1,8 @@
-/**
- * @file Markdown control
- * @copyright Digital Living Software Corp. 2014-2016
- * @todo
- * - Move css styles under control
- * - Improve samples in sampler app
- */
+/// <reference path="../../typings/tsd.d.ts" />
 
-(function (angular, marked, _) {
+declare var marked: any;
+
+(function () {
     'use strict';
 
     var thisModule = angular.module('pipMarkdown', ['ngSanitize']);
@@ -42,7 +38,7 @@
             return {
                 restrict: 'EA',
                 scope: false,
-                link: function ($scope, $element, $attrs) {
+                link: function ($scope: any, $element, $attrs: any) {
                     var
                         textGetter = $parse($attrs.pipText),
                         listGetter = $parse($attrs.pipList),
@@ -81,7 +77,7 @@
                         var textString, isClamped, height, options, obj;
 
                         if (_.isArray(value)) {
-                            obj = _.find(value, function (item) {
+                            obj = _.find(value, function (item: any) {
                                 return item.type === 'text' && item.text;
                             });
 
@@ -137,5 +133,5 @@
         }
     );
 
-})(window.angular, window.marked, window._);
+})();
 

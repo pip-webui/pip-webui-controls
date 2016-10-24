@@ -1,9 +1,6 @@
-/**
- * @file Slider indicator
- * @copyright Digital Living Software Corp. 2014-2016
- */
+/// <reference path="../../typings/tsd.d.ts" />
 
-(function (angular, _, $) {
+(function () {
     'use strict';
 
     var thisModule = angular.module('pipSliderIndicator', []);
@@ -29,4 +26,4 @@
         }
     );
 
-})(window.angular, window._, window.jQuery);
+})();
