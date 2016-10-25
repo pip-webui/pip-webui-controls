@@ -92,7 +92,6 @@ module.run(['$templateCache', function($templateCache) {
 }]);
 })();
 
-/// <reference path="../typings/tsd.d.ts" />
 (function () {
     'use strict';
     angular.module('pipControls', [
@@ -106,10 +105,9 @@ module.run(['$templateCache', function($templateCache) {
     ]);
 })();
 
-/// <reference path="../../typings/tsd.d.ts" />
 (function () {
     'use strict';
-    var thisModule = angular.module('pipColorPicker', ['pipControls.Templates']); // 'pipFocused',
+    var thisModule = angular.module('pipColorPicker', ['pipControls.Templates']);
     thisModule.directive('pipColorPicker', function () {
         return {
             restrict: 'EA',
@@ -156,7 +154,6 @@ module.run(['$templateCache', function($templateCache) {
     }]);
 })();
 
-/// <reference path="../../typings/tsd.d.ts" />
 (function () {
     'use strict';
     var thisModule = angular.module('pipControls.Translate', []);
@@ -169,7 +166,6 @@ module.run(['$templateCache', function($templateCache) {
     }]);
 })();
 
-/// <reference path="../../typings/tsd.d.ts" />
 (function () {
     'use strict';
     var thisModule = angular.module('pipImageSlider', ['pipSliderButton', 'pipSliderIndicator', 'pipImageSlider.Service']);
@@ -183,24 +179,6 @@ module.run(['$templateCache', function($templateCache) {
                 $element.addClass('pip-image-slider');
                 $element.addClass('pip-animation-' + type);
                 $scope.swipeStart = 0;
-                /*
-                 if ($swipe)
-                 $swipe.bind($element, {
-                 'start': function(coords) {
-                 if (coords) $scope.swipeStart = coords.x;
-                 else $scope.swipeStart = 0;
-                 },
-                 'end': function(coords) {
-                 var delta;
-                 if (coords) {
-                 delta = $scope.swipeStart - coords.x;
-                 if (delta > 150)  $scope.nextBlock();
-                 if (delta < -150)  $scope.prevBlock();
-                 $scope.swipeStart = 0;
-                 } else $scope.swipeStart = 0;
-                 }
-                 });
-                 */
                 setIndex();
                 $timeout(function () {
                     blocks = $element.find('.pip-animation-block');
@@ -264,7 +242,6 @@ module.run(['$templateCache', function($templateCache) {
     });
 })();
 
-/// <reference path="../../typings/tsd.d.ts" />
 (function () {
     'use strict';
     var thisModule = angular.module('pipImageSlider.Service', []);
@@ -329,7 +306,6 @@ module.run(['$templateCache', function($templateCache) {
     }]);
 })();
 
-/// <reference path="../../typings/tsd.d.ts" />
 (function () {
     'use strict';
     var thisModule = angular.module('pipSliderButton', []);
@@ -349,7 +325,6 @@ module.run(['$templateCache', function($templateCache) {
     });
 })();
 
-/// <reference path="../../typings/tsd.d.ts" />
 (function () {
     'use strict';
     var thisModule = angular.module('pipSliderIndicator', []);
@@ -370,129 +345,6 @@ module.run(['$templateCache', function($templateCache) {
     });
 })();
 
-/// <reference path="../../typings/tsd.d.ts" />
-(function () {
-    'use strict';
-    var thisModule = angular.module('pipPopover', ['pipPopover.Service']);
-    thisModule.directive('pipPopover', function () {
-        return {
-            restrict: 'EA',
-            scope: true,
-            templateUrl: 'popover/popover.html',
-            controller: ['$scope', '$rootScope', '$element', '$timeout', '$compile', function ($scope, $rootScope, $element, $timeout, $compile) {
-                var backdropElement, content;
-                backdropElement = $('.pip-popover-backdrop');
-                backdropElement.on('click keydown scroll', backdropClick);
-                backdropElement.addClass($scope.params.responsive !== false ? 'pip-responsive' : '');
-                $timeout(function () {
-                    position();
-                    if ($scope.params.template) {
-                        content = $compile($scope.params.template)($scope);
-                        $element.find('.pip-popover').append(content);
-                    }
-                    init();
-                });
-                $timeout(function () {
-                    calcHeight();
-                }, 200);
-                $scope.onPopoverClick = onPopoverClick;
-                $scope = _.defaults($scope, $scope.$parent); // eslint-disable-line 
-                $rootScope.$on('pipPopoverResize', onResize);
-                $(window).resize(onResize);
-                function init() {
-                    backdropElement.addClass('opened');
-                    $('.pip-popover-backdrop').focus();
-                    if ($scope.params.timeout) {
-                        $timeout(function () {
-                            closePopover();
-                        }, $scope.params.timeout);
-                    }
-                }
-                function backdropClick() {
-                    if ($scope.params.cancelCallback) {
-                        $scope.params.cancelCallback();
-                    }
-                    closePopover();
-                }
-                function closePopover() {
-                    backdropElement.removeClass('opened');
-                    $timeout(function () {
-                        backdropElement.remove();
-                    }, 100);
-                }
-                function onPopoverClick($e) {
-                    $e.stopPropagation();
-                }
-                function position() {
-                    if ($scope.params.element) {
-                        var element = $($scope.params.element), pos = element.offset(), width = element.width(), height = element.height(), docWidth = $(document).width(), docHeight = $(document).height(), popover = backdropElement.find('.pip-popover');
-                        if (pos) {
-                            popover
-                                .css('max-width', docWidth - (docWidth - pos.left))
-                                .css('max-height', docHeight - (pos.top + height) - 32, 0)
-                                .css('left', pos.left - popover.width() + width / 2)
-                                .css('top', pos.top + height + 16);
-                        }
-                    }
-                }
-                function calcHeight() {
-                    if ($scope.params.calcHeight === false) {
-                        return;
-                    }
-                    var popover = backdropElement.find('.pip-popover'), title = popover.find('.pip-title'), footer = popover.find('.pip-footer'), content = popover.find('.pip-content'), contentHeight = popover.height() - title.outerHeight(true) - footer.outerHeight(true);
-                    content.css('max-height', Math.max(contentHeight, 0) + 'px').css('box-sizing', 'border-box');
-                }
-                function onResize() {
-                    backdropElement.find('.pip-popover').find('.pip-content').css('max-height', '100%');
-                    position();
-                    calcHeight();
-                }
-            }]
-        };
-    });
-})();
-
-/// <reference path="../../typings/tsd.d.ts" />
-(function () {
-    'use strict';
-    var thisModule = angular.module('pipPopover.Service', []);
-    thisModule.service('pipPopoverService', ['$compile', '$rootScope', '$timeout', function ($compile, $rootScope, $timeout) {
-        var popoverTemplate;
-        popoverTemplate = "<div class='pip-popover-backdrop {{ params.class }}' ng-controller='params.controller'" +
-            " tabindex='1'> <pip-popover pip-params='params'> </pip-popover> </div>";
-        return {
-            show: onShow,
-            hide: onHide,
-            resize: onResize
-        };
-        function onShow(p) {
-            var element, scope, params, content;
-            element = $('body');
-            if (element.find('md-backdrop').length > 0) {
-                return;
-            }
-            onHide();
-            scope = $rootScope.$new();
-            params = p && _.isObject(p) ? p : {};
-            scope.params = params;
-            scope.locals = params.locals;
-            content = $compile(popoverTemplate)(scope);
-            element.append(content);
-        }
-        function onHide() {
-            var backdropElement = $('.pip-popover-backdrop');
-            backdropElement.removeClass('opened');
-            $timeout(function () {
-                backdropElement.remove();
-            }, 100);
-        }
-        function onResize() {
-            $rootScope.$broadcast('pipPopoverResize');
-        }
-    }]);
-})();
-
-/// <reference path="../../typings/tsd.d.ts" />
 (function () {
     'use strict';
     var thisModule = angular.module('pipMarkdown', ['ngSanitize']);
@@ -575,7 +427,6 @@ module.run(['$templateCache', function($templateCache) {
                     if (isClamped) {
                         height = 1.5 * clampGetter();
                     }
-                    // Assign value as HTML
                     $element.html('<div' + (isClamped ? listGetter() ? 'class="pip-markdown-content ' +
                         'pip-markdown-list" style="max-height: ' + height + 'em">'
                         : ' class="pip-markdown-content" style="max-height: ' + height + 'em">' : listGetter()
@@ -585,9 +436,7 @@ module.run(['$templateCache', function($templateCache) {
                         $element.append('<div class="pip-gradient-block"></div>');
                     }
                 }
-                // Fill the text
                 bindText(textGetter($scope));
-                // Also optimization to avoid watch if it is unnecessary
                 if (toBoolean($attrs.pipRebind)) {
                     $scope.$watch(textGetter, function (newValue) {
                         bindText(newValue);
@@ -596,14 +445,132 @@ module.run(['$templateCache', function($templateCache) {
                 $scope.$on('pipWindowResized', function () {
                     bindText(textGetter($scope));
                 });
-                // Add class
                 $element.addClass('pip-markdown');
             }
         };
     }]);
 })();
 
-/// <reference path="../../typings/tsd.d.ts" />
+(function () {
+    'use strict';
+    var thisModule = angular.module('pipPopover', ['pipPopover.Service']);
+    thisModule.directive('pipPopover', function () {
+        return {
+            restrict: 'EA',
+            scope: true,
+            templateUrl: 'popover/popover.html',
+            controller: ['$scope', '$rootScope', '$element', '$timeout', '$compile', function ($scope, $rootScope, $element, $timeout, $compile) {
+                var backdropElement, content;
+                backdropElement = $('.pip-popover-backdrop');
+                backdropElement.on('click keydown scroll', backdropClick);
+                backdropElement.addClass($scope.params.responsive !== false ? 'pip-responsive' : '');
+                $timeout(function () {
+                    position();
+                    if ($scope.params.template) {
+                        content = $compile($scope.params.template)($scope);
+                        $element.find('.pip-popover').append(content);
+                    }
+                    init();
+                });
+                $timeout(function () {
+                    calcHeight();
+                }, 200);
+                $scope.onPopoverClick = onPopoverClick;
+                $scope = _.defaults($scope, $scope.$parent);
+                $rootScope.$on('pipPopoverResize', onResize);
+                $(window).resize(onResize);
+                function init() {
+                    backdropElement.addClass('opened');
+                    $('.pip-popover-backdrop').focus();
+                    if ($scope.params.timeout) {
+                        $timeout(function () {
+                            closePopover();
+                        }, $scope.params.timeout);
+                    }
+                }
+                function backdropClick() {
+                    if ($scope.params.cancelCallback) {
+                        $scope.params.cancelCallback();
+                    }
+                    closePopover();
+                }
+                function closePopover() {
+                    backdropElement.removeClass('opened');
+                    $timeout(function () {
+                        backdropElement.remove();
+                    }, 100);
+                }
+                function onPopoverClick($e) {
+                    $e.stopPropagation();
+                }
+                function position() {
+                    if ($scope.params.element) {
+                        var element = $($scope.params.element), pos = element.offset(), width = element.width(), height = element.height(), docWidth = $(document).width(), docHeight = $(document).height(), popover = backdropElement.find('.pip-popover');
+                        if (pos) {
+                            popover
+                                .css('max-width', docWidth - (docWidth - pos.left))
+                                .css('max-height', docHeight - (pos.top + height) - 32, 0)
+                                .css('left', pos.left - popover.width() + width / 2)
+                                .css('top', pos.top + height + 16);
+                        }
+                    }
+                }
+                function calcHeight() {
+                    if ($scope.params.calcHeight === false) {
+                        return;
+                    }
+                    var popover = backdropElement.find('.pip-popover'), title = popover.find('.pip-title'), footer = popover.find('.pip-footer'), content = popover.find('.pip-content'), contentHeight = popover.height() - title.outerHeight(true) - footer.outerHeight(true);
+                    content.css('max-height', Math.max(contentHeight, 0) + 'px').css('box-sizing', 'border-box');
+                }
+                function onResize() {
+                    backdropElement.find('.pip-popover').find('.pip-content').css('max-height', '100%');
+                    position();
+                    calcHeight();
+                }
+            }]
+        };
+    });
+})();
+
+(function () {
+    'use strict';
+    var thisModule = angular.module('pipPopover.Service', []);
+    thisModule.service('pipPopoverService', ['$compile', '$rootScope', '$timeout', function ($compile, $rootScope, $timeout) {
+        var popoverTemplate;
+        popoverTemplate = "<div class='pip-popover-backdrop {{ params.class }}' ng-controller='params.controller'" +
+            " tabindex='1'> <pip-popover pip-params='params'> </pip-popover> </div>";
+        return {
+            show: onShow,
+            hide: onHide,
+            resize: onResize
+        };
+        function onShow(p) {
+            var element, scope, params, content;
+            element = $('body');
+            if (element.find('md-backdrop').length > 0) {
+                return;
+            }
+            onHide();
+            scope = $rootScope.$new();
+            params = p && _.isObject(p) ? p : {};
+            scope.params = params;
+            scope.locals = params.locals;
+            content = $compile(popoverTemplate)(scope);
+            element.append(content);
+        }
+        function onHide() {
+            var backdropElement = $('.pip-popover-backdrop');
+            backdropElement.removeClass('opened');
+            $timeout(function () {
+                backdropElement.remove();
+            }, 100);
+        }
+        function onResize() {
+            $rootScope.$broadcast('pipPopoverResize');
+        }
+    }]);
+})();
+
 (function () {
     'use strict';
     var thisModule = angular.module('pipRoutingProgress', ['ngMaterial']);
@@ -631,16 +598,12 @@ module.run(['$templateCache', function($templateCache) {
     }]);
 })();
 
-/// <reference path="../../typings/tsd.d.ts" />
 (function () {
     'use strict';
     var thisModule = angular.module('pipToasts', ['ngMaterial', 'pipControls.Translate']);
     thisModule.controller('pipToastController', ['$scope', '$mdToast', 'toast', '$injector', function ($scope, $mdToast, toast, $injector) {
         var pipErrorDetailsDialog = $injector.has('pipErrorDetailsDialog')
             ? $injector.get('pipErrorDetailsDialog') : null;
-        // if (toast.type && sounds['toast_' + toast.type]) {
-        //     sounds['toast_' + toast.type].play();
-        // }
         $scope.message = toast.message;
         $scope.actions = toast.actions;
         $scope.toast = toast;
@@ -673,11 +636,6 @@ module.run(['$templateCache', function($templateCache) {
     }]);
     thisModule.service('pipToasts', ['$rootScope', '$mdToast', function ($rootScope, $mdToast) {
         var SHOW_TIMEOUT = 20000, SHOW_TIMEOUT_NOTIFICATIONS = 20000, toasts = [], currentToast, sounds = {};
-        /** pre-load sounds for notifications */
-        // sounds['toast_error'] = ngAudio.load('sounds/fatal.mp3');
-        // sounds['toast_notification'] = ngAudio.load('sounds/error.mp3');
-        // sounds['toast_message'] = ngAudio.load('sounds/warning.mp3');
-        // Remove error toasts when page is changed
         $rootScope.$on('$stateChangeSuccess', onStateChangeSuccess);
         $rootScope.$on('pipSessionClosed', onClearToasts);
         $rootScope.$on('pipIdentityChanged', onClearToasts);
@@ -690,7 +648,6 @@ module.run(['$templateCache', function($templateCache) {
             removeToastsById: removeToastsById,
             getToastById: getToastById
         };
-        // Take the next from queue and show it
         function showNextToast() {
             var toast;
             if (toasts.length > 0) {
@@ -699,7 +656,6 @@ module.run(['$templateCache', function($templateCache) {
                 showToast(toast);
             }
         }
-        // Show toast
         function showToast(toast) {
             currentToast = toast;
             $mdToast.show({
@@ -761,17 +717,7 @@ module.run(['$templateCache', function($templateCache) {
         function onClearToasts() {
             clearToasts();
         }
-        // Show new notification toast at the top right
         function showNotification(message, actions, successCallback, cancelCallback, id) {
-            // pipAssert.isDef(message, 'pipToasts.showNotification: message should be defined');
-            // pipAssert.isString(message, 'pipToasts.showNotification: message should be a string');
-            // pipAssert.isArray(actions || [], 'pipToasts.showNotification: actions should be an array');
-            // if (successCallback) {
-            //     pipAssert.isFunction(successCallback, 'showNotification: successCallback should be a function');
-            // }
-            // if (cancelCallback) {
-            //     pipAssert.isFunction(cancelCallback, 'showNotification: cancelCallback should be a function');
-            // }
             addToast({
                 id: id || null,
                 type: 'notification',
@@ -782,16 +728,7 @@ module.run(['$templateCache', function($templateCache) {
                 duration: SHOW_TIMEOUT_NOTIFICATIONS
             });
         }
-        // Show new message toast at the top right
         function showMessage(message, successCallback, cancelCallback, id) {
-            // pipAssert.isDef(message, 'pipToasts.showMessage: message should be defined');
-            // pipAssert.isString(message, 'pipToasts.showMessage: message should be a string');
-            // if (successCallback) {
-            //     pipAssert.isFunction(successCallback, 'pipToasts.showMessage:successCallback should be a function');
-            // }
-            // if (cancelCallback) {
-            //     pipAssert.isFunction(cancelCallback, 'pipToasts.showMessage: cancelCallback should be a function');
-            // }
             addToast({
                 id: id || null,
                 type: 'message',
@@ -801,16 +738,7 @@ module.run(['$templateCache', function($templateCache) {
                 cancelCallback: cancelCallback
             });
         }
-        // Show error toast at the bottom right after error occured
         function showError(message, successCallback, cancelCallback, id, error) {
-            // pipAssert.isDef(message, 'pipToasts.showError: message should be defined');
-            // pipAssert.isString(message, 'pipToasts.showError: message should be a string');
-            // if (successCallback) {
-            //     pipAssert.isFunction(successCallback, 'pipToasts.showError: successCallback should be a function');
-            // }
-            // if (cancelCallback) {
-            //     pipAssert.isFunction(cancelCallback, 'pipToasts.showError: cancelCallback should be a function');
-            // }
             addToast({
                 id: id || null,
                 error: error,
@@ -821,15 +749,12 @@ module.run(['$templateCache', function($templateCache) {
                 cancelCallback: cancelCallback
             });
         }
-        // Hide and clear all toast when user signs out
         function hideAllToasts() {
             $mdToast.cancel();
             toasts = [];
         }
-        // Clear toasts by type
         function clearToasts(type) {
             if (type) {
-                // pipAssert.isString(type, 'pipToasts.clearToasts: type should be a string');
                 removeToasts(type);
             }
             else {
