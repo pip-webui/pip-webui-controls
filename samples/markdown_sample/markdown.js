@@ -9,7 +9,7 @@
             var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
 
             if (pipTranslate) {
-                pipTranslate.translations('en', {
+                pipTranslate.setTranslations('en', {
                     COMMON: 'Common',
                     EXAMPLES_LIMITED_LINES: 'Examples with limited line counts',
                     IN: 'in',
@@ -20,7 +20,7 @@
                     SAMPLE_WITH_ATTACHMENTS: 'Example with attachment:',
                     SAMPLE_CAPITAL: 'Sample'
                 });
-                pipTranslate.translations('ru', {
+                pipTranslate.setTranslations('ru', {
                     COMMON: 'Общий',
                     EXAMPLES_LIMITED_LINES: 'Примеры с ограниченным количеством строк',
                     IN: 'в',

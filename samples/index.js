@@ -5,7 +5,7 @@
         [
             'ngMaterial',
             'ui.router', 'ui.utils', 'ngResource', 'ngAria', 'ngCookies', 'ngSanitize', 'ngMessages',
-            'ngMaterial', 'wu.masonry', 'LocalStorageModule', 'angularFileUpload', 'ngAnimate',
+            'ngMaterial', 'wu.masonry', 'LocalStorageModule', 
 
             'pipServices',
             'pipTheme.Default', 'pipTheme.Bootbarn', 'pipTheme', 

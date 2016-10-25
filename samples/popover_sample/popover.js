@@ -12,7 +12,7 @@
             var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
 
             if (pipTranslate) {
-                pipTranslate.translations('en', {
+                pipTranslate.setTranslations('en', {
                     SHOW_POPOVER: 'Function to show popover ',
                     TITLE_POPOVER: 'Credibly create magnetic experiences through sustainable schemas',
                     TEXT_POPOVER: 'Credibly create magnetic experiences through sustainable schemas' + 
@@ -21,7 +21,7 @@
                     SAMPLE: 'Sample',                    
                     CODE: 'Code'
                 });
-                pipTranslate.translations('ru', {
+                pipTranslate.setTranslations('ru', {
                     SHOW_POPOVER: 'Функция для отображения popover',
                     TITLE_POPOVER: 'Заголовок для popovera с двумя строками возможно',
                     TEXT_POPOVER: 'Правдоподобно итерацию бесшовных электронных услуг без масштаба предприятия ниши markets.' +

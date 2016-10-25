@@ -11,7 +11,7 @@ declare var marked: any;
         var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
 
         if (pipTranslate) {
-            pipTranslate.translations('en', {
+            pipTranslate.setTranslations('en', {
                 'MARKDOWN_ATTACHMENTS': 'Attachments:',
                 'checklist': 'Checklist',
                 'documents': 'Documents',
@@ -19,7 +19,7 @@ declare var marked: any;
                 'location': 'Location',
                 'time': 'Time'
             });
-            pipTranslate.translations('ru', {
+            pipTranslate.setTranslations('ru', {
                 'MARKDOWN_ATTACHMENTS': 'Вложения:',
                 'checklist': 'Список',
                 'documents': 'Документы',
@@ -28,7 +28,6 @@ declare var marked: any;
                 'time': 'Время'
             });
         }
-
     });
 
     thisModule.directive('pipMarkdown',

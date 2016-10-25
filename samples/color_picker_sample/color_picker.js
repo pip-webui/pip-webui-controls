@@ -9,13 +9,13 @@
             var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
 
             if (pipTranslate) {
-                pipTranslate.translations('en', {
+                pipTranslate.setTranslations('en', {
                     SAMPLE: 'sample',
                     CURRENT_COLOR: 'Current color',
                     DISABLED: 'Disabled',
                     CODE: 'Code example'
                 });
-                pipTranslate.translations('ru', {
+                pipTranslate.setTranslations('ru', {
                     SAMPLE: 'пример',
                     CURRENT_COLOR: 'Текущий цвет',
                     DISABLED: 'Не активно',

@@ -14,13 +14,13 @@
             var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
 
             if (pipTranslate) {
-                pipTranslate.translations('en', {
+                pipTranslate.setTranslations('en', {
                     SHOW_PROGRESS: 'Show progress ring',
                     HIDE_PROGRESS: 'Hide progress ring',
                     SAMPLE: 'Sample',
                     CODE: 'Code'
                 });
-                pipTranslate.translations('ru', {
+                pipTranslate.setTranslations('ru', {
                     SHOW_PROGRESS: 'Показать progress ring',
                     HIDE_PROGRESS: 'Спрятать progress ring',
                     SAMPLE: 'Пример',
