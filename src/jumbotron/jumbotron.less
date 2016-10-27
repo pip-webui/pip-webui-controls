@@ -1,0 +1,37 @@
+
+.jumbotron {
+  @jumbotron-padding: 24px;
+  @jumbotron-color: rgba(0, 0, 0, .87);
+  @jumbotron-bg: rgba(0, 0, 0, 0.08);
+  @border-radius: 2px;
+
+  padding-top: @jumbotron-padding;
+  padding-bottom: @jumbotron-padding;
+  margin-bottom: @jumbotron-padding;
+  color: @jumbotron-color;
+  background-color: @jumbotron-bg;
+
+  > hr {
+    border-top-color: darken(@jumbotron-bg, 10%);
+  }
+
+  .container &,
+  .container-fluid & {
+    border-radius: @border-radius; // Only round corners at higher resolutions if contained in a container
+  }
+
+  .container {
+    max-width: 100%;
+  }
+
+  @media screen and (min-width: 1000px) {
+    padding-top: (@jumbotron-padding * 1.6);
+    padding-bottom: (@jumbotron-padding * 1.6);
+
+    .container &,
+    .container-fluid & {
+      padding-left: (@jumbotron-padding * 2);
+      padding-right: (@jumbotron-padding * 2);
+    }
+  }
+}

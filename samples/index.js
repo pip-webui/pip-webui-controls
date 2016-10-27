@@ -13,7 +13,7 @@
             'pipControls', 'appControls.Toasts', 'appControls.ColorPicker',
             'appControls.Markdown', 'appControls.RefExpander',
             'appControls.Popover', 'appControls.ImageSlider', 'appControls.Progress',
-            'appControls.Empty', 'appControls.Hint'
+            'appControls.Empty', 'appControls.Hint', 'appControls.Jumbotron'
 
         ]
     );
@@ -54,7 +54,11 @@
         { 
             title: 'Hint', state: 'hint', url: '/hint', 
             controller: 'HintController', templateUrl: 'hint_sample/hint.html' 
-        }        
+        },
+        {
+            title: 'Jumbotron', state: 'jumbotron', url: '/jumbotron',
+            controller: 'JumbotronController', templateUrl: 'jumbotron/jumbotron.html'
+        }
     ];
 
     // Configure application services before start
