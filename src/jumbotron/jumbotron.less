@@ -5,8 +5,8 @@
   @jumbotron-bg: rgba(0, 0, 0, 0.08);
   @border-radius: 2px;
 
-  padding-top: @jumbotron-padding;
-  padding-bottom: @jumbotron-padding;
+  padding-top: 24px;
+  padding-bottom: 24px;
   margin-bottom: @jumbotron-padding;
   color: @jumbotron-color;
   background-color: @jumbotron-bg;
@@ -15,23 +15,75 @@
     border-top-color: darken(@jumbotron-bg, 10%);
   }
 
-  .container &,
-  .container-fluid & {
-    border-radius: @border-radius; // Only round corners at higher resolutions if contained in a container
+  .pip-pic {
+    margin-right: 54px;
+    margin-left: 24px
   }
 
-  .container {
-    max-width: 100%;
+  .pip-jumbo-title-content {
+    height: 40px;
+    .pip-jumbo-title-text {
+      font: @font-body2;
+      display: inline-block;
+      color: @color-secondary
+    }
+    md-icon {
+      margin-left: 0;
+      height: 16px !important;
+      width: 16px;
+      min-width: 16px;
+
+    }
   }
 
-  @media screen and (min-width: 1000px) {
-    padding-top: (@jumbotron-padding * 1.6);
-    padding-bottom: (@jumbotron-padding * 1.6);
+  .pip-jumbo-item {
+    height: 58px;
+    border-bottom: 1px @color-divider solid;
 
-    .container &,
-    .container-fluid & {
-      padding-left: (@jumbotron-padding * 2);
-      padding-right: (@jumbotron-padding * 2);
+    .pip-jumbo-title {
+      .text-overflow();
+      max-width: 100%;
+      font: @font-subhead1;
+      margin-bottom: 4px;
+      span {
+        display: inline-block;
+      }
+    }
+    .pip-jumbo-title-small {
+      .text-overflow();
+      max-width: 50px;
+      vertical-align: bottom;
+    }
+    .pip-jumbo-title-bold {
+      font: @font-subhead2;
+    }
+    .pip-jumbo-subtitle {
+      font: @font-body1;
+      color: @color-secondary;
+    }
+    .pip-jumbo-subtitle-bold {
+      font: @font-body2;
+    }
+  }
+
+  .pip-jumbo-title-content, .pip-jumbo-item {
+    padding-right: 16px;
+    margin-left: 8px;
+  }
+
+  @media (max-width: 768px) {
+    display: block;
+    .pip-content{
+      display: block;
+    }
+    .pip-pic {
+      margin: 0 auto 24px;
+      width: 100%;
+    }
+
+    .pip-jumbo-title-content, .pip-jumbo-item {
+      padding: 0 16px;
+      margin: 0;
     }
   }
 }
