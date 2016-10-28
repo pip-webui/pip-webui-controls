@@ -699,3 +699,87 @@ md-list-item .pip-markdown h4 {
 .pip-ref-expander .pip-content .pip-chevron {
   margin-left: 8px;
 }
+.jumbotron {
+  padding-top: 24px;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: rgba(0, 0, 0, 0.08);
+}
+.jumbotron .pip-pic {
+  margin-right: 54px;
+  margin-left: 24px;
+}
+.jumbotron .pip-jumbo-title-content {
+  height: 40px;
+}
+.jumbotron .pip-jumbo-title-content .pip-jumbo-title-text {
+  font: normal 500 14px Roboto, 'Helvetica Neue', sans-serif;
+  display: inline-block;
+  color: rgba(0, 0, 0, 0.54);
+}
+.jumbotron .pip-jumbo-title-content md-icon {
+  margin-left: 0;
+  height: 16px !important;
+  width: 16px;
+  min-width: 16px;
+}
+.jumbotron .pip-jumbo-item {
+  height: 58px;
+  border-bottom: 1px rgba(0, 0, 0, 0.12) solid;
+}
+.jumbotron .pip-jumbo-item .pip-jumbo-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  font: normal 400 16px Roboto, 'Helvetica Neue', sans-serif;
+  margin-bottom: 4px;
+}
+.jumbotron .pip-jumbo-item .pip-jumbo-title span {
+  display: inline-block;
+}
+.jumbotron .pip-jumbo-item .pip-jumbo-title-small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 50px;
+  vertical-align: bottom;
+}
+.jumbotron .pip-jumbo-item .pip-jumbo-title-bold {
+  font: normal 500 16px Roboto, 'Helvetica Neue', sans-serif;
+}
+.jumbotron .pip-jumbo-item .pip-jumbo-subtitle {
+  font: normal 400 14px Roboto, 'Helvetica Neue', sans-serif;
+  color: rgba(0, 0, 0, 0.54);
+}
+.jumbotron .pip-jumbo-item .pip-jumbo-subtitle-bold {
+  font: normal 500 14px Roboto, 'Helvetica Neue', sans-serif;
+}
+.jumbotron .pip-jumbo-title-content,
+.jumbotron .pip-jumbo-item {
+  padding-right: 16px;
+  margin-left: 8px;
+}
+@media (max-width: 768px) {
+  .jumbotron {
+    display: block;
+  }
+  .jumbotron .pip-content {
+    display: block;
+  }
+  .jumbotron .pip-pic {
+    margin: 0 auto 24px;
+    width: 100%;
+  }
+  .jumbotron .pip-jumbo-title-content,
+  .jumbotron .pip-jumbo-item {
+    padding: 0 16px;
+    margin: 0;
+  }
+}
+@media (min-width: 768px) {
+  .jumbotron .pip-jumbo-item:last-of-type {
+    border-bottom: none;
+  }
+}
