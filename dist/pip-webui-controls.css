@@ -706,6 +706,9 @@ md-list-item .pip-markdown h4 {
   color: rgba(0, 0, 0, 0.87);
   background-color: rgba(0, 0, 0, 0.08);
 }
+.jumbotron > hr {
+  border-top-color: rgba(0, 0, 0, 0.08);
+}
 .jumbotron .pip-pic {
   margin-right: 54px;
   margin-left: 24px;
@@ -776,10 +779,5 @@ md-list-item .pip-markdown h4 {
   .jumbotron .pip-jumbo-item {
     padding: 0 16px;
     margin: 0;
-  }
-}
-@media (min-width: 768px) {
-  .jumbotron .pip-jumbo-item:last-of-type {
-    border-bottom: none;
   }
 }
