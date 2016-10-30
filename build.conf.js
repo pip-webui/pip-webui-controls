@@ -2,7 +2,8 @@ module.exports = {
     module: {
         name: 'pipControls',
         styles: 'controls',
-        export: 'pip'
+        export: 'pip',
+        standalone: 'pip.controls'
     },
     build: {
         js: false,
