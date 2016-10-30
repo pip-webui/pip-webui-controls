@@ -1,112 +1,4 @@
-(function(module) {
-try {
-  module = angular.module('pipControls.Templates');
-} catch (e) {
-  module = angular.module('pipControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('color_picker/color_picker.html',
-    '<ul class="pip-color-picker {{class}}" pip-selected="currentColorIndex" pip-enter-space-press="enterSpacePress($event)">\n' +
-    '    <li tabindex="-1" ng-repeat="color in colors track by color">\n' +
-    '        <md-button  tabindex="-1" class="md-icon-button pip-selectable" ng-click="selectColor($index)" aria-label="color" ng-disabled="disabled()">\n' +
-    '            <md-icon ng-style="{\'color\': color}" md-svg-icon="icons:{{ color == currentColor ? \'circle\' : \'radio-off\' }}">\n' +
-    '            </md-icon>\n' +
-    '        </md-button>\n' +
-    '    </li>\n' +
-    '</ul>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipControls.Templates');
-} catch (e) {
-  module = angular.module('pipControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('popover/popover.html',
-    '<div ng-if="params.templateUrl" class=\'pip-popover flex layout-column\'\n' +
-    '     ng-click="onPopoverClick($event)" ng-include="params.templateUrl">\n' +
-    '</div>\n' +
-    '\n' +
-    '<div ng-if="params.template" class=\'pip-popover\' ng-click="onPopoverClick($event)">\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipControls.Templates');
-} catch (e) {
-  module = angular.module('pipControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('progress/routing_progress.html',
-    '<div class="pip-routing-progress layout-column layout-align-center-center"\n' +
-    '        ng-show="showProgress()">\n' +
-    '     <!--ng-show="$routing || $reset || toolInitialized">-->\n' +
-    '    <div class="loader">\n' +
-    '        <svg class="circular" viewBox="25 25 50 50">\n' +
-    '            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>\n' +
-    '        </svg>\n' +
-    '    </div>\n' +
-    '\n' +
-    '    <img src=""  height="40" width="40" class="pip-img">\n' +
-    '\n' +
-    '    <md-progress-circular md-diameter="96"\n' +
-    '                          class="fix-ie"></md-progress-circular>\n' +
-    '\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipControls.Templates');
-} catch (e) {
-  module = angular.module('pipControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('toast/toast.html',
-    '<md-toast class="md-action pip-toast"\n' +
-    '          ng-class="{\'pip-error\': toast.type==\'error\',\n' +
-    '          \'pip-column-toast\': toast.type == \'error\' || toast.actions.length > 1 || actionLenght > 4,\n' +
-    '          \'pip-no-action-toast\': actionLenght == 0}"\n' +
-    '          style="height:initial; max-height: initial; ">\n' +
-    '\n' +
-    '    <span class="flex-var pip-text" ng-bind-html="message"></span>\n' +
-    '    <div class="layout-row layout-align-end-start" class="pip-actions" ng-if="actions.length > 0 || (toast.type==\'error\' && toast.error)">\n' +
-    '        <md-button class="flex-fixed pip-toast-button" ng-if="toast.type==\'error\' && toast.error && showDetails" ng-click="onDetails()">Details</md-button>\n' +
-    '        <md-button class="flex-fixed pip-toast-button"\n' +
-    '                   ng-click="onAction(action)"\n' +
-    '                   ng-repeat="action in actions"\n' +
-    '                   aria-label="{{::action| translate}}">\n' +
-    '            {{::action| translate}}\n' +
-    '        </md-button>\n' +
-    '    </div>\n' +
-    '\n' +
-    '</md-toast>');
-}]);
-})();
-
-
-
-(function () {
-    'use strict';
-    angular.module('pipControls', [
-        'pipMarkdown',
-        'pipColorPicker',
-        'pipRoutingProgress',
-        'pipPopover',
-        'pipImageSlider',
-        'pipToasts',
-        'pipControls.Translate'
-    ]);
-})();
-
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function () {
     'use strict';
     var thisModule = angular.module('pipColorPicker', ['pipControls.Templates']);
@@ -155,7 +47,20 @@ module.run(['$templateCache', function($templateCache) {
         };
     }]);
 })();
-
+},{}],2:[function(require,module,exports){
+(function () {
+    'use strict';
+    angular.module('pipControls', [
+        'pipMarkdown',
+        'pipColorPicker',
+        'pipRoutingProgress',
+        'pipPopover',
+        'pipImageSlider',
+        'pipToasts',
+        'pipControls.Translate'
+    ]);
+})();
+},{}],3:[function(require,module,exports){
 (function () {
     'use strict';
     var thisModule = angular.module('pipControls.Translate', []);
@@ -167,7 +72,7 @@ module.run(['$templateCache', function($templateCache) {
         };
     }]);
 })();
-
+},{}],4:[function(require,module,exports){
 (function () {
     'use strict';
     var thisModule = angular.module('pipImageSlider', ['pipSliderButton', 'pipSliderIndicator', 'pipImageSlider.Service']);
@@ -243,7 +148,7 @@ module.run(['$templateCache', function($templateCache) {
         };
     });
 })();
-
+},{}],5:[function(require,module,exports){
 (function () {
     'use strict';
     var thisModule = angular.module('pipImageSlider.Service', []);
@@ -307,7 +212,7 @@ module.run(['$templateCache', function($templateCache) {
         }
     }]);
 })();
-
+},{}],6:[function(require,module,exports){
 (function () {
     'use strict';
     var thisModule = angular.module('pipSliderButton', []);
@@ -326,7 +231,7 @@ module.run(['$templateCache', function($templateCache) {
         };
     });
 })();
-
+},{}],7:[function(require,module,exports){
 (function () {
     'use strict';
     var thisModule = angular.module('pipSliderIndicator', []);
@@ -346,7 +251,7 @@ module.run(['$templateCache', function($templateCache) {
         };
     });
 })();
-
+},{}],8:[function(require,module,exports){
 (function () {
     'use strict';
     var thisModule = angular.module('pipMarkdown', ['ngSanitize']);
@@ -452,7 +357,7 @@ module.run(['$templateCache', function($templateCache) {
         };
     }]);
 })();
-
+},{}],9:[function(require,module,exports){
 (function () {
     'use strict';
     var thisModule = angular.module('pipPopover', ['pipPopover.Service']);
@@ -533,7 +438,7 @@ module.run(['$templateCache', function($templateCache) {
         };
     });
 })();
-
+},{}],10:[function(require,module,exports){
 (function () {
     'use strict';
     var thisModule = angular.module('pipPopover.Service', []);
@@ -572,7 +477,7 @@ module.run(['$templateCache', function($templateCache) {
         }
     }]);
 })();
-
+},{}],11:[function(require,module,exports){
 (function () {
     'use strict';
     var thisModule = angular.module('pipRoutingProgress', ['ngMaterial']);
@@ -599,7 +504,7 @@ module.run(['$templateCache', function($templateCache) {
         }
     }]);
 })();
-
+},{}],12:[function(require,module,exports){
 (function () {
     'use strict';
     var thisModule = angular.module('pipToasts', ['ngMaterial', 'pipControls.Translate']);
@@ -766,7 +671,104 @@ module.run(['$templateCache', function($templateCache) {
         }
     }]);
 })();
+},{}],13:[function(require,module,exports){
+(function(module) {
+try {
+  module = angular.module('pipControls.Templates');
+} catch (e) {
+  module = angular.module('pipControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('color_picker/color_picker.html',
+    '<ul class="pip-color-picker {{class}}" pip-selected="currentColorIndex" pip-enter-space-press="enterSpacePress($event)">\n' +
+    '    <li tabindex="-1" ng-repeat="color in colors track by color">\n' +
+    '        <md-button  tabindex="-1" class="md-icon-button pip-selectable" ng-click="selectColor($index)" aria-label="color" ng-disabled="disabled()">\n' +
+    '            <md-icon ng-style="{\'color\': color}" md-svg-icon="icons:{{ color == currentColor ? \'circle\' : \'radio-off\' }}">\n' +
+    '            </md-icon>\n' +
+    '        </md-button>\n' +
+    '    </li>\n' +
+    '</ul>\n' +
+    '');
+}]);
+})();
 
+(function(module) {
+try {
+  module = angular.module('pipControls.Templates');
+} catch (e) {
+  module = angular.module('pipControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('popover/popover.html',
+    '<div ng-if="params.templateUrl" class=\'pip-popover flex layout-column\'\n' +
+    '     ng-click="onPopoverClick($event)" ng-include="params.templateUrl">\n' +
+    '</div>\n' +
+    '\n' +
+    '<div ng-if="params.template" class=\'pip-popover\' ng-click="onPopoverClick($event)">\n' +
+    '</div>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipControls.Templates');
+} catch (e) {
+  module = angular.module('pipControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('progress/routing_progress.html',
+    '<div class="pip-routing-progress layout-column layout-align-center-center"\n' +
+    '        ng-show="showProgress()">\n' +
+    '     <!--ng-show="$routing || $reset || toolInitialized">-->\n' +
+    '    <div class="loader">\n' +
+    '        <svg class="circular" viewBox="25 25 50 50">\n' +
+    '            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>\n' +
+    '        </svg>\n' +
+    '    </div>\n' +
+    '\n' +
+    '    <img src=""  height="40" width="40" class="pip-img">\n' +
+    '\n' +
+    '    <md-progress-circular md-diameter="96"\n' +
+    '                          class="fix-ie"></md-progress-circular>\n' +
+    '\n' +
+    '</div>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipControls.Templates');
+} catch (e) {
+  module = angular.module('pipControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('toast/toast.html',
+    '<md-toast class="md-action pip-toast"\n' +
+    '          ng-class="{\'pip-error\': toast.type==\'error\',\n' +
+    '          \'pip-column-toast\': toast.type == \'error\' || toast.actions.length > 1 || actionLenght > 4,\n' +
+    '          \'pip-no-action-toast\': actionLenght == 0}"\n' +
+    '          style="height:initial; max-height: initial; ">\n' +
+    '\n' +
+    '    <span class="flex-var pip-text" ng-bind-html="message"></span>\n' +
+    '    <div class="layout-row layout-align-end-start" class="pip-actions" ng-if="actions.length > 0 || (toast.type==\'error\' && toast.error)">\n' +
+    '        <md-button class="flex-fixed pip-toast-button" ng-if="toast.type==\'error\' && toast.error && showDetails" ng-click="onDetails()">Details</md-button>\n' +
+    '        <md-button class="flex-fixed pip-toast-button"\n' +
+    '                   ng-click="onAction(action)"\n' +
+    '                   ng-repeat="action in actions"\n' +
+    '                   aria-label="{{::action| translate}}">\n' +
+    '            {{::action| translate}}\n' +
+    '        </md-button>\n' +
+    '    </div>\n' +
+    '\n' +
+    '</md-toast>');
+}]);
+})();
+
+
+
+},{}]},{},[1,2,3,5,4,6,7,8,10,9,11,12,13])
 
 
 //# sourceMappingURL=pip-webui-controls.js.map

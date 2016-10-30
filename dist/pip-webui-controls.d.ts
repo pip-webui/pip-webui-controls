@@ -1,3 +1,4 @@
+declare module pip {
 
 
 
@@ -13,7 +14,7 @@
 
 
 
-declare var marked: any;
+var marked: any;
 
 
 
@@ -22,3 +23,6 @@ declare var marked: any;
 
 
 
+
+}
+
