@@ -8,7 +8,7 @@
             'ngMaterial', 'wu.masonry', 'LocalStorageModule', 
 
             'pipServices',
-            'pipTheme.Default', 'pipTheme.Bootbarn', 'pipTheme', 
+            'pipTheme.Default', 'pipTheme.BootBarn', 'pipTheme', 
 
             'pipControls', 'appControls.Toasts', 'appControls.ColorPicker',
             'appControls.Markdown', 'appControls.RefExpander',
