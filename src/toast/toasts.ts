@@ -225,7 +225,7 @@
                     id: id || null,
                     error: error,
                     type: 'error',
-                    message: message,
+                    message: message || 'Unknown error.',
                     actions: ['ok'],
                     successCallback: successCallback,
                     cancelCallback: cancelCallback
