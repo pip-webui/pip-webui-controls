@@ -104,6 +104,8 @@
                 });
             });
             
+            $scope.notifMessage = "Long notification in toast message. Notifications message: Compellingly implement cross functional materials without transparent catalysts for change.";
+
             var
                 messageCount = 0,
                 errorCount = 0;
@@ -111,19 +113,19 @@
             $scope.onNotificationShow = function () {
                 messageCount++;
                 
-                pipToasts.showNotification("Notification" + messageCount, ['accept', 'reject']);
+                pipToasts.showNotification($scope.notifMessage + messageCount, ['accept', 'reject']);
             };
 
             $scope.onNotificationHideActions = function () {
                 messageCount++;
                 // pipToasts.showNotification('Compellingly implement cross functional materials without transparent catalysts for change. Intrinsicly myocardinate client-based imperatives without premium.', []);
 
-                pipToasts.showNotification("Notification"  + messageCount, []);
+                pipToasts.showNotification($scope.notifMessage  + messageCount, []);
             };
 
             $scope.onNotificationSmallShow = function () {
                 messageCount++;
-                pipToasts.showNotification("Notification"  + 'Small' + messageCount);
+                pipToasts.showNotification( 'Small' + messageCount);
             };
 
             $scope.onErrorShow = function () {
@@ -138,7 +140,7 @@
                     message: 'Missing party information'
                 };
 
-                pipToasts.showError("Error" + errorCount, null, null, null, error);
+                pipToasts.showError($scope.notifMessage + " Error:" + errorCount, null, null, null, error);
             };
         }
     );

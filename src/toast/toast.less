@@ -10,10 +10,21 @@
     max-height: 32px + 16px !important;
   }
   .pip-text {
-    overflow: hidden;
-    max-height: 32px;
-    margin-right: 0px;
-    vertical-align: middle;
+        display: -webkit-box;
+        max-height:  32px;
+        margin: 0 auto;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        word-wrap:break-word;
+        overflow: hidden;
+        text-overflow: ellipsis;        
+        line-height: 16px;
+        vertical-align: middle;
+
+    // max-height: 32px;
+    // margin-right: 0px;
+    // vertical-align: middle;
+    // .text-overflow();
   }
 
   .pip-toast-button {
@@ -32,6 +43,10 @@
     max-height: 32px + 24px + 36px + 32px !important;
     padding: 0;
 
+    .md-toast-content::before {
+      min-height: 0px!important;
+    }
+
     .md-toast-content {
       padding-top: 8px;
       max-height: 32px + 24px + 36px !important;
@@ -41,9 +56,7 @@
         margin-right: 0;
         width: 100%;
       }
-      .pip-actions {
-        width: 100%;
-      }
+
     }
 
     &.pip-column-toast {
@@ -66,5 +79,17 @@
     .md-toast-content {
       background-color: @color-badge;
     }
+    z-index: 1000;
   }
+}
+
+.pip-toast.pip-column-toast {
+    @media (max-width: 768px) {
+      .md-toast-content::before {
+        min-height: 0px!important;
+      }
+      .pip-actions {
+        width: 100%;
+      }      
+    }
 }
