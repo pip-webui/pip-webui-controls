@@ -6,8 +6,8 @@ declare module pip.controls {
 
 
 
-var marked: any;
 
+var marked: any;
 
 
 
