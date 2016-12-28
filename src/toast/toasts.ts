@@ -152,14 +152,14 @@
             }
 
             function onStateChangeSuccess() {
-                toasts = _.reject(toasts, function (toast) {
-                    return toast.type === 'error';
-                });
+                // toasts = _.reject(toasts, function (toast) {
+                //     return toast.type === 'error';
+                // });
 
-                if (currentToast && currentToast.type === 'error') {
-                    $mdToast.cancel();
-                    showNextToast();
-                }
+                // if (currentToast && currentToast.type === 'error') {
+                //     $mdToast.cancel();
+                //     showNextToast();
+                // }
             }
 
             function onClearToasts() {
