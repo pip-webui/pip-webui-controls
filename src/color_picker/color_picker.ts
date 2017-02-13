@@ -1,3 +1,100 @@
+export interface IColorPicker {
+    class: string;
+    colors: string[];
+    currentColor: string;
+    currentColorIndex: number;
+    ngDisabled: Function;
+    colorChange: Function;
+
+    enterSpacePress(event): void;
+    disabled(): boolean;
+    selectColor(index: number);
+}
+
+export class ColorPickerController implements IColorPicker {
+  
+    private _$timeout;
+    private _$scope: ng.IScope;
+
+    public class: string;
+    public colors: string[];
+    public currentColor: string;
+    public currentColorIndex: number;
+    public ngDisabled: Function;
+    public colorChange: Function;
+
+    constructor( 
+        $scope: ng.IScope, 
+        $element,
+        $attrs, 
+        $timeout ) {
+            let DEFAULT_COLORS = ['purple', 'lightgreen', 'green', 'darkred', 'pink', 'yellow', 'cyan'];
+            this._$timeout = $timeout;
+            this._$scope = $scope;
+
+            this.class = $attrs.class || '';
+            this.colors = !$scope['colors'] || _.isArray($scope['colors']) && $scope['colors'].length === 0 ? DEFAULT_COLORS : $scope['colors'];
+            this.colorChange = $scope['colorChange'] || null;
+            this.currentColor = $scope['currentColor'] || this.colors[0];
+            this.currentColorIndex = this.colors.indexOf(this.currentColor);
+            this.ngDisabled = $scope['ngDisabled'];
+
+    }
+
+    public disabled(): boolean {
+        if (this.ngDisabled) {
+            return this.ngDisabled();
+        }
+
+        return true;
+    };
+
+     public selectColor(index: number) {
+        if (this.disabled()) { return; }
+        this.currentColorIndex = index;
+        this.currentColor = this.colors[this.currentColorIndex];
+        this._$timeout(() => {
+            this._$scope.$apply();
+        });
+
+        if (this.colorChange) {
+            this.colorChange();
+        }
+    };
+
+    public enterSpacePress(event): void {
+        this.selectColor(event.index);
+    };
+
+}
+
+(() => {
+    function pipColorPicker($parse: any) {
+        "ngInject";
+
+          return {
+                restrict: 'EA',
+                scope: {
+                    ngDisabled: '&',
+                    colors: '=pipColors',
+                    currentColor: '=ngModel',
+                    colorChange: '&ngChange'
+                },
+                templateUrl: 'color_picker/color_picker.html',
+                controller: ColorPickerController,
+                controllerAs: 'vm'
+            };
+    }
+
+
+    angular
+        .module('pipColorPicker', ['pipControls.Templates'])
+        .directive('pipColorPicker', pipColorPicker);
+
+
+})();
+
+
 /// <reference path="../../typings/tsd.d.ts" />
 /*
 (function () {
@@ -72,83 +169,3 @@
 //import {FileUploadController} from './upload/FileUploadController';
 //import {FileProgressController} from './progress/FileProgressController';
 //import {FileUploadService} from './service/FileUploadService';
-
-
-export class  ColorPickerController {
-  
-    private _$timeout;
-    private _$scope;
-
-    public class: string;
-    public colors: string[];
-    public currentColor: string;
-    public currentColorIndex: number;
-    public ngDisabled: Function;
-    public colorChange: Function;
-
-    constructor( $scope, $element, $attrs, $timeout ) {
-            let DEFAULT_COLORS = ['purple', 'lightgreen', 'green', 'darkred', 'pink', 'yellow', 'cyan'];
-            this._$timeout = $timeout;
-            this._$scope = $scope;
-
-            this.class = $attrs.class || '';
-            this.colors = !$scope.colors || _.isArray($scope.colors) && $scope.colors.length === 0 ? DEFAULT_COLORS : $scope.colors;
-            this.colorChange = $scope.colorChange || null;
-            this.currentColor = $scope.currentColor || this.colors[0];
-            this.currentColorIndex = this.colors.indexOf(this.currentColor);
-            this.ngDisabled = $scope.ngDisabled;
-
-    }
-
-    public disabled () {
-        if (this.ngDisabled) {
-            return this.ngDisabled();
-        }
-
-        return true;
-    };
-
-     public selectColor(index) {
-        if (this.disabled()) { return; }
-        this.currentColorIndex = index;
-        this.currentColor = this.colors[this.currentColorIndex];
-        this._$timeout(() => {
-            this._$scope.$apply();
-        });
-
-        if (this.colorChange) {
-            this.colorChange();
-        }
-    };
-
-    public enterSpacePress(event) {
-        this.selectColor(event.index);
-    };
-
-}
-
-(() => {
-    function pipColorPicker($parse: any) {
-        "ngInject";
-
-          return {
-                restrict: 'EA',
-                scope: {
-                    ngDisabled: '&',
-                    colors: '=pipColors',
-                    currentColor: '=ngModel',
-                    colorChange: '&ngChange'
-                },
-                templateUrl: 'color_picker/color_picker.html',
-                controller: ColorPickerController,
-                controllerAs: 'vm'
-            };
-    }
-
-
-    angular
-        .module('pipColorPicker', ['pipControls.Templates'])
-        .directive('pipColorPicker', pipColorPicker);
-
-
-})();

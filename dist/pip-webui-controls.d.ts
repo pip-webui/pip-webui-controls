@@ -1,6 +1,17 @@
 declare module pip.controls {
 
-export class ColorPickerController {
+export interface IColorPicker {
+    class: string;
+    colors: string[];
+    currentColor: string;
+    currentColorIndex: number;
+    ngDisabled: Function;
+    colorChange: Function;
+    enterSpacePress(event: any): void;
+    disabled(): boolean;
+    selectColor(index: number): any;
+}
+export class ColorPickerController implements IColorPicker {
     private _$timeout;
     private _$scope;
     class: string;
@@ -9,9 +20,9 @@ export class ColorPickerController {
     currentColorIndex: number;
     ngDisabled: Function;
     colorChange: Function;
-    constructor($scope: any, $element: any, $attrs: any, $timeout: any);
-    disabled(): any;
-    selectColor(index: any): void;
+    constructor($scope: ng.IScope, $element: any, $attrs: any, $timeout: any);
+    disabled(): boolean;
+    selectColor(index: number): void;
     enterSpacePress(event: any): void;
 }
 

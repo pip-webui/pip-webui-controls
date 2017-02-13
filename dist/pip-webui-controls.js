@@ -7,11 +7,11 @@ var ColorPickerController = (function () {
         this._$timeout = $timeout;
         this._$scope = $scope;
         this.class = $attrs.class || '';
-        this.colors = !$scope.colors || _.isArray($scope.colors) && $scope.colors.length === 0 ? DEFAULT_COLORS : $scope.colors;
-        this.colorChange = $scope.colorChange || null;
-        this.currentColor = $scope.currentColor || this.colors[0];
+        this.colors = !$scope['colors'] || _.isArray($scope['colors']) && $scope['colors'].length === 0 ? DEFAULT_COLORS : $scope['colors'];
+        this.colorChange = $scope['colorChange'] || null;
+        this.currentColor = $scope['currentColor'] || this.colors[0];
         this.currentColorIndex = this.colors.indexOf(this.currentColor);
-        this.ngDisabled = $scope.ngDisabled;
+        this.ngDisabled = $scope['ngDisabled'];
     }
     ColorPickerController.prototype.disabled = function () {
         if (this.ngDisabled) {
