@@ -1,8 +1,51 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}(g.pip || (g.pip = {})).controls = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+"use strict";
+var ColorPickerController = (function () {
+    ColorPickerController.$inject = ['$scope', '$element', '$attrs', '$timeout'];
+    function ColorPickerController($scope, $element, $attrs, $timeout) {
+        var DEFAULT_COLORS = ['purple', 'lightgreen', 'green', 'darkred', 'pink', 'yellow', 'cyan'];
+        this._$timeout = $timeout;
+        this._$scope = $scope;
+        this.class = $attrs.class || '';
+        this.colors = !$scope.colors || _.isArray($scope.colors) && $scope.colors.length === 0 ? DEFAULT_COLORS : $scope.colors;
+        this.colorChange = $scope.colorChange || null;
+        this.currentColor = $scope.currentColor || this.colors[0];
+        this.currentColorIndex = this.colors.indexOf(this.currentColor);
+        this.ngDisabled = $scope.ngDisabled;
+    }
+    ColorPickerController.prototype.disabled = function () {
+        if (this.ngDisabled) {
+            return this.ngDisabled();
+        }
+        return true;
+    };
+    ;
+    ColorPickerController.prototype.selectColor = function (index) {
+        var _this = this;
+        if (this.disabled()) {
+            return;
+        }
+        this.currentColorIndex = index;
+        this.currentColor = this.colors[this.currentColorIndex];
+        this._$timeout(function () {
+            _this._$scope.$apply();
+        });
+        if (this.colorChange) {
+            this.colorChange();
+        }
+    };
+    ;
+    ColorPickerController.prototype.enterSpacePress = function (event) {
+        this.selectColor(event.index);
+    };
+    ;
+    return ColorPickerController;
+}());
+exports.ColorPickerController = ColorPickerController;
 (function () {
-    'use strict';
-    var thisModule = angular.module('pipColorPicker', ['pipControls.Templates']);
-    thisModule.directive('pipColorPicker', function () {
+    pipColorPicker.$inject = ['$parse'];
+    function pipColorPicker($parse) {
+        "ngInject";
         return {
             restrict: 'EA',
             scope: {
@@ -12,40 +55,13 @@
                 colorChange: '&ngChange'
             },
             templateUrl: 'color_picker/color_picker.html',
-            controller: 'pipColorPickerController'
+            controller: ColorPickerController,
+            controllerAs: 'vm'
         };
-    });
-    thisModule.controller('pipColorPickerController', ['$scope', '$element', '$attrs', '$timeout', function ($scope, $element, $attrs, $timeout) {
-        var DEFAULT_COLORS = ['purple', 'lightgreen', 'green', 'darkred', 'pink', 'yellow', 'cyan'];
-        $scope.class = $attrs.class || '';
-        if (!$scope.colors || _.isArray($scope.colors) && $scope.colors.length === 0) {
-            $scope.colors = DEFAULT_COLORS;
-        }
-        $scope.currentColor = $scope.currentColor || $scope.colors[0];
-        $scope.currentColorIndex = $scope.colors.indexOf($scope.currentColor);
-        $scope.disabled = function () {
-            if ($scope.ngDisabled) {
-                return $scope.ngDisabled();
-            }
-            return true;
-        };
-        $scope.selectColor = function (index) {
-            if ($scope.disabled()) {
-                return;
-            }
-            $scope.currentColorIndex = index;
-            $scope.currentColor = $scope.colors[$scope.currentColorIndex];
-            $timeout(function () {
-                $scope.$apply();
-            });
-            if ($scope.colorChange) {
-                $scope.colorChange();
-            }
-        };
-        $scope.enterSpacePress = function (event) {
-            $scope.selectColor(event.index);
-        };
-    }]);
+    }
+    angular
+        .module('pipColorPicker', ['pipControls.Templates'])
+        .directive('pipColorPicker', pipColorPicker);
 })();
 },{}],2:[function(require,module,exports){
 (function () {
@@ -673,7 +689,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('color_picker/color_picker.html',
-    '<ul class="pip-color-picker {{class}}" pip-selected="currentColorIndex" pip-enter-space-press="enterSpacePress($event)"><li tabindex="-1" ng-repeat="color in colors track by color"><md-button tabindex="-1" class="md-icon-button pip-selectable" ng-click="selectColor($index)" aria-label="color" ng-disabled="disabled()"><md-icon ng-style="{\'color\': color}" md-svg-icon="icons:{{ color == currentColor ? \'circle\' : \'radio-off\' }}"></md-icon></md-button></li></ul>');
+    '<ul class="pip-color-picker {{vm.class}}" pip-selected="vm.currentColorIndex" pip-enter-space-press="vm.enterSpacePress($event)"><li tabindex="-1" ng-repeat="color in vm.colors track by color"><md-button tabindex="-1" class="md-icon-button pip-selectable" ng-click="vm.selectColor($index)" aria-label="color" ng-disabled="vm.disabled()"><md-icon ng-style="{\'color\': color}" md-svg-icon="icons:{{ color == vm.currentColor ? \'circle\' : \'radio-off\' }}"></md-icon></md-button></li></ul>');
 }]);
 })();
 
