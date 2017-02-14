@@ -1,58 +1,68 @@
 /// <reference path="../../typings/tsd.d.ts" />
+class ToastController {
+    private _$mdToast;
+    private _pipErrorDetailsDialog ;
 
-(function () {
-    'use strict';
-    var thisModule = angular.module('pipToasts', ['ngMaterial', 'pipControls.Translate']);
+    public message: string;
+    public actions: any[];
+    public toast: any;
+    public actionLenght: number;
+    public showDetails: boolean;
 
-    thisModule.controller('pipToastController',
-        function ($scope, $mdToast, toast, $injector) {
-            var pipErrorDetailsDialog = $injector.has('pipErrorDetailsDialog') 
+    constructor( 
+        $scope, $mdToast, toast, $injector
+       ) {
+            this._pipErrorDetailsDialog = $injector.has('pipErrorDetailsDialog') 
                 ? $injector.get('pipErrorDetailsDialog') : null;
+            this._$mdToast = $mdToast;
 
-            // if (toast.type && sounds['toast_' + toast.type]) {
-            //     sounds['toast_' + toast.type].play();
-            // }
-
-            $scope.message = toast.message;
-            $scope.actions = toast.actions;
-            $scope.toast = toast;
+console.log(toast);
+            this.message = toast.message;
+            this.actions = toast.actions;
+            this.toast = toast;
             
             if (toast.actions.length === 0) {
-                $scope.actionLenght = 0;
+                this.actionLenght = 0;
             } else if (toast.actions.length === 1) {
-                $scope.actionLenght = toast.actions[0].toString().length;
+                this.actionLenght = toast.actions[0].toString().length;
             } else {
-                $scope.actionLenght = null;
+                this.actionLenght = null;
             }
 
-            $scope.showDetails = pipErrorDetailsDialog != null;
-            $scope.onDetails = function () {
-                $mdToast.hide();
+            this.showDetails = this._pipErrorDetailsDialog != null;
 
-                if (pipErrorDetailsDialog) {
-                    pipErrorDetailsDialog.show(
-                        {
-                            error: $scope.toast.error,
-                            ok: 'Ok'
-                        },
-                        angular.noop,
-                        angular.noop
-                    );
-                }
-            };
+    }
 
-            $scope.onAction = function (action) {
-                $mdToast.hide(
-                    {
-                        action: action,
-                        id: toast.id,
-                        message: toast.message
-                    });
-            };
+     public onDetails() {
+        this._$mdToast.hide();
+        if (this._pipErrorDetailsDialog) {
+            this._pipErrorDetailsDialog.show(
+            {
+                error: this.toast.error,
+                ok: 'Ok'
+            },
+            angular.noop,
+            angular.noop
+            );
         }
-    );
+    }
 
-    thisModule.service('pipToasts',
+    public onAction(action) {
+        this._$mdToast.hide(
+        {
+            action: action,
+            id: this.toast.id,
+            message: this.message
+        });
+
+    }
+}
+
+
+
+(() => {
+    angular.module('pipToasts', ['ngMaterial', 'pipControls.Translate'])
+           .service('pipToasts',
         function ($rootScope, $mdToast) {
             var
                 SHOW_TIMEOUT = 20000,
@@ -100,7 +110,8 @@
                     templateUrl: 'toast/toast.html',
                     hideDelay: toast.duration || SHOW_TIMEOUT,
                     position: 'bottom left',
-                    controller: 'pipToastController',
+                    controller: ToastController,
+                    controllerAs: 'vm',
                     locals: {
                         toast: currentToast,
                         sounds: sounds

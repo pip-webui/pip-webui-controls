@@ -56,6 +56,18 @@ export class PopoverController {
 
 
 
+class ToastController {
+    private _$mdToast;
+    private _pipErrorDetailsDialog;
+    message: string;
+    actions: any[];
+    toast: any;
+    actionLenght: number;
+    showDetails: boolean;
+    constructor($scope: any, $mdToast: any, toast: any, $injector: any);
+    onDetails(): void;
+    onAction(action: any): void;
+}
 
 }
 

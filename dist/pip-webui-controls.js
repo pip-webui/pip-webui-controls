@@ -536,43 +536,48 @@ exports.PopoverController = PopoverController;
     }]);
 })();
 },{}],12:[function(require,module,exports){
-(function () {
-    'use strict';
-    var thisModule = angular.module('pipToasts', ['ngMaterial', 'pipControls.Translate']);
-    thisModule.controller('pipToastController', ['$scope', '$mdToast', 'toast', '$injector', function ($scope, $mdToast, toast, $injector) {
-        var pipErrorDetailsDialog = $injector.has('pipErrorDetailsDialog')
+var ToastController = (function () {
+    ToastController.$inject = ['$scope', '$mdToast', 'toast', '$injector'];
+    function ToastController($scope, $mdToast, toast, $injector) {
+        this._pipErrorDetailsDialog = $injector.has('pipErrorDetailsDialog')
             ? $injector.get('pipErrorDetailsDialog') : null;
-        $scope.message = toast.message;
-        $scope.actions = toast.actions;
-        $scope.toast = toast;
+        this._$mdToast = $mdToast;
+        console.log(toast);
+        this.message = toast.message;
+        this.actions = toast.actions;
+        this.toast = toast;
         if (toast.actions.length === 0) {
-            $scope.actionLenght = 0;
+            this.actionLenght = 0;
         }
         else if (toast.actions.length === 1) {
-            $scope.actionLenght = toast.actions[0].toString().length;
+            this.actionLenght = toast.actions[0].toString().length;
         }
         else {
-            $scope.actionLenght = null;
+            this.actionLenght = null;
         }
-        $scope.showDetails = pipErrorDetailsDialog != null;
-        $scope.onDetails = function () {
-            $mdToast.hide();
-            if (pipErrorDetailsDialog) {
-                pipErrorDetailsDialog.show({
-                    error: $scope.toast.error,
-                    ok: 'Ok'
-                }, angular.noop, angular.noop);
-            }
-        };
-        $scope.onAction = function (action) {
-            $mdToast.hide({
-                action: action,
-                id: toast.id,
-                message: toast.message
-            });
-        };
-    }]);
-    thisModule.service('pipToasts', ['$rootScope', '$mdToast', function ($rootScope, $mdToast) {
+        this.showDetails = this._pipErrorDetailsDialog != null;
+    }
+    ToastController.prototype.onDetails = function () {
+        this._$mdToast.hide();
+        if (this._pipErrorDetailsDialog) {
+            this._pipErrorDetailsDialog.show({
+                error: this.toast.error,
+                ok: 'Ok'
+            }, angular.noop, angular.noop);
+        }
+    };
+    ToastController.prototype.onAction = function (action) {
+        this._$mdToast.hide({
+            action: action,
+            id: this.toast.id,
+            message: this.message
+        });
+    };
+    return ToastController;
+}());
+(function () {
+    angular.module('pipToasts', ['ngMaterial', 'pipControls.Translate'])
+        .service('pipToasts', ['$rootScope', '$mdToast', function ($rootScope, $mdToast) {
         var SHOW_TIMEOUT = 20000, SHOW_TIMEOUT_NOTIFICATIONS = 20000, toasts = [], currentToast, sounds = {};
         $rootScope.$on('$stateChangeSuccess', onStateChangeSuccess);
         $rootScope.$on('pipSessionClosed', onClearToasts);
@@ -600,7 +605,8 @@ exports.PopoverController = PopoverController;
                 templateUrl: 'toast/toast.html',
                 hideDelay: toast.duration || SHOW_TIMEOUT,
                 position: 'bottom left',
-                controller: 'pipToastController',
+                controller: ToastController,
+                controllerAs: 'vm',
                 locals: {
                     toast: currentToast,
                     sounds: sounds
@@ -770,18 +776,18 @@ try {
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('toast/toast.html',
     '<md-toast class="md-action pip-toast"\n' +
-    '          ng-class="{\'pip-error\': toast.type==\'error\',\n' +
-    '          \'pip-column-toast\': toast.actions.length > 1 || actionLenght > 4,\n' +
-    '          \'pip-no-action-toast\': actionLenght == 0}"\n' +
+    '          ng-class="{\'pip-error\': vm.toast.type==\'error\',\n' +
+    '          \'pip-column-toast\': vm.toast.actions.length > 1 || vm.actionLenght > 4,\n' +
+    '          \'pip-no-action-toast\': vm.actionLenght == 0}"\n' +
     '          style="height:initial; max-height: initial; ">\n' +
     '\n' +
-    '    <span class="flex-var pip-text" ng-bind-html="message"></span>\n' +
-    '    <div class="layout-row layout-align-end-start pip-actions" ng-if="actions.length > 0 || (toast.type==\'error\' && toast.error)">\n' +
-    '        <div class="flex" ng-if="toast.actions.length > 1"> </div>\n' +
-    '            <md-button class="flex-fixed pip-toast-button" ng-if="toast.type==\'error\' && toast.error && showDetails" ng-click="onDetails()">Details</md-button>\n' +
+    '    <span class="flex-var pip-text" ng-bind-html="vm.message"></span>\n' +
+    '    <div class="layout-row layout-align-end-start pip-actions" ng-if="vm.actions.length > 0 || (vm.toast.type==\'error\' && vm.toast.error)">\n' +
+    '        <div class="flex" ng-if="vm.toast.actions.length > 1"> </div>\n' +
+    '            <md-button class="flex-fixed pip-toast-button" ng-if="vm.toast.type==\'error\' && vm.toast.error && vm.showDetails" ng-click="vm.onDetails()">Details</md-button>\n' +
     '            <md-button class="flex-fixed pip-toast-button"\n' +
-    '                    ng-click="onAction(action)"\n' +
-    '                    ng-repeat="action in actions"\n' +
+    '                    ng-click="vm.onAction(action)"\n' +
+    '                    ng-repeat="action in vm.actions"\n' +
     '                    aria-label="{{::action| translate}}">\n' +
     '                {{::action| translate}}\n' +
     '            </md-button>\n' +

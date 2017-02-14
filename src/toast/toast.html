@@ -1,16 +1,16 @@
 <md-toast class="md-action pip-toast"
-          ng-class="{'pip-error': toast.type=='error',
-          'pip-column-toast': toast.actions.length > 1 || actionLenght > 4,
-          'pip-no-action-toast': actionLenght == 0}"
+          ng-class="{'pip-error': vm.toast.type=='error',
+          'pip-column-toast': vm.toast.actions.length > 1 || vm.actionLenght > 4,
+          'pip-no-action-toast': vm.actionLenght == 0}"
           style="height:initial; max-height: initial; ">
 
-    <span class="flex-var pip-text" ng-bind-html="message"></span>
-    <div class="layout-row layout-align-end-start pip-actions" ng-if="actions.length > 0 || (toast.type=='error' && toast.error)">
-        <div class="flex" ng-if="toast.actions.length > 1"> </div>
-            <md-button class="flex-fixed pip-toast-button" ng-if="toast.type=='error' && toast.error && showDetails" ng-click="onDetails()">Details</md-button>
+    <span class="flex-var pip-text" ng-bind-html="vm.message"></span>
+    <div class="layout-row layout-align-end-start pip-actions" ng-if="vm.actions.length > 0 || (vm.toast.type=='error' && vm.toast.error)">
+        <div class="flex" ng-if="vm.toast.actions.length > 1"> </div>
+            <md-button class="flex-fixed pip-toast-button" ng-if="vm.toast.type=='error' && vm.toast.error && vm.showDetails" ng-click="vm.onDetails()">Details</md-button>
             <md-button class="flex-fixed pip-toast-button"
-                    ng-click="onAction(action)"
-                    ng-repeat="action in actions"
+                    ng-click="vm.onAction(action)"
+                    ng-repeat="action in vm.actions"
                     aria-label="{{::action| translate}}">
                 {{::action| translate}}
             </md-button>
