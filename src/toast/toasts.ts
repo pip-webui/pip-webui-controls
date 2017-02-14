@@ -10,13 +10,13 @@ class ToastController {
     public showDetails: boolean;
 
     constructor( 
-        $scope, $mdToast, toast, $injector
+        $mdToast, 
+        toast, 
+        $injector
        ) {
             this._pipErrorDetailsDialog = $injector.has('pipErrorDetailsDialog') 
                 ? $injector.get('pipErrorDetailsDialog') : null;
             this._$mdToast = $mdToast;
-
-console.log(toast);
             this.message = toast.message;
             this.actions = toast.actions;
             this.toast = toast;
@@ -179,15 +179,6 @@ console.log(toast);
 
             // Show new notification toast at the top right
             function showNotification(message, actions, successCallback, cancelCallback, id) {
-                // pipAssert.isDef(message, 'pipToasts.showNotification: message should be defined');
-                // pipAssert.isString(message, 'pipToasts.showNotification: message should be a string');
-                // pipAssert.isArray(actions || [], 'pipToasts.showNotification: actions should be an array');
-                // if (successCallback) {
-                //     pipAssert.isFunction(successCallback, 'showNotification: successCallback should be a function');
-                // }
-                // if (cancelCallback) {
-                //     pipAssert.isFunction(cancelCallback, 'showNotification: cancelCallback should be a function');
-                // }
 
                 addToast({
                     id: id || null,
@@ -202,14 +193,6 @@ console.log(toast);
 
             // Show new message toast at the top right
             function showMessage(message, successCallback, cancelCallback, id) {
-                // pipAssert.isDef(message, 'pipToasts.showMessage: message should be defined');
-                // pipAssert.isString(message, 'pipToasts.showMessage: message should be a string');
-                // if (successCallback) {
-                //     pipAssert.isFunction(successCallback, 'pipToasts.showMessage:successCallback should be a function');
-                // }
-                // if (cancelCallback) {
-                //     pipAssert.isFunction(cancelCallback, 'pipToasts.showMessage: cancelCallback should be a function');
-                // }
 
                 addToast({
                     id: id || null,
@@ -223,14 +206,6 @@ console.log(toast);
 
             // Show error toast at the bottom right after error occured
             function showError(message, successCallback, cancelCallback, id, error) {
-                // pipAssert.isDef(message, 'pipToasts.showError: message should be defined');
-                // pipAssert.isString(message, 'pipToasts.showError: message should be a string');
-                // if (successCallback) {
-                //     pipAssert.isFunction(successCallback, 'pipToasts.showError: successCallback should be a function');
-                // }
-                // if (cancelCallback) {
-                //     pipAssert.isFunction(cancelCallback, 'pipToasts.showError: cancelCallback should be a function');
-                // }
 
                 addToast({
                     id: id || null,
