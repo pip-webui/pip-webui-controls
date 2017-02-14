@@ -1,6 +1,6 @@
-<div ng-if="params.templateUrl" class='pip-popover flex layout-column'
-     ng-click="onPopoverClick($event)" ng-include="params.templateUrl">
+<div ng-if="vm.templateUrl" class='pip-popover flex layout-column'
+     ng-click="vm.onPopoverClick($event)" ng-include="vm.templateUrl">
 </div>
 
-<div ng-if="params.template" class='pip-popover' ng-click="onPopoverClick($event)">
+<div ng-if="vm.template" class='pip-popover' ng-click="vm.onPopoverClick($event)">
 </div>

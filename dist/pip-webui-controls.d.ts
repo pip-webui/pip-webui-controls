@@ -33,6 +33,26 @@ export class ColorPickerController implements IColorPicker {
 
 var marked: any;
 
+export class PopoverController {
+    private _$timeout;
+    private _$scope;
+    timeout: any;
+    backdropElement: any;
+    content: any;
+    element: any;
+    calcH: boolean;
+    templateUrl: any;
+    template: any;
+    cancelCallback: Function;
+    constructor($scope: ng.IScope, $rootScope: any, $element: any, $timeout: any, $compile: any);
+    backdropClick(): void;
+    closePopover(): void;
+    onPopoverClick($e: any): void;
+    private init();
+    private position();
+    private onResize();
+    private calcHeight();
+}
 
 
 
