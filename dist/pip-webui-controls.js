@@ -513,10 +513,23 @@ exports.PopoverService = PopoverService;
         .service('pipPopoverService', PopoverService);
 })();
 },{}],11:[function(require,module,exports){
+var RoutingController = (function () {
+    RoutingController.$inject = ['$scope', '$element'];
+    function RoutingController($scope, $element) {
+        this._image = $element.children('img');
+        this.showProgress = $scope['showProgress'];
+        this.logoUrl = $scope['logoUrl'];
+        this.loadProgressImage();
+    }
+    RoutingController.prototype.loadProgressImage = function () {
+        if (this.logoUrl) {
+            this._image.attr('src', this.logoUrl);
+        }
+    };
+    return RoutingController;
+}());
 (function () {
-    'use strict';
-    var thisModule = angular.module('pipRoutingProgress', ['ngMaterial']);
-    thisModule.directive('pipRoutingProgress', function () {
+    function RoutingProgress() {
         return {
             restrict: 'EA',
             replace: true,
@@ -525,19 +538,13 @@ exports.PopoverService = PopoverService;
                 logoUrl: '@'
             },
             templateUrl: 'progress/routing_progress.html',
-            controller: 'pipRoutingProgressController'
+            controller: RoutingController,
+            controllerAs: 'vm'
         };
-    });
-    thisModule.controller('pipRoutingProgressController', ['$scope', '$element', '$attrs', function ($scope, $element, $attrs) {
-        var image = $element.children('img');
-        loadProgressImage();
-        return;
-        function loadProgressImage() {
-            if ($scope.logoUrl) {
-                image.attr('src', $scope.logoUrl);
-            }
-        }
-    }]);
+    }
+    angular
+        .module('pipRoutingProgress', ['ngMaterial'])
+        .directive('pipRoutingProgress', RoutingProgress);
 })();
 },{}],12:[function(require,module,exports){
 var ToastController = (function () {
@@ -758,7 +765,7 @@ try {
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('progress/routing_progress.html',
     '<div class="pip-routing-progress layout-column layout-align-center-center"\n' +
-    '        ng-show="showProgress()">\n' +
+    '        ng-show="vm.showProgress()">\n' +
     '     <!--ng-show="$routing || $reset || toolInitialized">-->\n' +
     '    <div class="loader">\n' +
     '        <svg class="circular" viewBox="25 25 50 50">\n' +

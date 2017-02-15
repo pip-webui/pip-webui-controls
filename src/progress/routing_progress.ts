@@ -1,11 +1,35 @@
 /// <reference path="../../typings/tsd.d.ts" />
 
-(function () {
-    'use strict';
+class RoutingController {
+    private _image: any;
 
-    var thisModule = angular.module('pipRoutingProgress', ['ngMaterial']);
+    public logoUrl: string;
+    public showProgress: Function;
 
-    thisModule.directive('pipRoutingProgress', function () {
+    constructor( 
+        $scope: ng.IScope,
+        $element)
+    {
+
+        this._image = $element.children('img'); 
+        this.showProgress = $scope['showProgress']
+        this.logoUrl = $scope['logoUrl'];        
+        this.loadProgressImage();
+
+    }
+
+    public loadProgressImage() {
+        if (this.logoUrl) {
+            this._image.attr('src', this.logoUrl);
+        }
+    }
+
+}
+
+
+(() => {
+
+    function RoutingProgress() {
         return {
             restrict: 'EA',
             replace: true,
@@ -14,25 +38,14 @@
                     logoUrl: '@'
                 },
             templateUrl: 'progress/routing_progress.html',
-            controller: 'pipRoutingProgressController'
+            controller: RoutingController,
+            controllerAs: 'vm'
         };
-    });
+    }
 
-    thisModule.controller('pipRoutingProgressController',
-        function ($scope, $element, $attrs) {
-            var  image = $element.children('img');          
 
-            loadProgressImage();
-
-            return;
-
-            function loadProgressImage() {
-                if ($scope.logoUrl) {
-                    image.attr('src', $scope.logoUrl);
-                }
-            }
-
-        }
-    );
+    angular
+        .module('pipRoutingProgress', ['ngMaterial'])
+        .directive('pipRoutingProgress', RoutingProgress);
 
 })();

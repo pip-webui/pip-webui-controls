@@ -66,6 +66,13 @@ export class PopoverService {
     resize(): void;
 }
 
+class RoutingController {
+    private _image;
+    logoUrl: string;
+    showProgress: Function;
+    constructor($scope: ng.IScope, $element: any);
+    loadProgressImage(): void;
+}
 
 interface IPipToast {
     type: string;
