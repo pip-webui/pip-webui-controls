@@ -116,9 +116,6 @@ export class PopoverController {
         contentHeight = popover.height() - title.outerHeight(true) - footer.outerHeight(true);
         content.css('max-height', Math.max(contentHeight, 0) + 'px').css('box-sizing', 'border-box');
     }
-
-    
-
 }
 
 (() => {

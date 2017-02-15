@@ -54,6 +54,17 @@ export class PopoverController {
     private calcHeight();
 }
 
+export class PopoverService {
+    private _$timeout;
+    private _$scope;
+    private _$compile;
+    private _$rootScope;
+    popoverTemplate: string;
+    constructor($compile: any, $rootScope: any, $timeout: any);
+    show(p: any): void;
+    hide(): void;
+    resize(): void;
+}
 
 
 class ToastController {
@@ -64,7 +75,7 @@ class ToastController {
     toast: any;
     actionLenght: number;
     showDetails: boolean;
-    constructor($scope: any, $mdToast: any, toast: any, $injector: any);
+    constructor($mdToast: any, toast: any, $injector: any);
     onDetails(): void;
     onAction(action: any): void;
 }

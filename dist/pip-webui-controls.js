@@ -470,43 +470,47 @@ exports.PopoverController = PopoverController;
         .directive('pipPopover', pipPopover);
 })();
 },{}],10:[function(require,module,exports){
-(function () {
-    'use strict';
-    var thisModule = angular.module('pipPopover.Service', []);
-    thisModule.service('pipPopoverService', ['$compile', '$rootScope', '$timeout', function ($compile, $rootScope, $timeout) {
-        var popoverTemplate;
-        popoverTemplate = "<div class='pip-popover-backdrop {{ params.class }}' ng-controller='params.controller'" +
+"use strict";
+var PopoverService = (function () {
+    PopoverService.$inject = ['$compile', '$rootScope', '$timeout'];
+    function PopoverService($compile, $rootScope, $timeout) {
+        this._$compile = $compile;
+        this._$rootScope = $rootScope;
+        this._$timeout = $timeout;
+        this.popoverTemplate = "<div class='pip-popover-backdrop {{ params.class }}' ng-controller='params.controller'" +
             " tabindex='1'> <pip-popover pip-params='params'> </pip-popover> </div>";
-        return {
-            show: onShow,
-            hide: onHide,
-            resize: onResize
-        };
-        function onShow(p) {
-            var element, scope, params, content;
-            element = $('body');
-            if (element.find('md-backdrop').length > 0) {
-                return;
-            }
-            onHide();
-            scope = $rootScope.$new();
-            params = p && _.isObject(p) ? p : {};
-            scope.params = params;
-            scope.locals = params.locals;
-            content = $compile(popoverTemplate)(scope);
-            element.append(content);
+    }
+    PopoverService.prototype.show = function (p) {
+        var element, scope, params, content;
+        element = $('body');
+        if (element.find('md-backdrop').length > 0) {
+            return;
         }
-        function onHide() {
-            var backdropElement = $('.pip-popover-backdrop');
-            backdropElement.removeClass('opened');
-            $timeout(function () {
-                backdropElement.remove();
-            }, 100);
-        }
-        function onResize() {
-            $rootScope.$broadcast('pipPopoverResize');
-        }
-    }]);
+        this.hide();
+        scope = this._$rootScope.$new();
+        params = p && _.isObject(p) ? p : {};
+        scope.params = params;
+        scope.locals = params.locals;
+        content = this._$compile(this.popoverTemplate)(scope);
+        element.append(content);
+    };
+    PopoverService.prototype.hide = function () {
+        var backdropElement = $('.pip-popover-backdrop');
+        backdropElement.removeClass('opened');
+        this._$timeout(function () {
+            backdropElement.remove();
+        }, 100);
+    };
+    PopoverService.prototype.resize = function () {
+        this._$rootScope.$broadcast('pipPopoverResize');
+    };
+    return PopoverService;
+}());
+exports.PopoverService = PopoverService;
+(function () {
+    angular
+        .module('pipPopover.Service', [])
+        .service('pipPopoverService', PopoverService);
 })();
 },{}],11:[function(require,module,exports){
 (function () {
@@ -537,12 +541,11 @@ exports.PopoverController = PopoverController;
 })();
 },{}],12:[function(require,module,exports){
 var ToastController = (function () {
-    ToastController.$inject = ['$scope', '$mdToast', 'toast', '$injector'];
-    function ToastController($scope, $mdToast, toast, $injector) {
+    ToastController.$inject = ['$mdToast', 'toast', '$injector'];
+    function ToastController($mdToast, toast, $injector) {
         this._pipErrorDetailsDialog = $injector.has('pipErrorDetailsDialog')
             ? $injector.get('pipErrorDetailsDialog') : null;
         this._$mdToast = $mdToast;
-        console.log(toast);
         this.message = toast.message;
         this.actions = toast.actions;
         this.toast = toast;
