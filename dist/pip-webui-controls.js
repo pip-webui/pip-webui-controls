@@ -165,68 +165,68 @@ exports.ColorPickerController = ColorPickerController;
     });
 })();
 },{}],5:[function(require,module,exports){
-(function () {
-    'use strict';
-    var thisModule = angular.module('pipImageSlider.Service', []);
-    thisModule.service('$pipImageSlider', ['$timeout', function ($timeout) {
-        var ANIMATION_DURATION = 550, sliders = {};
-        return {
-            nextCarousel: nextCarousel,
-            prevCarousel: prevCarousel,
-            toBlock: toBlock,
-            registerSlider: register,
-            removeSlider: remove,
-            getSliderScope: getSlider
-        };
-        function register(sliderId, sliderScope) {
-            sliders[sliderId] = sliderScope;
-        }
-        function remove(sliderId) {
-            delete sliders[sliderId];
-        }
-        function getSlider(sliderId) {
-            return sliders[sliderId];
-        }
-        function nextCarousel(nextBlock, prevBlock) {
-            nextBlock.addClass('pip-next');
-            $timeout(function () {
-                nextBlock.addClass('animated').addClass('pip-show').removeClass('pip-next');
-                prevBlock.addClass('animated').removeClass('pip-show');
-            }, 100);
-        }
-        function prevCarousel(nextBlock, prevBlock) {
-            $timeout(function () {
-                nextBlock.addClass('animated').addClass('pip-show');
-                prevBlock.addClass('animated').addClass('pip-next').removeClass('pip-show');
-            }, 100);
-        }
-        function toBlock(type, blocks, oldIndex, nextIndex, direction) {
-            var prevBlock = $(blocks[oldIndex]), blockIndex = nextIndex, nextBlock = $(blocks[blockIndex]);
-            if (type === 'carousel') {
-                $(blocks).removeClass('pip-next').removeClass('pip-prev').removeClass('animated');
-                if (direction && (direction === 'prev' || direction === 'next')) {
-                    if (direction === 'prev') {
-                        prevCarousel(nextBlock, prevBlock);
-                    }
-                    else {
-                        nextCarousel(nextBlock, prevBlock);
-                    }
+var ImageSliderService = (function () {
+    ImageSliderService.$inject = ['$timeout'];
+    function ImageSliderService($timeout) {
+        this.ANIMATION_DURATION = 550;
+        this._sliders = {};
+        this._$timeout = $timeout;
+    }
+    ImageSliderService.prototype.registerSlider = function (sliderId, sliderScope) {
+        this._sliders[sliderId] = sliderScope;
+    };
+    ImageSliderService.prototype.removeSlider = function (sliderId) {
+        delete this._sliders[sliderId];
+    };
+    ImageSliderService.prototype.getSliderScope = function (sliderId) {
+        return this._sliders[sliderId];
+    };
+    ImageSliderService.prototype.nextCarousel = function (nextBlock, prevBlock) {
+        nextBlock.addClass('pip-next');
+        this._$timeout(function () {
+            nextBlock.addClass('animated').addClass('pip-show').removeClass('pip-next');
+            prevBlock.addClass('animated').removeClass('pip-show');
+        }, 100);
+    };
+    ImageSliderService.prototype.prevCarousel = function (nextBlock, prevBlock) {
+        this._$timeout(function () {
+            nextBlock.addClass('animated').addClass('pip-show');
+            prevBlock.addClass('animated').addClass('pip-next').removeClass('pip-show');
+        }, 100);
+    };
+    ImageSliderService.prototype.toBlock = function (type, blocks, oldIndex, nextIndex, direction) {
+        var prevBlock = $(blocks[oldIndex]), blockIndex = nextIndex, nextBlock = $(blocks[blockIndex]);
+        if (type === 'carousel') {
+            $(blocks).removeClass('pip-next').removeClass('pip-prev').removeClass('animated');
+            if (direction && (direction === 'prev' || direction === 'next')) {
+                if (direction === 'prev') {
+                    this.prevCarousel(nextBlock, prevBlock);
                 }
                 else {
-                    if (nextIndex && nextIndex < oldIndex) {
-                        prevCarousel(nextBlock, prevBlock);
-                    }
-                    else {
-                        nextCarousel(nextBlock, prevBlock);
-                    }
+                    this.nextCarousel(nextBlock, prevBlock);
                 }
             }
             else {
-                prevBlock.addClass('animated').removeClass('pip-show');
-                nextBlock.addClass('animated').addClass('pip-show');
+                if (nextIndex && nextIndex < oldIndex) {
+                    this.prevCarousel(nextBlock, prevBlock);
+                }
+                else {
+                    this.nextCarousel(nextBlock, prevBlock);
+                }
             }
         }
-    }]);
+        else {
+            prevBlock.addClass('animated').removeClass('pip-show');
+            nextBlock.addClass('animated').addClass('pip-show');
+        }
+    };
+    return ImageSliderService;
+}());
+(function () {
+    'use strict';
+    angular
+        .module('pipImageSlider.Service', [])
+        .service('$pipImageSlider', ImageSliderService);
 })();
 },{}],6:[function(require,module,exports){
 (function () {

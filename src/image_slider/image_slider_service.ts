@@ -1,80 +1,76 @@
 /// <reference path="../../typings/tsd.d.ts" />
 
-(function () {
-    'use strict';
+class ImageSliderService {
+    private _$timeout: angular.ITimeoutService;
+    private ANIMATION_DURATION: number = 550;
+    private _sliders = {};
 
-    var thisModule = angular.module('pipImageSlider.Service', []);
+    constructor($timeout: angular.ITimeoutService) {
+        this._$timeout = $timeout;
+    }
 
-    thisModule.service('$pipImageSlider',
-        function ($timeout) {
-
-            var ANIMATION_DURATION = 550,
-                sliders = {};
-
-            return {
-                nextCarousel: nextCarousel,
-                prevCarousel: prevCarousel,
-                toBlock: toBlock,
-                registerSlider: register,
-                removeSlider: remove,
-                getSliderScope: getSlider
-            };
-
-            function register(sliderId, sliderScope) {
-                sliders[sliderId] = sliderScope;
-            }
+    public registerSlider(sliderId: string, sliderScope) {
+        this._sliders[sliderId] = sliderScope;
+    }
             
-            function remove(sliderId) {
-                delete sliders[sliderId];
-            }
+    public removeSlider(sliderId: string) {
+        delete this._sliders[sliderId];
+    }
 
-            function getSlider(sliderId) {
-                return sliders[sliderId];
-            }
+    public getSliderScope(sliderId: string) {
+        return this._sliders[sliderId];
+    }
 
-            function nextCarousel(nextBlock, prevBlock) {
-                nextBlock.addClass('pip-next');
+    public nextCarousel(nextBlock, prevBlock) {
+        nextBlock.addClass('pip-next');
                 
-                $timeout(function () {
-                    nextBlock.addClass('animated').addClass('pip-show').removeClass('pip-next');
-                    prevBlock.addClass('animated').removeClass('pip-show');
-                }, 100);
-            }
+        this._$timeout(() => {
+            nextBlock.addClass('animated').addClass('pip-show').removeClass('pip-next');
+            prevBlock.addClass('animated').removeClass('pip-show');
+        }, 100);
+    }
 
-            function prevCarousel(nextBlock, prevBlock) {
-                $timeout(function () {
-                    nextBlock.addClass('animated').addClass('pip-show');
-                    prevBlock.addClass('animated').addClass('pip-next').removeClass('pip-show');
-                }, 100);
-            }
+    public prevCarousel(nextBlock, prevBlock) {
+        this._$timeout(() => {
+            nextBlock.addClass('animated').addClass('pip-show');
+            prevBlock.addClass('animated').addClass('pip-next').removeClass('pip-show');
+        }, 100);
+    }
 
-            function toBlock(type, blocks, oldIndex, nextIndex, direction) {
-                var prevBlock = $(blocks[oldIndex]),
-                    blockIndex = nextIndex,
-                    nextBlock = $(blocks[blockIndex]);
+    public toBlock(type: string, blocks: any[], oldIndex: number, nextIndex: number, direction: string) {
+        let prevBlock = $(blocks[oldIndex]),
+            blockIndex: number = nextIndex,
+            nextBlock = $(blocks[blockIndex]);
 
-                if (type === 'carousel') {
-                    $(blocks).removeClass('pip-next').removeClass('pip-prev').removeClass('animated');
+        if (type === 'carousel') {
+            $(blocks).removeClass('pip-next').removeClass('pip-prev').removeClass('animated');
 
-                    if (direction && (direction === 'prev' || direction === 'next')) {
-                        if (direction === 'prev') {
-                            prevCarousel(nextBlock, prevBlock);
-                        } else {
-                            nextCarousel(nextBlock, prevBlock);
-                        }
-                    } else {
-                        if (nextIndex && nextIndex < oldIndex) {
-                            prevCarousel(nextBlock, prevBlock);
-                        } else {
-                            nextCarousel(nextBlock, prevBlock);
-                        }
-                    }
+            if (direction && (direction === 'prev' || direction === 'next')) {
+                if (direction === 'prev') {
+                    this.prevCarousel(nextBlock, prevBlock);
                 } else {
-                    prevBlock.addClass('animated').removeClass('pip-show');
-                    nextBlock.addClass('animated').addClass('pip-show');
+                    this.nextCarousel(nextBlock, prevBlock);
+                }
+            } else {
+                if (nextIndex && nextIndex < oldIndex) {
+                    this.prevCarousel(nextBlock, prevBlock);
+                } else {
+                    this.nextCarousel(nextBlock, prevBlock);
                 }
             }
+        } else {
+            prevBlock.addClass('animated').removeClass('pip-show');
+            nextBlock.addClass('animated').addClass('pip-show');
         }
-    );
+    }
+
+}
+
+
+(() => {
+    'use strict';
+    angular
+        .module('pipImageSlider.Service', [])
+        .service('$pipImageSlider', ImageSliderService);
 
 })();

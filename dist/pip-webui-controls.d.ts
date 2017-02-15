@@ -28,6 +28,18 @@ export class ColorPickerController implements IColorPicker {
 
 
 
+class ImageSliderService {
+    private _$timeout;
+    private ANIMATION_DURATION;
+    private _sliders;
+    constructor($timeout: angular.ITimeoutService);
+    registerSlider(sliderId: any, sliderScope: any): void;
+    removeSlider(sliderId: any): void;
+    getSliderScope(sliderId: any): any;
+    nextCarousel(nextBlock: any, prevBlock: any): void;
+    prevCarousel(nextBlock: any, prevBlock: any): void;
+    toBlock(type: any, blocks: any, oldIndex: any, nextIndex: any, direction: any): void;
+}
 
 
 
