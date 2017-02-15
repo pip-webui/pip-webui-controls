@@ -1,7 +1,7 @@
 /// <reference path="../../typings/tsd.d.ts" />
 class ToastController {
-    private _$mdToast;
-    private _pipErrorDetailsDialog ;
+    private _$mdToast: angular.material.IToastService;
+    private _pipErrorDetailsDialog;
 
     public message: string;
     public actions: any[];
@@ -10,7 +10,7 @@ class ToastController {
     public showDetails: boolean;
 
     constructor( 
-        $mdToast, 
+        $mdToast: angular.material.IToastService, 
         toast, 
         $injector
        ) {
@@ -65,10 +65,12 @@ class ToastService {
     private currentToast: any;
     private sounds: any = {};
 
-    private _$mdToast;
-    private _pipErrorDetailsDialog;
+    private _$mdToast: angular.material.IToastService;
 
-    constructor($rootScope, $mdToast) {
+    constructor(
+        $rootScope: ng.IRootScopeService, 
+        $mdToast: angular.material.IToastService) {
+
         this._$mdToast = $mdToast;
 
         $rootScope.$on('$stateChangeSuccess', this.onStateChangeSuccess);
@@ -76,7 +78,7 @@ class ToastService {
         $rootScope.$on('pipIdentityChanged', this.onClearToasts);
     }
 
-    public showNextToast() {
+    public showNextToast(): void {
         let toast;
 
         if (this.toasts.length > 0) {
@@ -87,7 +89,7 @@ class ToastService {
     }
 
      // Show toast
-     public showToast(toast) {
+     public showToast(toast): void {
         this.currentToast = toast;
 
         this._$mdToast.show({
@@ -102,16 +104,16 @@ class ToastService {
             }
         })
         .then( 
-            (action) => {
+            (action: string) => {
                 this.showToastOkResult(action);
             },
-            (action) => {
+            (action: string) => {
                 this.showToastCancelResult(action);
             }
         );
     }
 
-    private showToastCancelResult(action) {
+    private showToastCancelResult(action: string):void {
         if (this.currentToast.cancelCallback) {
             this.currentToast.cancelCallback(action);
         }
@@ -119,7 +121,7 @@ class ToastService {
         this.showNextToast();
     }
 
-    private showToastOkResult(action) {
+    private showToastOkResult(action: string): void {
         if (this.currentToast.successCallback) {
             this.currentToast.successCallback(action);
         }
@@ -127,7 +129,7 @@ class ToastService {
         this.showNextToast();
     }
 
-    public addToast(toast) {
+    public addToast(toast: any): void {
         if (this.currentToast && toast.type !== 'error') {
             this.toasts.push(toast);
         } else {
@@ -135,8 +137,8 @@ class ToastService {
         }
     }
 
-    public removeToasts(type) {
-        let result = [];
+    public removeToasts(type: string): void {
+        let result: any[] = [];
         _.each(this.toasts, (toast) => {
             if (!toast.type || toast.type !== type) {
                 result.push(toast);
@@ -145,21 +147,21 @@ class ToastService {
         this.toasts = _.cloneDeep(result);
     }
 
-    public removeToastsById(id) {
+    public removeToastsById(id: string): void {
         _.remove(this.toasts, {id: id});
     }
 
-    public getToastById(id) {
+    public getToastById(id: string): any {
         return _.find(this.toasts, {id: id});
     }
 
     public onStateChangeSuccess() {}
 
-    public onClearToasts() {
+    public onClearToasts(): void {
         this.clearToasts();
     }
 
-    public showNotification(message, actions, successCallback, cancelCallback, id) {
+    public showNotification(message: string, actions: string[], successCallback, cancelCallback, id: string) {
         this.addToast({
             id: id || null,
             type: 'notification',
@@ -171,7 +173,7 @@ class ToastService {
         });
     }
 
-    public showMessage(message, successCallback, cancelCallback, id) {
+    public showMessage(message: string, successCallback, cancelCallback, id?: string) {
         this.addToast({
             id: id || null,
             type: 'message',
@@ -182,7 +184,7 @@ class ToastService {
         });
     }
 
-     public showError(message, successCallback, cancelCallback, id, error) {
+     public showError(message: string, successCallback, cancelCallback, id: string, error: any) {
         this.addToast({
             id: id || null,
             error: error,
@@ -194,12 +196,12 @@ class ToastService {
         });
     }
 
-    public hideAllToasts() {
+    public hideAllToasts(): void {
         this._$mdToast.cancel();
         this.toasts = [];
     }
 
-    public clearToasts(type?: any) {
+    public clearToasts(type?: string) {
         if (type) {
             // pipAssert.isString(type, 'pipToasts.clearToasts: type should be a string');
             this.removeToasts(type);
@@ -217,184 +219,3 @@ class ToastService {
         .module('pipToasts', ['ngMaterial', 'pipControls.Translate'])
         .service('pipToasts', ToastService);
 })();
-
-/*
-
-(() => {
-    angular.module('pipToasts', ['ngMaterial', 'pipControls.Translate'])
-           .service('pipToasts',
-        function ($rootScope, $mdToast) {
-            var
-                SHOW_TIMEOUT = 20000,
-                SHOW_TIMEOUT_NOTIFICATIONS = 20000,
-                toasts = [],
-                currentToast,
-                sounds = {};
-
-            /** pre-load sounds for notifications
-                // sounds['toast_error'] = ngAudio.load('sounds/fatal.mp3');
-                // sounds['toast_notification'] = ngAudio.load('sounds/error.mp3');
-                // sounds['toast_message'] = ngAudio.load('sounds/warning.mp3');
-
-                // Remove error toasts when page is changed
-            $rootScope.$on('$stateChangeSuccess', onStateChangeSuccess);
-            $rootScope.$on('pipSessionClosed', onClearToasts);
-            $rootScope.$on('pipIdentityChanged', onClearToasts);
-
-            return {
-                showNotification: showNotification,
-                showMessage: showMessage,
-                showError: showError,
-                hideAllToasts: hideAllToasts,
-                clearToasts: clearToasts,
-                removeToastsById: removeToastsById,
-                getToastById: getToastById
-            };
-
-            // Take the next from queue and show it
-            function showNextToast() {
-                var toast;
-
-                if (toasts.length > 0) {
-                    toast = toasts[0];
-                    toasts.splice(0, 1);
-                    showToast(toast);
-                }
-            }
-
-            // Show toast
-            function showToast(toast) {
-                currentToast = toast;
-
-                $mdToast.show({
-                    templateUrl: 'toast/toast.html',
-                    hideDelay: toast.duration || SHOW_TIMEOUT,
-                    position: 'bottom left',
-                    controller: ToastController,
-                    controllerAs: 'vm',
-                    locals: {
-                        toast: currentToast,
-                        sounds: sounds
-                    }
-                })
-                    .then(
-                    function showToastOkResult(action) {
-                        if (currentToast.successCallback) {
-                            currentToast.successCallback(action);
-                        }
-                        currentToast = null;
-                        showNextToast();
-                    },
-                    function showToastCancelResult(action) {
-                        if (currentToast.cancelCallback) {
-                            currentToast.cancelCallback(action);
-                        }
-                        currentToast = null;
-                        showNextToast();
-                    }
-                );
-            }
-
-            function addToast(toast) {
-                if (currentToast && toast.type !== 'error') {
-                    toasts.push(toast);
-                } else {
-                    showToast(toast);
-                }
-            }
-
-            function removeToasts(type) {
-                var result = [];
-
-                _.each(toasts, function (toast) {
-                    if (!toast.type || toast.type !== type) {
-                        result.push(toast);
-                    }
-                });
-                toasts = _.cloneDeep(result);
-            }
-
-            function removeToastsById(id) {
-                _.remove(toasts, {id: id});
-            }
-
-            function getToastById(id) {
-                return _.find(toasts, {id: id});
-            }
-
-            function onStateChangeSuccess() {
-                // toasts = _.reject(toasts, function (toast) {
-                //     return toast.type === 'error';
-                // });
-
-                // if (currentToast && currentToast.type === 'error') {
-                //     $mdToast.cancel();
-                //     showNextToast();
-                // }
-            }
-
-            function onClearToasts() {
-                clearToasts();
-            }
-
-            // Show new notification toast at the top right
-            function showNotification(message, actions, successCallback, cancelCallback, id) {
-
-                addToast({
-                    id: id || null,
-                    type: 'notification',
-                    message: message,
-                    actions: actions || ['ok'],
-                    successCallback: successCallback,
-                    cancelCallback: cancelCallback,
-                    duration: SHOW_TIMEOUT_NOTIFICATIONS
-                });
-            }
-
-            // Show new message toast at the top right
-            function showMessage(message, successCallback, cancelCallback, id) {
-
-                addToast({
-                    id: id || null,
-                    type: 'message',
-                    message: message,
-                    actions: ['ok'],
-                    successCallback: successCallback,
-                    cancelCallback: cancelCallback
-                });
-            }
-
-            // Show error toast at the bottom right after error occured
-            function showError(message, successCallback, cancelCallback, id, error) {
-
-                addToast({
-                    id: id || null,
-                    error: error,
-                    type: 'error',
-                    message: message || 'Unknown error.',
-                    actions: ['ok'],
-                    successCallback: successCallback,
-                    cancelCallback: cancelCallback
-                });
-            }
-
-            // Hide and clear all toast when user signs out
-            function hideAllToasts() {
-                $mdToast.cancel();
-                toasts = [];
-            }
-
-            // Clear toasts by type
-            function clearToasts(type?: any) {
-                if (type) {
-                    // pipAssert.isString(type, 'pipToasts.clearToasts: type should be a string');
-                    removeToasts(type);
-                } else {
-                    $mdToast.cancel();
-                    toasts = [];
-                }
-            }
-        }
-    );
-
-})();*/
