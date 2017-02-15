@@ -58,7 +58,167 @@ class ToastController {
     }
 }
 
+class ToastService {
+    private SHOW_TIMEOUT: number = 20000;
+    private SHOW_TIMEOUT_NOTIFICATIONS: number = 20000;
+    private toasts: any[] = [];
+    private currentToast: any;
+    private sounds: any = {};
 
+    private _$mdToast;
+    private _pipErrorDetailsDialog;
+
+    constructor($rootScope, $mdToast) {
+        this._$mdToast = $mdToast;
+
+        $rootScope.$on('$stateChangeSuccess', this.onStateChangeSuccess);
+        $rootScope.$on('pipSessionClosed', this.onClearToasts);
+        $rootScope.$on('pipIdentityChanged', this.onClearToasts);
+    }
+
+    public showNextToast() {
+        let toast;
+
+        if (this.toasts.length > 0) {
+            toast = this.toasts[0];
+            this.toasts.splice(0, 1);
+            this.showToast(toast);
+        }
+    }
+
+     // Show toast
+     public showToast(toast) {
+        this.currentToast = toast;
+
+        this._$mdToast.show({
+            templateUrl: 'toast/toast.html',
+            hideDelay: toast.duration || this.SHOW_TIMEOUT,
+            position: 'bottom left',
+            controller: ToastController,
+            controllerAs: 'vm',
+            locals: {
+                toast: this.currentToast,
+                sounds: this.sounds
+            }
+        })
+        .then( 
+            (action) => {
+                this.showToastOkResult(action);
+            },
+            (action) => {
+                this.showToastCancelResult(action);
+            }
+        );
+    }
+
+    private showToastCancelResult(action) {
+        if (this.currentToast.cancelCallback) {
+            this.currentToast.cancelCallback(action);
+        }
+        this.currentToast = null;
+        this.showNextToast();
+    }
+
+    private showToastOkResult(action) {
+        if (this.currentToast.successCallback) {
+            this.currentToast.successCallback(action);
+        }
+        this.currentToast = null;
+        this.showNextToast();
+    }
+
+    public addToast(toast) {
+        if (this.currentToast && toast.type !== 'error') {
+            this.toasts.push(toast);
+        } else {
+            this.showToast(toast);
+        }
+    }
+
+    public removeToasts(type) {
+        let result = [];
+        _.each(this.toasts, (toast) => {
+            if (!toast.type || toast.type !== type) {
+                result.push(toast);
+            }
+        });
+        this.toasts = _.cloneDeep(result);
+    }
+
+    public removeToastsById(id) {
+        _.remove(this.toasts, {id: id});
+    }
+
+    public getToastById(id) {
+        return _.find(this.toasts, {id: id});
+    }
+
+    public onStateChangeSuccess() {}
+
+    public onClearToasts() {
+        this.clearToasts();
+    }
+
+    public showNotification(message, actions, successCallback, cancelCallback, id) {
+        this.addToast({
+            id: id || null,
+            type: 'notification',
+            message: message,
+            actions: actions || ['ok'],
+            successCallback: successCallback,
+            cancelCallback: cancelCallback,
+            duration: this.SHOW_TIMEOUT_NOTIFICATIONS
+        });
+    }
+
+    public showMessage(message, successCallback, cancelCallback, id) {
+        this.addToast({
+            id: id || null,
+            type: 'message',
+            message: message,
+            actions: ['ok'],
+            successCallback: successCallback,
+            cancelCallback: cancelCallback
+        });
+    }
+
+     public showError(message, successCallback, cancelCallback, id, error) {
+        this.addToast({
+            id: id || null,
+            error: error,
+            type: 'error',
+            message: message || 'Unknown error.',
+            actions: ['ok'],
+            successCallback: successCallback,
+            cancelCallback: cancelCallback
+        });
+    }
+
+    public hideAllToasts() {
+        this._$mdToast.cancel();
+        this.toasts = [];
+    }
+
+    public clearToasts(type?: any) {
+        if (type) {
+            // pipAssert.isString(type, 'pipToasts.clearToasts: type should be a string');
+            this.removeToasts(type);
+        } else {
+            this._$mdToast.cancel();
+            this.toasts = [];
+        }
+    }
+
+}
+
+
+(() => {
+    angular
+        .module('pipToasts', ['ngMaterial', 'pipControls.Translate'])
+        .service('pipToasts', ToastService);
+})();
+
+/*
 
 (() => {
     angular.module('pipToasts', ['ngMaterial', 'pipControls.Translate'])
@@ -71,7 +231,7 @@ class ToastController {
                 currentToast,
                 sounds = {};
 
-            /** pre-load sounds for notifications */
+            /** pre-load sounds for notifications
                 // sounds['toast_error'] = ngAudio.load('sounds/fatal.mp3');
                 // sounds['toast_notification'] = ngAudio.load('sounds/error.mp3');
                 // sounds['toast_message'] = ngAudio.load('sounds/warning.mp3');
@@ -237,4 +397,4 @@ class ToastController {
         }
     );
 
-})();
+})();*/

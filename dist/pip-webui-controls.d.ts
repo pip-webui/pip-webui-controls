@@ -79,6 +79,31 @@ class ToastController {
     onDetails(): void;
     onAction(action: any): void;
 }
+class ToastService {
+    private SHOW_TIMEOUT;
+    private SHOW_TIMEOUT_NOTIFICATIONS;
+    private toasts;
+    private currentToast;
+    private sounds;
+    private _$mdToast;
+    private _pipErrorDetailsDialog;
+    constructor($rootScope: any, $mdToast: any);
+    showNextToast(): void;
+    showToast(toast: any): void;
+    private showToastCancelResult(action);
+    private showToastOkResult(action);
+    addToast(toast: any): void;
+    removeToasts(type: any): void;
+    removeToastsById(id: any): void;
+    getToastById(id: any): any;
+    onStateChangeSuccess(): void;
+    onClearToasts(): void;
+    showNotification(message: any, actions: any, successCallback: any, cancelCallback: any, id: any): void;
+    showMessage(message: any, successCallback: any, cancelCallback: any, id: any): void;
+    showError(message: any, successCallback: any, cancelCallback: any, id: any, error: any): void;
+    hideAllToasts(): void;
+    clearToasts(type?: any): void;
+}
 
 }
 

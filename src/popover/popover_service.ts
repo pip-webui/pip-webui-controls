@@ -11,7 +11,9 @@ export class PopoverService {
     public popoverTemplate: string;
 
     constructor( 
-       $compile, $rootScope, $timeout
+        $compile,
+        $rootScope, 
+        $timeout
        ) {
            this._$compile = $compile;
            this._$rootScope = $rootScope;
