@@ -489,8 +489,8 @@ var PopoverService = (function () {
         this.hide();
         scope = this._$rootScope.$new();
         params = p && _.isObject(p) ? p : {};
-        scope.params = params;
-        scope.locals = params.locals;
+        scope['params'] = params;
+        scope['locals'] = params.locals;
         content = this._$compile(this.popoverTemplate)(scope);
         element.append(content);
     };
@@ -558,11 +558,8 @@ var ToastController = (function () {
         if (toast.actions.length === 0) {
             this.actionLenght = 0;
         }
-        else if (toast.actions.length === 1) {
-            this.actionLenght = toast.actions[0].toString().length;
-        }
         else {
-            this.actionLenght = null;
+            this.actionLenght = toast.actions.length === 1 ? toast.actions[0].toString().length : null;
         }
         this.showDetails = this._pipErrorDetailsDialog != null;
     }

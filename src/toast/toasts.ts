@@ -7,6 +7,8 @@ interface IPipToast {
     message: string;
     actions: string[];
     duration: number;
+    successCallback: Function;
+    cancelCallback: Function
 }
 
 class ToastController {
@@ -33,17 +35,15 @@ class ToastController {
             
             if (toast.actions.length === 0) {
                 this.actionLenght = 0;
-            } else if (toast.actions.length === 1) {
-                this.actionLenght = toast.actions[0].toString().length;
             } else {
-                this.actionLenght = null;
+                this.actionLenght = toast.actions.length === 1 ? toast.actions[0].toString().length : null;
             }
 
             this.showDetails = this._pipErrorDetailsDialog != null;
 
     }
 
-     public onDetails() {
+     public onDetails(): void {
         this._$mdToast.hide();
         if (this._pipErrorDetailsDialog) {
             this._pipErrorDetailsDialog.show(
@@ -57,7 +57,7 @@ class ToastController {
         }
     }
 
-    public onAction(action) {
+    public onAction(action): void {
         this._$mdToast.hide(
         {
             action: action,
@@ -68,7 +68,22 @@ class ToastController {
     }
 }
 
-class ToastService {
+interface IToastService {
+    showNextToast(): void;
+    showToast(toast: IPipToast): void;
+    addToast(toast): void;
+    removeToasts(type: string): void;
+    getToastById(id: string): IPipToast;
+    removeToastsById(id: string): void;
+    onClearToasts(): void;
+    showNotification(message: string, actions: string[], successCallback, cancelCallback, id: string);
+    showMessage(message: string, successCallback, cancelCallback, id?: string);
+    showError(message: string, successCallback, cancelCallback, id: string, error: any);
+    hideAllToasts(): void;
+    clearToasts(type?: string);
+}
+
+class ToastService implements IToastService {
     private SHOW_TIMEOUT: number = 20000;
     private SHOW_TIMEOUT_NOTIFICATIONS: number = 20000;
     private toasts: IPipToast[] = [];
@@ -139,7 +154,7 @@ class ToastService {
         this.showNextToast();
     }
 
-    public addToast(toast: any): void {
+    public addToast(toast): void {
         if (this.currentToast && toast.type !== 'error') {
             this.toasts.push(toast);
         } else {
@@ -161,7 +176,7 @@ class ToastService {
         _.remove(this.toasts, {id: id});
     }
 
-    public getToastById(id: string): any {
+    public getToastById(id: string): IPipToast {
         return _.find(this.toasts, {id: id});
     }
 

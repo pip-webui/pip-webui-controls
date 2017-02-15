@@ -5,7 +5,7 @@ export class PopoverService {
     private _$timeout;
     private _$scope: ng.IScope;
     private _$compile;
-    private _$rootScope;
+    private _$rootScope: ng.IRootScopeService;
 
     public popoverTemplate: string;
 
@@ -22,15 +22,15 @@ export class PopoverService {
     }
 
     public show(p) {
-        let element, scope, params, content;
+        let element, scope: ng.IScope, params, content;
             
         element = $('body');
         if (element.find('md-backdrop').length > 0) { return; }
         this.hide();
         scope = this._$rootScope.$new();
         params = p && _.isObject(p) ? p : {};
-        scope.params = params;
-        scope.locals = params.locals;
+        scope['params'] = params;
+        scope['locals'] = params.locals;
         content = this._$compile(this.popoverTemplate)(scope);
         element.append(content);
     }

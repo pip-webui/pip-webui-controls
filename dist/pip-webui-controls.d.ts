@@ -81,6 +81,8 @@ interface IPipToast {
     message: string;
     actions: string[];
     duration: number;
+    successCallback: Function;
+    cancelCallback: Function;
 }
 class ToastController {
     private _$mdToast;
@@ -94,7 +96,21 @@ class ToastController {
     onDetails(): void;
     onAction(action: any): void;
 }
-class ToastService {
+interface IToastService {
+    showNextToast(): void;
+    showToast(toast: IPipToast): void;
+    addToast(toast: any): void;
+    removeToasts(type: string): void;
+    getToastById(id: string): IPipToast;
+    removeToastsById(id: string): void;
+    onClearToasts(): void;
+    showNotification(message: string, actions: string[], successCallback: any, cancelCallback: any, id: string): any;
+    showMessage(message: string, successCallback: any, cancelCallback: any, id?: string): any;
+    showError(message: string, successCallback: any, cancelCallback: any, id: string, error: any): any;
+    hideAllToasts(): void;
+    clearToasts(type?: string): any;
+}
+class ToastService implements IToastService {
     private SHOW_TIMEOUT;
     private SHOW_TIMEOUT_NOTIFICATIONS;
     private toasts;
@@ -109,7 +125,7 @@ class ToastService {
     addToast(toast: any): void;
     removeToasts(type: string): void;
     removeToastsById(id: string): void;
-    getToastById(id: string): any;
+    getToastById(id: string): IPipToast;
     onStateChangeSuccess(): void;
     onClearToasts(): void;
     showNotification(message: string, actions: string[], successCallback: any, cancelCallback: any, id: string): void;
