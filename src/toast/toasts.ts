@@ -1,17 +1,27 @@
 /// <reference path="../../typings/tsd.d.ts" />
+
+interface IPipToast {
+    type: string;
+    id: string;
+    error: any;
+    message: string;
+    actions: string[];
+    duration: number;
+}
+
 class ToastController {
     private _$mdToast: angular.material.IToastService;
     private _pipErrorDetailsDialog;
 
     public message: string;
-    public actions: any[];
-    public toast: any;
+    public actions: string[];
+    public toast: IPipToast;
     public actionLenght: number;
     public showDetails: boolean;
 
     constructor( 
         $mdToast: angular.material.IToastService, 
-        toast, 
+        toast: IPipToast, 
         $injector
        ) {
             this._pipErrorDetailsDialog = $injector.has('pipErrorDetailsDialog') 
@@ -61,7 +71,7 @@ class ToastController {
 class ToastService {
     private SHOW_TIMEOUT: number = 20000;
     private SHOW_TIMEOUT_NOTIFICATIONS: number = 20000;
-    private toasts: any[] = [];
+    private toasts: IPipToast[] = [];
     private currentToast: any;
     private sounds: any = {};
 
@@ -79,7 +89,7 @@ class ToastService {
     }
 
     public showNextToast(): void {
-        let toast;
+        let toast: IPipToast;
 
         if (this.toasts.length > 0) {
             toast = this.toasts[0];
@@ -89,7 +99,7 @@ class ToastService {
     }
 
      // Show toast
-     public showToast(toast): void {
+     public showToast(toast: IPipToast): void {
         this.currentToast = toast;
 
         this._$mdToast.show({

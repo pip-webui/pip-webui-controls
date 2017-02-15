@@ -67,15 +67,23 @@ export class PopoverService {
 }
 
 
+interface IPipToast {
+    type: string;
+    id: string;
+    error: any;
+    message: string;
+    actions: string[];
+    duration: number;
+}
 class ToastController {
     private _$mdToast;
     private _pipErrorDetailsDialog;
     message: string;
-    actions: any[];
-    toast: any;
+    actions: string[];
+    toast: IPipToast;
     actionLenght: number;
     showDetails: boolean;
-    constructor($mdToast: any, toast: any, $injector: any);
+    constructor($mdToast: angular.material.IToastService, toast: IPipToast, $injector: any);
     onDetails(): void;
     onAction(action: any): void;
 }
@@ -86,23 +94,22 @@ class ToastService {
     private currentToast;
     private sounds;
     private _$mdToast;
-    private _pipErrorDetailsDialog;
-    constructor($rootScope: any, $mdToast: any);
+    constructor($rootScope: ng.IRootScopeService, $mdToast: angular.material.IToastService);
     showNextToast(): void;
-    showToast(toast: any): void;
+    showToast(toast: IPipToast): void;
     private showToastCancelResult(action);
     private showToastOkResult(action);
     addToast(toast: any): void;
-    removeToasts(type: any): void;
-    removeToastsById(id: any): void;
-    getToastById(id: any): any;
+    removeToasts(type: string): void;
+    removeToastsById(id: string): void;
+    getToastById(id: string): any;
     onStateChangeSuccess(): void;
     onClearToasts(): void;
-    showNotification(message: any, actions: any, successCallback: any, cancelCallback: any, id: any): void;
-    showMessage(message: any, successCallback: any, cancelCallback: any, id: any): void;
-    showError(message: any, successCallback: any, cancelCallback: any, id: any, error: any): void;
+    showNotification(message: string, actions: string[], successCallback: any, cancelCallback: any, id: string): void;
+    showMessage(message: string, successCallback: any, cancelCallback: any, id?: string): void;
+    showError(message: string, successCallback: any, cancelCallback: any, id: string, error: any): void;
     hideAllToasts(): void;
-    clearToasts(type?: any): void;
+    clearToasts(type?: string): void;
 }
 
 }
