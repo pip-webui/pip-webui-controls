@@ -19,6 +19,7 @@ class ImageSliderService {
     }
 
     public registerSlider(sliderId: string, sliderScope): void {
+        console.log('reg', sliderScope);
         this._sliders[sliderId] = sliderScope;
     }
             
@@ -27,6 +28,7 @@ class ImageSliderService {
     }
 
     public getSliderScope(sliderId: string) {
+        console.log('ggg', this._sliders, 'jjj');
         return this._sliders[sliderId];
     }
 

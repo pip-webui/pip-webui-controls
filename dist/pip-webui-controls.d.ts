@@ -27,6 +27,30 @@ export class ColorPickerController implements IColorPicker {
 }
 
 
+class pipImageSliderController {
+    private _$attrs;
+    private _$interval;
+    private _blocks;
+    private _index;
+    private _newIndex;
+    private _direction;
+    private _type;
+    private DEFAULT_INTERVAL;
+    private _interval;
+    private _timePromises;
+    private _throttled;
+    swipeStart: number;
+    sliderIndex: number;
+    slideTo: Function;
+    constructor($scope: ng.IScope, $element: any, $attrs: any, $parse: any, $timeout: angular.ITimeoutService, $interval: angular.IIntervalService, $pipImageSlider: any);
+    nextBlock(): void;
+    prevBlock(): void;
+    slideToPrivate(nextIndex: number): void;
+    private setIndex();
+    private startInterval();
+    private stopInterval();
+    private restartInterval();
+}
 
 interface IImageSliderService {
     registerSlider(sliderId: string, sliderScope: any): void;

@@ -9,17 +9,16 @@
         function () {
             return {
                 scope: false,
-                controller: function ($scope, $element, $parse, $attrs, $pipImageSlider) {
+                controller: ($scope, $element, $parse, $attrs, $pipImageSlider) => {
                     var sliderId = $parse($attrs.pipSliderId)($scope),
                         slideTo = $parse($attrs.pipSlideTo)($scope);
 
                     $element.css('cursor', 'pointer');
-                    $element.on('click', function () {
+                    $element.on('click',  () => {
                         if (!sliderId || slideTo && slideTo < 0) {
                             return;
                         }
-
-                        $pipImageSlider.getSliderScope(sliderId).slideTo(slideTo);
+                        $pipImageSlider.getSliderScope(sliderId).vm.slideToPrivate(slideTo);
                     });
                 }
             };

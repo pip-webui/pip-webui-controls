@@ -1,6 +1,6 @@
 /// <reference path="../../typings/tsd.d.ts" />
 
-(function () {
+(() => {
     'use strict';
 
     var thisModule = angular.module('pipSliderButton', []);
@@ -13,12 +13,12 @@
                     var type = $parse($attrs.pipButtonType)($scope),
                         sliderId = $parse($attrs.pipSliderId)($scope);
 
-                    $element.on('click', function () {
+                    $element.on('click', () => {
                         if (!sliderId || !type) {
                             return;
                         }
 
-                        $pipImageSlider.getSliderScope(sliderId)[type + 'Block']();
+                        $pipImageSlider.getSliderScope(sliderId).vm[type + 'Block']();
                     });
                 }
             };

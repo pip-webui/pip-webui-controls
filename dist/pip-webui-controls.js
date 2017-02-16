@@ -89,80 +89,101 @@ exports.ColorPickerController = ColorPickerController;
     }]);
 })();
 },{}],4:[function(require,module,exports){
+var pipImageSliderController = (function () {
+    pipImageSliderController.$inject = ['$scope', '$element', '$attrs', '$parse', '$timeout', '$interval', '$pipImageSlider'];
+    function pipImageSliderController($scope, $element, $attrs, $parse, $timeout, $interval, $pipImageSlider) {
+        var _this = this;
+        this._index = 0;
+        this.DEFAULT_INTERVAL = 4500;
+        this.swipeStart = 0;
+        this.sliderIndex = $scope['sliderIndex'];
+        console.log($scope, $attrs);
+        this._type = $parse($attrs.pipAnimationType)($scope);
+        this._interval = $parse($attrs.pipAnimationInterval)($scope);
+        this._$attrs = $attrs;
+        this._$interval = $interval;
+        $scope['slideTo'] = this.slideToPrivate;
+        $element.addClass('pip-image-slider');
+        $element.addClass('pip-animation-' + this._type);
+        this.setIndex();
+        $timeout(function () {
+            _this._blocks = $element.find('.pip-animation-block');
+            if (_this._blocks.length > 0) {
+                $(_this._blocks[0]).addClass('pip-show');
+            }
+        });
+        this.startInterval();
+        this._throttled = _.throttle(function () {
+            $pipImageSlider.toBlock(_this._type, _this._blocks, _this._index, _this._newIndex, _this._direction);
+            _this._index = _this._newIndex;
+            ;
+            $scope['selectIndex'] = _this._index;
+            _this.setIndex();
+        }, 700);
+        if ($attrs.id) {
+            $pipImageSlider.registerSlider($attrs.id, $scope);
+        }
+        $element.on('$destroy', function () {
+            _this.stopInterval();
+            $pipImageSlider.removeSlider($attrs.id);
+        });
+    }
+    pipImageSliderController.prototype.nextBlock = function () {
+        this.restartInterval();
+        this._newIndex = this._index + 1 === this._blocks.length ? 0 : this._index + 1;
+        this._direction = 'next';
+        this._throttled();
+    };
+    pipImageSliderController.prototype.prevBlock = function () {
+        this.restartInterval();
+        this._newIndex = this._index - 1 < 0 ? this._blocks.length - 1 : this._index - 1;
+        this._direction = 'prev';
+        this._throttled();
+    };
+    pipImageSliderController.prototype.slideToPrivate = function (nextIndex) {
+        console.log(this);
+        if (nextIndex === this._index || nextIndex > this._blocks.length - 1) {
+            return;
+        }
+        this.restartInterval();
+        this._newIndex = nextIndex;
+        this._direction = nextIndex > this._index ? 'next' : 'prev';
+        this._throttled();
+    };
+    pipImageSliderController.prototype.setIndex = function () {
+        if (this._$attrs.pipImageIndex)
+            this.sliderIndex = this._index;
+    };
+    pipImageSliderController.prototype.startInterval = function () {
+        var _this = this;
+        this._timePromises = this._$interval(function () {
+            _this._newIndex = _this._index + 1 === _this._blocks.length ? 0 : _this._index + 1;
+            _this._direction = 'next';
+            _this._throttled();
+        }, this._interval || this.DEFAULT_INTERVAL);
+    };
+    pipImageSliderController.prototype.stopInterval = function () {
+        this._$interval.cancel(this._timePromises);
+    };
+    pipImageSliderController.prototype.restartInterval = function () {
+        this.stopInterval();
+        this.startInterval();
+    };
+    return pipImageSliderController;
+}());
 (function () {
-    'use strict';
-    var thisModule = angular.module('pipImageSlider', ['pipSliderButton', 'pipSliderIndicator', 'pipImageSlider.Service']);
-    thisModule.directive('pipImageSlider', function () {
+    function pipImageSlider() {
         return {
             scope: {
                 sliderIndex: '=pipImageIndex'
             },
-            controller: ['$scope', '$element', '$attrs', '$parse', '$timeout', '$interval', '$pipImageSlider', function ($scope, $element, $attrs, $parse, $timeout, $interval, $pipImageSlider) {
-                var blocks, index = 0, newIndex, direction, type = $parse($attrs.pipAnimationType)($scope), DEFAULT_INTERVAL = 4500, interval = $parse($attrs.pipAnimationInterval)($scope), timePromises, throttled;
-                $element.addClass('pip-image-slider');
-                $element.addClass('pip-animation-' + type);
-                $scope.swipeStart = 0;
-                setIndex();
-                $timeout(function () {
-                    blocks = $element.find('.pip-animation-block');
-                    if (blocks.length > 0) {
-                        $(blocks[0]).addClass('pip-show');
-                    }
-                });
-                startInterval();
-                throttled = _.throttle(function () {
-                    $pipImageSlider.toBlock(type, blocks, index, newIndex, direction);
-                    index = newIndex;
-                    setIndex();
-                }, 700);
-                $scope.nextBlock = function () {
-                    restartInterval();
-                    newIndex = index + 1 === blocks.length ? 0 : index + 1;
-                    direction = 'next';
-                    throttled();
-                };
-                $scope.prevBlock = function () {
-                    restartInterval();
-                    newIndex = index - 1 < 0 ? blocks.length - 1 : index - 1;
-                    direction = 'prev';
-                    throttled();
-                };
-                $scope.slideTo = function (nextIndex) {
-                    if (nextIndex === index || nextIndex > blocks.length - 1) {
-                        return;
-                    }
-                    restartInterval();
-                    newIndex = nextIndex;
-                    direction = nextIndex > index ? 'next' : 'prev';
-                    throttled();
-                };
-                if ($attrs.id)
-                    $pipImageSlider.registerSlider($attrs.id, $scope);
-                function setIndex() {
-                    if ($attrs.pipImageIndex)
-                        $scope.sliderIndex = index;
-                }
-                function startInterval() {
-                    timePromises = $interval(function () {
-                        newIndex = index + 1 === blocks.length ? 0 : index + 1;
-                        direction = 'next';
-                        throttled();
-                    }, interval || DEFAULT_INTERVAL);
-                }
-                function stopInterval() {
-                    $interval.cancel(timePromises);
-                }
-                $element.on('$destroy', function () {
-                    stopInterval();
-                    $pipImageSlider.removeSlider($attrs.id);
-                });
-                function restartInterval() {
-                    stopInterval();
-                    startInterval();
-                }
-            }]
+            controller: pipImageSliderController,
+            controllerAs: 'vm'
         };
-    });
+    }
+    angular
+        .module('pipImageSlider', ['pipSliderButton', 'pipSliderIndicator', 'pipImageSlider.Service'])
+        .directive('pipImageSlider', pipImageSlider);
 })();
 },{}],5:[function(require,module,exports){
 var ImageSliderService = (function () {
@@ -173,12 +194,14 @@ var ImageSliderService = (function () {
         this._$timeout = $timeout;
     }
     ImageSliderService.prototype.registerSlider = function (sliderId, sliderScope) {
+        console.log('reg', sliderScope);
         this._sliders[sliderId] = sliderScope;
     };
     ImageSliderService.prototype.removeSlider = function (sliderId) {
         delete this._sliders[sliderId];
     };
     ImageSliderService.prototype.getSliderScope = function (sliderId) {
+        console.log('ggg', this._sliders, 'jjj');
         return this._sliders[sliderId];
     };
     ImageSliderService.prototype.nextCarousel = function (nextBlock, prevBlock) {
@@ -241,7 +264,7 @@ var ImageSliderService = (function () {
                     if (!sliderId || !type) {
                         return;
                     }
-                    $pipImageSlider.getSliderScope(sliderId)[type + 'Block']();
+                    $pipImageSlider.getSliderScope(sliderId).vm[type + 'Block']();
                 });
             }]
         };
@@ -261,7 +284,7 @@ var ImageSliderService = (function () {
                     if (!sliderId || slideTo && slideTo < 0) {
                         return;
                     }
-                    $pipImageSlider.getSliderScope(sliderId).slideTo(slideTo);
+                    $pipImageSlider.getSliderScope(sliderId).vm.slideToPrivate(slideTo);
                 });
             }]
         };

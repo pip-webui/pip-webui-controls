@@ -1,5 +1,5 @@
 /// <reference path="../../typings/tsd.d.ts" />
-
+/*
 (() => {
     'use strict';
 
@@ -25,23 +25,23 @@
                     $element.addClass('pip-animation-' + type);
 
                     $scope.swipeStart = 0;
-                    /*
-                     if ($swipe)
-                     $swipe.bind($element, {
-                     'start': function(coords) {
-                     if (coords) $scope.swipeStart = coords.x;
-                     else $scope.swipeStart = 0;
-                     },
-                     'end': function(coords) {
-                     var delta;
-                     if (coords) {
-                     delta = $scope.swipeStart - coords.x;
-                     if (delta > 150)  $scope.nextBlock();
-                     if (delta < -150)  $scope.prevBlock();
-                     $scope.swipeStart = 0;
-                     } else $scope.swipeStart = 0;
-                     }
-                     });*/
+                    
+                     //if ($swipe)
+                     //$swipe.bind($element, {
+                     //'start': function(coords) {
+                     //if (coords) $scope.swipeStart = coords.x;
+                     //else $scope.swipeStart = 0;
+                     //},
+                     //'end': function(coords) {
+                     //var delta;
+                     //if (coords) {
+                     //delta = $scope.swipeStart - coords.x;
+                     //if (delta > 150)  $scope.nextBlock();
+                     //if (delta < -150)  $scope.prevBlock();
+                     //$scope.swipeStart = 0;
+                     //} else $scope.swipeStart = 0;
+                     //}
+                     //});
                      
                     setIndex();
 
@@ -117,10 +117,9 @@
     );
 
 })();
+*/
 
-
-/*
-class pipImageSlider{
+class pipImageSliderController{
 
     private _$attrs;
     private _$interval: angular.IIntervalService;
@@ -137,6 +136,7 @@ class pipImageSlider{
 
     public swipeStart: number = 0;
     public sliderIndex: number;
+    public slideTo: Function;
 
     constructor(
         $scope: ng.IScope, 
@@ -148,10 +148,12 @@ class pipImageSlider{
         $pipImageSlider) {
 
         this.sliderIndex = $scope['sliderIndex'];
-        this._type = $parse($attrs.pipAnimationType)($scope),
+        console.log($scope, $attrs);
+        this._type = $parse($attrs.pipAnimationType)($scope);
         this._interval = $parse($attrs.pipAnimationInterval)($scope);
         this._$attrs = $attrs;
         this._$interval = $interval;
+        $scope['slideTo'] = this.slideToPrivate;
 
         $element.addClass('pip-image-slider');
         $element.addClass('pip-animation-' + this._type);
@@ -168,7 +170,8 @@ class pipImageSlider{
         this.startInterval();
         this._throttled = _.throttle(() => {
             $pipImageSlider.toBlock(this._type, this._blocks, this._index, this._newIndex, this._direction);
-            this._index = this._newIndex;
+            this._index = this._newIndex;;
+            $scope['selectIndex'] = this._index;
             this.setIndex();
         }, 700);
         
@@ -195,7 +198,8 @@ class pipImageSlider{
         this._throttled();
     }
 
-    public slideTo(nextIndex: number) {
+    public slideToPrivate(nextIndex: number) {
+        console.log(this);
         if (nextIndex === this._index || nextIndex > this._blocks.length - 1) {
             return;
         }
@@ -235,12 +239,10 @@ class pipImageSlider{
 
     function pipImageSlider() {
         return {
-            restrict: 'EA',
-            replace: true,
             scope: {
                 sliderIndex: '=pipImageIndex'
             },
-            controller: pipImageSlider,
+            controller: pipImageSliderController,
             controllerAs: 'vm'
         };
     }
@@ -250,4 +252,4 @@ class pipImageSlider{
         .module('pipImageSlider', ['pipSliderButton', 'pipSliderIndicator', 'pipImageSlider.Service'])
         .directive('pipImageSlider', pipImageSlider);
 
-})();*/
+})();
