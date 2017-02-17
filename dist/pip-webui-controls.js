@@ -683,7 +683,7 @@ var ToastService = (function () {
     };
     ToastService.prototype.onStateChangeSuccess = function () { };
     ToastService.prototype.onClearToasts = function () {
-        this.clearToasts();
+        this.clearToasts(null);
     };
     ToastService.prototype.showNotification = function (message, actions, successCallback, cancelCallback, id) {
         this.addToast({

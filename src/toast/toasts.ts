@@ -183,7 +183,7 @@ class ToastService implements IToastService {
     public onStateChangeSuccess() {}
 
     public onClearToasts(): void {
-        this.clearToasts();
+        this.clearToasts(null);
     }
 
     public showNotification(message: string, actions: string[], successCallback, cancelCallback, id: string) {
