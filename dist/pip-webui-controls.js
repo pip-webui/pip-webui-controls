@@ -607,14 +607,15 @@ var ToastController = (function () {
 var ToastService = (function () {
     ToastService.$inject = ['$rootScope', '$mdToast'];
     function ToastService($rootScope, $mdToast) {
+        var _this = this;
         this.SHOW_TIMEOUT = 20000;
         this.SHOW_TIMEOUT_NOTIFICATIONS = 20000;
         this.toasts = [];
         this.sounds = {};
         this._$mdToast = $mdToast;
-        $rootScope.$on('$stateChangeSuccess', this.onStateChangeSuccess);
-        $rootScope.$on('pipSessionClosed', this.onClearToasts);
-        $rootScope.$on('pipIdentityChanged', this.onClearToasts);
+        $rootScope.$on('$stateChangeSuccess', function () { _this.onStateChangeSuccess(); });
+        $rootScope.$on('pipSessionClosed', function () { _this.onClearToasts(); });
+        $rootScope.$on('pipIdentityChanged', function () { _this.onClearToasts(); });
     }
     ToastService.prototype.showNextToast = function () {
         var toast;

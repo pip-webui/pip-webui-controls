@@ -98,9 +98,9 @@ class ToastService implements IToastService {
 
         this._$mdToast = $mdToast;
 
-        $rootScope.$on('$stateChangeSuccess', this.onStateChangeSuccess);
-        $rootScope.$on('pipSessionClosed', this.onClearToasts);
-        $rootScope.$on('pipIdentityChanged', this.onClearToasts);
+        $rootScope.$on('$stateChangeSuccess', () => {this.onStateChangeSuccess()});
+        $rootScope.$on('pipSessionClosed', () => {this.onClearToasts()});
+        $rootScope.$on('pipIdentityChanged', () => {this.onClearToasts()});
     }
 
     public showNextToast(): void {
