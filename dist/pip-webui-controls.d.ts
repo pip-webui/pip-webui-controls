@@ -75,6 +75,8 @@ class ImageSliderService {
 
 
 
+var marked: any;
+
 export class PopoverController {
     private _$timeout;
     private _$scope;
@@ -107,8 +109,6 @@ export class PopoverService {
     hide(): void;
     resize(): void;
 }
-
-var marked: any;
 
 class RoutingController {
     private _image;
