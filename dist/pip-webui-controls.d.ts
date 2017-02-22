@@ -42,7 +42,7 @@ class pipImageSliderController {
     swipeStart: number;
     sliderIndex: number;
     slideTo: Function;
-    constructor($scope: ng.IScope, $element: any, $attrs: any, $parse: any, $timeout: angular.ITimeoutService, $interval: angular.IIntervalService, $pipImageSlider: any);
+    constructor($scope: ng.IScope, $element: any, $attrs: any, $parse: ng.IParseService, $timeout: angular.ITimeoutService, $interval: angular.IIntervalService, $pipImageSlider: any);
     nextBlock(): void;
     prevBlock(): void;
     slideToPrivate(nextIndex: number): void;

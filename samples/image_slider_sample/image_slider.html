@@ -4,7 +4,7 @@
     <div class="w-stretch layout-column layout-align-center-center">
         <h3 class="text-subhead2 w-stretch">{{::fading | translate }}</h3>
 
-        <div pip-image-slider pip-animation-type="'fading'" class="w-stretch" pip-animation-interval="5000">
+        <div pip-image-slider pip-animation-type="'fading'" class="w-stretch" pip-animation-interval="firstSliderInterval">
             <div class="pip-animation-block" ng-repeat="image in images">
                 <img src="{{ image.url }}" alt="{{ image.url }}" class="w-stretch"/>
             </div>
@@ -28,7 +28,7 @@
 
         <div pip-image-slider pip-animation-type="'carousel'" id="pip-carousel" class="w-stretch"
              pip-image-index="slider2Index"
-             pip-animation-interval="3000">
+             pip-animation-interval="secondSliderInterval">
             <div class="pip-animation-block" ng-repeat="image in images2">
                 <img src="{{ image.url }}" alt="{{ image.url }}" class="w-stretch"/>
             </div>

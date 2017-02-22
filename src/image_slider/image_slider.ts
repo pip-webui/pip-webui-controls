@@ -142,15 +142,14 @@ class pipImageSliderController{
         $scope: ng.IScope, 
         $element, 
         $attrs, 
-        $parse, 
+        $parse: ng.IParseService, 
         $timeout: angular.ITimeoutService,
         $interval: angular.IIntervalService, 
         $pipImageSlider) {
 
         this.sliderIndex = $scope['sliderIndex'];
-        console.log($scope, $attrs);
-        this._type = $parse($attrs.pipAnimationType)($scope);
-        this._interval = $parse($attrs.pipAnimationInterval)($scope);
+        this._type = $scope['type']();
+        this._interval = $scope['interval']();
         this._$attrs = $attrs;
         this._$interval = $interval;
         $scope['slideTo'] = this.slideToPrivate;
@@ -230,17 +229,16 @@ class pipImageSliderController{
         this.stopInterval();
         this.startInterval();
     }
-
 }
-
-
 
 (() => {
 
     function pipImageSlider() {
         return {
             scope: {
-                sliderIndex: '=pipImageIndex'
+                sliderIndex: '=pipImageIndex',
+                type: '&pipAnimationType',
+                interval: '&pipAnimationInterval'
             },
             controller: pipImageSliderController,
             controllerAs: 'vm'

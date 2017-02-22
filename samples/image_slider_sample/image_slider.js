@@ -46,6 +46,9 @@
                 });
             });
 
+            $scope.firstSliderInterval = 5000;
+            $scope.secondSliderInterval = 3000;
+
             $scope.images = [{url: 'https://static.pexels.com/photos/46082/pexels-photo-46082-large.jpeg'},
                 {url: 'https://static.pexels.com/photos/65125/pexels-photo-65125-large.jpeg'},
                 {url: 'https://static.pexels.com/photos/58951/pexels-photo-58951-large.jpeg'}];
