@@ -75,8 +75,6 @@ class ImageSliderService {
 
 
 
-var marked: any;
-
 export class PopoverController {
     private _$timeout;
     private _$scope;
@@ -117,6 +115,8 @@ class RoutingController {
     constructor($scope: ng.IScope, $element: any);
     loadProgressImage(): void;
 }
+
+var marked: any;
 
 interface IPipToast {
     type: string;
