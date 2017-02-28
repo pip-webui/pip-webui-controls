@@ -75,14 +75,6 @@ class ImageSliderService {
 
 
 
-class RoutingController {
-    private _image;
-    logoUrl: string;
-    showProgress: Function;
-    constructor($scope: ng.IScope, $element: any);
-    loadProgressImage(): void;
-}
-
 var marked: any;
 
 export class PopoverController {
@@ -116,6 +108,14 @@ export class PopoverService {
     show(p: any): void;
     hide(): void;
     resize(): void;
+}
+
+class RoutingController {
+    private _image;
+    logoUrl: string;
+    showProgress: Function;
+    constructor($scope: ng.IScope, $element: any);
+    loadProgressImage(): void;
 }
 
 interface IPipToast {
