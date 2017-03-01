@@ -10,7 +10,7 @@
 
     .pip-popover {
       width: 400px;
-      max-width: ~"calc(100% - 32px)";
+      max-width: calc(100% - 32px);
       min-height: 48px;
       opacity: 1;
 
@@ -26,11 +26,11 @@
     top: 72px;
     border-radius: 2px 0 2px 2px;
     z-index: 58;
-    box-shadow: @box-shadow;
+    box-shadow: $box-shadow;
 
     width: 400px;
     min-height: 0;
-    max-height: ~"calc(100% - 104px)";
+    max-height: calc(100% - 104px);
     opacity: 0;
 
     -webkit-transition: opacity .25s ease;
@@ -70,15 +70,15 @@
       -ms-flex-order:            4;
       order:                     4;
 
-        .flex-fixed;
+        @extend flex-fixed;
 
-        .flex();
-        .flex-vertical-content(center);
-        .flex-justify-content(end, flex-end);
-        .flex-direction(row);
+        @include flex();
+        @include flex-vertical-content(center);
+        @include flex-justify-content(end, flex-end);
+        @include flex-direction(row);
 
-        //background-color: @color-content;
-        border-top: 1px solid @color-divider;
+        //background-color: $color-content;
+        border-top: 1px solid $color-divider;
         min-height: 56px; // от куда вообще эти цифры :  Леша, сказал поставить так.
         padding:  0px 24px 0px 24px;
 
@@ -92,7 +92,7 @@
   .pip-popover-backdrop.pip-responsive {
     .pip-popover {
       top: 72px;
-      max-height: ~"calc(100% - 88px)" !important;
+      max-height: calc(100% - 88px) !important;
     }
   }
 }
@@ -107,7 +107,7 @@
 @media (max-width: 768px) {
   .pip-popover-backdrop {
     .pip-popover {
-      width: ~"calc(100% - 32px)" !important;
+      width: calc(100% - 32px) !important;
       right: 16px;
     }
   }

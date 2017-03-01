@@ -1,8 +1,8 @@
 .pip-empty {
     
   margin: 0 auto;
-  .flex();
-  .flex-direction(column);
+  @include flex();
+  @include flex-direction(column);
   
   .pip-pic {
     width: 350px !important;
@@ -18,15 +18,15 @@
     width: 400px;
     margin-top: 25px;
     text-align: center;
-    font: @font-body1;
-    color: @color-disabled;
+    font: $font-body1;
+    color: $color-disabled;
   }
   
   .pip-actions {
     margin-top: 16px;
     margin-bottom: 16px;
     width: 400px;
-    .flex-direction(column);
+    @include flex-direction(column);
     
     .md-button {
       width: 400px - 16px !important;
@@ -66,7 +66,7 @@
       width: 80%;
       padding-left: 16px;
       padding-right: 16px;
-      font: @font-body1;
+      font: $font-body1;
     }
 
     .pip-actions {
@@ -74,7 +74,7 @@
       padding-left: 16px;
       padding-right: 16px;
       .md-button {
-        width: ~"calc(100% - 16px)" !important;
+        width: calc(100% - 16px) !important;
       }
     }
 

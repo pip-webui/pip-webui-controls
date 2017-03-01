@@ -1,8 +1,8 @@
 .pip-routing-progress {
-  @green-splash: #67bc6b;
-  @yellow-splash: #ffcc2a;
-  @red-splash: #f37047;
-  @blue-splash: #46b2e6;
+  $green-splash: #67bc6b;
+  $yellow-splash: #ffcc2a;
+  $red-splash: #f37047;
+  $blue-splash: #46b2e6;
 
   background-position: 50% 50%;
   width: 100%;
@@ -37,8 +37,8 @@
   .pip-img {
     z-index: 100;
     position: absolute;
-    top: ~"calc(50% - 40px)";
-    left: ~"calc(50% - 19px)";
+    top: calc(50% - 40px);
+    left: calc(50% - 19px);
 
     -moz-transform: rotate(-15deg);   // ��� Firefox
     -ms-transform: rotate(-15deg);    // ��� IE
@@ -47,16 +47,16 @@
     transform: rotate(-15deg);
   }
 
-  @width: 100px;
+  $width: 100px;
 
   // end demo-specific
 
   .loader {
     margin: 0 !important;
     position: absolute;
-    top: ~"calc(50% - 70px)";
-    left: ~"calc(50% - 50px)";
-    width: @width;
+    top: calc(50% - 70px);
+    left: calc(50% - 50px);
+    width: $width;
     z-index: 10;
 
     &:before {
@@ -111,17 +111,17 @@
   @keyframes color {
     100%,
     0% {
-      stroke: @red-splash;
+      stroke: $red-splash;
     }
     40% {
-      stroke: @blue-splash;
+      stroke: $blue-splash;
     }
     66% {
-      stroke: @green-splash;
+      stroke: $green-splash;
     }
     80%,
     90% {
-      stroke: @yellow-splash;
+      stroke: $yellow-splash;
     }
   }
 }

@@ -1,15 +1,15 @@
 
 .jumbotron {
-  @jumbotron-padding: 24px;
-  @jumbotron-color: rgba(0, 0, 0, .87);
-  @jumbotron-bg: rgba(0, 0, 0, 0.08);
-  @border-radius: 2px;
+  $jumbotron-padding: 24px;
+  $jumbotron-color: rgba(0, 0, 0, .87);
+  $jumbotron-bg: rgba(0, 0, 0, 0.08);
+  $border-radius: 2px;
 
   padding-top: 24px;
   padding-bottom: 24px;
-  margin-bottom: @jumbotron-padding;
-  color: @jumbotron-color;
-  background-color: @jumbotron-bg;
+  margin-bottom: $jumbotron-padding;
+  color: $jumbotron-color;
+  background-color: $jumbotron-bg;
 
   .pip-pic {
     margin-right: 54px;
@@ -19,9 +19,9 @@
   .pip-jumbo-title-content {
     height: 40px;
     .pip-jumbo-title-text {
-      font: @font-body2;
+      font: $font-body2;
       display: inline-block;
-      color: @color-secondary
+      color: $color-secondary
     }
     md-icon {
       margin-left: 0;
@@ -34,31 +34,31 @@
 
   .pip-jumbo-item {
     height: 58px;
-    border-bottom: 1px @color-divider solid;
+    border-bottom: 1px $color-divider solid;
 
     .pip-jumbo-title {
-      .text-overflow();
+      @include text-overflow();
       max-width: 100%;
-      font: @font-subhead1;
+      font: $font-subhead1;
       margin-bottom: 4px;
       span {
         display: inline-block;
       }
     }
     .pip-jumbo-title-small {
-      .text-overflow();
+      @include text-overflow();
       max-width: 50px;
       vertical-align: bottom;
     }
     .pip-jumbo-title-bold {
-      font: @font-subhead2;
+      font: $font-subhead2;
     }
     .pip-jumbo-subtitle {
-      font: @font-body1;
-      color: @color-secondary;
+      font: $font-body1;
+      color: $color-secondary;
     }
     .pip-jumbo-subtitle-bold {
-      font: @font-body2;
+      font: $font-body2;
     }
   }
 

@@ -62,22 +62,22 @@
     &.pip-column-toast {
       .md-toast-content {
         padding-top: 16px;
-        .flex-direction(column);
+        @include flex-direction(column);
       }
     }
 
     &.pip-no-action-toast {
       .md-toast-content {
         padding-top: 8px;
-        .flex-direction(row);
-        .flex-vertical-center();
+        @include flex-direction(row);
+        @include flex-vertical-center();
       }
     }
   }
 
   &.pip-error {
     .md-toast-content {
-      background-color: @color-badge;
+      background-color: $color-badge;
     }
     z-index: 1000;
   }

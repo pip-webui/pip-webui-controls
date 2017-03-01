@@ -1,5 +1,5 @@
-// @file CSS styles for markdown control
-// @copyright Digital Living Software Corp. 2014-2016
+// $file CSS styles for markdown control
+// $copyright Digital Living Software Corp. 2014-2016
 
 .pip-markdown {
   display: block;
@@ -72,7 +72,7 @@ md-list-item {
     }
 
     h1, h2, h3, h4 {
-      font: @font-body2;
+      font: $font-body2;
     }
   }
 }
