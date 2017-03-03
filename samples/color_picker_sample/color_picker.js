@@ -38,7 +38,9 @@
                 });
             });
 
-            
+            $scope.changeColor = () => {
+                console.log('change color');
+            }
             $scope.disabled = false;
             $scope.colors = ['purple', 'lightgreen', 'green', 'darkred', 'pink', 'yellow', 'cyan'];
             $scope.code = '<pip-color-picker ng-model="color" ng-disabled="disabled"' +

@@ -11,8 +11,10 @@ export interface IColorPicker {
     selectColor(index: number);
 }
 
+const DEFAULT_COLORS = ['purple', 'lightgreen', 'green', 'darkred', 'pink', 'yellow', 'cyan'];
+
 export class ColorPickerController implements IColorPicker {
-  
+
     private _$timeout;
     private _$scope: ng.IScope;
 
@@ -23,34 +25,41 @@ export class ColorPickerController implements IColorPicker {
     public ngDisabled: Function;
     public colorChange: Function;
 
-    constructor( 
-        $scope: ng.IScope, 
+    constructor(
+        $scope: ng.IScope,
         $element,
-        $attrs, 
-        $timeout ) {
-            let DEFAULT_COLORS = ['purple', 'lightgreen', 'green', 'darkred', 'pink', 'yellow', 'cyan'];
-            this._$timeout = $timeout;
-            this._$scope = $scope;
+        $attrs,
+        $timeout) {
+        this._$timeout = $timeout;
+        this._$scope = $scope;
 
-            this.class = $attrs.class || '';
-            this.colors = !$scope['colors'] || _.isArray($scope['colors']) && $scope['colors'].length === 0 ? DEFAULT_COLORS : $scope['colors'];
-            this.colorChange = $scope['colorChange'] || null;
-            this.currentColor = $scope['currentColor'] || this.colors[0];
-            this.currentColorIndex = this.colors.indexOf(this.currentColor);
-            this.ngDisabled = $scope['ngDisabled'];
+        this.class = $attrs.class || '';
+        this.colors = !$scope['vm']['colors'] || 
+                _.isArray($scope['vm']['colors']) && $scope['vm']['colors'].length === 0 ? DEFAULT_COLORS : $scope['vm']['colors'];
+        this.colorChange = $scope['vm']['colorChange'] || null;
+        this.currentColor = $scope['vm']['currentColor'] || this.colors[0];
+        this.currentColorIndex = this.colors.indexOf(this.currentColor);
+        this.ngDisabled = $scope['vm']['ngDisabled'] || false;
+    }
 
+    public $onChanges(changes: any) {
+        this.colors = _.isArray(changes['colors'].currentValue) && changes['colors'].currentValue.length !== 0 ? 
+            changes['colors'].currentValue : DEFAULT_COLORS;
+        this.currentColor = changes['currentColor'].currentValue || this.colors[0];
     }
 
     public disabled(): boolean {
         if (this.ngDisabled) {
-            return this.ngDisabled();
+            return true;
         }
 
-        return true;
+        return false;
     };
 
-     public selectColor(index: number) {
-        if (this.disabled()) { return; }
+    public selectColor(index: number) {
+        if (this.disabled()) {
+            return;
+        }
         this.currentColorIndex = index;
         this.currentColor = this.colors[this.currentColorIndex];
         this._$timeout(() => {
@@ -68,104 +77,18 @@ export class ColorPickerController implements IColorPicker {
 
 }
 
-(() => {
-    function pipColorPicker($parse: any) {
-        "ngInject";
+const pipColorPicker = {
+    bindings: {
+        ngDisabled: '<?ngDisabled',
+        colors: '<pipColors',
+        currentColor: '=ngModel',
+        colorChange: '<?ngChange'
+    },
+    templateUrl: 'color_picker/color_picker.html',
+    controller: ColorPickerController,
+    controllerAs: 'vm'
+}
 
-          return {
-                restrict: 'EA',
-                scope: {
-                    ngDisabled: '&',
-                    colors: '=pipColors',
-                    currentColor: '=ngModel',
-                    colorChange: '&ngChange'
-                },
-                templateUrl: 'color_picker/color_picker.html',
-                controller: ColorPickerController,
-                controllerAs: 'vm'
-            };
-    }
-
-
-    angular
-        .module('pipColorPicker', ['pipControls.Templates'])
-        .directive('pipColorPicker', pipColorPicker);
-
-
-})();
-
-
-/// <reference path="../../typings/tsd.d.ts" />
-/*
-(function () {
-    'use strict';
-
-    var thisModule = angular.module('pipColorPicker', [ 'pipControls.Templates']); // 'pipFocused',
-
-    thisModule.directive('pipColorPicker',
-        function () {
-            return {
-                restrict: 'EA',
-                scope: {
-                    ngDisabled: '&',
-                    colors: '=pipColors',
-                    currentColor: '=ngModel',
-                    colorChange: '&ngChange'
-                },
-                templateUrl: 'color_picker/color_picker.html',
-                controller: 'pipColorPickerController'
-            };
-        }
-    );
-    thisModule.controller('pipColorPickerController',
-        function ($scope, $element, $attrs, $timeout) {
-            var
-                DEFAULT_COLORS = ['purple', 'lightgreen', 'green', 'darkred', 'pink', 'yellow', 'cyan'];
-
-            $scope.class = $attrs.class || '';
-
-            if (!$scope.colors || _.isArray($scope.colors) && $scope.colors.length === 0) {
-                $scope.colors = DEFAULT_COLORS;
-            }
-
-            $scope.currentColor = $scope.currentColor || $scope.colors[0];
-            $scope.currentColorIndex = $scope.colors.indexOf($scope.currentColor);
-
-            $scope.disabled = function () {
-                if ($scope.ngDisabled) {
-                    return $scope.ngDisabled();
-                }
-
-                return true;
-            };
-
-            $scope.selectColor = function (index) {
-                if ($scope.disabled()) {
-                    return;
-                }
-                $scope.currentColorIndex = index;
-
-                $scope.currentColor = $scope.colors[$scope.currentColorIndex];
-
-                $timeout(function () {
-                    $scope.$apply();
-                });
-
-                if ($scope.colorChange) {
-                    $scope.colorChange();
-                }
-            };
-
-            $scope.enterSpacePress = function (event) {
-                $scope.selectColor(event.index);
-            };
-        }
-    );
-
-})();
-*/
-
-
-//import {FileUploadController} from './upload/FileUploadController';
-//import {FileProgressController} from './progress/FileProgressController';
-//import {FileUploadService} from './service/FileUploadService';
+angular
+    .module('pipColorPicker', ['pipControls.Templates'])
+    .component('pipColorPicker', pipColorPicker);

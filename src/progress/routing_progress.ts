@@ -2,6 +2,7 @@
 
 class RoutingController {
     private _image: any;
+    private _$element;
 
     public logoUrl: string;
     public showProgress: Function;
@@ -11,11 +12,14 @@ class RoutingController {
         $element)
     {
 
-        this._image = $element.children('img'); 
-        this.showProgress = $scope['showProgress']
-        this.logoUrl = $scope['logoUrl'];        
-        this.loadProgressImage();
+        this._$element = $element;
+        this.showProgress = $scope['vm']['showProgress'];
+        this.logoUrl = $scope['vm']['logoUrl'];    
+    }
 
+    public $postLink() {
+        this._image = this._$element.find('img'); 
+        this.loadProgressImage();
     }
 
     public loadProgressImage() {
@@ -23,29 +27,25 @@ class RoutingController {
             this._image.attr('src', this.logoUrl);
         }
     }
-
 }
 
 
 (() => {
 
-    function RoutingProgress() {
-        return {
-            restrict: 'EA',
+    const RoutingProgress = {
             replace: true,
-            scope: {
-                    showProgress: '&',
-                    logoUrl: '@'
-                },
+            bindings: {
+                showProgress: '&',
+                logoUrl: '@'
+            },
             templateUrl: 'progress/routing_progress.html',
             controller: RoutingController,
             controllerAs: 'vm'
-        };
     }
 
 
     angular
         .module('pipRoutingProgress', ['ngMaterial'])
-        .directive('pipRoutingProgress', RoutingProgress);
+        .component('pipRoutingProgress', RoutingProgress);
 
 })();

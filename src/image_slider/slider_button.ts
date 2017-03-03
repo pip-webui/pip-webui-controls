@@ -9,7 +9,7 @@
         function () {
             return {
                 scope: {},
-                controller: function ($scope, $element, $parse, $attrs, $pipImageSlider) {
+                controller: function ($scope, $element, $parse, $attrs, pipImageSlider) {
                     var type = $parse($attrs.pipButtonType)($scope),
                         sliderId = $parse($attrs.pipSliderId)($scope);
 
@@ -18,7 +18,7 @@
                             return;
                         }
 
-                        $pipImageSlider.getSliderScope(sliderId).vm[type + 'Block']();
+                        pipImageSlider.getSliderScope(sliderId).vm[type + 'Block']();
                     });
                 }
             };

@@ -9,7 +9,7 @@
         function () {
             return {
                 scope: false,
-                controller: ($scope, $element, $parse, $attrs, $pipImageSlider) => {
+                controller: ($scope, $element, $parse, $attrs, pipImageSlider) => {
                     var sliderId = $parse($attrs.pipSliderId)($scope),
                         slideTo = $parse($attrs.pipSlideTo)($scope);
 
@@ -18,7 +18,7 @@
                         if (!sliderId || slideTo && slideTo < 0) {
                             return;
                         }
-                        $pipImageSlider.getSliderScope(sliderId).vm.slideToPrivate(slideTo);
+                        pipImageSlider.getSliderScope(sliderId).vm.slideToPrivate(slideTo);
                     });
                 }
             };

@@ -21,6 +21,7 @@ export class ColorPickerController implements IColorPicker {
     ngDisabled: Function;
     colorChange: Function;
     constructor($scope: ng.IScope, $element: any, $attrs: any, $timeout: any);
+    $onChanges(changes: any): void;
     disabled(): boolean;
     selectColor(index: number): void;
     enterSpacePress(event: any): void;
@@ -30,6 +31,7 @@ export class ColorPickerController implements IColorPicker {
 class pipImageSliderController {
     private _$attrs;
     private _$interval;
+    private _$scope;
     private _blocks;
     private _index;
     private _newIndex;
@@ -42,10 +44,10 @@ class pipImageSliderController {
     swipeStart: number;
     sliderIndex: number;
     slideTo: Function;
-    constructor($scope: ng.IScope, $element: any, $attrs: any, $parse: ng.IParseService, $timeout: angular.ITimeoutService, $interval: angular.IIntervalService, $pipImageSlider: any);
+    constructor($scope: ng.IScope, $element: any, $attrs: any, $parse: ng.IParseService, $timeout: angular.ITimeoutService, $interval: angular.IIntervalService, pipImageSlider: any);
     nextBlock(): void;
     prevBlock(): void;
-    slideToPrivate(nextIndex: number): void;
+    private slideToPrivate(nextIndex);
     private setIndex();
     private startInterval();
     private stopInterval();
@@ -74,6 +76,26 @@ class ImageSliderService {
 }
 
 
+
+var marked: any;
+function Config($injector: any): void;
+class MarkdownController {
+    private _pipTranslate;
+    private _$parse;
+    private _$scope;
+    private _$injector;
+    private _$element;
+    private _$attrs;
+    private _text;
+    private _isList;
+    private _clamp;
+    private _rebind;
+    constructor($scope: angular.IScope, $parse: angular.IParseService, $attrs: any, $element: any, $injector: any);
+    $postLink(): void;
+    $onChanges(changes: any): void;
+    private describeAttachments(array);
+    private bindText(value);
+}
 
 export class PopoverController {
     private _$timeout;
@@ -108,13 +130,13 @@ export class PopoverService {
     resize(): void;
 }
 
-var marked: any;
-
 class RoutingController {
     private _image;
+    private _$element;
     logoUrl: string;
     showProgress: Function;
     constructor($scope: ng.IScope, $element: any);
+    $postLink(): void;
     loadProgressImage(): void;
 }
 
