@@ -130,16 +130,6 @@ export class PopoverService {
     resize(): void;
 }
 
-class RoutingController {
-    private _image;
-    private _$element;
-    logoUrl: string;
-    showProgress: Function;
-    constructor($scope: ng.IScope, $element: any);
-    $postLink(): void;
-    loadProgressImage(): void;
-}
-
 interface IPipToast {
     type: string;
     id: string;
@@ -199,6 +189,16 @@ class ToastService implements IToastService {
     showError(message: string, successCallback: any, cancelCallback: any, id: string, error: any): void;
     hideAllToasts(): void;
     clearToasts(type?: string): void;
+}
+
+class RoutingController {
+    private _image;
+    private _$element;
+    logoUrl: string;
+    showProgress: Function;
+    constructor($scope: ng.IScope, $element: any);
+    $postLink(): void;
+    loadProgressImage(): void;
 }
 
 }

@@ -62,6 +62,7 @@ var pipColorPicker = {
 angular
     .module('pipColorPicker', ['pipControls.Templates'])
     .component('pipColorPicker', pipColorPicker);
+
 },{}],2:[function(require,module,exports){
 (function () {
     'use strict';
@@ -75,6 +76,7 @@ angular
         'pipControls.Translate'
     ]);
 })();
+
 },{}],3:[function(require,module,exports){
 (function () {
     'use strict';
@@ -87,6 +89,7 @@ angular
         };
     }]);
 })();
+
 },{}],4:[function(require,module,exports){
 var pipImageSliderController = (function () {
     pipImageSliderController.$inject = ['$scope', '$element', '$attrs', '$parse', '$timeout', '$interval', 'pipImageSlider'];
@@ -184,6 +187,7 @@ var pipImageSliderController = (function () {
         .module('pipImageSlider', ['pipSliderButton', 'pipSliderIndicator', 'pipImageSlider.Service'])
         .directive('pipImageSlider', pipImageSlider);
 })();
+
 },{}],5:[function(require,module,exports){
 var ImageSliderService = (function () {
     ImageSliderService.$inject = ['$timeout'];
@@ -248,6 +252,7 @@ var ImageSliderService = (function () {
         .module('pipImageSlider.Service', [])
         .service('pipImageSlider', ImageSliderService);
 })();
+
 },{}],6:[function(require,module,exports){
 (function () {
     'use strict';
@@ -267,6 +272,7 @@ var ImageSliderService = (function () {
         };
     });
 })();
+
 },{}],7:[function(require,module,exports){
 (function () {
     'use strict';
@@ -287,6 +293,7 @@ var ImageSliderService = (function () {
         };
     });
 })();
+
 },{}],8:[function(require,module,exports){
 Config.$inject = ['$injector'];
 function Config($injector) {
@@ -409,6 +416,7 @@ var MarkdownController = (function () {
         .run(Config)
         .component('pipMarkdown', MarkdownComponent);
 })();
+
 },{}],9:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -506,6 +514,7 @@ exports.PopoverController = PopoverController;
         .module('pipPopover', ['pipPopover.Service'])
         .directive('pipPopover', pipPopover);
 })();
+
 },{}],10:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -550,6 +559,7 @@ exports.PopoverService = PopoverService;
         .module('pipPopover.Service', [])
         .service('pipPopoverService', PopoverService);
 })();
+
 },{}],11:[function(require,module,exports){
 var RoutingController = (function () {
     function RoutingController($scope, $element) {
@@ -583,6 +593,7 @@ var RoutingController = (function () {
         .module('pipRoutingProgress', ['ngMaterial'])
         .component('pipRoutingProgress', RoutingProgress);
 })();
+
 },{}],12:[function(require,module,exports){
 var ToastController = (function () {
     function ToastController($mdToast, toast, $injector) {
@@ -752,6 +763,7 @@ var ToastService = (function () {
         .module('pipToasts', ['ngMaterial', 'pipControls.Translate'])
         .service('pipToasts', ToastService);
 })();
+
 },{}],13:[function(require,module,exports){
 (function(module) {
 try {
@@ -784,8 +796,8 @@ try {
   module = angular.module('pipControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('progress/routing_progress.html',
-    '<div class="pip-routing-progress layout-column layout-align-center-center" ng-show="vm.showProgress()"><div class="loader"><svg class="circular" viewbox="25 25 50 50"><circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle></svg></div><img src="" height="40" width="40" class="pip-img"><md-progress-circular md-diameter="96" class="fix-ie"></md-progress-circular></div>');
+  $templateCache.put('toast/toast.html',
+    '<md-toast class="md-action pip-toast" ng-class="{\'pip-error\': vm.toast.type==\'error\', \'pip-column-toast\': vm.toast.actions.length > 1 || vm.actionLenght > 4, \'pip-no-action-toast\': vm.actionLenght == 0}" style="height:initial; max-height: initial;"><span class="flex-var pip-text" ng-bind-html="vm.message"></span><div class="layout-row layout-align-end-start pip-actions" ng-if="vm.actions.length > 0 || (vm.toast.type==\'error\' && vm.toast.error)"><div class="flex" ng-if="vm.toast.actions.length > 1"></div><md-button class="flex-fixed pip-toast-button" ng-if="vm.toast.type==\'error\' && vm.toast.error && vm.showDetails" ng-click="vm.onDetails()">Details</md-button><md-button class="flex-fixed pip-toast-button" ng-click="vm.onAction(action)" ng-repeat="action in vm.actions" aria-label="{{::action| translate}}">{{::action| translate}}</md-button></div></md-toast>');
 }]);
 })();
 
@@ -796,8 +808,8 @@ try {
   module = angular.module('pipControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('toast/toast.html',
-    '<md-toast class="md-action pip-toast" ng-class="{\'pip-error\': vm.toast.type==\'error\', \'pip-column-toast\': vm.toast.actions.length > 1 || vm.actionLenght > 4, \'pip-no-action-toast\': vm.actionLenght == 0}" style="height:initial; max-height: initial;"><span class="flex-var pip-text" ng-bind-html="vm.message"></span><div class="layout-row layout-align-end-start pip-actions" ng-if="vm.actions.length > 0 || (vm.toast.type==\'error\' && vm.toast.error)"><div class="flex" ng-if="vm.toast.actions.length > 1"></div><md-button class="flex-fixed pip-toast-button" ng-if="vm.toast.type==\'error\' && vm.toast.error && vm.showDetails" ng-click="vm.onDetails()">Details</md-button><md-button class="flex-fixed pip-toast-button" ng-click="vm.onAction(action)" ng-repeat="action in vm.actions" aria-label="{{::action| translate}}">{{::action| translate}}</md-button></div></md-toast>');
+  $templateCache.put('progress/routing_progress.html',
+    '<div class="pip-routing-progress layout-column layout-align-center-center" ng-show="vm.showProgress()"><div class="loader"><svg class="circular" viewbox="25 25 50 50"><circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle></svg></div><img src="" height="40" width="40" class="pip-img"><md-progress-circular md-diameter="96" class="fix-ie"></md-progress-circular></div>');
 }]);
 })();
 
