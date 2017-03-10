@@ -77,6 +77,36 @@ class ImageSliderService {
 
 
 
+var marked: any;
+function Config($injector: any): void;
+class MarkdownController {
+    private _pipTranslate;
+    private _$parse;
+    private _$scope;
+    private _$injector;
+    private _$element;
+    private _$attrs;
+    private _text;
+    private _isList;
+    private _clamp;
+    private _rebind;
+    constructor($scope: angular.IScope, $parse: angular.IParseService, $attrs: any, $element: any, $injector: any);
+    $postLink(): void;
+    $onChanges(changes: any): void;
+    private describeAttachments(array);
+    private bindText(value);
+}
+
+class RoutingController {
+    private _image;
+    private _$element;
+    logoUrl: string;
+    showProgress: Function;
+    constructor($scope: ng.IScope, $element: any);
+    $postLink(): void;
+    loadProgressImage(): void;
+}
+
 export class PopoverController {
     private _$timeout;
     private _$scope;
@@ -108,36 +138,6 @@ export class PopoverService {
     show(p: any): void;
     hide(): void;
     resize(): void;
-}
-
-class RoutingController {
-    private _image;
-    private _$element;
-    logoUrl: string;
-    showProgress: Function;
-    constructor($scope: ng.IScope, $element: any);
-    $postLink(): void;
-    loadProgressImage(): void;
-}
-
-var marked: any;
-function Config($injector: any): void;
-class MarkdownController {
-    private _pipTranslate;
-    private _$parse;
-    private _$scope;
-    private _$injector;
-    private _$element;
-    private _$attrs;
-    private _text;
-    private _isList;
-    private _clamp;
-    private _rebind;
-    constructor($scope: angular.IScope, $parse: angular.IParseService, $attrs: any, $element: any, $injector: any);
-    $postLink(): void;
-    $onChanges(changes: any): void;
-    private describeAttachments(array);
-    private bindText(value);
 }
 
 interface IPipToast {
