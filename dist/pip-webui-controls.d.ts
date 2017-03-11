@@ -97,16 +97,6 @@ class MarkdownController {
     private bindText(value);
 }
 
-class RoutingController {
-    private _image;
-    private _$element;
-    logoUrl: string;
-    showProgress: Function;
-    constructor($scope: ng.IScope, $element: any);
-    $postLink(): void;
-    loadProgressImage(): void;
-}
-
 export class PopoverController {
     private _$timeout;
     private _$scope;
@@ -138,6 +128,16 @@ export class PopoverService {
     show(p: any): void;
     hide(): void;
     resize(): void;
+}
+
+class RoutingController {
+    private _image;
+    private _$element;
+    logoUrl: string;
+    showProgress: Function;
+    constructor($scope: ng.IScope, $element: any);
+    $postLink(): void;
+    loadProgressImage(): void;
 }
 
 interface IPipToast {
