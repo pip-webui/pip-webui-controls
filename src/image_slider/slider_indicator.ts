@@ -1,28 +1,39 @@
 /// <reference path="../../typings/tsd.d.ts" />
 
-(function () {
-    'use strict';
+import {
+    IImageSliderService
+} from './image_slider_service';
 
-    var thisModule = angular.module('pipSliderIndicator', []);
+{
+    class SliderIndicatorController implements ng.IController {
+        public direction: Function;
+        public sliderId: Function;
 
-    thisModule.directive('pipSliderIndicator',
-        function () {
-            return {
-                scope: false,
-                controller: ($scope, $element, $parse, $attrs, pipImageSlider) => {
-                    var sliderId = $parse($attrs.pipSliderId)($scope),
-                        slideTo = $parse($attrs.pipSlideTo)($scope);
-
-                    $element.css('cursor', 'pointer');
-                    $element.on('click',  () => {
-                        if (!sliderId || slideTo && slideTo < 0) {
-                            return;
-                        }
-                        pipImageSlider.getSliderScope(sliderId).vm.slideToPrivate(slideTo);
-                    });
+        constructor(
+            $element: JQuery,
+            pipImageSlider: IImageSliderService
+        ) {
+            $element.css('cursor', 'pointer');
+            $element.on('click', () => {
+                if (!this.sliderId() || !this.direction()) {
+                    return;
                 }
-            };
-        }
-    );
 
-})();
+                pipImageSlider.getSliderScope(this.sliderId()).vm[this.direction() + 'Block']();
+            });
+        }
+    }
+
+    const SliderIndicator = function (): ng.IDirective {
+        return {
+            scope: {
+                direction: '&pipButtonType',
+                sliderId: '&pipSliderId'
+            },
+            controller: SliderIndicatorController
+        }
+    }
+
+    angular.module('pipSliderIndicator', [])
+        .directive('pipSliderIndicator', SliderIndicator);
+}

@@ -1,7 +1,8 @@
-<ul class="pip-color-picker {{vm.class}}" pip-selected="vm.currentColorIndex" pip-enter-space-press="vm.enterSpacePress($event)">
-    <li tabindex="-1" ng-repeat="color in vm.colors track by color">
-        <md-button  tabindex="-1" class="md-icon-button pip-selectable" ng-click="vm.selectColor($index)" aria-label="color" ng-disabled="vm.disabled()">
-            <md-icon ng-style="{'color': color}" md-svg-icon="icons:{{ color == vm.currentColor ? 'circle' : 'radio-off' }}">
+<ul class="pip-color-picker {{$ctrl.class}}" pip-selected="$ctrl.currentColorIndex" pip-enter-space-press="$ctrl.enterSpacePress($event)">
+    <li tabindex="-1" ng-repeat="color in $ctrl.colors track by color">
+        <md-button  tabindex="-1" class="md-icon-button pip-selectable" ng-click="$ctrl.selectColor($index)" 
+                aria-label="color" ng-disabled="$ctrl.ngDisabled">
+            <md-icon ng-style="{'color': color}" md-svg-icon="icons:{{ color == $ctrl.currentColor ? 'circle' : 'radio-off' }}">
             </md-icon>
         </md-button>
     </li>

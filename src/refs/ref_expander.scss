@@ -69,20 +69,20 @@
     .pip-title,
     .pip-subtitle {
       margin: 0px !important;
-      .text-overflow();
+      @include text-overflow();
       text-transform: none;
       text-align: start;
     }
 
     .pip-title {
-      font: @font-subhead2;
+      font: $font-subhead2;
       margin-top: 1px !important;
       margin-bottom: 4px !important;
     }
 
     .pip-subtitle {
-      font: @font-body1;
-      color: @color-secondary;
+      font: $font-body1;
+      color: $color-secondary;
     }
 
     .pip-chevron {

@@ -1,17 +1,16 @@
 /// <reference path="../../typings/tsd.d.ts" />
 
-(function () {
-    'use strict';
+{
 
-    var thisModule = angular.module('pipControls.Translate', []);
+    function translateControls($injector: ng.auto.IInjectorService) {
+        const pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
 
-    thisModule.filter('translate', function ($injector) {
-        var pipTranslate = $injector.has('pipTranslate') 
-            ? $injector.get('pipTranslate') : null;
-
-        return function (key) {
-            return pipTranslate  ? pipTranslate.translate(key) || key : key;
+        return function (key: string) {
+            return pipTranslate ? pipTranslate['translate'](key) || key : key;
         }
-    });
+    }
 
-})();
+    angular.module('pipControls.Translate', [])
+        .filter('translate', translateControls);
+
+}

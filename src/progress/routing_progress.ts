@@ -1,51 +1,50 @@
 /// <reference path="../../typings/tsd.d.ts" />
 
-class RoutingController {
-    private _image: any;
-    private _$element;
+{
+    interface IRoutingBindings {
+        [key: string]: any;
 
-    public logoUrl: string;
-    public showProgress: Function;
-
-    constructor( 
-        $scope: ng.IScope,
-        $element)
-    {
-
-        this._$element = $element;
-        this.showProgress = $scope['vm']['showProgress'];
-        this.logoUrl = $scope['vm']['logoUrl'];    
+        logoUrl: any;
+        showProgress: any;
     }
 
-    public $postLink() {
-        this._image = this._$element.find('img'); 
-        this.loadProgressImage();
+    const RoutingBindings: IRoutingBindings = {
+        showProgress: '&',
+        logoUrl: '@'
     }
 
-    public loadProgressImage() {
-        if (this.logoUrl) {
-            this._image.attr('src', this.logoUrl);
+    class RoutingController implements ng.IController, IRoutingBindings {
+        private _image: any;
+
+        public logoUrl: string;
+        public showProgress: Function;
+
+        constructor(
+            $scope: ng.IScope,
+            private $element: JQuery
+        ) {
+            $element.addClass('pip-routing-progress');
+        }
+
+        public $postLink() {
+            this._image = this.$element.find('img');
+            this.loadProgressImage();
+        }
+
+        public loadProgressImage() {
+            if (this.logoUrl) {
+                this._image.attr('src', this.logoUrl);
+            }
         }
     }
-}
 
-
-(() => {
-
-    const RoutingProgress = {
-            replace: true,
-            bindings: {
-                showProgress: '&',
-                logoUrl: '@'
-            },
-            templateUrl: 'progress/routing_progress.html',
-            controller: RoutingController,
-            controllerAs: 'vm'
+    const RoutingProgress: ng.IComponentOptions = {
+        bindings: RoutingBindings,
+        templateUrl: 'progress/routing_progress.html',
+        controller: RoutingController
     }
-
 
     angular
         .module('pipRoutingProgress', ['ngMaterial'])
         .component('pipRoutingProgress', RoutingProgress);
-
-})();
+}

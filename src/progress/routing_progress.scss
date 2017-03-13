@@ -1,4 +1,4 @@
-.pip-routing-progress {
+pip-routing-progress {
   $green-splash: #67bc6b;
   $yellow-splash: #ffcc2a;
   $red-splash: #f37047;
@@ -40,10 +40,10 @@
     top: calc(50% - 40px);
     left: calc(50% - 19px);
 
-    -moz-transform: rotate(-15deg);   // ��� Firefox
-    -ms-transform: rotate(-15deg);    // ��� IE
-    -webkit-transform: rotate(-15deg);  // ��� Safari, Chrome, iOS
-    -o-transform: rotate(-15deg);     // ��� Opera
+    -moz-transform: rotate(-15deg);   // for Firefox
+    -ms-transform: rotate(-15deg);    // for IE
+    -webkit-transform: rotate(-15deg);  // for Safari, Chrome, iOS
+    -o-transform: rotate(-15deg);     // for Opera
     transform: rotate(-15deg);
   }
 
