@@ -1,6 +1,6 @@
 /// <reference path="../../typings/tsd.d.ts" />
 
-import { IImageSliderService } from './image_slider_service';
+import { IImageSliderService } from './IImageSliderService';
 
 {
     class pipImageSliderController implements ng.IController {

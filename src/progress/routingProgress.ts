@@ -38,7 +38,7 @@
 
     const RoutingProgress: ng.IComponentOptions = {
         bindings: RoutingBindings,
-        templateUrl: 'progress/routing_progress.html',
+        templateUrl: 'progress/routingProgress.html',
         controller: RoutingController
     }
 

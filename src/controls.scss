@@ -1,17 +1,17 @@
 ﻿// @file Composition of basic controls CSS styles
 // @copyright Digital Living Software Corp. 2014-2016
 
-@import "css_light/css_light";
+@import "css_light/index";
 
 @import "empty/empty";
 @import "markdown/markdown";
-@import "color_picker/color_picker";
+@import "color_picker/colorPicker";
 @import "popover/popover";
-@import "image_slider/image_slider";
+@import "image_slider/imageSlider";
 @import "toast/toast";
-@import "progress/routing_progress";
+@import "progress/routingProgress";
 @import "hints/hints";
-@import "refs/ref_expander";
+@import "refs/refExpander";
 
 @import "jumbotron/jumbotron";
 

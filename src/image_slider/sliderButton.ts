@@ -2,7 +2,7 @@
 
 import {
     IImageSliderService
-} from './image_slider_service';
+} from './IImageSliderService';
 
 {
     class SliderButtonController implements ng.IController {
