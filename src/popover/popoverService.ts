@@ -1,4 +1,4 @@
-/// <reference path="../../typings/tsd.d.ts" />
+import { IPopoverService } from './IPopoverService';
 
 {
     interface PopoverTemplateScope extends ng.IScope {
@@ -6,7 +6,7 @@
         locals ? : any;
     }
 
-    class PopoverService {
+    class PopoverService implements IPopoverService {
         private popoverTemplate: string;
 
         constructor(

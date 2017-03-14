@@ -1,8 +1,4 @@
-/// <reference path="../../typings/tsd.d.ts" />
-
-import {
-    IImageSliderService
-} from './IImageSliderService';
+import { IImageSliderService } from './IImageSliderService';
 
 {
     class SliderButtonController implements ng.IController {
@@ -35,7 +31,8 @@ import {
         };
     }
 
-    angular.module('pipSliderButton', [])
+    angular
+        .module('pipSliderButton', [])
         .directive('pipSliderButton', SliderButton);
 
 }

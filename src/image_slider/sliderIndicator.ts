@@ -1,8 +1,4 @@
-/// <reference path="../../typings/tsd.d.ts" />
-
-import {
-    IImageSliderService
-} from './IImageSliderService';
+import { IImageSliderService } from './IImageSliderService';
 
 {
     class SliderIndicatorController implements ng.IController {
@@ -36,6 +32,7 @@ import {
         }
     }
 
-    angular.module('pipSliderIndicator', [])
+    angular
+        .module('pipSliderIndicator', [])
         .directive('pipSliderIndicator', SliderIndicator);
 }

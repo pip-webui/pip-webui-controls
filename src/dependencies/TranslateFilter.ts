@@ -1,8 +1,5 @@
-/// <reference path="../../typings/tsd.d.ts" />
-
 {
-
-    function translateControls($injector: ng.auto.IInjectorService) {
+    function translateFilter($injector: ng.auto.IInjectorService) {
         const pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
 
         return function (key: string) {
@@ -10,7 +7,7 @@
         }
     }
 
-    angular.module('pipControls.Translate', [])
-        .filter('translate', translateControls);
-
+    angular
+        .module('pipControls.Translate', [])
+        .filter('translate', translateFilter);
 }

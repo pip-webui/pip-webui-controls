@@ -1,17 +1,7 @@
-/// <reference path="../../typings/tsd.d.ts" />
+import { Toast } from './Toast';
+import { IToastService } from './IToastService';
 
 {
-    interface IPipToast {
-        type: string;
-        id: string;
-        error: any;
-        message: string;
-        actions: string[];
-        duration: number;
-        successCallback: Function;
-        cancelCallback: Function
-    }
-
     class ToastController {
         private _pipErrorDetailsDialog;
 
@@ -22,7 +12,7 @@
 
         constructor(
             private $mdToast: angular.material.IToastService,
-            public toast: IPipToast,
+            public toast: Toast,
             $injector: ng.auto.IInjectorService
         ) {
             this._pipErrorDetailsDialog = $injector.has('pipErrorDetailsDialog') ?
@@ -61,25 +51,10 @@
         }
     }
 
-    interface IToastService {
-        showNextToast(): void;
-        showToast(toast: IPipToast): void;
-        addToast(toast): void;
-        removeToasts(type: string): void;
-        getToastById(id: string): IPipToast;
-        removeToastsById(id: string): void;
-        onClearToasts(): void;
-        showNotification(message: string, actions: string[], successCallback, cancelCallback, id: string);
-        showMessage(message: string, successCallback, cancelCallback, id ? : string);
-        showError(message: string, successCallback, cancelCallback, id: string, error: any);
-        hideAllToasts(): void;
-        clearToasts(type ? : string);
-    }
-
     class ToastService implements IToastService {
         private SHOW_TIMEOUT: number = 20000;
         private SHOW_TIMEOUT_NOTIFICATIONS: number = 20000;
-        private toasts: IPipToast[] = [];
+        private toasts: Toast[] = [];
         private currentToast: any;
         private sounds: any = {};
 
@@ -93,7 +68,7 @@
         }
 
         public showNextToast(): void {
-            let toast: IPipToast;
+            let toast: Toast;
 
             if (this.toasts.length > 0) {
                 toast = this.toasts[0];
@@ -103,11 +78,11 @@
         }
 
         // Show toast
-        public showToast(toast: IPipToast): void {
+        public showToast(toast: Toast): void {
             this.currentToast = toast;
 
             this.$mdToast.show({
-                    templateUrl: 'toast/toast.html',
+                    templateUrl: 'toast/Toast.html',
                     hideDelay: toast.duration || this.SHOW_TIMEOUT,
                     position: 'bottom left',
                     controller: ToastController,
@@ -167,7 +142,7 @@
             });
         }
 
-        public getToastById(id: string): IPipToast {
+        public getToastById(id: string): Toast {
             return _.find(this.toasts, {
                 id: id
             });

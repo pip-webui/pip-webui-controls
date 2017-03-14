@@ -1,5 +1,3 @@
-/// <reference path="../../typings/tsd.d.ts" />
-
 {
     interface IPopoverBindings {
         [key: string]: any;
@@ -129,7 +127,7 @@
 
     const Popover: ng.IComponentOptions = {
         bindings: PopoverBindings,
-        templateUrl: 'popover/popover.html',
+        templateUrl: 'popover/Popover.html',
         controller: PopoverController
     }
 

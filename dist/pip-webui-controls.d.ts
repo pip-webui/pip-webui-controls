@@ -17,8 +17,37 @@ export interface IImageSliderService {
 
 var marked: any;
 
+export interface IPopoverService {
+}
 
 
+
+
+export interface IToastService {
+    showNextToast(): void;
+    showToast(toast: Toast): void;
+    addToast(toast: any): void;
+    removeToasts(type: string): void;
+    getToastById(id: string): Toast;
+    removeToastsById(id: string): void;
+    onClearToasts(): void;
+    showNotification(message: string, actions: string[], successCallback: any, cancelCallback: any, id: string): any;
+    showMessage(message: string, successCallback: any, cancelCallback: any, id?: string): any;
+    showError(message: string, successCallback: any, cancelCallback: any, id: string, error: any): any;
+    hideAllToasts(): void;
+    clearToasts(type?: string): any;
+}
+
+export class Toast {
+    type: string;
+    id: string;
+    error: any;
+    message: string;
+    actions: string[];
+    duration: number;
+    successCallback: Function;
+    cancelCallback: Function;
+}
 
 
 }

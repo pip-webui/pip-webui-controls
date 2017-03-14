@@ -80,7 +80,7 @@
 
     const pipColorPicker: ng.IComponentOptions = {
         bindings: ColorPickerBindings,
-        templateUrl: 'color_picker/colorPicker.html',
+        templateUrl: 'color_picker/ColorPicker.html',
         controller: ColorPickerController
     }
 

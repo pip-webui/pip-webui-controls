@@ -1,5 +1,3 @@
-/// <reference path="../../typings/tsd.d.ts" />
-
 declare var marked: any;
 
 {
@@ -155,7 +153,8 @@ declare var marked: any;
         bindings: MarkdownBindings
     }
 
-    angular.module('pipMarkdown', ['ngSanitize'])
+    angular
+        .module('pipMarkdown', ['ngSanitize'])
         .run(ConfigTranslations)
         .component('pipMarkdown', MarkdownComponent);
 }

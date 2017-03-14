@@ -1,5 +1,3 @@
-/// <reference path="../../typings/tsd.d.ts" />
-
 {
     interface IRoutingBindings {
         [key: string]: any;
@@ -38,7 +36,7 @@
 
     const RoutingProgress: ng.IComponentOptions = {
         bindings: RoutingBindings,
-        templateUrl: 'progress/routingProgress.html',
+        templateUrl: 'progress/RoutingProgress.html',
         controller: RoutingController
     }
 

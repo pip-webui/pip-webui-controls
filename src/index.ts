@@ -1,6 +1,4 @@
-﻿/// <reference path="../typings/tsd.d.ts" />
-
-angular.module('pipControls', [
+﻿angular.module('pipControls', [
     'pipMarkdown',
     'pipColorPicker',
     'pipRoutingProgress',
