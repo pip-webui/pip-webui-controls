@@ -54,10 +54,10 @@ declare var marked: any;
     class MarkdownController implements IMarkdownBindings, ng.IController {
         private _pipTranslate;
 
-        public text;
-        public isList;
-        public clamp;
-        public rebind;
+        public text: string;
+        public isList: boolean;
+        public clamp: string | number;
+        public rebind: boolean;
 
         constructor(
             private $scope: angular.IScope,
@@ -80,14 +80,12 @@ declare var marked: any;
 
         }
 
-        public $onChanges(changes: any) {
-            const newText = changes['text'].currentValue;
+        public $onChanges(changes: MarkdownChanges) {
+            const newText = changes.text.currentValue;
 
             if (this.rebind) {
-                if (this.text !== newText) {
-                    this.text = newText;
-                    this.bindText(this.text);
-                }
+                this.text = newText;
+                this.bindText(this.text);
             }
         }
 
@@ -114,7 +112,7 @@ declare var marked: any;
         }
 
         private bindText(value) {
-            var textString, isClamped, height, options, obj;
+            let textString, isClamped, height, options, obj;
 
             if (_.isArray(value)) {
                 obj = _.find(value, function (item: any) {
@@ -139,7 +137,7 @@ declare var marked: any;
             };
             textString = marked(textString || '', options);
             if (isClamped) {
-                height = 1.5 * this.clamp;
+                height = 1.5 * Number(this.clamp);
             }
             // Assign value as HTML
             this.$element.html('<div' + (isClamped ? this.isList ? 'class="pip-markdown-content ' +

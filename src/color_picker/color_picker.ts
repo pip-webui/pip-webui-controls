@@ -49,12 +49,11 @@
         }
 
         public $onChanges(changes: ColorPickerChanges) {
-            this.colors = _.isArray(changes.colors.currentValue) && changes.colors.currentValue.length !== 0 ?
+            this.colors = changes.colors && _.isArray(changes.colors.currentValue) && changes.colors.currentValue.length !== 0 ?
                 changes.colors.currentValue : DEFAULT_COLORS;
-            this.currentColor = changes.currentColor.currentValue || this.colors[0];
+            this.currentColor = this.currentColor || this.colors[0];
             this.currentColorIndex = this.colors.indexOf(this.currentColor);
 
-            this.colorChange = changes.colorChange.currentValue;
             this.ngDisabled = changes.ngDisabled.currentValue;
         }
 

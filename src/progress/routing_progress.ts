@@ -22,9 +22,7 @@
         constructor(
             $scope: ng.IScope,
             private $element: JQuery
-        ) {
-            $element.addClass('pip-routing-progress');
-        }
+        ) { }
 
         public $postLink() {
             this._image = this.$element.find('img');

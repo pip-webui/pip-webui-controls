@@ -6,7 +6,7 @@ import {
 
 {
     class SliderIndicatorController implements ng.IController {
-        public direction: Function;
+        public slideTo: Function;
         public sliderId: Function;
 
         constructor(
@@ -15,11 +15,11 @@ import {
         ) {
             $element.css('cursor', 'pointer');
             $element.on('click', () => {
-                if (!this.sliderId() || !this.direction()) {
+                if (!this.sliderId() || this.slideTo() === undefined) {
                     return;
                 }
 
-                pipImageSlider.getSliderScope(this.sliderId()).vm[this.direction() + 'Block']();
+                pipImageSlider.getSliderScope(this.sliderId()).vm.slideTo(this.slideTo());
             });
         }
     }
@@ -27,9 +27,11 @@ import {
     const SliderIndicator = function (): ng.IDirective {
         return {
             scope: {
-                direction: '&pipButtonType',
+                slideTo: '&pipSlideTo',
                 sliderId: '&pipSliderId'
             },
+            controllerAs: '$ctlr',
+            bindToController: true,
             controller: SliderIndicatorController
         }
     }

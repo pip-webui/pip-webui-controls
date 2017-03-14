@@ -46,14 +46,14 @@ See online samples [here...](http://webui.pipdevs.com/pip-webui-controls/index.h
 
 **Reference expander** is a clickable elemement that looks similar to **Reference item** but also allows to expand/collapse details.
 
-<a href="https://github.com/pip-webui/pip-webui-csscomponents/raw/master/doc/images/img-ref-expander.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
-    <img src="https://github.com/pip-webui/pip-webui-csscomponents/raw/master/doc/images/img-ref-expander.png"/>
+<a href="https://github.com/pip-webui/pip-webui-controls/raw/master/doc/images/img-ref-expander.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
+    <img src="https://github.com/pip-webui/pip-webui-controls/raw/master/doc/images/img-ref-expander.png"/>
 </a>
 
 **Empty state** component shows a placeholder for pages without data. It gives an explanation and provides one or few actions to get started.
 
-<a href="https://github.com/pip-webui/pip-webui-csscomponents/raw/master/doc/images/img-empty.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
-    <img src="https://github.com/pip-webui/pip-webui-csscomponents/raw/master/doc/images/img-empty.png"/>
+<a href="https://github.com/pip-webui/pip-webui-controls/raw/master/doc/images/img-empty.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
+    <img src="https://github.com/pip-webui/pip-webui-controls/raw/master/doc/images/img-empty.png"/>
 </a>
 
 **Toast** services allows to show toast messages, formatted in different ways and presented in priority order. It ensures that one toast message will not hide another one, until timeout expires or users handles it.

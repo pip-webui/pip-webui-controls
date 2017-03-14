@@ -12,18 +12,18 @@
     }
 
     class PopoverController implements IPopoverBindings, ng.IController {
-        public backdropElement;
-        public content;
+        private backdropElement;
+        private content;
         public params: any;
 
         constructor(
-            public $scope: ng.IScope,
+            private $scope: ng.IScope,
             $rootScope: ng.IRootScopeService,
             $element: JQuery,
-            public $timeout: ng.ITimeoutService,
-            public $compile: ng.ICompileService
+            private $timeout: ng.ITimeoutService,
+            private $compile: ng.ICompileService,
+            private $templateRequest: ng.ITemplateRequestService
         ) {
-            //$scope = _.defaults($scope, $scope.$parent);    // eslint-disable-line 
             this.backdropElement = $('.pip-popover-backdrop');
             this.backdropElement.on('click keydown scroll', () => {
                 this.backdropClick();
@@ -32,12 +32,21 @@
 
             $timeout(() => {
                 this.position();
+                angular.extend($scope, this.params.locals);
+
                 if (this.params.template) {
                     this.content = $compile(this.params.template)($scope);
                     $element.find('.pip-popover').append(this.content);
-                }
 
-                this.init();
+                    this.init();
+                } else {
+                    this.$templateRequest(this.params.templateUrl, false).then((html) => {
+                        this.content = $compile(html)($scope);
+                        $element.find('.pip-popover').append(this.content);
+
+                        this.init();
+                    });
+                }
             });
 
             $timeout(() => {

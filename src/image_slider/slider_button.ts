@@ -29,6 +29,8 @@ import {
                 direction: '&pipButtonType',
                 sliderId: '&pipSliderId'
             },
+            controllerAs: '$ctlr',
+            bindToController: true,
             controller: SliderButtonController
         };
     }
