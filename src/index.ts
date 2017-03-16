@@ -1,9 +1,9 @@
 ﻿import './dependencies/TranslateFilter';
-import './color_picker';
+import './color_picker/ColorPicker';
 import './image_slider';
-import './markdown';
+import './markdown/Markdown';
 import './popover';
-import './progress';
+import './progress/RoutingProgress';
 import './toast';
 
 angular.module('pipControls', [
