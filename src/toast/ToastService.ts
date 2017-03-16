@@ -207,6 +207,6 @@ import { IToastService } from './IToastService';
     }
 
     angular
-        .module('pipToasts', ['ngMaterial', 'pipControls.Translate'])
+        .module('pipToasts')
         .service('pipToasts', ToastService);
 }

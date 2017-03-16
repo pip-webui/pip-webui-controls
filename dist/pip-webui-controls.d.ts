@@ -15,10 +15,16 @@ export interface IImageSliderService {
 
 
 
+
 var marked: any;
 
+
 export interface IPopoverService {
+    show(p: Object): void;
+    hide(): void;
+    resize(): void;
 }
+
 
 
 

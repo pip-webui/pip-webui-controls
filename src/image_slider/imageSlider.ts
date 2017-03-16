@@ -124,7 +124,6 @@ import { IImageSliderService } from './IImageSliderService';
         };
     }
 
-    angular
-        .module('pipImageSlider', ['pipSliderButton', 'pipSliderIndicator', 'pipImageSlider.Service'])
+    angular.module('pipImageSlider')
         .directive('pipImageSlider', ImageSlider);
 }

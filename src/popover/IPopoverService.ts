@@ -1,3 +1,8 @@
 export interface IPopoverService {
-    // Todo: Add methods here
+    // Show popover
+    show(p: Object): void;
+    // Hide popover
+    hide(): void;
+    // Resize popover
+    resize(): void;
 } 

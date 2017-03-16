@@ -132,6 +132,6 @@
     }
 
     angular
-        .module('pipPopover', ['pipPopover.Service'])
+        .module('pipPopover')
         .component('pipPopover', Popover);
 }

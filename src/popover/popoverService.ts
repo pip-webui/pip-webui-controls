@@ -18,7 +18,7 @@ import { IPopoverService } from './IPopoverService';
                 " tabindex='1'> <pip-popover pip-params='params'> </pip-popover> </div>";
         }
 
-        public show(p) {
+        public show(p: Object) {
             let element: JQuery, scope: PopoverTemplateScope, params: any, content: ng.IRootElementService;
 
             element = $('body');
