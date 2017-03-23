@@ -1,7 +1,7 @@
 declare var marked: any;
 
 {
-    function ConfigTranslations($injector: ng.auto.IInjectorService) {
+  const ConfigTranslations = ($injector: ng.auto.IInjectorService) => {
         const pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
 
         if (pipTranslate) {
