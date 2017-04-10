@@ -56,7 +56,6 @@
         .module('pipColorPicker', ['pipControls.Templates'])
         .component('pipColorPicker', pipColorPicker);
 }
-
 },{}],2:[function(require,module,exports){
 {
     translateFilter.$inject = ['$injector'];
@@ -70,7 +69,6 @@
         .module('pipControls.Translate', [])
         .filter('translate', translateFilter);
 }
-
 },{}],3:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -172,7 +170,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
     angular.module('pipImageSlider')
         .directive('pipImageSlider', ImageSlider);
 }
-
 },{}],4:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -238,7 +235,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
         .module('pipImageSlider.Service', [])
         .service('pipImageSlider', ImageSliderService);
 }
-
 },{}],5:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -271,7 +267,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
         .module('pipSliderButton', [])
         .directive('pipSliderButton', SliderButton);
 }
-
 },{}],6:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -305,7 +300,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
         .module('pipSliderIndicator', [])
         .directive('pipSliderIndicator', SliderIndicator);
 }
-
 },{}],7:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -315,7 +309,6 @@ require("./ImageSlider");
 require("./ImageSliderService");
 require("./SliderButton");
 require("./SliderIndicator");
-
 },{"./ImageSlider":3,"./ImageSliderService":4,"./SliderButton":5,"./SliderIndicator":6}],8:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -335,7 +328,6 @@ angular.module('pipControls', [
     'pipToasts',
     'pipControls.Translate'
 ]);
-
 },{"./color_picker/ColorPicker":1,"./dependencies/TranslateFilter":2,"./image_slider":7,"./markdown/Markdown":9,"./popover":12,"./progress/RoutingProgress":13,"./toast":16}],9:[function(require,module,exports){
 {
     var ConfigTranslations = function ($injector) {
@@ -455,7 +447,6 @@ angular.module('pipControls', [
         .run(ConfigTranslations)
         .component('pipMarkdown', MarkdownComponent);
 }
-
 },{}],10:[function(require,module,exports){
 {
     var PopoverBindings = {
@@ -559,7 +550,6 @@ angular.module('pipControls', [
         .module('pipPopover')
         .component('pipPopover', Popover);
 }
-
 },{}],11:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -603,14 +593,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
         .module('pipPopover.Service', [])
         .service('pipPopoverService', PopoverService);
 }
-
 },{}],12:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 angular.module('pipPopover', ['pipPopover.Service']);
 require("./Popover");
 require("./PopoverService");
-
 },{"./Popover":10,"./PopoverService":11}],13:[function(require,module,exports){
 {
     var RoutingBindings = {
@@ -641,7 +629,6 @@ require("./PopoverService");
         .module('pipRoutingProgress', ['ngMaterial'])
         .component('pipRoutingProgress', RoutingProgress);
 }
-
 },{}],14:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -651,7 +638,6 @@ var Toast = (function () {
     return Toast;
 }());
 exports.Toast = Toast;
-
 },{}],15:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -827,14 +813,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
         .module('pipToasts')
         .service('pipToasts', ToastService);
 }
-
 },{}],16:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 angular.module('pipToasts', ['ngMaterial', 'pipControls.Translate']);
 require("./ToastService");
 require("./Toast");
-
 },{"./Toast":14,"./ToastService":15}],17:[function(require,module,exports){
 (function(module) {
 try {
@@ -843,7 +827,7 @@ try {
   module = angular.module('pipControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('color_picker/ColorPicker.html',
+  $templateCache.put('color_picker/colorPicker.html',
     '<ul class="pip-color-picker {{$ctrl.class}}" pip-selected="$ctrl.currentColorIndex" pip-enter-space-press="$ctrl.enterSpacePress($event)"><li tabindex="-1" ng-repeat="color in $ctrl.colors track by color"><md-button tabindex="-1" class="md-icon-button pip-selectable" ng-click="$ctrl.selectColor($index)" aria-label="color" ng-disabled="$ctrl.ngDisabled"><md-icon ng-style="{\'color\': color}" md-svg-icon="icons:{{ color == $ctrl.currentColor ? \'circle\' : \'radio-off\' }}"></md-icon></md-button></li></ul>');
 }]);
 })();
@@ -855,19 +839,7 @@ try {
   module = angular.module('pipControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('popover/Popover.html',
-    '<div class="pip-popover" ng-click="$ctrl.params.onPopoverClick($event)"></div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipControls.Templates');
-} catch (e) {
-  module = angular.module('pipControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('progress/RoutingProgress.html',
+  $templateCache.put('progress/routingProgress.html',
     '<div class="layout-column layout-align-center-center" ng-show="$ctrl.showProgress()"><div class="loader"><svg class="circular" viewbox="25 25 50 50"><circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle></svg></div><img src="" height="40" width="40" class="pip-img"><md-progress-circular md-diameter="96" class="fix-ie"></md-progress-circular></div>');
 }]);
 })();
@@ -879,7 +851,19 @@ try {
   module = angular.module('pipControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('toast/Toast.html',
+  $templateCache.put('popover/popover.html',
+    '<div class="pip-popover" ng-click="$ctrl.params.onPopoverClick($event)"></div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipControls.Templates');
+} catch (e) {
+  module = angular.module('pipControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('toast/toast.html',
     '<md-toast class="md-action pip-toast" ng-class="{\'pip-error\': vm.toast.type==\'error\', \'pip-column-toast\': vm.toast.actions.length > 1 || vm.actionLenght > 4, \'pip-no-action-toast\': vm.actionLenght == 0}" style="height:initial; max-height: initial;"><span class="flex-var pip-text" ng-bind-html="vm.message"></span><div class="layout-row layout-align-end-start pip-actions" ng-if="vm.actions.length > 0 || (vm.toast.type==\'error\' && vm.toast.error)"><div class="flex" ng-if="vm.toast.actions.length > 1"></div><md-button class="flex-fixed pip-toast-button" ng-if="vm.toast.type==\'error\' && vm.toast.error && vm.showDetails" ng-click="vm.onDetails()">Details</md-button><md-button class="flex-fixed pip-toast-button" ng-click="vm.onAction(action)" ng-repeat="action in vm.actions" aria-label="{{::action| translate}}">{{::action| translate}}</md-button></div></md-toast>');
 }]);
 })();
