@@ -16,15 +16,6 @@ export interface IImageSliderService {
 
 
 
-
-export interface IPopoverService {
-    show(p: Object): void;
-    hide(): void;
-    resize(): void;
-}
-
-
-
 var marked: any;
 
 
@@ -54,6 +45,15 @@ export class Toast {
     successCallback: Function;
     cancelCallback: Function;
 }
+
+
+
+export interface IPopoverService {
+    show(p: Object): void;
+    hide(): void;
+    resize(): void;
+}
+
 
 
 }

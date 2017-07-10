@@ -839,18 +839,6 @@ try {
   module = angular.module('pipControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('popover/Popover.html',
-    '<div class="pip-popover" ng-click="$ctrl.params.onPopoverClick($event)"></div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipControls.Templates');
-} catch (e) {
-  module = angular.module('pipControls.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('progress/RoutingProgress.html',
     '<div class="layout-column layout-align-center-center" ng-show="$ctrl.showProgress()"><div class="loader"><svg class="circular" viewbox="25 25 50 50"><circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle></svg></div><img src="" height="40" width="40" class="pip-img"><md-progress-circular md-diameter="96" class="fix-ie"></md-progress-circular></div>');
 }]);
@@ -865,6 +853,18 @@ try {
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('toast/Toast.html',
     '<md-toast class="md-action pip-toast" ng-class="{\'pip-error\': vm.toast.type==\'error\', \'pip-column-toast\': vm.toast.actions.length > 1 || vm.actionLenght > 4, \'pip-no-action-toast\': vm.actionLenght == 0}" style="height:initial; max-height: initial;"><span class="flex-var pip-text" ng-bind-html="vm.message"></span><div class="layout-row layout-align-end-start pip-actions" ng-if="vm.actions.length > 0 || (vm.toast.type==\'error\' && vm.toast.error)"><div class="flex" ng-if="vm.toast.actions.length > 1"></div><md-button class="flex-fixed pip-toast-button" ng-if="vm.toast.type==\'error\' && vm.toast.error && vm.showDetails" ng-click="vm.onDetails()">Details</md-button><md-button class="flex-fixed pip-toast-button" ng-click="vm.onAction(action)" ng-repeat="action in vm.actions" aria-label="{{::action| translate}}">{{::action| translate}}</md-button></div></md-toast>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipControls.Templates');
+} catch (e) {
+  module = angular.module('pipControls.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('popover/Popover.html',
+    '<div class="pip-popover" ng-click="$ctrl.params.onPopoverClick($event)"></div>');
 }]);
 })();
 
