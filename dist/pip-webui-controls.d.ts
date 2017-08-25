@@ -2,15 +2,7 @@ declare module pip.controls {
 
 
 
-
-export interface IPopoverService {
-    show(p: Object): void;
-    hide(): void;
-    resize(): void;
-}
-
-
-
+var marked: any;
 
 export interface IImageSliderService {
     registerSlider(sliderId: string, sliderScope: any): void;
@@ -26,7 +18,14 @@ export interface IImageSliderService {
 
 
 
-var marked: any;
+
+export interface IPopoverService {
+    show(p: Object): void;
+    hide(): void;
+    resize(): void;
+}
+
+
 
 
 export interface IToastService {
@@ -54,6 +53,7 @@ export class Toast {
     successCallback: Function;
     cancelCallback: Function;
 }
+
 
 
 }
