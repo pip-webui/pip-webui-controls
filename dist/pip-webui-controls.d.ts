@@ -28,6 +28,7 @@ export interface IPopoverService {
 
 
 
+
 export interface IToastService {
     showNextToast(): void;
     showToast(toast: Toast): void;
@@ -53,7 +54,6 @@ export class Toast {
     successCallback: Function;
     cancelCallback: Function;
 }
-
 
 
 }
