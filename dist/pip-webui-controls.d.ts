@@ -16,6 +16,7 @@ export interface IImageSliderService {
 
 
 
+
 var marked: any;
 
 
@@ -24,7 +25,6 @@ export interface IPopoverService {
     hide(): void;
     resize(): void;
 }
-
 
 
 
