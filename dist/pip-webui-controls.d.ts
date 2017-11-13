@@ -16,8 +16,8 @@ export interface IImageSliderService {
 
 
 
-
 var marked: any;
+
 
 
 export interface IPopoverService {
