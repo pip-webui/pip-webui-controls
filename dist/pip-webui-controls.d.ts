@@ -1,7 +1,6 @@
 declare module pip.controls {
 
 
-
 export interface IImageSliderService {
     registerSlider(sliderId: string, sliderScope: any): void;
     removeSlider(sliderId: string): void;
@@ -16,6 +15,8 @@ export interface IImageSliderService {
 
 
 
+var marked: any;
+
 
 export interface IPopoverService {
     show(p: Object): void;
@@ -25,7 +26,6 @@ export interface IPopoverService {
 
 
 
-var marked: any;
 
 
 
