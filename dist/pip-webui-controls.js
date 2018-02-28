@@ -827,8 +827,8 @@ try {
   module = angular.module('pipControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('popover/Popover.html',
-    '<div class="pip-popover" ng-click="$ctrl.params.onPopoverClick($event)"></div>');
+  $templateCache.put('color_picker/ColorPicker.html',
+    '<ul class="pip-color-picker {{$ctrl.class}}" pip-selected="$ctrl.currentColorIndex" pip-enter-space-press="$ctrl.enterSpacePress($event)"><li tabindex="-1" ng-repeat="color in $ctrl.colors track by color"><md-button tabindex="-1" class="md-icon-button pip-selectable" ng-click="$ctrl.selectColor($index)" aria-label="color" ng-disabled="$ctrl.ngDisabled"><md-icon ng-style="{\'color\': color}" md-svg-icon="icons:{{ color == $ctrl.currentColor ? \'circle\' : \'radio-off\' }}"></md-icon></md-button></li></ul>');
 }]);
 })();
 
@@ -851,8 +851,8 @@ try {
   module = angular.module('pipControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('color_picker/ColorPicker.html',
-    '<ul class="pip-color-picker {{$ctrl.class}}" pip-selected="$ctrl.currentColorIndex" pip-enter-space-press="$ctrl.enterSpacePress($event)"><li tabindex="-1" ng-repeat="color in $ctrl.colors track by color"><md-button tabindex="-1" class="md-icon-button pip-selectable" ng-click="$ctrl.selectColor($index)" aria-label="color" ng-disabled="$ctrl.ngDisabled"><md-icon ng-style="{\'color\': color}" md-svg-icon="icons:{{ color == $ctrl.currentColor ? \'circle\' : \'radio-off\' }}"></md-icon></md-button></li></ul>');
+  $templateCache.put('toast/Toast.html',
+    '<md-toast class="md-action pip-toast" ng-class="{\'pip-error\': vm.toast.type==\'error\', \'pip-column-toast\': vm.toast.actions.length > 1 || vm.actionLenght > 4, \'pip-no-action-toast\': vm.actionLenght == 0}" style="height:initial; max-height: initial;"><span class="flex-var pip-text" ng-bind-html="vm.message"></span><div class="layout-row layout-align-end-start pip-actions" ng-if="vm.actions.length > 0 || (vm.toast.type==\'error\' && vm.toast.error)"><div class="flex" ng-if="vm.toast.actions.length > 1"></div><md-button class="flex-fixed pip-toast-button" ng-if="vm.toast.type==\'error\' && vm.toast.error && vm.showDetails" ng-click="vm.onDetails()">Details</md-button><md-button class="flex-fixed pip-toast-button" ng-click="vm.onAction(action)" ng-repeat="action in vm.actions" aria-label="{{::action| translate}}">{{::action| translate}}</md-button></div></md-toast>');
 }]);
 })();
 
@@ -863,8 +863,8 @@ try {
   module = angular.module('pipControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('toast/Toast.html',
-    '<md-toast class="md-action pip-toast" ng-class="{\'pip-error\': vm.toast.type==\'error\', \'pip-column-toast\': vm.toast.actions.length > 1 || vm.actionLenght > 4, \'pip-no-action-toast\': vm.actionLenght == 0}" style="height:initial; max-height: initial;"><span class="flex-var pip-text" ng-bind-html="vm.message"></span><div class="layout-row layout-align-end-start pip-actions" ng-if="vm.actions.length > 0 || (vm.toast.type==\'error\' && vm.toast.error)"><div class="flex" ng-if="vm.toast.actions.length > 1"></div><md-button class="flex-fixed pip-toast-button" ng-if="vm.toast.type==\'error\' && vm.toast.error && vm.showDetails" ng-click="vm.onDetails()">Details</md-button><md-button class="flex-fixed pip-toast-button" ng-click="vm.onAction(action)" ng-repeat="action in vm.actions" aria-label="{{::action| translate}}">{{::action| translate}}</md-button></div></md-toast>');
+  $templateCache.put('popover/Popover.html',
+    '<div class="pip-popover" ng-click="$ctrl.params.onPopoverClick($event)"></div>');
 }]);
 })();
 
