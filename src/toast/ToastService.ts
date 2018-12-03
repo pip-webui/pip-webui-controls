@@ -15,6 +15,8 @@ import { IToastService } from './IToastService';
             public toast: Toast,
             $injector: ng.auto.IInjectorService
         ) {
+            "ngInject";
+
             this._pipErrorDetailsDialog = $injector.has('pipErrorDetailsDialog') ?
                 $injector.get('pipErrorDetailsDialog') : null;
             this.message = toast.message;
@@ -62,6 +64,7 @@ import { IToastService } from './IToastService';
             $rootScope: ng.IRootScopeService,
             private $mdToast: angular.material.IToastService
         ) {
+            "ngInject";
             $rootScope.$on('$stateChangeSuccess', () => { this.onStateChangeSuccess() });
             $rootScope.$on('pipSessionClosed', () => { this.onClearToasts() });
             $rootScope.$on('pipIdentityChanged', () => { this.onClearToasts() });

@@ -643,7 +643,9 @@ exports.Toast = Toast;
 Object.defineProperty(exports, "__esModule", { value: true });
 {
     var ToastController_1 = (function () {
+        ToastController_1.$inject = ['$mdToast', 'toast', '$injector'];
         function ToastController_1($mdToast, toast, $injector) {
+            "ngInject";
             this.$mdToast = $mdToast;
             this.toast = toast;
             this._pipErrorDetailsDialog = $injector.has('pipErrorDetailsDialog') ?
@@ -679,6 +681,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
     var ToastService = (function () {
         ToastService.$inject = ['$rootScope', '$mdToast'];
         function ToastService($rootScope, $mdToast) {
+            "ngInject";
             var _this = this;
             this.$mdToast = $mdToast;
             this.SHOW_TIMEOUT = 20000;
