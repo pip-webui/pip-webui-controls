@@ -364,7 +364,9 @@ angular.module('pipControls', [
         return MarkdownChanges;
     }());
     var MarkdownController = (function () {
+        MarkdownController.$inject = ['$scope', '$element', '$injector'];
         function MarkdownController($scope, $element, $injector) {
+            "ngInject";
             this.$scope = $scope;
             this.$element = $element;
             this._pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;

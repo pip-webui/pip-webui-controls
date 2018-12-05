@@ -62,6 +62,7 @@ declare var marked: any;
             private $element: JQuery,
             $injector: ng.auto.IInjectorService
         ) {
+            "ngInject";
             this._pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
         }
 
