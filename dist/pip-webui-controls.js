@@ -671,6 +671,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
                 }, angular.noop, angular.noop);
             }
         };
+        ToastController_1.prototype.onMessageClick = function () {
+            if (this.toast.type !== 'clickable_error' || !this.showDetails)
+                return;
+            this.$mdToast.hide();
+            if (this._pipErrorDetailsDialog) {
+                this._pipErrorDetailsDialog.show({
+                    error: this.toast.error,
+                    ok: 'Ok'
+                }, angular.noop, angular.noop);
+            }
+        };
         ToastController_1.prototype.onAction = function (action) {
             this.$mdToast.hide({
                 action: action,
@@ -799,6 +810,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
                 cancelCallback: cancelCallback
             });
         };
+        ToastService.prototype.showClickableError = function (message, successCallback, cancelCallback, id, error) {
+            this.addToast({
+                id: id || null,
+                error: error,
+                type: 'clickable_error',
+                message: message || 'Unknown error.',
+                actions: ['ok'],
+                successCallback: successCallback,
+                cancelCallback: cancelCallback
+            });
+        };
         ToastService.prototype.hideAllToasts = function () {
             this.$mdToast.cancel();
             this.toasts = [];
@@ -869,7 +891,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('toast/Toast.html',
-    '<md-toast class="md-action pip-toast" ng-class="{\'pip-error\': vm.toast.type==\'error\', \'pip-column-toast\': vm.toast.actions.length > 1 || vm.actionLenght > 4, \'pip-no-action-toast\': vm.actionLenght == 0}" style="height:initial; max-height: initial;"><span class="flex-var pip-text" ng-bind-html="vm.message"></span><div class="layout-row layout-align-end-start pip-actions" ng-if="vm.actions.length > 0 || (vm.toast.type==\'error\' && vm.toast.error)"><div class="flex" ng-if="vm.toast.actions.length > 1"></div><md-button class="flex-fixed pip-toast-button" ng-if="vm.toast.type==\'error\' && vm.toast.error && vm.showDetails" ng-click="vm.onDetails()">Details</md-button><md-button class="flex-fixed pip-toast-button" ng-click="vm.onAction(action)" ng-repeat="action in vm.actions" aria-label="{{::action| translate}}">{{::action| translate}}</md-button></div></md-toast>');
+    '<md-toast class="md-action pip-toast" ng-class="{\'pip-error\': vm.toast.type==\'error\' || vm.toast.type==\'clickable_error\', \'pip-column-toast\': vm.toast.actions.length > 1 || vm.actionLenght > 4, \'pip-no-action-toast\': vm.actionLenght == 0}" style="height:initial; max-height: initial;"><span class="flex-var pip-text" ng-bind-html="vm.message" ng-class="{\'clickable\': vm.showDetails && vm.toast.type==\'clickable_error\' }" ng-click="vm.onMessageClick()"></span><div class="layout-row layout-align-end-start pip-actions" ng-if="vm.actions.length > 0 || ((vm.toast.type==\'error\' || vm.toast.type==\'clickable_error\') && vm.toast.error)"><div class="flex" ng-if="vm.toast.actions.length > 1"></div><md-button class="flex-fixed pip-toast-button" ng-if="vm.toast.type==\'error\' && vm.toast.error && vm.showDetails" ng-click="vm.onDetails()">Details</md-button><md-button class="flex-fixed pip-toast-button" ng-click="vm.onAction(action)" ng-repeat="action in vm.actions" aria-label="{{::action| translate}}">{{::action| translate}}</md-button></div></md-toast>');
 }]);
 })();
 

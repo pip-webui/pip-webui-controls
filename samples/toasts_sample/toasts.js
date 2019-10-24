@@ -44,6 +44,7 @@
                 pipTranslate.setTranslations('en', {
                     SHOW_NOTIFICATION: 'Show notification',
                     SHOW_ERROR: 'Show error',
+                    SHOW_CLICKABLE_ERROR: 'Show clickable error',
                     ERROR: 'New error ',
                     NOTIFICATION: 'New notification ',
                     SIMPLE: 'Simple',
@@ -58,6 +59,7 @@
                 pipTranslate.setTranslations('ru', {
                     SHOW_NOTIFICATION: 'Показать оповещение',
                     SHOW_ERROR: 'Показать ошибку',
+                    SHOW_CLICKABLE_ERROR: 'Показать кликабельную ошибку',
                     ERROR: 'Новая ошибка ',
                     NOTIFICATION: 'Новое оповещение',
                     SIMPLE: 'Простая',
@@ -72,6 +74,7 @@
                 });
                 $scope.showNotification = pipTranslate.translate('SHOW_NOTIFICATION');
                 $scope.showError = pipTranslate.translate('SHOW_ERROR');
+                $scope.showClickableError = pipTranslate.translate('SHOW_CLICKABLE_ERROR');
                 $scope.errorText = pipTranslate.translate('ERROR');
                 $scope.notificationText  = pipTranslate.translate('NOTIFICATION');
                 $scope.simple = pipTranslate.translate('SIMPLE');
@@ -85,6 +88,7 @@
             } else {
                 $scope.showNotification = 'Show notification';
                 $scope.showError = 'Show error';
+                $scope.showClickableError = 'Show clickable error';
                 $scope.errorText = 'New error ';
                 $scope.notificationText  = 'New notification ';
                 $scope.simple = 'Simple';
@@ -141,6 +145,21 @@
                 };
 
                 pipToasts.showError($scope.notifMessage + " Error:" + errorCount, null, null, null, error);
+            };
+
+            $scope.onClickableErrorShow = function () {
+                errorCount++;
+
+                var error = {
+                    path: '/api/1.0/parties/:id/followers',
+                    method: 'POST',
+                    code: 400,
+                    name: 'Bad Request',
+                    error: 1402,
+                    message: 'Missing party information'
+                };
+
+                pipToasts.showClickableError($scope.notifMessage + " Error:" + errorCount, null, null, null, error);
             };
         }
     );

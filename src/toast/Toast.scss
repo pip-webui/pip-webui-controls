@@ -83,6 +83,10 @@
   }
 }
 
+.clickable {
+  cursor: pointer !important;
+}
+
 .pip-toast.pip-column-toast {
     @media (max-width: 768px) {
       .md-toast-content::before {

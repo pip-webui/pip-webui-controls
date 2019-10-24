@@ -39,6 +39,24 @@
 pipToasts.showError(pipTranslate.translate('ERROR') + errorCount, null, null, null, error);</code>
         </pre>
 
+        <md-button class="lm0 md-raised md-accent flat" ng-click="onClickableErrorShow($event)">
+            {{::showClickableError | translate}}
+        </md-button>
+        
+        <pre class="text-body1 color-window-bg code-block">
+        <h3 class="text-subhead2">{{:: code | translate}}</h3>
+        <code class="language-js">var error = {
+            'path': '/api/1.0/parties/:id/followers',
+            'method': 'POST',
+            code: 400,
+            'name': 'Bad Request',
+            'error': 1402,
+            'message': 'Missing party information'
+        };
+        
+        pipToasts.showClickableError(pipTranslate.translate('ERROR') + errorCount, null, null, null, error);</code>
+                </pre>
+                
 <md-divider class="content-divider"></md-divider>
 <h3 class="text-subhead2">{{:: withoutActions | translate }}</h3>
 <md-button class="lm0 md-raised md-accent flat"

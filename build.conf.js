@@ -34,6 +34,7 @@ module.exports = {
             '../pip-webui-controls/dist/**/*',
             //  '../pip-webui-nav/dist/**/*',
             //  '../pip-webui-layouts/dist/**/*',
+             '../pip-webui-dialogs/dist/**/*',
              '../pip-webui-themes/dist/**/*',             
             //  '../pip-webui-dates/dist/**/*',             
             // '../pip-webui-pictures/dist/**/*',

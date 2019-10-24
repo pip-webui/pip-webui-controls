@@ -44,6 +44,21 @@ import { IToastService } from './IToastService';
             }
         }
 
+        public onMessageClick(): void {
+            if (this.toast.type !== 'clickable_error' || !this.showDetails) return;
+            
+            this.$mdToast.hide();
+            if (this._pipErrorDetailsDialog) {
+                this._pipErrorDetailsDialog.show({
+                        error: this.toast.error,
+                        ok: 'Ok'
+                    },
+                    angular.noop,
+                    angular.noop
+                );
+            }
+        }
+
         public onAction(action): void {
             this.$mdToast.hide({
                 action: action,
@@ -185,6 +200,18 @@ import { IToastService } from './IToastService';
                 id: id || null,
                 error: error,
                 type: 'error',
+                message: message || 'Unknown error.',
+                actions: ['ok'],
+                successCallback: successCallback,
+                cancelCallback: cancelCallback
+            });
+        }
+        
+        public showClickableError(message: string, successCallback, cancelCallback, id: string, error: any) {
+            this.addToast({
+                id: id || null,
+                error: error,
+                type: 'clickable_error',
                 message: message || 'Unknown error.',
                 actions: ['ok'],
                 successCallback: successCallback,
