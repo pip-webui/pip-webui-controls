@@ -121,7 +121,7 @@ import { IToastService } from './IToastService';
         }
 
         private showToastCancelResult(action: string): void {
-            if (this.currentToast.cancelCallback) {
+            if (this.currentToast && this.currentToast.cancelCallback) {
                 this.currentToast.cancelCallback(action);
             }
             this.currentToast = null;
@@ -129,7 +129,7 @@ import { IToastService } from './IToastService';
         }
 
         private showToastOkResult(action: string): void {
-            if (this.currentToast.successCallback) {
+            if (this.currentToast && this.currentToast.successCallback) {
                 this.currentToast.successCallback(action);
             }
             this.currentToast = null;

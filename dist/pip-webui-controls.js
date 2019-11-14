@@ -734,14 +734,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
             });
         };
         ToastService.prototype.showToastCancelResult = function (action) {
-            if (this.currentToast.cancelCallback) {
+            if (this.currentToast && this.currentToast.cancelCallback) {
                 this.currentToast.cancelCallback(action);
             }
             this.currentToast = null;
             this.showNextToast();
         };
         ToastService.prototype.showToastOkResult = function (action) {
-            if (this.currentToast.successCallback) {
+            if (this.currentToast && this.currentToast.successCallback) {
                 this.currentToast.successCallback(action);
             }
             this.currentToast = null;
