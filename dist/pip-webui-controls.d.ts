@@ -16,6 +16,8 @@ export interface IImageSliderService {
 
 
 
+var marked: any;
+
 
 export interface IPopoverService {
     show(p: Object): void;
@@ -25,8 +27,6 @@ export interface IPopoverService {
 
 
 
-
-var marked: any;
 
 
 export interface IToastService {
