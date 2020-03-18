@@ -9,6 +9,7 @@ import { IImageSliderService } from './IImageSliderService';
             $element: JQuery,
             pipImageSlider: IImageSliderService
         ) {
+            "ngInject";
             $element.css('cursor', 'pointer');
             $element.on('click', () => {
                 if (!this.sliderId() || this.slideTo() === undefined) {
@@ -18,6 +19,8 @@ import { IImageSliderService } from './IImageSliderService';
                 pipImageSlider.getSliderScope(this.sliderId()).vm.slideTo(this.slideTo());
             });
         }
+
+        $onInit() { }
     }
 
     const SliderIndicator = function (): ng.IDirective {
@@ -33,6 +36,6 @@ import { IImageSliderService } from './IImageSliderService';
     }
 
     angular
-        .module('pipSliderIndicator', [])
+        .module('pipSliderIndicator', ['pipImageSlider.Service'])
         .directive('pipSliderIndicator', SliderIndicator);
 }

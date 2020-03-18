@@ -7,7 +7,7 @@ import { IImageSliderService } from './IImageSliderService';
 
         constructor(
             private $timeout: angular.ITimeoutService
-        ) {}
+        ) { "ngInject"; }
 
         public registerSlider(sliderId: string, sliderScope: ng.IScope): void {
             this._sliders[sliderId] = sliderScope;

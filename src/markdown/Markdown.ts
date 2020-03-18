@@ -2,6 +2,7 @@ declare var marked: any;
 
 {
   const ConfigTranslations = ($injector: ng.auto.IInjectorService) => {
+        "ngInject";
         const pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
 
         if (pipTranslate) {

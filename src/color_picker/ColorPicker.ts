@@ -45,6 +45,7 @@
             $attrs: IColorPickerAttributes,
             private $timeout: ng.ITimeoutService
         ) { 
+            "ngInject";
             this.class = $attrs.class || ''; 
         }
 

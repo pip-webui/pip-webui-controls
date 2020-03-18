@@ -22,6 +22,8 @@
             private $compile: ng.ICompileService,
             private $templateRequest: ng.ITemplateRequestService
         ) {
+            "ngInject";
+
             this.backdropElement = $('.pip-popover-backdrop');
             this.backdropElement.on('click keydown scroll', () => {
                 this.backdropClick();
@@ -57,6 +59,8 @@
                 this.onResize()
             });
         }
+
+        $onInit() { }
 
         public backdropClick() {
             if (this.params.cancelCallback) {

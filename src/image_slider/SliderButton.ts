@@ -9,6 +9,7 @@ import { IImageSliderService } from './IImageSliderService';
             $element: JQuery,
             pipImageSlider: IImageSliderService
         ) {
+            "ngInject";
             $element.on('click', () => {
                 if (!this.sliderId() || !this.direction()) {
                     return;
@@ -17,6 +18,8 @@ import { IImageSliderService } from './IImageSliderService';
                 pipImageSlider.getSliderScope(this.sliderId()).vm[this.direction() + 'Block']();
             });
         }
+
+        $onInit() { }
     }
 
     const SliderButton = function (): ng.IDirective {
@@ -32,7 +35,7 @@ import { IImageSliderService } from './IImageSliderService';
     }
 
     angular
-        .module('pipSliderButton', [])
+        .module('pipSliderButton', ['pipImageSlider.Service'])
         .directive('pipSliderButton', SliderButton);
 
 }

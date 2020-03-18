@@ -20,7 +20,7 @@
         constructor(
             $scope: ng.IScope,
             private $element: JQuery
-        ) { }
+        ) { "ngInject"; }
 
         public $postLink() {
             this._image = this.$element.find('img');

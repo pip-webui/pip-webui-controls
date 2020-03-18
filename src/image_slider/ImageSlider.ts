@@ -7,7 +7,7 @@ import { IImageSliderService } from './IImageSliderService';
         private _newIndex: number;
         private _direction: string;
         private _type: string;
-        private DEFAULT_INTERVAL:number = 4500;
+        private DEFAULT_INTERVAL: number = 4500;
         private _interval: number | string;
         private _timePromises;
         private _throttled: Function;
@@ -27,6 +27,7 @@ import { IImageSliderService } from './IImageSliderService';
             private $interval: angular.IIntervalService,
             private pipImageSlider: IImageSliderService
         ) {
+            "ngInject";
 
             //this.sliderIndex = $scope['vm']['sliderIndex'];
             this._type = this.type();
@@ -63,6 +64,8 @@ import { IImageSliderService } from './IImageSliderService';
             });
 
         }
+
+        $onInit() { }
 
         public nextBlock() {
             this.restartInterval();
@@ -111,7 +114,7 @@ import { IImageSliderService } from './IImageSliderService';
         }
     }
 
-    const ImageSlider = function(): ng.IDirective {
+    const ImageSlider = function (): ng.IDirective {
         return {
             scope: {
                 sliderIndex: '=pipImageIndex',

@@ -14,6 +14,7 @@ import { IPopoverService } from './IPopoverService';
             private $rootScope: ng.IRootScopeService,
             private $timeout: ng.ITimeoutService
         ) {
+            "ngInject";
             this.popoverTemplate = "<div class='pip-popover-backdrop {{ params.class }}' ng-controller='params.controller'" +
                 " tabindex='1'> <pip-popover pip-params='params'> </pip-popover> </div>";
         }

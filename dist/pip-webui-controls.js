@@ -13,7 +13,9 @@
     }());
     var DEFAULT_COLORS_1 = ['purple', 'lightgreen', 'green', 'darkred', 'pink', 'yellow', 'cyan'];
     var ColorPickerController = (function () {
+        ColorPickerController.$inject = ['$scope', '$element', '$attrs', '$timeout'];
         function ColorPickerController($scope, $element, $attrs, $timeout) {
+            "ngInject";
             this.$scope = $scope;
             this.$element = $element;
             this.$timeout = $timeout;
@@ -60,6 +62,7 @@
 {
     translateFilter.$inject = ['$injector'];
     function translateFilter($injector) {
+        "ngInject";
         var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
         return function (key) {
             return pipTranslate ? pipTranslate['translate'](key) || key : key;
@@ -76,6 +79,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
     var pipImageSliderController_1 = (function () {
         pipImageSliderController_1.$inject = ['$scope', '$element', '$attrs', '$parse', '$timeout', '$interval', 'pipImageSlider'];
         function pipImageSliderController_1($scope, $element, $attrs, $parse, $timeout, $interval, pipImageSlider) {
+            "ngInject";
             var _this = this;
             this.$scope = $scope;
             this.$element = $element;
@@ -113,6 +117,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
                 pipImageSlider.removeSlider($attrs.id);
             });
         }
+        pipImageSliderController_1.prototype.$onInit = function () { };
         pipImageSliderController_1.prototype.nextBlock = function () {
             this.restartInterval();
             this._newIndex = this._index + 1 === this._blocks.length ? 0 : this._index + 1;
@@ -177,6 +182,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
     var ImageSliderService = (function () {
         ImageSliderService.$inject = ['$timeout'];
         function ImageSliderService($timeout) {
+            "ngInject";
             this.$timeout = $timeout;
             this.ANIMATION_DURATION = 550;
             this._sliders = {};
@@ -242,6 +248,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
     var SliderButtonController_1 = (function () {
         SliderButtonController_1.$inject = ['$element', 'pipImageSlider'];
         function SliderButtonController_1($element, pipImageSlider) {
+            "ngInject";
             var _this = this;
             $element.on('click', function () {
                 if (!_this.sliderId() || !_this.direction()) {
@@ -250,6 +257,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
                 pipImageSlider.getSliderScope(_this.sliderId()).vm[_this.direction() + 'Block']();
             });
         }
+        SliderButtonController_1.prototype.$onInit = function () { };
         return SliderButtonController_1;
     }());
     var SliderButton = function () {
@@ -264,7 +272,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
         };
     };
     angular
-        .module('pipSliderButton', [])
+        .module('pipSliderButton', ['pipImageSlider.Service'])
         .directive('pipSliderButton', SliderButton);
 }
 },{}],6:[function(require,module,exports){
@@ -274,6 +282,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
     var SliderIndicatorController_1 = (function () {
         SliderIndicatorController_1.$inject = ['$element', 'pipImageSlider'];
         function SliderIndicatorController_1($element, pipImageSlider) {
+            "ngInject";
             var _this = this;
             $element.css('cursor', 'pointer');
             $element.on('click', function () {
@@ -283,6 +292,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
                 pipImageSlider.getSliderScope(_this.sliderId()).vm.slideTo(_this.slideTo());
             });
         }
+        SliderIndicatorController_1.prototype.$onInit = function () { };
         return SliderIndicatorController_1;
     }());
     var SliderIndicator = function () {
@@ -297,7 +307,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
         };
     };
     angular
-        .module('pipSliderIndicator', [])
+        .module('pipSliderIndicator', ['pipImageSlider.Service'])
         .directive('pipSliderIndicator', SliderIndicator);
 }
 },{}],7:[function(require,module,exports){
@@ -331,6 +341,7 @@ angular.module('pipControls', [
 },{"./color_picker/ColorPicker":1,"./dependencies/TranslateFilter":2,"./image_slider":7,"./markdown/Markdown":9,"./popover":12,"./progress/RoutingProgress":13,"./toast":16}],9:[function(require,module,exports){
 {
     var ConfigTranslations = function ($injector) {
+        "ngInject";
         var pipTranslate = $injector.has('pipTranslate') ? $injector.get('pipTranslate') : null;
         if (pipTranslate) {
             pipTranslate.setTranslations('en', {
@@ -455,7 +466,9 @@ angular.module('pipControls', [
         params: '<pipParams'
     };
     var PopoverController = (function () {
+        PopoverController.$inject = ['$scope', '$rootScope', '$element', '$timeout', '$compile', '$templateRequest'];
         function PopoverController($scope, $rootScope, $element, $timeout, $compile, $templateRequest) {
+            "ngInject";
             var _this = this;
             this.$scope = $scope;
             this.$timeout = $timeout;
@@ -492,6 +505,7 @@ angular.module('pipControls', [
                 _this.onResize();
             });
         }
+        PopoverController.prototype.$onInit = function () { };
         PopoverController.prototype.backdropClick = function () {
             if (this.params.cancelCallback) {
                 this.params.cancelCallback();
@@ -559,6 +573,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
     var PopoverService = (function () {
         PopoverService.$inject = ['$compile', '$rootScope', '$timeout'];
         function PopoverService($compile, $rootScope, $timeout) {
+            "ngInject";
             this.$compile = $compile;
             this.$rootScope = $rootScope;
             this.$timeout = $timeout;
@@ -608,7 +623,9 @@ require("./PopoverService");
         logoUrl: '@'
     };
     var RoutingController = (function () {
+        RoutingController.$inject = ['$scope', '$element'];
         function RoutingController($scope, $element) {
+            "ngInject";
             this.$element = $element;
         }
         RoutingController.prototype.$postLink = function () {
@@ -866,8 +883,8 @@ try {
   module = angular.module('pipControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('popover/Popover.html',
-    '<div class="pip-popover" ng-click="$ctrl.params.onPopoverClick($event)"></div>');
+  $templateCache.put('progress/RoutingProgress.html',
+    '<div class="layout-column layout-align-center-center" ng-show="$ctrl.showProgress()"><div class="loader"><svg class="circular" viewbox="25 25 50 50"><circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle></svg></div><img src="" height="40" width="40" class="pip-img"><md-progress-circular md-diameter="96" class="fix-ie"></md-progress-circular></div>');
 }]);
 })();
 
@@ -878,8 +895,8 @@ try {
   module = angular.module('pipControls.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('progress/RoutingProgress.html',
-    '<div class="layout-column layout-align-center-center" ng-show="$ctrl.showProgress()"><div class="loader"><svg class="circular" viewbox="25 25 50 50"><circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle></svg></div><img src="" height="40" width="40" class="pip-img"><md-progress-circular md-diameter="96" class="fix-ie"></md-progress-circular></div>');
+  $templateCache.put('popover/Popover.html',
+    '<div class="pip-popover" ng-click="$ctrl.params.onPopoverClick($event)"></div>');
 }]);
 })();
 
